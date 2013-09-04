@@ -42,6 +42,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libs\NinjaSoftware.Api.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Npgsql">
+      <HintPath>..\libs\Npgsql.dll</HintPath>
+    </Reference>
     <Reference Include="SD.LLBLGen.Pro.ORMSupportClasses, Version=4.0.0.0, Culture=neutral, PublicKeyToken=ca73b74ba4e3ff27, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libs\SD.LLBLGen.Pro.ORMSupportClasses.dll</HintPath>
