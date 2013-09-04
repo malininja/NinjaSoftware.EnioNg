@@ -7,10 +7,10 @@ INSERT INTO "RoleRo" ("Code", "Name", "RoleId")
 	
 -- StatusRo
 INSERT INTO "StatusRo" ("Code", "Name", "StatusId")
-	VALUES('Paid', 'Plaæen', 1);
+	VALUES('Paid', 'PlaÄ‡en', 1);
 	
 INSERT INTO "StatusRo" ("Code", "Name", "StatusId")
-	VALUES('Unpaid', 'Neplaæen', 2);
+	VALUES('Unpaid', 'NeplaÄ‡en', 2);
 	
 INSERT INTO "StatusRo" ("Code", "Name", "StatusId")
 	VALUES('Cancelled', 'Storniran', 3);

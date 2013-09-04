@@ -21,7 +21,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.DatabaseSpecific
 	
 	// __LLBLGENPRO_USER_CODE_REGION_START AdditionalNamespaces
     using NinjaSoftware.EnioNg.CoolJ.EntityClasses;
-    using NinjaSoftware.Enio.CoolJ.Enums;
+    using NinjaSoftware.EnioNg.CoolJ.Enums;
 	// __LLBLGENPRO_USER_CODE_REGION_END
 	
 	/// <summary>Data access adapter class, which controls the complete database interaction with the database for all objects.</summary>

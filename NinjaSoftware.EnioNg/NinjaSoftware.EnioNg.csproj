@@ -156,4 +156,14 @@
       </Properties>
     </MonoDevelop>
   </ProjectExtensions>
+  <ItemGroup>
+    <ProjectReference Include="..\CoolJ\NinjaSoftware.EnioNg.CoolJ.csproj">
+      <Project>{9BE7D7EC-E981-4CAF-87B8-F2347089B1EA}</Project>
+      <Name>NinjaSoftware.EnioNg.CoolJ</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CoolJ\NinjaSoftware.EnioNg.CoolJDBSpecific.csproj">
+      <Project>{B90938ED-9581-4E1B-9962-0F0E4F034668}</Project>
+      <Name>NinjaSoftware.EnioNg.CoolJDBSpecific</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>

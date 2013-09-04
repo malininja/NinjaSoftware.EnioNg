@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace NinjaSoftware.Enio.CoolJ.Enums
+namespace NinjaSoftware.EnioNg.CoolJ.Enums
 {
     public enum AuditInfoActionTypeEnum
 	{
