@@ -30,7 +30,25 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\libs\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NinjaSoftware.Api.CoolJ">
+      <HintPath>..\libs\NinjaSoftware.Api.CoolJ.dll</HintPath>
+    </Reference>
+    <Reference Include="NinjaSoftware.Api.Core">
+      <HintPath>..\libs\NinjaSoftware.Api.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="SD.LLBLGen.Pro.DQE.PostgreSql, Version=4.0.0.0, Culture=neutral, PublicKeyToken=ca73b74ba4e3ff27, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\libs\SD.LLBLGen.Pro.DQE.PostgreSql.dll</HintPath>
+    </Reference>
+    <Reference Include="SD.LLBLGen.Pro.ORMSupportClasses, Version=4.0.0.0, Culture=neutral, PublicKeyToken=ca73b74ba4e3ff27, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\libs\SD.LLBLGen.Pro.ORMSupportClasses.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -61,6 +79,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="NinjaSoftware.EnioNg.CoolJ.csproj">
+      <Project>{9BE7D7EC-E981-4CAF-87B8-F2347089B1EA}</Project>
+      <Name>NinjaSoftware.EnioNg.CoolJ</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSHARP.Targets" />
   <PropertyGroup>
