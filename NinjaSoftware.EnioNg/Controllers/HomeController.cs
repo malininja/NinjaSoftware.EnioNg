@@ -16,7 +16,7 @@ namespace NinjaSoftware.EnioNg.Controllers
         public ActionResult Index()
         {
 			DataAccessAdapter adapter = new DataAccessAdapter();
-			IEnumerable<EntityRoEntity> partnerCollection = EntityRoEntity.FetchEntityRoCollection (adapter, null, null);
+			IEnumerable<EntityRoEntity> partnerCollection = EntityRoEntity.FetchEntityRoCollection(adapter, new SD.LLBLGen.Pro.ORMSupportClasses.RelationPredicateBucket(), new SD.LLBLGen.Pro.ORMSupportClasses.PrefetchPath2(NinjaSoftware.EnioNg.CoolJ.EntityType.EntityRoEntity));
 
             return View();
         }
