@@ -1,16 +1,42 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="CoolJ/DatabaseSpecific/DataAccessAdapter.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="NinjaSoftware.EnioNg/Controllers/ApiController.cs">
     <Files>
-      <File FileName="NinjaSoftware.EnioNg/Web.config" Line="1" Column="1" />
-      <File FileName="NinjaSoftware.EnioNg/Controllers/HomeController.cs" Line="14" Column="15" />
-      <File FileName="NinjaSoftware.EnioNg/Views/Home/Index.cshtml" Line="8" Column="15" />
-      <File FileName="CoolJ/DatabaseGeneric/HelperClasses/EntityCollection.cs" Line="20" Column="7" />
-      <File FileName="CoolJ/DatabaseGeneric/Linq/LinqMetaData.cs" Line="17" Column="49" />
-      <File FileName="CoolJ/DatabaseGeneric/EntityClasses/ArtiklEntity.cs" Line="32" Column="10" />
-      <File FileName="CoolJ/DatabaseGeneric/FactoryClasses/QueryFactory.cs" Line="61" Column="24" />
-      <File FileName="CoolJ/DatabaseSpecific/DataAccessAdapter.cs" Line="101" Column="1" />
+      <File FileName="NinjaSoftware.EnioNg/Web.config" Line="20" Column="63" />
+      <File FileName="NinjaSoftware.EnioNg/Views/Home/Index.cshtml" Line="1" Column="1" />
+      <File FileName="NinjaSoftware.EnioNg/Views/Shared/_Layout.cshtml" Line="13" Column="8" />
+      <File FileName="NinjaSoftware.EnioNg/Views/Home/Partner.cshtml" Line="42" Column="27" />
+      <File FileName="NinjaSoftware.EnioNg/Scripts/Home/PartnerController.js" Line="20" Column="2" />
+      <File FileName="NinjaSoftware.EnioNg/Controllers/ApiController.cs" Line="62" Column="1" />
+      <File FileName="CoolJ/DatabaseSpecific/DataAccessAdapter.cs" Line="139" Column="101" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="NinjaSoftware.EnioNg" expanded="True">
+            <Node name="Controllers" expanded="True">
+              <Node name="ApiController.cs" selected="True" />
+            </Node>
+            <Node name="Scripts" expanded="True">
+              <Node name="Home" expanded="True" />
+            </Node>
+            <Node name="Views" expanded="True">
+              <Node name="Home" expanded="True" />
+              <Node name="Shared" expanded="True" />
+            </Node>
+          </Node>
+          <Node name="NinjaSoftware.EnioNg.CoolJDBSpecific" expanded="True">
+            <Node name="DatabaseSpecific" expanded="True" />
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="ClassPad">
+        <State expanded="True" selected="True" />
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

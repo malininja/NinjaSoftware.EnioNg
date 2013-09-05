@@ -34,20 +34,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="NinjaSoftware.Api.CoolJ, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\libs\NinjaSoftware.Api.CoolJ.dll</HintPath>
-    </Reference>
-    <Reference Include="NinjaSoftware.Api.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\libs\NinjaSoftware.Api.Core.dll</HintPath>
-    </Reference>
     <Reference Include="Npgsql">
       <HintPath>..\libs\Npgsql.dll</HintPath>
-    </Reference>
-    <Reference Include="SD.LLBLGen.Pro.ORMSupportClasses, Version=4.0.0.0, Culture=neutral, PublicKeyToken=ca73b74ba4e3ff27, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\libs\SD.LLBLGen.Pro.ORMSupportClasses.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -75,6 +63,18 @@
     <Reference Include="System.Web.WebPages">
       <HintPath>..\libs\System.Web.WebPages.dll</HintPath>
     </Reference>
+    <Reference Include="NinjaSoftware.Api.CoolJ">
+      <HintPath>..\libs\NinjaSoftware.Api.CoolJ.dll</HintPath>
+    </Reference>
+    <Reference Include="NinjaSoftware.Api.Core">
+      <HintPath>..\libs\NinjaSoftware.Api.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="SD.LLBLGen.Pro.ORMSupportClasses">
+      <HintPath>..\libs\SD.LLBLGen.Pro.ORMSupportClasses.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\libs\Newtonsoft.Json.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\HomeController.cs" />
@@ -82,6 +82,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Controllers\ApiController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -124,10 +125,14 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Scripts\angular.min.js" />
+    <Content Include="Scripts\jquery-2.0.3.min.js" />
+    <Content Include="Scripts\Home\PartnerController.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
     <Folder Include="Scripts\" />
+    <Folder Include="Scripts\Home\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -180,5 +185,8 @@
       <Project>{B90938ED-9581-4E1B-9962-0F0E4F034668}</Project>
       <Name>NinjaSoftware.EnioNg.CoolJDBSpecific</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Views\Home\Partner.cshtml" />
   </ItemGroup>
 </Project>
