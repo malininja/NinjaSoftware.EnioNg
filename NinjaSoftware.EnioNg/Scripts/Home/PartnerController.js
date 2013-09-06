@@ -2,25 +2,8 @@ function PartnerController($scope) {
 	var self = {};
 	
 	$scope.partnerCollection = [];
-		
-	self.loadData = function() {
-		$.ajax({
-			type: "GET",
-			url: "/Api/GetPartnerCollection",
-			success: function(result) {
-				$scope.partnerCollection = result;
-			},
-			error: function() {
-				alert("ne valja, majstore");
-			},
-			async: false,
-			cache: false
-		});
-	};
-	
-	self.loadData();
-	
-	$scope.selectedPartner = Partner();
+
+	$scope.selectedPartner = EnioNg.Entities.Partner();
 	
 	$scope.save = function () {
 		$.ajax({
@@ -31,8 +14,8 @@ function PartnerController($scope) {
 			dataType: "json",
 			success: function (result) {
 				if (result.IsSaved === "true") {
-					self.loadData();
-					$scope.selectedPartner = Partner();
+					$("#PartnerTable").trigger("reloadGrid");
+					$scope.selectedPartner = EnioNg.Entities.Partner();
 				}
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -42,20 +25,4 @@ function PartnerController($scope) {
 			cache: false
 		});
 	};
-}
-
-function Partner() {
-	var self = {};
-	
-	self.Adresa = null;
-	self.ConcurrencyGuid = null;
-	self.Mjesto = null;
-	self.Naziv = null;
-	self.Oib = null;
-	self.PartnerId = null;
-	self.Posta = null;
-	self.Valuta = null;
-	self.IsActive = null;
-	
-	return self;
 }
