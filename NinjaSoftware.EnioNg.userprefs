@@ -1,13 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="NinjaSoftware.EnioNg/Views/Shared/_Layout.cshtml">
+  <MonoDevelop.Ide.Workbench ActiveDocument="NinjaSoftware.EnioNg/Scripts/Home/PartnerController.js">
     <Files>
-      <File FileName="NinjaSoftware.EnioNg/Views/Home/Partner.cshtml" Line="14" Column="37" />
-      <File FileName="NinjaSoftware.EnioNg/Controllers/ApiController.cs" Line="16" Column="1" />
-      <File FileName="NinjaSoftware.EnioNg/Scripts/Home/PartnerController.js" Line="16" Column="4" />
-      <File FileName="NinjaSoftware.EnioNg/Scripts/EnioNg.Entities.js" Line="1" Column="1" />
-      <File FileName="NinjaSoftware.EnioNg/Scripts/NinjaSoftwareLib.js" Line="1" Column="1" />
-      <File FileName="NinjaSoftware.EnioNg/Views/Shared/_Layout.cshtml" Line="16" Column="58" />
+      <File FileName="NinjaSoftware.EnioNg/Views/Home/Partner.cshtml" Line="50" Column="74" />
+      <File FileName="NinjaSoftware.EnioNg/Scripts/Home/PartnerController.js" Line="12" Column="28" />
+      <File FileName="NinjaSoftware.EnioNg/Views/Shared/_Layout.cshtml" Line="19" Column="57" />
+      <File FileName="NinjaSoftware.EnioNg/Scripts/DataAnnotations.js" Line="6" Column="14" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -16,8 +14,9 @@
             <Node name="Content" expanded="True" />
             <Node name="Controllers" expanded="True" />
             <Node name="Scripts" expanded="True">
-              <Node name="Home" expanded="True" />
-              <Node name="NinjaSoftwareLib.js" selected="True" />
+              <Node name="Home" expanded="True">
+                <Node name="PartnerController.js" selected="True" />
+              </Node>
             </Node>
             <Node name="Views" expanded="True">
               <Node name="Home" expanded="True" />

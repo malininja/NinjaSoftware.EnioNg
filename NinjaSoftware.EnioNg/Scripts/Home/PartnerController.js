@@ -14,7 +14,9 @@ function PartnerController($scope) {
 			dataType: "json",
 			success: function (result) {
 				if (result.IsSaved === "true") {
-					$("#PartnerTable").trigger("reloadGrid");
+					reloadPartnerGrid();
+					closePartnerDialog();
+					
 					$scope.selectedPartner = EnioNg.Entities.Partner();
 				}
 			},
@@ -25,4 +27,24 @@ function PartnerController($scope) {
 			cache: false
 		});
 	};
+	
+	$scope.isNazivValid = function () { 
+		if ($scope.selectedPartner.Naziv) {
+			return String.trim($scope.selectedPartner.Naziv).length < 101;
+		}
+		else {
+			return true;
+		}
+	};
+	
+	$scope.nazivExist = function () {
+		if ($scope.selectedPartner.Naziv) {
+			return String.trim($scope.selectedPartner.Naziv).length > 0;
+		}
+		else {
+			return false;
+		}
+	};
+	
+	return self;
 }

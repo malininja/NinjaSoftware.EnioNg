@@ -2,49 +2,91 @@
     ViewBag.Title = "Partnerići";
 }
 
-<div ng-app>
+<script src="@Url.Content("~/Scripts/Home/PartnerController.js")" type="text/javascript"></script>
 
-	<script src="@Url.Content("~/Scripts/Home/PartnerController.js")" type="text/javascript"></script>
+<div>
 
 	<h2>Partner</h2>
 
-
-	<div ng-controller="PartnerController">
-		<table id="PartnerTable"></table>
-		<div id="PartnerTablePager"></div>
+	<input type="button" value="Dodaj novog partnera" onclick="openPartnerDialog();" />
 		
-		<br /><br />
-
+	<table id="PartnerTable"></table>
+	<div id="PartnerTablePager"></div>	
+	<br /><br />
+	
+	<div id="PartnerInput" ng-app>
+	<div ng-controller="PartnerController">
 		<table>
 			<tr>
 				<td>Naziv:</td>
 				<td><input ng-model="selectedPartner.Naziv" /></td>
+				<td>
+					<span name="RequiredField" ng-show="!nazivExist()"></span>
+					<span ng-show="!isNazivValid()">Naziv ne može imati više od 100 znakova</span>
+				</td>
+			</tr>
+			<tr>
 				<td>OIB:</td>
 				<td><input ng-model="selectedPartner.Oib" /></td>
+			</tr>
+			<tr>
 				<td>Adresa:</td>
 				<td><input ng-model="selectedPartner.Adresa" /></td>
+			</tr>
+			<tr>
 				<td>Mjesto:</td>
 				<td><input ng-model="selectedPartner.Mjesto" /></td>
+			</tr>
+			<tr>
 				<td>Pošta:</td>
 				<td><input ng-model="selectedPartner.Posta" /></td>
+			</tr>
+			<tr>
 				<td>Valuta:</td>
 				<td><input ng-model="selectedPartner.Valuta" /></td>
 			</tr>
 		</table>
 		<input type="button" value="Pohrani" ng-click="save()" />
+		<input type="button" value="Odustani" onclick="closePartnerDialog()" />
+	</div>
 	</div>
 </div>
 
 <script type="text/javascript">
+	var dataAnnotations = DataAnnotations();
+	$("span[name=RequiredField]").text(dataAnnotations.Required);
+	
+	$("#PartnerInput").dialog({
+		modal: true,
+		width: "400px"
+	});
+	
+	function closePartnerDialog() {
+		$("#PartnerInput").dialog("close");
+	}
+	
+	function openPartnerDialog() {
+		$("#PartnerInput").dialog("open");
+	}
+	
+	function reloadPartnerGrid() {
+		$("#PartnerTable").trigger("reloadGrid");
+	}
+	
+	closePartnerDialog();
+	
 	$("#PartnerTable").jqGrid({
 		url: "/JqGrid/GetPartnerCollectionForPaging",
 		datatype: "json",
-		colNames: ["PartnerId", "Naziv", "OIB", "Adresa"],
+		colNames: ["PartnerId", "Naziv", "OIB", "Adresa", "Mjesto", "Pošta", "Valuta"],
 		colModel: [
 			{ name: "PartnerId", index: "PartnerId", hidden: true, width: 0 },
 			{ name: "Naziv", index: "Naziv", width: 100 },
 			{ name: "Oib", index: "Oib", width: 100 },
-			{ name: "Adresa", index: "Adresa", width: 100 }
+			{ name: "Adresa", index: "Adresa", width: 100 },
+			{ name: "Mjesto", index: "Mjesto", width: 100 },
+			{ name: "Posta", index: "Posta", width: 100 },
+			{ name: "Valuta", index: "Valuta", width: 100 }
 		],
 		pager: "#PartnerTablePager",
 		caption: "Lista partnera"
