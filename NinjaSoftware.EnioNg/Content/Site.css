@@ -73,3 +73,8 @@ textarea
 {
     display: none;
 }
+
+.validation
+{
+	color: red;
+}

@@ -15,54 +15,104 @@
 	<br /><br />
 	
 	<div id="PartnerInput" ng-app>
-	<div ng-controller="PartnerController">
+	<div id="divNgController" ng-controller="PartnerController">
 		<table>
 			<tr>
 				<td>Naziv:</td>
-				<td><input ng-model="selectedPartner.Naziv" /></td>
 				<td>
-					<span name="RequiredField" ng-show="!nazivExist()"></span>
-					<span ng-show="!isNazivValid()">Naziv ne može imati više od 100 znakova</span>
+					<input ng-model="selectedPartner.Naziv" />
+				</td>
+				<td>
+					<span class="validation" name="RequiredField" ng-show="!validation.nazivExist()"></span>
+					<span class="validation" ng-show="!validation.isNazivValid()">Naziv ne može imati više od 100 znakova</span>
 				</td>
 			</tr>
 			<tr>
 				<td>OIB:</td>
-				<td><input ng-model="selectedPartner.Oib" /></td>
+				<td>
+					<input ng-model="selectedPartner.Oib" />
+				</td>
+				<td>
+					<span class="validation" ng-show="!validation.isOibValid()">OIB mora imati 11 znakova</span>
+				</td>
 			</tr>
 			<tr>
 				<td>Adresa:</td>
-				<td><input ng-model="selectedPartner.Adresa" /></td>
+				<td>
+					<input ng-model="selectedPartner.Adresa" />
+				</td>
+				<td>
+					<span class="validation" ng-show="!validation.isAdresaValid()">Adresa ne može imati više od 100 znakova</span>
+				</td>
 			</tr>
 			<tr>
 				<td>Mjesto:</td>
-				<td><input ng-model="selectedPartner.Mjesto" /></td>
+				<td>
+					<input ng-model="selectedPartner.Mjesto" />
+				</td>
+				<td>
+					<span class="validation" ng-show="!validation.isMjestoValid()">Mjesto ne može imati više od 20 znakova</span>
+				</td>
 			</tr>
 			<tr>
 				<td>Pošta:</td>
-				<td><input ng-model="selectedPartner.Posta" /></td>
+				<td>
+					<input ng-model="selectedPartner.Posta" />
+				</td>
+				<td>
+					<span class="validation" ng-show="!validation.isPostaValid()">Pošta ne može imati više od 10 znakova</span>
+				</td>
 			</tr>
 			<tr>
 				<td>Valuta:</td>
-				<td><input ng-model="selectedPartner.Valuta" /></td>
+				<td>
+					<input type="number" ng-model="selectedPartner.Valuta" />
+				</td>
+				<td>
+					<span class="validation" ng-show="!validation.isValutaValid()">Neispravna valuta</span>
+				</td>
+			</tr>
+			<tr id="tdAktivan" ng-show=" return (selectedPartner || selectedPartner.PartnerId > 0)">
+				<td>Aktivan:</td>
+				<td>
+					<input type="checkbox" ng-mode="selectedPartner.IsActive" />
+				<td>
+				<td></td>
 			</tr>
 		</table>
 		<input type="button" value="Pohrani" ng-click="save()" />
 		<input type="button" value="Odustani" onclick="closePartnerDialog()" />
+
 	</div>
 	</div>
 </div>
 
 <script type="text/javascript">
+	var ngControllerScope;
+	
+	function getNgControllerScope() {
+		if (!ngControllerScope) {
+			ngControllerScope = angular.element($("#divNgController")).scope();
+		}
+		
+		return ngControllerScope;
+	}
+	
 	var dataAnnotations = DataAnnotations();
 	$("span[name=RequiredField]").text(dataAnnotations.Required);
 	
 	$("#PartnerInput").dialog({
 		modal: true,
-		width: "400px"
+		width: "700px"
 	});
 	
 	function closePartnerDialog() {
 		$("#PartnerInput").dialog("close");
+		
+		var scope = getNgControllerScope();
+		if (scope) {
+			scope.clearPartner();
+		}
 	}
 	
 	function openPartnerDialog() {
@@ -89,7 +139,11 @@
 			{ name: "Valuta", index: "Valuta", width: 100 }
 		],
 		pager: "#PartnerTablePager",
-		caption: "Lista partnera"
+		caption: "Lista partnera",
+		onSelectRow: function (id) {
+			var rowData = $(this).getRowData(id);
+			alert(rowData["PartnerId"]);
+		}
 	});
 	
 	$("#PartnerTable").jqGrid("navGrid", "#PartnerTablePager");
