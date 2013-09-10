@@ -7,6 +7,7 @@ using NinjaSoftware.EnioNg.CoolJ.DatabaseSpecific;
 using NinjaSoftware.EnioNg.CoolJ.EntityClasses;
 using Newtonsoft.Json;
 using System.Configuration;
+using SD.LLBLGen.Pro.ORMSupportClasses;
 
 namespace NinjaSoftware.EnioNg.Controllers
 {
@@ -61,6 +62,8 @@ namespace NinjaSoftware.EnioNg.Controllers
 				{
 					sidx = "Naziv";
 				}
+
+				NinjaSoftware.Api.CoolJ.PredicateHelper.CreatePredicateFromJqGridFilterString(filters, typeof(PartnerEntity));
 
 				bool isSortAscending = IsSortAscending (sord);
 
