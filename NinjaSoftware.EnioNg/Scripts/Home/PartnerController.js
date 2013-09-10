@@ -36,6 +36,25 @@ function PartnerController ($scope) {
 		}
 	};
 	
+	$scope.loadPartner = function (partnerId) {
+		$.ajax({
+			type: "GET",
+			contentType: "application/json; charset=utf-8",
+			url: "/Api/GetPartner",
+			data: { "partnerId": partnerId },
+			success: function (result) {
+				$scope.$apply(function () {
+					$scope.selectedPartner = result;
+				});
+			},
+			error: function () {
+				alert("nekaj se pojebalo");
+			},
+			async: false,
+			cache: false
+		});
+	};
+	
 	$scope.validation = {};
 	
 	$scope.validation.isValid = function () {

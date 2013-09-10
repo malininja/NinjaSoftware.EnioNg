@@ -142,7 +142,9 @@
 		caption: "Lista partnera",
 		onSelectRow: function (id) {
 			var rowData = $(this).getRowData(id);
-			alert(rowData["PartnerId"]);
+			var scope = getNgControllerScope();
+			scope.loadPartner(rowData["PartnerId"]);
+			openPartnerDialog();
 		}
 	});
 	
