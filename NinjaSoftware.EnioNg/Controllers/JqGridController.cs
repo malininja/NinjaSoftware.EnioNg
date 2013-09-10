@@ -46,6 +46,11 @@ namespace NinjaSoftware.EnioNg.Controllers
             return toReturn;
         }
 
+		protected static bool IsSortAscending (string sord)
+		{
+			return "asc" == sord;
+		}
+
 		[HttpGet]
 		public ActionResult GetPartnerCollectionForPaging(string sidx, string sord, string filters, int page = 1)
 		{
@@ -57,7 +62,9 @@ namespace NinjaSoftware.EnioNg.Controllers
 					sidx = "Naziv";
 				}
 
-				IEnumerable<PartnerEntity> partnerCollection = PartnerEntity.FetchPartnerCollectionForPaging(adapter, null, null, page, this.JqGridPageSize, sidx, true);
+				bool isSortAscending = IsSortAscending (sord);
+
+				IEnumerable<PartnerEntity> partnerCollection = PartnerEntity.FetchPartnerCollectionForPaging(adapter, null, null, page, this.JqGridPageSize, sidx, isSortAscending);
 				int noOfRecords = PartnerEntity.GetNumberOfEntities(adapter, null);
 				int pageCount = CalculateNoOfPages (noOfRecords, this.JqGridPageSize);
 

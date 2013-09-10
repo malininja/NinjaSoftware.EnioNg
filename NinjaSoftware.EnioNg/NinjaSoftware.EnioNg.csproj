@@ -72,6 +72,9 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\libs\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="NinjaSoftware.Api.CoolJ">
+      <HintPath>..\libs\NinjaSoftware.Api.CoolJ.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\HomeController.cs" />
@@ -222,10 +225,6 @@
     <ProjectReference Include="..\CoolJ\NinjaSoftware.EnioNg.CoolJDBSpecific.csproj">
       <Project>{B90938ED-9581-4E1B-9962-0F0E4F034668}</Project>
       <Name>NinjaSoftware.EnioNg.CoolJDBSpecific</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\NinjaSoftware.Helpers\NinjaSoftware.Api.CoolJ\NinjaSoftware.Api.CoolJ.csproj">
-      <Project>{F6384833-E473-41B5-BD3A-638ECE207755}</Project>
-      <Name>NinjaSoftware.Api.CoolJ</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
