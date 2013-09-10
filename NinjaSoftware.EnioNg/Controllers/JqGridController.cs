@@ -55,6 +55,7 @@ namespace NinjaSoftware.EnioNg.Controllers
 		[HttpGet]
 		public ActionResult GetPartnerCollectionForPaging(string sidx, string sord, string filters, int page = 1)
 		{
+			try {
 			DataAccessAdapter adapter = new DataAccessAdapter();
 			using (adapter)
 			{
@@ -63,11 +64,17 @@ namespace NinjaSoftware.EnioNg.Controllers
 					sidx = "Naziv";
 				}
 
-				NinjaSoftware.Api.CoolJ.PredicateHelper.CreatePredicateFromJqGridFilterString(filters, typeof(PartnerEntity));
+				RelationPredicateBucket bucket = new RelationPredicateBucket();
+				if (filters == null)
+				{
+					filters = string.Empty;		
+				}
+					
+				bucket.PredicateExpression.Add (NinjaSoftware.Api.CoolJ.PredicateHelper.CreatePredicateFromJqGridFilterString(filters, typeof(PartnerEntity)));
 
 				bool isSortAscending = IsSortAscending (sord);
 
-				IEnumerable<PartnerEntity> partnerCollection = PartnerEntity.FetchPartnerCollectionForPaging(adapter, null, null, page, this.JqGridPageSize, sidx, isSortAscending);
+				IEnumerable<PartnerEntity> partnerCollection = PartnerEntity.FetchPartnerCollectionForPaging(adapter, bucket, null, page, this.JqGridPageSize, sidx, isSortAscending);
 				int noOfRecords = PartnerEntity.GetNumberOfEntities(adapter, null);
 				int pageCount = CalculateNoOfPages (noOfRecords, this.JqGridPageSize);
 
@@ -83,6 +90,10 @@ namespace NinjaSoftware.EnioNg.Controllers
 
 				return CreateJsonResponse (json);
 			}
+			} catch (Exception ex) {
+				throw ex;
+			}
+
 		}
     }
 }

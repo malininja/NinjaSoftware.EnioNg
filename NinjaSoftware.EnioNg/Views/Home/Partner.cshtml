@@ -131,7 +131,7 @@
 		colNames: ["PartnerId", "Naziv", "OIB", "Adresa", "Mjesto", "Pošta", "Valuta", "Aktivan"],
 		colModel: [
 			{ name: "PartnerId", index: "PartnerId", hidden: true, width: 0 },
-			{ name: "Naziv", index: "Naziv", width: 250 },
+			{ name: "Naziv", index: "Naziv", width: 250, search : true },
 			{ name: "Oib", index: "Oib", width: 90 },
 			{ name: "Adresa", index: "Adresa", width: 200 },
 			{ name: "Mjesto", index: "Mjesto", width: 100 },
@@ -147,7 +147,7 @@
 			scope.loadPartner(rowData["PartnerId"]);
 			openPartnerDialog();
 		}
-	});
+	}).filterToolbar({ groupOp : 'AND', stringResult: true, searchOnEnter: false });
 	
 	$("#PartnerTable").jqGrid("navGrid", "#PartnerTablePager");
 </script>
