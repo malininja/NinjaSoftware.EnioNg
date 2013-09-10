@@ -32,7 +32,7 @@ namespace NinjaSoftware.EnioNg.Controllers
 				else
 				{
 					partner4Save = PartnerEntity.FetchPartner (adapter, null, partner.PartnerId);
-
+					partner4Save.UpdateDataFromOtherObject(partner, null, null);
 				}
 
 				adapter.SaveEntity(partner4Save);

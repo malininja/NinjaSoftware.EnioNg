@@ -6,9 +6,22 @@ function PartnerController ($scope) {
 	$scope.selectedPartner = EnioNg.Entities.Partner();
 	
 	$scope.clearPartner = function () {
-		$scope.$apply(function () {
+		var fn = function () {
 			$scope.selectedPartner = EnioNg.Entities.Partner();
-		});
+		};
+		
+		ninjaSoftware.angularjs.safeApply($scope, fn);
+	};
+	
+	$scope.isSelectedPartnerNew = function () {
+		if ($scope.selectedPartner &&
+			$scope.selectedPartner.PartnerId &&
+			$scope.selectedPartner.PartnerId > 0) {
+			return false;	
+		}
+		else {
+			return true;
+		}
 	};
 	
 	$scope.save = function () {
@@ -43,9 +56,11 @@ function PartnerController ($scope) {
 			url: "/Api/GetPartner",
 			data: { "partnerId": partnerId },
 			success: function (result) {
-				$scope.$apply(function () {
+				fn = function () {
 					$scope.selectedPartner = result;
-				});
+				};
+				
+				ninjaSoftware.angularjs.safeApply($scope, fn);
 			},
 			error: function () {
 				alert("nekaj se pojebalo");

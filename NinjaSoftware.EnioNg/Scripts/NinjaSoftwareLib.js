@@ -10,7 +10,7 @@
     }
 
     return parent;
-}
+};
 
 /* START URL specific functions */
 
@@ -46,7 +46,7 @@ nsUrl.setParameters = function (params, openInNewWindow) {
     else {
         location.search = $.param(queryParameters);
     }
-}
+};
 
 /* END URL specific functions */
 
@@ -61,6 +61,25 @@ nsHtmlInput.submitAsRedirect = function (submitId, redirectUrl) {
             window.location.href = redirectUrl;
         });
     });
-}
+};
 
 /* END HTML element specific functions */
+
+/* START AngularJs specific functions*/ 
+
+var nsAngular = namespace("ninjaSoftware.angularjs");
+
+nsAngular.safeApply = function ($scope, fn) {
+	var phase = $scope.$root.$$phase;
+	
+	if (phase == '$apply' || phase == '$digest') {
+		if(fn && (typeof(fn) === 'function')) {
+			fn();
+		}
+	}
+	else {
+		$scope.$apply(fn);
+	}
+};
+
+/* END AngularJs specific functions */

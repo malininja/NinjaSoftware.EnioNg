@@ -72,10 +72,10 @@
 					<span class="validation" ng-show="!validation.isValutaValid()">Neispravna valuta</span>
 				</td>
 			</tr>
-			<tr id="tdAktivan" ng-show=" return (selectedPartner || selectedPartner.PartnerId > 0)">
+			<tr id="tdAktivan" ng-show="!isSelectedPartnerNew()">
 				<td>Aktivan:</td>
 				<td>
-					<input type="checkbox" ng-mode="selectedPartner.IsActive" />
+					<input type="checkbox" ng-model="selectedPartner.IsActive" />
 				<td>
 				<td></td>
 			</tr>
@@ -128,7 +128,7 @@
 	$("#PartnerTable").jqGrid({
 		url: "/JqGrid/GetPartnerCollectionForPaging",
 		datatype: "json",
-		colNames: ["PartnerId", "Naziv", "OIB", "Adresa", "Mjesto", "Pošta", "Valuta"],
+		colNames: ["PartnerId", "Naziv", "OIB", "Adresa", "Mjesto", "Pošta", "Valuta", "Aktivan"],
 		colModel: [
 			{ name: "PartnerId", index: "PartnerId", hidden: true, width: 0 },
 			{ name: "Naziv", index: "Naziv", width: 100 },
@@ -136,7 +136,8 @@
 			{ name: "Adresa", index: "Adresa", width: 100 },
 			{ name: "Mjesto", index: "Mjesto", width: 100 },
 			{ name: "Posta", index: "Posta", width: 100 },
-			{ name: "Valuta", index: "Valuta", width: 100 }
+			{ name: "Valuta", index: "Valuta", width: 100 },
+			{ name: "IsActive", index: "IsActive", width: 100 }
 		],
 		pager: "#PartnerTablePager",
 		caption: "Lista partnera",
