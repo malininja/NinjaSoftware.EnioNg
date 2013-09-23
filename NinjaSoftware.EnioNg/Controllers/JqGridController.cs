@@ -8,13 +8,15 @@ using NinjaSoftware.EnioNg.CoolJ.EntityClasses;
 using Newtonsoft.Json;
 using System.Configuration;
 using SD.LLBLGen.Pro.ORMSupportClasses;
+using NinjaSoftware.EnioNg.CoolJ.HelperClasses;
 
 namespace NinjaSoftware.EnioNg.Controllers
 {
     public class JqGridController : BaseController
     {
 		private int? _jqGridPageSize;
-		public int JqGridPageSize {
+		public int JqGridPageSize 
+		{
 			get
 			{
 				if (!_jqGridPageSize.HasValue)
@@ -55,7 +57,6 @@ namespace NinjaSoftware.EnioNg.Controllers
 		[HttpGet]
 		public ActionResult GetPartnerCollectionForPaging(string sidx, string sord, string filters, int page = 1)
 		{
-			try {
 			DataAccessAdapter adapter = new DataAccessAdapter();
 			using (adapter)
 			{
@@ -69,8 +70,8 @@ namespace NinjaSoftware.EnioNg.Controllers
 				{
 					filters = string.Empty;		
 				}
-					
-				bucket.PredicateExpression.Add (NinjaSoftware.Api.CoolJ.PredicateHelper.CreatePredicateFromJqGridFilterString(filters, typeof(PartnerEntity)));
+
+				bucket.PredicateExpression.Add (NinjaSoftware.Api.CoolJ.PredicateHelper.CreatePredicateFromJqGridFilterString(filters, typeof(PartnerFields)));
 
 				bool isSortAscending = IsSortAscending (sord);
 
@@ -90,10 +91,6 @@ namespace NinjaSoftware.EnioNg.Controllers
 
 				return CreateJsonResponse (json);
 			}
-			} catch (Exception ex) {
-				throw ex;
-			}
-
 		}
     }
 }
