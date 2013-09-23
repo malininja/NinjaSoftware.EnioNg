@@ -1,23 +1,20 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="NinjaSoftware.EnioNg/Scripts/Home/ArtiklController.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="NinjaSoftware.EnioNg/Web.config">
     <Files>
-      <File FileName="NinjaSoftware.EnioNg/Views/Home/Artikl.cshtml" Line="45" Column="6" />
-      <File FileName="NinjaSoftware.EnioNg/Scripts/Home/ArtiklController.js" Line="99" Column="25" />
+      <File FileName="NinjaSoftware.EnioNg/Views/Home/Partner.cshtml" Line="140" Column="132" />
+      <File FileName="NinjaSoftware.EnioNg/Scripts/Home/PartnerController.js" Line="16" Column="29" />
+      <File FileName="NinjaSoftware.EnioNg/Views/Shared/_Layout.cshtml" Line="19" Column="57" />
+      <File FileName="NinjaSoftware.EnioNg/Controllers/ApiController.cs" Line="9" Column="25" />
+      <File FileName="NinjaSoftware.EnioNg/Controllers/JqGridController.cs" Line="27" Column="5" />
+      <File FileName="CoolJ/DatabaseGeneric/EntityClasses/PartnerEntity.cs" Line="73" Column="9" />
+      <File FileName="NinjaSoftware.EnioNg/Web.config" Line="14" Column="77" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="NinjaSoftware.EnioNg" expanded="True">
-            <Node name="Controllers" expanded="True" />
-            <Node name="Scripts" expanded="True">
-              <Node name="Home" expanded="True">
-                <Node name="ArtiklController.js" selected="True" />
-              </Node>
-            </Node>
-            <Node name="Views" expanded="True">
-              <Node name="Home" expanded="True" />
-            </Node>
+            <Node name="Web.config" selected="True" />
           </Node>
         </State>
       </Pad>

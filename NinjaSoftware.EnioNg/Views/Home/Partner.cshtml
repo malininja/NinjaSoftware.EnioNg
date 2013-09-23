@@ -131,13 +131,13 @@
 		colNames: ["PartnerId", "Naziv", "OIB", "Adresa", "Mjesto", "Pošta", "Valuta", "Aktivan"],
 		colModel: [
 			{ name: "PartnerId", index: "PartnerId", hidden: true, width: 0 },
-			{ name: "Naziv", index: "Naziv", width: 250, search : true },
+			{ name: "Naziv", index: "Naziv", width: 250 },
 			{ name: "Oib", index: "Oib", width: 90 },
 			{ name: "Adresa", index: "Adresa", width: 200 },
 			{ name: "Mjesto", index: "Mjesto", width: 100 },
 			{ name: "Posta", index: "Posta", width: 70 },
-			{ name: "Valuta", index: "Valuta", width: 50 },
-			{ name: "IsActive", index: "IsActive", width: 50, formatter: 'select', editoptions: { value: 'true:Da;false:Ne'} }
+			{ name: "Valuta", index: "Valuta", width: 50, search : false },
+			{ name: "IsActive", index: "IsActive", width: 50, formatter: 'select', editoptions: { value: 'true:Da;false:Ne'}, search : false }
 		],
 		pager: "#PartnerTablePager",
 		caption: "Lista partnera",
