@@ -82,4 +82,13 @@ nsAngular.safeApply = function ($scope, fn) {
 	}
 };
 
+nsAngular.isObjectExist = function (item) {
+		if (item) {
+			return String.trim(item.toString()).length > 0;
+		}
+		else {
+			return false;
+		}
+	};
+	
 /* END AngularJs specific functions */

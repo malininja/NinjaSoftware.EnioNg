@@ -119,9 +119,9 @@
 		$("#PartnerInput").dialog("open");
 	}
 	
-	function reloadPartnerGrid() {
+	$(document).on("ReloadPartnerGrid", function () {
 		$("#PartnerTable").trigger("reloadGrid");
-	}
+	});
 	
 	closePartnerDialog();
 	

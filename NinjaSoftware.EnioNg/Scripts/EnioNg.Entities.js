@@ -15,3 +15,15 @@ eniongEntities.Partner = function () {
 	
 	return self;
 };
+
+eniongEntities.Artikl = function () {
+	var self = {};
+	
+	self.ArtiklId = null;
+	self.ConcurrencyGuid = null;
+	self.Jm = null;
+	self.Naziv = null;
+	self.PdvId = null;
+	self.IsActive = null;
+	self.Cijena = null;
+};

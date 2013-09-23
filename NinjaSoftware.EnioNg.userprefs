@@ -1,38 +1,23 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="NinjaSoftware.EnioNg/Controllers/JqGridController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="NinjaSoftware.EnioNg/Scripts/Home/ArtiklController.js">
     <Files>
-      <File FileName="NinjaSoftware.EnioNg/Views/Home/Partner.cshtml" Line="150" Column="81" />
-      <File FileName="NinjaSoftware.EnioNg/Scripts/Home/PartnerController.js" Line="16" Column="29" />
-      <File FileName="NinjaSoftware.EnioNg/Views/Shared/_Layout.cshtml" Line="19" Column="57" />
-      <File FileName="NinjaSoftware.EnioNg/Controllers/ApiController.cs" Line="9" Column="25" />
-      <File FileName="NinjaSoftware.EnioNg/Controllers/JqGridController.cs" Line="94" Column="14" />
-      <File FileName="CoolJ/DatabaseGeneric/EntityClasses/PartnerEntity.cs" Line="73" Column="9" />
-      <File FileName="NinjaSoftware.EnioNg/Web.config" Line="1" Column="1" />
+      <File FileName="NinjaSoftware.EnioNg/Views/Home/Artikl.cshtml" Line="45" Column="6" />
+      <File FileName="NinjaSoftware.EnioNg/Scripts/Home/ArtiklController.js" Line="99" Column="25" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="NinjaSoftware.EnioNg" expanded="True">
-            <Node name="References" expanded="True" />
-            <Node name="Controllers" expanded="True">
-              <Node name="JqGridController.cs" selected="True" />
-            </Node>
+            <Node name="Controllers" expanded="True" />
             <Node name="Scripts" expanded="True">
-              <Node name="Home" expanded="True" />
+              <Node name="Home" expanded="True">
+                <Node name="ArtiklController.js" selected="True" />
+              </Node>
             </Node>
             <Node name="Views" expanded="True">
               <Node name="Home" expanded="True" />
-              <Node name="Shared" expanded="True" />
             </Node>
-          </Node>
-          <Node name="NinjaSoftware.EnioNg.CoolJ" expanded="True">
-            <Node name="DatabaseGeneric" expanded="True">
-              <Node name="EntityClasses" expanded="True" />
-            </Node>
-          </Node>
-          <Node name="NinjaSoftware.EnioNg.CoolJDBSpecific" expanded="True">
-            <Node name="DatabaseSpecific" expanded="True" />
           </Node>
         </State>
       </Pad>

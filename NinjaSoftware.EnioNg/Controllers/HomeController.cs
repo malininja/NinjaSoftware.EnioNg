@@ -20,5 +20,10 @@ namespace NinjaSoftware.EnioNg.Controllers
 		{
 			return View ();
 		}
+		
+		public ActionResult Artikl()
+		{
+			return View ();
+		}		
     }
 }

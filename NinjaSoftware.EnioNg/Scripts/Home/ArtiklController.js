@@ -1,11 +1,11 @@
-function PartnerController ($scope) {
+function ArtiklController ($scope) {
 	var self = {};
 	
-	$scope.partnerCollection = [];
+	$scope.artiklCollection = [];
 
-	$scope.selectedPartner = EnioNg.Entities.Partner();
+	$scope.selectedArtikl = EnioNg.Entities.Artikl();
 	
-	$scope.clearPartner = function () {
+	$scope.clearArtikl = function () {
 		var fn = function () {
 			$scope.selectedPartner = EnioNg.Entities.Partner();
 		};
@@ -13,10 +13,10 @@ function PartnerController ($scope) {
 		ninjaSoftware.angularjs.safeApply($scope, fn);
 	};
 	
-	$scope.isSelectedPartnerNew = function () {
-		if ($scope.selectedPartner &&
-			$scope.selectedPartner.PartnerId &&
-			$scope.selectedPartner.PartnerId > 0) {
+	$scope.isSelectedArtiklNew = function () {
+		if ($scope.selectedArtikl &&
+			$scope.selectedPartner.ArtiklId &&
+			$scope.selectedPartner.ArtiklId > 0) {
 			return false;	
 		}
 		else {
@@ -29,20 +29,19 @@ function PartnerController ($scope) {
 			$.ajax({
 				type: "POST",
 				contentType: "application/json; charset=utf-8",
-				url: "/Api/SavePartner",
-				data: JSON.stringify($scope.selectedPartner),
+				url: "/Api/SaveArtikl",
+				data: JSON.stringify($scope.selectedArtil),
 				dataType: "json",
 				success: function (result) {
 					if (result.IsSaved === "true") {
-						//reloadPartnerGrid();
-						closePartnerDialog();
-						$scope.selectedPartner = EnioNg.Entities.Partner();
+						closeArtiklDialog();
+						$scope.selectedArtikl = EnioNg.Entities.Artikl();
 						
-						$(document).trigger("ReloadPartnerGrid");
+						$(document).trigger("ReloadArtiklGrid");
 					}
 				},
 				error: function(XMLHttpRequest, textStatus, errorThrown) {
-					alert("nekaj se pojebalo");
+					//alert("nekaj se pojebalo");
 				},
 				async: false,
 				cache: false
@@ -50,21 +49,21 @@ function PartnerController ($scope) {
 		}
 	};
 	
-	$scope.loadPartner = function (partnerId) {
+	$scope.loadArtikl = function (artiklId) {
 		$.ajax({
 			type: "GET",
 			contentType: "application/json; charset=utf-8",
-			url: "/Api/GetPartner",
-			data: { "partnerId": partnerId },
+			url: "/Api/GetArtikl",
+			data: { "artiklId": artiklId },
 			success: function (result) {
 				fn = function () {
-					$scope.selectedPartner = result;
+					$scope.artiklPartner = result;
 				};
 				
 				ninjaSoftware.angularjs.safeApply($scope, fn);
 			},
 			error: function () {
-				alert("nekaj se pojebalo");
+				//alert("nekaj se pojebalo");
 			},
 			async: false,
 			cache: false
@@ -83,31 +82,31 @@ function PartnerController ($scope) {
 			$scope.validation.isValutaValid();
 	};
 	
+	
 	$scope.validation.isNazivValid = function () { 
-		if ($scope.selectedPartner.Naziv) {
-			return String.trim($scope.selectedPartner.Naziv).length < 101;
+		if ($scope.selectedArtikl.Naziv) {
+			return String.trim($scope.selectedArtikl.Naziv).length < 101;
 		}
 		else {
 			return true;
 		}
 	};
 	
-	$scope.validation.nazivExist = function () {
-		if ($scope.selectedPartner.Naziv) {
-			return String.trim($scope.selectedPartner.Naziv).length > 0;
-		}
-		else {
-			return false;
-		}
+	$scope.validation.isNazivExist = function () {
+		return ninjaSoftware.angularjs.isObjectExist($scope.selectedArtikl.Naziv):
 	};
 	
-	$scope.validation.isOibValid = function () {
+	$scope.validation.isPdvValid = function () {
 		if ($scope.selectedPartner.Oib) {
 			return String.trim($scope.selectedPartner.Oib).length === 11;
 		}
 		else {
 			return false;
 		}
+	};
+	
+	$scope.validation.isNazivExist = function () {
+		return ninjaSoftware.angularjs.isObjectExist($scope.selectedArtikl.Naziv):
 	};
 	
 	$scope.validation.isAdresaValid = function () {
