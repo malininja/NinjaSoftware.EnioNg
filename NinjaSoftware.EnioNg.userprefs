@@ -1,6 +1,6 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="NinjaSoftware.EnioNg/Views/Home/Partner.cshtml">
+  <MonoDevelop.Ide.Workbench ActiveDocument="NinjaSoftware.EnioNg/Web.config">
     <Files>
       <File FileName="NinjaSoftware.EnioNg/Views/Home/Partner.cshtml" Line="140" Column="132" />
       <File FileName="NinjaSoftware.EnioNg/Scripts/Home/PartnerController.js" Line="16" Column="29" />
@@ -8,25 +8,13 @@
       <File FileName="NinjaSoftware.EnioNg/Controllers/ApiController.cs" Line="9" Column="25" />
       <File FileName="NinjaSoftware.EnioNg/Controllers/JqGridController.cs" Line="27" Column="5" />
       <File FileName="CoolJ/DatabaseGeneric/EntityClasses/PartnerEntity.cs" Line="73" Column="9" />
+      <File FileName="NinjaSoftware.EnioNg/Web.config" Line="14" Column="77" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="NinjaSoftware.EnioNg" expanded="True">
-            <Node name="Views" expanded="True">
-              <Node name="Home" expanded="True">
-                <Node name="Partner.cshtml" selected="True" />
-              </Node>
-              <Node name="Shared" expanded="True" />
-            </Node>
-          </Node>
-          <Node name="NinjaSoftware.EnioNg.CoolJ" expanded="True">
-            <Node name="DatabaseGeneric" expanded="True">
-              <Node name="EntityClasses" expanded="True" />
-            </Node>
-          </Node>
-          <Node name="NinjaSoftware.EnioNg.CoolJDBSpecific" expanded="True">
-            <Node name="DatabaseSpecific" expanded="True" />
+            <Node name="Web.config" selected="True" />
           </Node>
         </State>
       </Pad>
