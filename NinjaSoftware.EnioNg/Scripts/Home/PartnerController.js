@@ -5,9 +5,10 @@ function PartnerController ($scope) {
 
 	$scope.selectedPartner = EnioNg.Entities.Partner();
 	
-	$scope.clearPartner = function () {
+	$scope.newPartner = function () {
 		var fn = function () {
 			$scope.selectedPartner = EnioNg.Entities.Partner();
+			$scope.selectedPartner.Valuta = 15;
 		};
 		
 		ninjaSoftware.angularjs.safeApply($scope, fn);
@@ -34,11 +35,10 @@ function PartnerController ($scope) {
 				dataType: "json",
 				success: function (result) {
 					if (result.IsSaved === "true") {
-						//reloadPartnerGrid();
 						closePartnerDialog();
 						$scope.selectedPartner = EnioNg.Entities.Partner();
 						
-						$(document).trigger("ReloadPartnerGrid");
+						$(document).trigger("PartnerIsSaved");
 					}
 				},
 				error: function(XMLHttpRequest, textStatus, errorThrown) {

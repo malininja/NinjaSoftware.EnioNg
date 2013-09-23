@@ -8,7 +8,7 @@
 
 	<h2>Partner</h2>
 
-	<input type="button" value="Dodaj novog partnera" onclick="openPartnerDialog();" />
+	<input type="button" value="Dodaj novog partnera" onclick="openPartnerDialogNew();" />
 		
 	<table id="PartnerTable"></table>
 	<div id="PartnerTablePager"></div>	
@@ -108,18 +108,19 @@
 	
 	function closePartnerDialog() {
 		$("#PartnerInput").dialog("close");
-		
-		var scope = getNgControllerScope();
-		if (scope) {
-			scope.clearPartner();
-		}
 	}
 	
 	function openPartnerDialog() {
 		$("#PartnerInput").dialog("open");
 	}
 	
-	$(document).on("ReloadPartnerGrid", function () {
+	function openPartnerDialogNew() {
+		var scope = getNgControllerScope();
+		scope.newPartner();
+		openPartnerDialog();
+	}
+	
+	$(document).on("PartnerIsSaved", function () {
 		$("#PartnerTable").trigger("reloadGrid");
 	});
 	
