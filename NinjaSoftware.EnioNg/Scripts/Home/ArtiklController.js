@@ -5,9 +5,10 @@ function ArtiklController ($scope) {
 
 	$scope.selectedArtikl = EnioNg.Entities.Artikl();
 	
-	$scope.clearArtikl = function () {
+	$scope.newArtikl = function () {
 		var fn = function () {
-			$scope.selectedPartner = EnioNg.Entities.Partner();
+			$scope.selectedArtikl = EnioNg.Entities.Artikl();
+			$scope.selectedArtikl.Cijena = 0;
 		};
 		
 		ninjaSoftware.angularjs.safeApply($scope, fn);
@@ -37,11 +38,11 @@ function ArtiklController ($scope) {
 						closeArtiklDialog();
 						$scope.selectedArtikl = EnioNg.Entities.Artikl();
 						
-						$(document).trigger("ReloadArtiklGrid");
+						$(document).trigger("PartnerIsSaved");
 					}
 				},
 				error: function(XMLHttpRequest, textStatus, errorThrown) {
-					//alert("nekaj se pojebalo");
+					alert("nekaj se pojebalo");
 				},
 				async: false,
 				cache: false
@@ -63,7 +64,29 @@ function ArtiklController ($scope) {
 				ninjaSoftware.angularjs.safeApply($scope, fn);
 			},
 			error: function () {
-				//alert("nekaj se pojebalo");
+				alert("nekaj se pojebalo");
+			},
+			async: false,
+			cache: false
+		});
+	};
+	
+	$scope.pdvCollection = null;
+	
+	$scope.pdvCollection = function () {
+		$ajax({
+			type: "GET",
+			contentType: "application/json; charset=utf8",
+			url: "/Api/GetPdvCollection",
+			success: function (result) {
+				fn = function () {
+					$scope.pdvCollection = result;
+				}
+				
+				ninjaSoftware.angularjs.safeApply($scope, fn);
+			},
+			error: function () {
+				alert("nekaj se pojebalo");
 			},
 			async: false,
 			cache: false
@@ -73,15 +96,27 @@ function ArtiklController ($scope) {
 	$scope.validation = {};
 	
 	$scope.validation.isValid = function () {
-		return $scope.validation.isNazivValid() &&
-			$scope.validation.nazivExist() &&
-			$scope.validation.isOibValid() &&
-			$scope.validation.isAdresaValid() &&
-			$scope.validation.isMjestoValid() &&
-			$scope.validation.isPostaValid() &&
-			$scope.validation.isValutaValid();
+		return $scope.validation.isJmValid() &&
+			$scope.validation.isJmExist() &&
+			$scope.validation.isNazivValid() &&
+			$scope.validation.isNazivExist() &&
+			$scope.validation.isCijenaValid() &&
+			$scope.validation.isCijenaExist();
 	};
 	
+	
+	$scope.validation.isJmValid = function () { 
+		if ($scope.selectedArtikl.Jm) {
+			return String.trim($scope.selectedArtikl.Jm).length < 11;
+		}
+		else {
+			return true;
+		}
+	};
+	
+	$scope.validation.isJmExist = function () {
+		return ninjaSoftware.angularjs.isObjectExist($scope.selectedArtikl.Jm):
+	};
 	
 	$scope.validation.isNazivValid = function () { 
 		if ($scope.selectedArtikl.Naziv) {
@@ -91,58 +126,21 @@ function ArtiklController ($scope) {
 			return true;
 		}
 	};
-	
+		
 	$scope.validation.isNazivExist = function () {
 		return ninjaSoftware.angularjs.isObjectExist($scope.selectedArtikl.Naziv):
 	};
 	
-	$scope.validation.isPdvValid = function () {
-		if ($scope.selectedPartner.Oib) {
-			return String.trim($scope.selectedPartner.Oib).length === 11;
-		}
-		else {
-			return false;
-		}
+	$scope.validation.isCijenaValid = function () {
+		return ninjaSoftware.validation.isNumeric($scope.selectedArtikl.Cijena);
+	}
+
+	$scope.validation.isCijenaExist = function () {
+		return ninjaSoftware.angularjs.isObjectExist($scope.selectedArtikl.Cijena):
 	};
 	
-	$scope.validation.isNazivExist = function () {
-		return ninjaSoftware.angularjs.isObjectExist($scope.selectedArtikl.Naziv):
-	};
-	
-	$scope.validation.isAdresaValid = function () {
-		if ($scope.selectedPartner.Adresa) {
-			return String.trim($scope.selectedPartner.Adresa).length < 101;
-		}
-		else {
-			return true;
-		}
-	};
-	
-	$scope.validation.isMjestoValid = function () {
-		if ($scope.selectedPartner.Mjesto) {
-			return String.trim($scope.selectedPartner.Mjesto).length < 21;
-		}
-		else {
-			return true;
-		}
-	};
-	
-	$scope.validation.isPostaValid = function () {
-		if ($scope.selectedPartner.Posta) {
-			return String.trim($scope.selectedPartner.Posta).length < 11;
-		}
-		else {
-			return true;
-		}
-	};
-	
-	$scope.validation.isValutaValid = function () {
-		if ($scope.selectedPartner.Valuta) {
-			return ($scope.selectedPartner.Valuta > -1 && $scope.selectedPartner.Valuta < 65000);
-		}
-		else {
-			return false;
-		}
+	$scope.validation.isPdvExist = function () {
+		return ninjaSoftware.angularjs.isObjectExist($scope.selectedArtikl.PdvId);
 	}
 	
 	return self;

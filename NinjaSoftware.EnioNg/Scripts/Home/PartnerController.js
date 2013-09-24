@@ -42,7 +42,7 @@ function PartnerController ($scope) {
 					}
 				},
 				error: function(XMLHttpRequest, textStatus, errorThrown) {
-					alert("nekaj se pojebalo");
+					//alert("nekaj se pojebalo");
 				},
 				async: false,
 				cache: false
@@ -92,7 +92,7 @@ function PartnerController ($scope) {
 		}
 	};
 	
-	$scope.validation.nazivExist = function () {
+	$scope.validation.isNazivExist = function () {
 		if ($scope.selectedPartner.Naziv) {
 			return String.trim($scope.selectedPartner.Naziv).length > 0;
 		}

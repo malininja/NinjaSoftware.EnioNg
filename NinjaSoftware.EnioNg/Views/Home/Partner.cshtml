@@ -23,7 +23,7 @@
 					<input ng-model="selectedPartner.Naziv" />
 				</td>
 				<td>
-					<span class="validation" name="RequiredField" ng-show="!validation.nazivExist()"></span>
+					<span class="validation" name="RequiredField" ng-show="!validation.isNazivExist()"></span>
 					<span class="validation" ng-show="!validation.isNazivValid()">Naziv ne može imati više od 100 znakova</span>
 				</td>
 			</tr>

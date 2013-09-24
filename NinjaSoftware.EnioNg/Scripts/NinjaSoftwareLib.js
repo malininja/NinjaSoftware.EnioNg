@@ -83,12 +83,22 @@ nsAngular.safeApply = function ($scope, fn) {
 };
 
 nsAngular.isObjectExist = function (item) {
-		if (item) {
-			return String.trim(item.toString()).length > 0;
-		}
-		else {
-			return false;
-		}
-	};
-	
+	if (item) {
+		return String.trim(item.toString()).length > 0;
+	}
+	else {
+		return false;
+	}
+};
+
 /* END AngularJs specific functions */
+
+/* START js validation */
+
+var nsValidation = namespace("ninjaSoftware.validation");
+
+nsValidation.isNumeric = function (input) {
+	return !isNaN(parseFloat(input)) && isFinite(input);
+}
+
+/* END js validation */
