@@ -1,8 +1,6 @@
 function PartnerController ($scope) {
 	var self = {};
 	
-	$scope.partnerCollection = [];
-
 	$scope.selectedPartner = EnioNg.Entities.Partner();
 	
 	$scope.newPartner = function () {
@@ -24,30 +22,30 @@ function PartnerController ($scope) {
 			return true;
 		}
 	};
-	
+
 	$scope.save = function () {
-		if ($scope.validation.isValid()) {
-			$.ajax({
-				type: "POST",
-				contentType: "application/json; charset=utf-8",
-				url: "/Api/SavePartner",
-				data: JSON.stringify($scope.selectedPartner),
-				dataType: "json",
-				success: function (result) {
-					if (result.IsSaved === "true") {
-						closePartnerDialog();
-						$scope.selectedPartner = EnioNg.Entities.Partner();
-						
-						$(document).trigger("PartnerIsSaved");
-					}
-				},
-				error: function(XMLHttpRequest, textStatus, errorThrown) {
-					//alert("nekaj se pojebalo");
-				},
-				async: false,
-				cache: false
-			});
-		}
+	    if ($scope.validation.isValid()) {
+	        $.ajax({
+	            type: "POST",
+	            contentType: "application/json; charset=utf-8",
+	            url: "/Api/SavePartner",
+	            data: JSON.stringify($scope.selectedPartner),
+	            dataType: "json",
+	            success: function (result) {
+	                if (result.IsSaved === "true") {
+	                    closePartnerDialog();
+	                    $scope.newPartner();
+
+	                    $(document).trigger("PartnerIsSaved");
+	                }
+	            },
+	            error: function (XMLHttpRequest, textStatus, errorThrown) {
+	                //alert("nekaj se pojebalo");
+	            },
+	            async: false,
+	            cache: false
+	        });
+	    }
 	};
 	
 	$scope.loadPartner = function (partnerId) {
@@ -75,7 +73,7 @@ function PartnerController ($scope) {
 	
 	$scope.validation.isValid = function () {
 		return $scope.validation.isNazivValid() &&
-			$scope.validation.nazivExist() &&
+			$scope.validation.isNazivExist() &&
 			$scope.validation.isOibValid() &&
 			$scope.validation.isAdresaValid() &&
 			$scope.validation.isMjestoValid() &&

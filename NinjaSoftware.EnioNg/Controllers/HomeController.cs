@@ -18,12 +18,17 @@ namespace NinjaSoftware.EnioNg.Controllers
 
 		public ActionResult Partner()
 		{
-			return View ();
+			return View();
 		}
 		
 		public ActionResult Artikl()
 		{
-			return View ();
-		}		
+			return View();
+		}
+
+        public ActionResult Pdv()
+        {
+            return View();
+        }
     }
 }

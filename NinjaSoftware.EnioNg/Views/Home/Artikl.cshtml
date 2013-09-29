@@ -8,7 +8,7 @@
 
 	<h2>Partner</h2>
 
-	<input type="button" value="Dodaj novi artikl" onclick="openArtiklDialog();" />
+	<input type="button" value="Dodaj novi artikl" onclick="openNewArtiklDialog();" />
 		
 	<table id="ArtiklTable"></table>
 	<div id="ArtiklTablePager"></div>	
@@ -33,13 +33,13 @@
 					<input ng-model="selectedArtikl.Jm" />
 				</td>
 				<td>
-
+                    
 				</td>
 			</tr>
 			<tr>
 				<td>Pdv:</td>
 				<td>
-					<input ng-model="selectedArtikl.Pdv" />
+					<select ng-model="pdvCollection"></select>
 				</td>
 				<td>
 					<span class="validation" name="RequiredField" ng-show="!validation.PdvExist()"></span>
@@ -47,7 +47,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td>Mjesto:</td>
+				<td>Cijena:</td>
 				<td>
 					<input ng-model="selectedArtikl.Cijena" />
 				</td>
@@ -65,7 +65,7 @@
 			</tr>
 		</table>
 		<input type="button" value="Pohrani" ng-click="save()" />
-		<input type="button" value="Odustani" onclick="closePartnerDialog()" />
+		<input type="button" value="Odustani" onclick="closeArtiklDialog()" />
 
 	</div>
 	</div>
@@ -92,17 +92,18 @@
 	
 	function closeArtiklDialog() {
 		$("#ArtiklInput").dialog("close");
-		
-		var scope = getNgControllerScope();
-		if (scope) {
-			scope.clearArtikl();
-		}
 	}
 	
 	function openArtiklDialog() {
 		$("#ArtiklInput").dialog("open");
 	}
-	
+
+	function openNewArtiklDialog() {
+	    var scope = getNgControllerScope();
+	    scope.newArtikl();
+	    $("#ArtiklInput").dialog("open");
+	}
+    	
 	$(document).on("ReloadArtiklGrid", function () {
 		$("#ArtiklTable").trigger("reloadGrid");
 	});
@@ -110,7 +111,7 @@
 	closeArtiklDialog();
 	
 	$("#ArtiklTable").jqGrid({
-		url: "/JqGrid/GetArtiklCollectionForPaging",
+		url: "/Api/GetArtiklCollectionForPaging",
 		datatype: "json",
 		colNames: ["ArtiklId", "Naziv", "Jm", "Pdv", "Cijena", "Aktivan"],
 		colModel: [

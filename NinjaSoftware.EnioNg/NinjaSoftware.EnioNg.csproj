@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -34,6 +34,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Mono.Security">
+      <HintPath>..\libs\Mono.Security.dll</HintPath>
+    </Reference>
     <Reference Include="Npgsql">
       <HintPath>..\libs\Npgsql.dll</HintPath>
     </Reference>
@@ -83,12 +86,12 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\ApiController.cs" />
-    <Compile Include="Controllers\JqGridController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\Home\PdvController.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -171,10 +174,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
-    <Folder Include="Scripts\" />
-    <Folder Include="Scripts\Home\" />
-    <Folder Include="Content\themes\" />
-    <Folder Include="Content\themes\base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -233,5 +232,6 @@
     <None Include="Views\Home\Partner.cshtml" />
     <None Include="Scripts\EnioNg.Entities.js" />
     <None Include="Views\Home\Artikl.cshtml" />
+    <Content Include="Views\Home\Pdv.cshtml" />
   </ItemGroup>
 </Project>

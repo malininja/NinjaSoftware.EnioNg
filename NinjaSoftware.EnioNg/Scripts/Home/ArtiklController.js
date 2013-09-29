@@ -16,8 +16,8 @@ function ArtiklController ($scope) {
 	
 	$scope.isSelectedArtiklNew = function () {
 		if ($scope.selectedArtikl &&
-			$scope.selectedPartner.ArtiklId &&
-			$scope.selectedPartner.ArtiklId > 0) {
+			$scope.selectedArtikl.ArtiklId &&
+			$scope.selectedArtikl.ArtiklId > 0) {
 			return false;	
 		}
 		else {
@@ -71,10 +71,7 @@ function ArtiklController ($scope) {
 		});
 	};
 	
-	$scope.pdvCollection = null;
-	
-	$scope.pdvCollection = function () {
-		$ajax({
+	$scope.pdvCollection = $.ajax({
 			type: "GET",
 			contentType: "application/json; charset=utf8",
 			url: "/Api/GetPdvCollection",
@@ -90,8 +87,7 @@ function ArtiklController ($scope) {
 			},
 			async: false,
 			cache: false
-		});
-	};
+	});
 	
 	$scope.validation = {};
 	
@@ -113,9 +109,9 @@ function ArtiklController ($scope) {
 			return true;
 		}
 	};
-	
+
 	$scope.validation.isJmExist = function () {
-		return ninjaSoftware.angularjs.isObjectExist($scope.selectedArtikl.Jm):
+	    return ninjaSoftware.angularjs.isObjectExist($scope.selectedArtikl.Jm);
 	};
 	
 	$scope.validation.isNazivValid = function () { 
@@ -128,7 +124,7 @@ function ArtiklController ($scope) {
 	};
 		
 	$scope.validation.isNazivExist = function () {
-		return ninjaSoftware.angularjs.isObjectExist($scope.selectedArtikl.Naziv):
+		return ninjaSoftware.angularjs.isObjectExist($scope.selectedArtikl.Naziv);
 	};
 	
 	$scope.validation.isCijenaValid = function () {
@@ -136,7 +132,7 @@ function ArtiklController ($scope) {
 	}
 
 	$scope.validation.isCijenaExist = function () {
-		return ninjaSoftware.angularjs.isObjectExist($scope.selectedArtikl.Cijena):
+		return ninjaSoftware.angularjs.isObjectExist($scope.selectedArtikl.Cijena);
 	};
 	
 	$scope.validation.isPdvExist = function () {
