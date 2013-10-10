@@ -72,7 +72,7 @@
 					<span class="validation" ng-show="!validation.isValutaValid()">Neispravna valuta</span>
 				</td>
 			</tr>
-			<tr id="tdAktivan" ng-show="!isSelectedPartnerNew()">
+			<tr ng-show="!isSelectedPartnerNew()">
 				<td>Aktivan:</td>
 				<td>
 					<input type="checkbox" ng-model="selectedPartner.IsActive" />

@@ -13,6 +13,8 @@
 
     $scope.save = function () {
         if ($scope.validation.isValid()) {
+            $scope.selectedPdv.Stopa = $scope.selectedPdv.Stopa.toString();
+
             $.ajax({
                 type: "POST",
                 contentType: "application/json; charset=utf-8",

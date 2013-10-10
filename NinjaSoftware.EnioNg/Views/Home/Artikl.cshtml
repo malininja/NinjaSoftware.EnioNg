@@ -39,11 +39,11 @@
 			<tr>
 				<td>Pdv:</td>
 				<td>
-					<select ng-model="pdvCollection"></select>
+					<select ng-model="selectedArtikl.PdvId"
+                        ng-options="pdv.PdvId as pdv.Naziv for pdv in pdvCollection"></select>
 				</td>
 				<td>
-					<span class="validation" name="RequiredField" ng-show="!validation.PdvExist()"></span>
-					<span class="validation" ng-show="!validation.isAPdvValid()">Adresa ne može imati više od 100 znakova</span>
+					<span class="validation" name="RequiredField" ng-show="!validation.isPdvExist()"></span>
 				</td>
 			</tr>
 			<tr>
@@ -52,8 +52,8 @@
 					<input ng-model="selectedArtikl.Cijena" />
 				</td>
 				<td>
-					<span class="validation" name="RequiredField" ng-show="!validation.cijenaExist()"></span>
-					<span class="validation" ng-show="!validation.isMjestoValid()">Mjesto ne može imati više od 20 znakova</span>
+					<span class="validation" name="RequiredField" ng-show="!validation.isCijenaExist()"></span>
+					<span class="validation" ng-show="!validation.isCijenaValid()">Neispravna cijena</span>
 				</td>
 			</tr>
 			<tr id="tdAktivan" ng-show="!isSelectedArtiklNew()">
@@ -103,8 +103,8 @@
 	    scope.newArtikl();
 	    $("#ArtiklInput").dialog("open");
 	}
-    	
-	$(document).on("ReloadArtiklGrid", function () {
+
+	$(document).on("ArtiklIsSaved", function () {
 		$("#ArtiklTable").trigger("reloadGrid");
 	});
 	
@@ -116,9 +116,9 @@
 		colNames: ["ArtiklId", "Naziv", "Jm", "Pdv", "Cijena", "Aktivan"],
 		colModel: [
 			{ name: "ArtiklId", index: "ArtiklId", hidden: true, width: 0 },
-			{ name: "Naziv", index: "Naziv", width: 250, search : true },
+			{ name: "Naziv", index: "Naziv", width: 250 },
 			{ name: "Jm", index: "Jm", width: 90 },
-			{ name: "Pdv", index: "Pdv", width: 90 },
+			{ name: "Pdv.Stopa", index: "Pdv.Stopa", width: 90, search: false, sortable: false },
 			{ name: "Cijena", index: "Cijena", width: 100 },
 			{ name: "IsActive", index: "IsActive", width: 50, formatter: 'select', editoptions: { value: 'true:Da;false:Ne'} }
 		],

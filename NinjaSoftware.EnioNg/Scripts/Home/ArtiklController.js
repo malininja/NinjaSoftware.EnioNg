@@ -8,7 +8,6 @@ function ArtiklController ($scope) {
 	$scope.newArtikl = function () {
 		var fn = function () {
 			$scope.selectedArtikl = EnioNg.Entities.Artikl();
-			$scope.selectedArtikl.Cijena = 0;
 		};
 		
 		ninjaSoftware.angularjs.safeApply($scope, fn);
@@ -24,33 +23,36 @@ function ArtiklController ($scope) {
 			return true;
 		}
 	};
-	
+
 	$scope.save = function () {
-		if ($scope.validation.isValid()) {
-			$.ajax({
-				type: "POST",
-				contentType: "application/json; charset=utf-8",
-				url: "/Api/SaveArtikl",
-				data: JSON.stringify($scope.selectedArtil),
-				dataType: "json",
-				success: function (result) {
-					if (result.IsSaved === "true") {
-						closeArtiklDialog();
-						$scope.selectedArtikl = EnioNg.Entities.Artikl();
-						
-						$(document).trigger("PartnerIsSaved");
-					}
-				},
-				error: function(XMLHttpRequest, textStatus, errorThrown) {
-					alert("nekaj se pojebalo");
-				},
-				async: false,
-				cache: false
-			});
-		}
+	    if ($scope.validation.isValid()) {
+	        $scope.selectedArtikl.Cijena = $scope.selectedArtikl.Cijena.toString();
+
+	        $.ajax({
+	            type: "POST",
+	            contentType: "application/json; charset=utf-8",
+	            url: "/Api/SaveArtikl",
+	            data: JSON.stringify($scope.selectedArtikl),
+	            dataType: "json",
+	            success: function (result) {
+	                if (result.IsSaved === "true") {
+	                    closeArtiklDialog();
+	                    $scope.selectedArtikl = EnioNg.Entities.Artikl();
+
+	                    $(document).trigger("ArtiklIsSaved");
+	                }
+	            },
+	            error: function (XMLHttpRequest, textStatus, errorThrown) {
+	                alert("nekaj se pojebalo");
+	            },
+	            async: false,
+	            cache: false
+	        });
+	    }
 	};
 	
 	$scope.loadArtikl = function (artiklId) {
+
 		$.ajax({
 			type: "GET",
 			contentType: "application/json; charset=utf-8",
@@ -58,7 +60,7 @@ function ArtiklController ($scope) {
 			data: { "artiklId": artiklId },
 			success: function (result) {
 				fn = function () {
-					$scope.artiklPartner = result;
+				    $scope.selectedArtikl = result;
 				};
 				
 				ninjaSoftware.angularjs.safeApply($scope, fn);
@@ -70,25 +72,31 @@ function ArtiklController ($scope) {
 			cache: false
 		});
 	};
-	
-	$scope.pdvCollection = $.ajax({
-			type: "GET",
-			contentType: "application/json; charset=utf8",
-			url: "/Api/GetPdvCollection",
-			success: function (result) {
-				fn = function () {
-					$scope.pdvCollection = result;
-				}
-				
-				ninjaSoftware.angularjs.safeApply($scope, fn);
-			},
-			error: function () {
-				alert("nekaj se pojebalo");
-			},
-			async: false,
-			cache: false
-	});
-	
+
+    $scope.pdvCollection = [];
+
+    self.loadPdvCollection = function () {
+        $.ajax({
+            type: "GET",
+            contentType: "application/json; charset=utf8",
+            url: "/Api/GetPdvCollection",
+            success: function (result) {
+                fn = function () {
+                    $scope.pdvCollection = result;
+                }
+
+                ninjaSoftware.angularjs.safeApply($scope, fn);
+            },
+            error: function () {
+                alert("nekaj se pojebalo");
+            },
+            async: false,
+            cache: false
+        });
+    };
+
+    self.loadPdvCollection();
+
 	$scope.validation = {};
 	
 	$scope.validation.isValid = function () {

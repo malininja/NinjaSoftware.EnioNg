@@ -10,6 +10,8 @@ using NinjaSoftware.Api.CoolJ;
 using SD.LLBLGen.Pro.ORMSupportClasses;
 using System.Configuration;
 using NinjaSoftware.EnioNg.CoolJ.HelperClasses;
+using NinjaSoftware.EnioNg.CoolJ;
+using NinjaSoftware.EnioNg.Helpers;
 
 namespace NinjaSoftware.EnioNg.Controllers
 {
@@ -64,6 +66,19 @@ namespace NinjaSoftware.EnioNg.Controllers
         #region Artikl
 
         [HttpGet]
+        public ActionResult GetArtikl(long artiklId)
+        {
+            DataAccessAdapterBase adapter = new DataAccessAdapter();
+            using (adapter)
+            {
+                ArtiklEntity artikl = ArtiklEntity.FetchArtikl(adapter, null, artiklId);
+
+                string response = JsonConvert.SerializeObject(artikl);
+                return CreateJsonResponse(response);
+            }
+        }
+
+        [HttpGet]
         public ActionResult GetArtiklCollectionForPaging(string sidx, string sord, string filters, int page = 1)
         {
             DataAccessAdapterBase adapter = new DataAccessAdapter();
@@ -77,12 +92,15 @@ namespace NinjaSoftware.EnioNg.Controllers
                 RelationPredicateBucket bucket = new RelationPredicateBucket();
                 if (filters != null)
                 {
-                    bucket.PredicateExpression.Add(PredicateHelper.CreatePredicateFromJqGridFilterString(filters, typeof(ArtiklEntity)));
+                    bucket.PredicateExpression.Add(PredicateHelper.CreatePredicateFromJqGridFilterString(filters, typeof(ArtiklFields)));
                 }
 
                 bool isSortAscending = IsSortAscending(sord);
 
-                IEnumerable<ArtiklEntity> artiklCollection = ArtiklEntity.FetchArtiklCollectionForPaging(adapter, bucket, null, page, this.JqGridPageSize, sidx, isSortAscending);
+                PrefetchPath2 prefetchPath = new PrefetchPath2(EntityType.ArtiklEntity);
+                prefetchPath.Add(ArtiklEntity.PrefetchPathPdv);
+
+                IEnumerable<ArtiklEntity> artiklCollection = ArtiklEntity.FetchArtiklCollectionForPaging(adapter, bucket, prefetchPath, page, this.JqGridPageSize, sidx, isSortAscending);
                 int noOfRecords = ArtiklEntity.GetNumberOfEntities(adapter, null);
                 int pageCount = CalculateNoOfPages(noOfRecords, this.JqGridPageSize);
 
@@ -100,6 +118,34 @@ namespace NinjaSoftware.EnioNg.Controllers
             }
         }
 
+        [HttpPost]
+        public ActionResult SaveArtikl(ArtiklEntity artikl)
+        {
+            DataAccessAdapterBase adapter = Helper.GetDataAccessAdapter(User.Identity.Name);
+
+            using (adapter)
+            {
+                ArtiklEntity artikl4Save;
+
+                if (artikl.ArtiklId == 0)
+                {
+                    artikl4Save = artikl;
+                    artikl4Save.IsActive = true;
+                }
+                else
+                {
+                    artikl4Save = ArtiklEntity.FetchArtikl(adapter, null, artikl.ArtiklId);
+                    artikl4Save.UpdateDataFromOtherObject(artikl, null, null);
+                }
+
+                adapter.SaveEntity(artikl4Save);
+            }
+
+            string response = string.Format(_jsonResponse, "true");
+
+            return CreateJsonResponse(response);
+        }
+
         #endregion
 
         #region Partner
@@ -107,8 +153,7 @@ namespace NinjaSoftware.EnioNg.Controllers
         [HttpPost]
 		public ActionResult SavePartner (PartnerEntity partner)
 		{
-			DataAccessAdapterBase adapter = new DataAccessAdapter();
-		    ((INsDataAccessAdapter)adapter).UserId = -1;
+            DataAccessAdapterBase adapter = Helper.GetDataAccessAdapter(User.Identity.Name);
 
 			using (adapter) 
 			{
@@ -205,8 +250,7 @@ namespace NinjaSoftware.EnioNg.Controllers
         [HttpPost]
         public ActionResult SavePdv(PdvEntity pdv)
         {
-            DataAccessAdapterBase adapter = new DataAccessAdapter();
-            ((INsDataAccessAdapter)adapter).UserId = -1;
+            DataAccessAdapterBase adapter = Helper.GetDataAccessAdapter(User.Identity.Name);
 
             using (adapter)
             {
@@ -256,7 +300,7 @@ namespace NinjaSoftware.EnioNg.Controllers
                 RelationPredicateBucket bucket = new RelationPredicateBucket();
                 if (filters != null)
                 {
-                    bucket.PredicateExpression.Add(PredicateHelper.CreatePredicateFromJqGridFilterString(filters, typeof(PdvEntity)));
+                    bucket.PredicateExpression.Add(PredicateHelper.CreatePredicateFromJqGridFilterString(filters, typeof(PdvFields)));
                 }
 
                 bool isSortAscending = IsSortAscending(sord);
