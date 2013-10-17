@@ -25,7 +25,7 @@ nsUrl.getParameterValue = function (parameterName) {
         return "";
     else
         return results[1];
-}
+};
 
 nsUrl.setParameters = function (params, openInNewWindow) {
     var queryParameters = {};
@@ -98,7 +98,52 @@ nsAngular.isObjectExist = function (item) {
 var nsValidation = namespace("ninjaSoftware.validation");
 
 nsValidation.isNumeric = function (input) {
-	return !isNaN(parseFloat(input)) && isFinite(input);
-}
+    return !isNaN(parseFloat(input)) && isFinite(input);
+};
 
 /* END js validation */
+
+/* START AJAX helpers */
+
+var nsAjaxHelper = namespace("ninjaSoftware.ajaxHelper");
+
+// params{ url, jsonObject, success, error }
+nsAjaxHelper.postJson = function (params) {
+    $.ajax({
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        url: params.url,
+        data: JSON.stringify(params.jsonObject),
+        dataType: "json",
+        success: function (result) {
+            //alert("save");
+            params.success(result);
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            params.error(XMLHttpRequest, textStatus, errorThrown);
+        },
+        async: false,
+        cache: false
+    });
+};
+
+// params { url, data, success, error }
+nsAjaxHelper.getJson = function (params) {
+    $.ajax({
+        type: "GET",
+        contentType: "application/json; charset=utf-8",
+        url: params.url,
+        data: params.data,
+        success: function (result) {
+            //alert("load");
+            params.success(result);
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            params.error(XMLHttpRequest, textStatus, errorThrown);
+        },
+        async: false,
+        cache: false
+    });
+};
+
+/* START AJAX helpers */

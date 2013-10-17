@@ -15,6 +15,24 @@
         if ($scope.validation.isValid()) {
             $scope.selectedPdv.Stopa = $scope.selectedPdv.Stopa.toString();
 
+            ninjaSoftware.ajaxHelper.postJson({
+                url: "/Api/SavePdv",
+                data: $scope.selectedPdv,
+                success: function (result) {
+                    if (result.IsSaved === "true") {
+                        closePdvDialog();
+                        $scope.newPdv();
+
+                        $(document).trigger("PdvIsSaved");
+                    }
+                },
+                error: function () {
+                    //alert ....
+                }
+            });
+
+            dovrši refucktoring
+
             $.ajax({
                 type: "POST",
                 contentType: "application/json; charset=utf-8",

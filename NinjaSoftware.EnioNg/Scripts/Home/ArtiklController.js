@@ -28,12 +28,9 @@ function ArtiklController ($scope) {
 	    if ($scope.validation.isValid()) {
 	        $scope.selectedArtikl.Cijena = $scope.selectedArtikl.Cijena.toString();
 
-	        $.ajax({
-	            type: "POST",
-	            contentType: "application/json; charset=utf-8",
+	        ninjaSoftware.ajaxHelper.postJson({
 	            url: "/Api/SaveArtikl",
-	            data: JSON.stringify($scope.selectedArtikl),
-	            dataType: "json",
+	            jsonObject: $scope.selectedArtikl,
 	            success: function (result) {
 	                if (result.IsSaved === "true") {
 	                    closeArtiklDialog();
@@ -44,33 +41,27 @@ function ArtiklController ($scope) {
 	            },
 	            error: function (XMLHttpRequest, textStatus, errorThrown) {
 	                alert("nekaj se pojebalo");
-	            },
-	            async: false,
-	            cache: false
+	            }
 	        });
 	    }
 	};
-	
-	$scope.loadArtikl = function (artiklId) {
 
-		$.ajax({
-			type: "GET",
-			contentType: "application/json; charset=utf-8",
-			url: "/Api/GetArtikl",
-			data: { "artiklId": artiklId },
-			success: function (result) {
-				fn = function () {
-				    $scope.selectedArtikl = result;
-				};
-				
-				ninjaSoftware.angularjs.safeApply($scope, fn);
-			},
-			error: function () {
-				alert("nekaj se pojebalo");
-			},
-			async: false,
-			cache: false
-		});
+	$scope.loadArtikl = function (artiklId) {
+	    ninjaSoftware.ajaxHelper.getJson({
+	        url: "/Api/GetArtikl",
+	        data: { "artiklId": artiklId },
+	        success: function (result) {
+	            alert(1);
+	            fn = function () {
+	                $scope.selectedArtikl = result;
+	            };
+
+	            ninjaSoftware.angularjs.safeApply($scope, fn);
+	        },
+	        error: function () {
+	            alert("nekaj se pojebalo");
+	        }
+	    });
 	};
 
     $scope.pdvCollection = [];

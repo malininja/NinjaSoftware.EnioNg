@@ -25,12 +25,9 @@ function PartnerController ($scope) {
 
 	$scope.save = function () {
 	    if ($scope.validation.isValid()) {
-	        $.ajax({
-	            type: "POST",
-	            contentType: "application/json; charset=utf-8",
-	            url: "/Api/SavePartner",
-	            data: JSON.stringify($scope.selectedPartner),
-	            dataType: "json",
+	        ninjaSoftware.ajaxHelper.postJson({
+                url: "/Api/SavePartner",
+	            jsonObject: $scope.selectedPartner,
 	            success: function (result) {
 	                if (result.IsSaved === "true") {
 	                    closePartnerDialog();
@@ -41,32 +38,26 @@ function PartnerController ($scope) {
 	            },
 	            error: function (XMLHttpRequest, textStatus, errorThrown) {
 	                //alert("nekaj se pojebalo");
-	            },
-	            async: false,
-	            cache: false
-	        });
+	            }
+            });
 	    }
 	};
-	
+
 	$scope.loadPartner = function (partnerId) {
-		$.ajax({
-			type: "GET",
-			contentType: "application/json; charset=utf-8",
-			url: "/Api/GetPartner",
-			data: { "partnerId": partnerId },
-			success: function (result) {
-				fn = function () {
-					$scope.selectedPartner = result;
-				};
-				
-				ninjaSoftware.angularjs.safeApply($scope, fn);
-			},
-			error: function () {
-				alert("nekaj se pojebalo");
-			},
-			async: false,
-			cache: false
-		});
+	    ninjaSoftware.ajaxHelper.getJson({
+	        url: "/Api/GetPartner",
+	        data: { "partnerId": partnerId },
+	        success: function (result) {
+	            fn = function () {
+	                $scope.selectedPartner = result;
+	            };
+
+	            ninjaSoftware.angularjs.safeApply($scope, fn);
+	        },
+	        error: function () {
+	            alert("nekaj se pojebalo");
+	        }
+        });
 	};
 	
 	$scope.validation = {};
