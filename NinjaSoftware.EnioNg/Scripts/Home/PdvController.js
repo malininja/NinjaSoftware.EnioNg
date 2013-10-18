@@ -17,7 +17,7 @@
 
             ninjaSoftware.ajaxHelper.postJson({
                 url: "/Api/SavePdv",
-                data: $scope.selectedPdv,
+                jsonObject: $scope.selectedPdv,
                 success: function (result) {
                     if (result.IsSaved === "true") {
                         closePdvDialog();
@@ -30,36 +30,11 @@
                     //alert ....
                 }
             });
-
-            dovrši refucktoring
-
-            $.ajax({
-                type: "POST",
-                contentType: "application/json; charset=utf-8",
-                url: "/Api/SavePdv",
-                data: JSON.stringify($scope.selectedPdv),
-                dataType: "json",
-                success: function (result) {
-                    if (result.IsSaved === "true") {
-                        closePdvDialog();
-                        $scope.newPdv();
-
-                        $(document).trigger("PdvIsSaved");
-                    }
-                },
-                error: function () {
-                    //alert ....
-                },
-                async: false,
-                cache: false
-            });
         }
     };
 
     $scope.loadPdv = function (pdvId) {
-        $.ajax({
-            type: "GET",
-            contentType: "application/json; charset=utf-8",
+        ninjaSoftware.ajaxHelper.getJson({
             url: "/Api/GetPdv",
             data: { "pdvId": pdvId },
             success: function (result) {
@@ -69,11 +44,9 @@
 
                 ninjaSoftware.angularjs.safeApply($scope, fn);
             },
-            error: function () { 
+            error: function () {
                 // alert("nekaj se pojebalo");
-            },
-            async: false,
-            cache: false
+            }
         });
     };
 

@@ -40,3 +40,14 @@ eniongEntities.Pdv = function () {
 
     return self;
 };
+
+enioNgEntities.Tarifa = function () {
+    var self = {};
+
+    self.TarifaId = null;
+    self.Naziv = null;
+    self.Stopa = null;
+    self.IsActive = null;
+
+    return self;
+};

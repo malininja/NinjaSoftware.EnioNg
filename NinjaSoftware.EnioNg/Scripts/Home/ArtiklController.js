@@ -51,7 +51,6 @@ function ArtiklController ($scope) {
 	        url: "/Api/GetArtikl",
 	        data: { "artiklId": artiklId },
 	        success: function (result) {
-	            alert(1);
 	            fn = function () {
 	                $scope.selectedArtikl = result;
 	            };
