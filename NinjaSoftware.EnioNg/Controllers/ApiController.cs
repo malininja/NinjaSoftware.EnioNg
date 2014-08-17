@@ -12,6 +12,7 @@ using System.Configuration;
 using NinjaSoftware.EnioNg.CoolJ.HelperClasses;
 using NinjaSoftware.EnioNg.CoolJ;
 using NinjaSoftware.EnioNg.Helpers;
+using NinjaSoftware.Api.Mvc;
 
 namespace NinjaSoftware.EnioNg.Controllers
 {
@@ -231,7 +232,6 @@ namespace NinjaSoftware.EnioNg.Controllers
 
         #endregion
 
-
         #region Pdv
 
         [HttpGet]
@@ -315,6 +315,60 @@ namespace NinjaSoftware.EnioNg.Controllers
                     total = pageCount,
                     records = noOfRecords,
                     rows = pdvCollection
+                };
+
+                string json = JsonConvert.SerializeObject(result);
+
+                return CreateJsonResponse(json);
+            }
+        }
+
+        #endregion
+
+        #region Tarifa
+
+        [HttpGet]
+        public ActionResult GetTarifa(long tarifaId)
+        {
+            DataAccessAdapterBase adapter = new DataAccessAdapter();
+            using (adapter)
+            {
+                TarifaEntity tarifa = TarifaEntity.FetchTarifa(adapter, null, tarifaId);
+
+                string response = JsonConvert.SerializeObject(tarifa);
+                return CreateJsonResponse(response);
+            }
+        }
+
+        [HttpGet]
+        public ActionResult GetTarifaCollectionForPaging(string sidx, string sord, string filters, int page = 1)
+        {
+            DataAccessAdapterBase adapter = new DataAccessAdapter();
+            using (adapter)
+            {
+                if (string.IsNullOrWhiteSpace(sidx))
+                {
+                    sidx = TarifaFields.Naziv.Name;
+                }
+
+                RelationPredicateBucket bucket = new RelationPredicateBucket();
+                if (!string.IsNullOrWhiteSpace(filters))
+                {
+                    bucket.PredicateExpression.Add(PredicateHelper.CreatePredicateFromJqGridFilterString(filters, typeof(TarifaFields)));
+                }
+
+                bool isSortAscending = IsSortAscending(sord);
+
+                IEnumerable<TarifaEntity> tarifaCollection = TarifaEntity.FetchTarifaCollectionForPaging(adapter, bucket, null, page, this.JqGridPageSize, sidx, isSortAscending);
+                int noOfRecords = TarifaEntity.GetNumberOfEntities(adapter, null);
+                int pageCount = CalculateNoOfPages(noOfRecords, this.JqGridPageSize);
+
+                object result = new 
+                {
+                    page = page,
+                    total = pageCount,
+                    records = noOfRecords,
+                    rows = tarifaCollection
                 };
 
                 string json = JsonConvert.SerializeObject(result);

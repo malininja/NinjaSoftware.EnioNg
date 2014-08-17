@@ -79,6 +79,10 @@
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\NinjaSoftware.EnioNg.Common\NinjaSoftware.EnioNg.Common.csproj">
+      <Project>{253D955A-127D-4DBD-B2C2-5CD80F3C9315}</Project>
+      <Name>NinjaSoftware.EnioNg.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="NinjaSoftware.EnioNg.CoolJ.csproj">
       <Project>{9BE7D7EC-E981-4CAF-87B8-F2347089B1EA}</Project>
       <Name>NinjaSoftware.EnioNg.CoolJ</Name>

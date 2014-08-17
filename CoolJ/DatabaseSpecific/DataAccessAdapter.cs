@@ -183,7 +183,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.DatabaseSpecific
 
             foreach (IEntityField2 field in entity.Fields)
             {
-                string concurrencyFieldName = ConfigurationManager.AppSettings["ConcurrencyFieldName"];
+                string concurrencyFieldName = ConfigurationManager.AppSettings[NinjaSoftware.EnioNg.Common.Constants.Config.ConcurrencyFieldName];
                 // Saves all fields if is not update.
                 // If it is update, saves only changed fileds.
                 if (field.IsPrimaryKey)

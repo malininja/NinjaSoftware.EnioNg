@@ -1,0 +1,272 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using NinjaSoftware.EnioNg.CoolJ.EntityClasses;
+using NinjaSoftware.EnioNg.CoolJ.HelperClasses;
+using SD.LLBLGen.Pro.ORMSupportClasses;
+using NinjaSoftware.Api.CoolJ;
+using NinjaSoftware.EnioNg.CoolJ.DatabaseSpecific;
+using Newtonsoft.Json;
+using System.Configuration;
+using NinjaSoftware.EnioNg.CoolJ;
+using NinjaSoftware.EnioNg.Web.Helpers;
+using NinjaSoftware.EnioNg.Web.Models;
+using NinjaSoftware.Api.Mvc;
+
+namespace NinjaSoftware.EnioNg.Web.Controllers
+{
+    public class JsonServiceController : BaseController
+    {
+        #region Artikl
+
+        [HttpGet]
+        public ActionResult GetArtikl(long artiklId)
+        {
+            DataAccessAdapterBase adapter = new DataAccessAdapter();
+            using (adapter)
+            {
+                ArtiklEntity artikl = ArtiklEntity.FetchArtikl(adapter, null, artiklId);
+
+                string response = JsonConvert.SerializeObject(artikl);
+                return CreateJsonResponse(response);
+            }
+        }
+
+        [HttpGet]
+        public ActionResult GetArtiklCollectionForPaging(string sidx, string sord, string filters, int page = 1)
+        {
+            DataAccessAdapterBase adapter = new DataAccessAdapter();
+            using (adapter)
+            {
+                RelationPredicateBucket bucket = new RelationPredicateBucket();
+                if (filters != null)
+                {
+                    bucket.PredicateExpression.Add(PredicateHelper.CreatePredicateFromJqGridFilterString(filters, typeof(ArtiklFields)));
+                }
+
+                bool? isSortAscending = PagerBase.IsJqgridSortAscending(sord);
+
+                PrefetchPath2 prefetchPath = new PrefetchPath2(EntityType.ArtiklEntity);
+                prefetchPath.Add(ArtiklEntity.PrefetchPathPdv);
+
+                ArtiklPager artiklPager = new ArtiklPager();
+                artiklPager.LoadData(adapter, bucket, page, this.JqGridPageSize, sidx, isSortAscending);
+
+                return CreateJsonResponse(artiklPager.CreateJqGridRespose());
+            }
+        }
+
+        [HttpPost]
+        public ActionResult SaveArtikl(ArtiklEntity artikl)
+        {
+            DataAccessAdapterBase adapter = Helper.GetDataAccessAdapter(User.Identity.Name);
+
+            using (adapter)
+            {
+                ArtiklEntity artikl4Save;
+
+                if (artikl.ArtiklId == 0)
+                {
+                    artikl4Save = artikl;
+                    artikl4Save.IsActive = true;
+                }
+                else
+                {
+                    artikl4Save = ArtiklEntity.FetchArtikl(adapter, null, artikl.ArtiklId);
+                    artikl4Save.UpdateDataFromOtherObject(artikl, null, null);
+                }
+
+                adapter.SaveEntity(artikl4Save);
+            }
+
+            string response = string.Format(_jsonResponse, "true");
+
+            return CreateJsonResponse(response);
+        }
+
+        #endregion
+
+        #region Partner
+
+        [HttpPost]
+        public ActionResult SavePartner(PartnerEntity partner)
+        {
+            DataAccessAdapterBase adapter = Helper.GetDataAccessAdapter(User.Identity.Name);
+
+            using (adapter)
+            {
+                PartnerEntity partner4Save;
+
+                if (partner.PartnerId == 0)
+                {
+                    partner.IsActive = true;
+                    partner4Save = partner;
+                }
+                else
+                {
+                    partner4Save = PartnerEntity.FetchPartner(adapter, null, partner.PartnerId);
+                    partner4Save.UpdateDataFromOtherObject(partner, null, null);
+                }
+
+                adapter.SaveEntity(partner4Save);
+            }
+
+            string response = string.Format(_jsonResponse, "true");
+
+            return CreateJsonResponse(response);
+        }
+
+        [HttpGet]
+        public ActionResult GetPartner(long partnerId)
+        {
+            DataAccessAdapterBase adapter = new DataAccessAdapter();
+            using (adapter)
+            {
+                PartnerEntity partner = PartnerEntity.FetchPartner(adapter, null, partnerId);
+                string response = JsonConvert.SerializeObject(partner);
+
+                return CreateJsonResponse(response);
+            }
+        }
+
+        [HttpGet]
+        public ActionResult GetPartnerCollectionForPaging(string sidx, string sord, string filters, int page = 1)
+        {
+            DataAccessAdapter adapter = new DataAccessAdapter();
+            using (adapter)
+            {
+                RelationPredicateBucket bucket = null;
+                if (filters != null)
+                {
+                    bucket = new RelationPredicateBucket();
+                    bucket.PredicateExpression.Add(PredicateHelper.CreatePredicateFromJqGridFilterString(filters, typeof(PartnerFields)));
+                }
+                bool isSortAscending = PagerBase.IsJqgridSortAscending(sord).Value;
+
+                PartnerPager partnerPager = new PartnerPager();
+                partnerPager.LoadData(adapter, bucket, page, this.JqGridPageSize, sidx, isSortAscending);
+
+                return CreateJsonResponse(partnerPager.CreateJqGridRespose());
+            }
+        }
+
+        #endregion
+
+        #region Pdv
+
+        [HttpGet]
+        public ActionResult GetPdv(long pdvId)
+        {
+            DataAccessAdapterBase adapter = new DataAccessAdapter();
+            using (adapter)
+            {
+                PdvEntity pdv = PdvEntity.FetchPdv(adapter, null, pdvId);
+
+                string response = JsonConvert.SerializeObject(pdv);
+                return CreateJsonResponse(response);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult SavePdv(PdvEntity pdv)
+        {
+            DataAccessAdapterBase adapter = Helper.GetDataAccessAdapter(User.Identity.Name);
+
+            using (adapter)
+            {
+                PdvEntity pdv4Save;
+
+                if (pdv.PdvId == 0)
+                {
+                    pdv4Save = pdv;
+                }
+                else
+                {
+                    pdv4Save = PdvEntity.FetchPdv(adapter, null, pdv.PdvId);
+                    pdv4Save.UpdateDataFromOtherObject(pdv, null, null);
+                }
+
+                adapter.SaveEntity(pdv4Save);
+            }
+
+            string response = string.Format(_jsonResponse, "true");
+
+            return CreateJsonResponse(response);
+        }
+
+        [HttpGet]
+        public ActionResult GetPdvCollection()
+        {
+            DataAccessAdapterBase adapter = new DataAccessAdapter();
+            using (adapter)
+            {
+                IEnumerable<PdvEntity> pdvCollection = PdvEntity.FetchPdvCollection(adapter, null, null);
+                string json = JsonConvert.SerializeObject(pdvCollection);
+                return CreateJsonResponse(json);
+            }
+        }
+
+        [HttpGet]
+        public ActionResult GetPdvCollectionForPaging(string sidx, string sord, string filters, int page = 1)
+        {
+            DataAccessAdapterBase adapter = new DataAccessAdapter();
+            using (adapter)
+            {
+                RelationPredicateBucket bucket = new RelationPredicateBucket();
+                if (filters != null)
+                {
+                    bucket.PredicateExpression.Add(PredicateHelper.CreatePredicateFromJqGridFilterString(filters, typeof(PdvFields)));
+                }
+
+                bool isSortAscending = PagerBase.IsJqgridSortAscending(sord).Value;
+
+                PdvPager pdvPager = new PdvPager();
+                pdvPager.LoadData(adapter, bucket, page, this.JqGridPageSize, sidx, isSortAscending);
+
+                return CreateJsonResponse(pdvPager.CreateJqGridRespose());
+            }
+        }
+
+        #endregion
+
+        #region Tarifa
+
+        [HttpGet]
+        public ActionResult GetTarifa(long tarifaId)
+        {
+            DataAccessAdapterBase adapter = new DataAccessAdapter();
+            using (adapter)
+            {
+                TarifaEntity tarifa = TarifaEntity.FetchTarifa(adapter, null, tarifaId);
+
+                string response = JsonConvert.SerializeObject(tarifa);
+                return CreateJsonResponse(response);
+            }
+        }
+
+        [HttpGet]
+        public ActionResult GetTarifaCollectionForPaging(string sidx, string sord, string filters, int page = 1)
+        {
+            DataAccessAdapterBase adapter = new DataAccessAdapter();
+            using (adapter)
+            {
+                RelationPredicateBucket bucket = new RelationPredicateBucket();
+                if (!string.IsNullOrWhiteSpace(filters))
+                {
+                    bucket.PredicateExpression.Add(PredicateHelper.CreatePredicateFromJqGridFilterString(filters, typeof(TarifaFields)));
+                }
+
+                bool isSortAscending = PagerBase.IsJqgridSortAscending(sord).Value;
+
+                TarifaPager tarifaPager = new TarifaPager();
+                tarifaPager.LoadData(adapter, bucket, page, this.JqGridPageSize, sidx, isSortAscending);
+
+                return CreateJsonResponse(tarifaPager.CreateJqGridRespose());
+            }
+        }
+
+        #endregion
+    }
+}

@@ -102,6 +102,13 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 		#region Custom Entity code
 		
 		// __LLBLGENPRO_USER_CODE_REGION_START CustomEntityCode
+
+        protected override IConcurrencyPredicateFactory CreateConcurrencyPredicateFactory()
+        {
+            string concurrencyFieldName = System.Configuration.ConfigurationManager.AppSettings[NinjaSoftware.EnioNg.Common.Constants.Config.ConcurrencyFieldName];
+            return new NinjaSoftware.Api.CoolJ.OptimisticConcurrencyPredicateFactory(concurrencyFieldName, true, false);
+        }
+
 		// __LLBLGENPRO_USER_CODE_REGION_END
 		
 		#endregion

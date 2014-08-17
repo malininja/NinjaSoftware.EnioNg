@@ -37,6 +37,9 @@
     <Reference Include="Mono.Security">
       <HintPath>..\libs\Mono.Security.dll</HintPath>
     </Reference>
+    <Reference Include="NinjaSoftware.Api.Mvc">
+      <HintPath>..\libs\NinjaSoftware.Api.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="Npgsql">
       <HintPath>..\libs\Npgsql.dll</HintPath>
     </Reference>
@@ -85,6 +88,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Helper.cs" />
+    <Compile Include="Models\ArtiklPager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\ApiController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -176,9 +180,7 @@
     <Content Include="Scripts\DataAnnotations.js" />
     <Content Include="Scripts\Home\ArtiklController.js" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>

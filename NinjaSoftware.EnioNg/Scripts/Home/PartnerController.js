@@ -26,7 +26,7 @@ function PartnerController ($scope) {
 	$scope.save = function () {
 	    if ($scope.validation.isValid()) {
 	        ninjaSoftware.ajaxHelper.postJson({
-                url: "/Api/SavePartner",
+	            url: "/Api/SavePartner",
 	            jsonObject: $scope.selectedPartner,
 	            success: function (result) {
 	                if (result.IsSaved === "true") {
@@ -39,7 +39,9 @@ function PartnerController ($scope) {
 	            error: function (XMLHttpRequest, textStatus, errorThrown) {
 	                //alert("nekaj se pojebalo");
 	            }
-            });
+	        });
+	    } else {
+	        alert("validation error");
 	    }
 	};
 

@@ -34,6 +34,7 @@
       <HintPath>..\libs\NinjaSoftware.Api.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -192,6 +193,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NinjaSoftware.EnioNg.Common\NinjaSoftware.EnioNg.Common.csproj">
+      <Project>{253D955A-127D-4DBD-B2C2-5CD80F3C9315}</Project>
+      <Name>NinjaSoftware.EnioNg.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSHARP.Targets" />
 </Project>

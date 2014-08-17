@@ -43,6 +43,8 @@ function ArtiklController ($scope) {
 	                alert("nekaj se pojebalo");
 	            }
 	        });
+	    } else {
+	        alert("validation error");
 	    }
 	};
 
