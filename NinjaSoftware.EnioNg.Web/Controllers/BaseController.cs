@@ -18,7 +18,10 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
             return result;
         }
 
-        protected static string _jsonResponse = "{{ \"IsSaved\": \"{0}\" }}";
+        protected static string JsonResponse(bool isSaved)
+        {
+            return String.Format("{{ \"IsSaved\": \"{0}\" }}", isSaved.ToString().ToLowerInvariant());
+        }
 
         #region JqGrid helpers
 

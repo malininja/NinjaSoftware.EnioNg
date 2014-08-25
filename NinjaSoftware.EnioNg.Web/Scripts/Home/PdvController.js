@@ -63,8 +63,7 @@
     $scope.validation.isNazivValid = function () {
         if ($scope.selectedPdv.Naziv) {
             return String.trim($scope.selectedPdv.Naziv).length < 129;
-        }
-        else {
+        } else {
             return true;
         }
     };
@@ -72,8 +71,7 @@
     $scope.validation.isNazivExist = function () {
         if ($scope.selectedPdv.Naziv) {
             return String.trim($scope.selectedPdv.Naziv).length > 0;
-        }
-        else {
+        } else {
             return false;
         }
     };
@@ -81,8 +79,7 @@
     $scope.validation.isStopaValid = function () {
         if (ninjaSoftware.validation.isNumeric($scope.selectedPdv.Stopa)) {
             return ($scope.selectedPdv.Stopa >= 0 && $scope.selectedPdv.Stopa < 100);
-        }
-        else {
+        } else {
             return false;
         }
     };

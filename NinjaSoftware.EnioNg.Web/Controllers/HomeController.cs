@@ -27,5 +27,10 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
         {
             return View();
         }
+
+        public ActionResult Tarifa()
+        {
+            return View();
+        }
     }
 }

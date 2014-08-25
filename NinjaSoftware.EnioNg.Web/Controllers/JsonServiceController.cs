@@ -61,8 +61,9 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
         [HttpPost]
         public ActionResult SaveArtikl(ArtiklEntity artikl)
         {
-            DataAccessAdapterBase adapter = Helper.GetDataAccessAdapter(User.Identity.Name);
+            bool isSaved = false;
 
+            DataAccessAdapterBase adapter = Helper.GetDataAccessAdapter(User.Identity.Name);
             using (adapter)
             {
                 ArtiklEntity artikl4Save;
@@ -78,11 +79,10 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
                     artikl4Save.UpdateDataFromOtherObject(artikl, null, null);
                 }
 
-                adapter.SaveEntity(artikl4Save);
+                isSaved = adapter.SaveEntity(artikl4Save);
             }
 
-            string response = string.Format(_jsonResponse, "true");
-
+            string response = JsonResponse(isSaved);
             return CreateJsonResponse(response);
         }
 
@@ -93,8 +93,9 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
         [HttpPost]
         public ActionResult SavePartner(PartnerEntity partner)
         {
-            DataAccessAdapterBase adapter = Helper.GetDataAccessAdapter(User.Identity.Name);
+            bool isSaved = false;
 
+            DataAccessAdapterBase adapter = Helper.GetDataAccessAdapter(User.Identity.Name);
             using (adapter)
             {
                 PartnerEntity partner4Save;
@@ -110,11 +111,10 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
                     partner4Save.UpdateDataFromOtherObject(partner, null, null);
                 }
 
-                adapter.SaveEntity(partner4Save);
+                isSaved = adapter.SaveEntity(partner4Save);
             }
 
-            string response = string.Format(_jsonResponse, "true");
-
+            string response = JsonResponse(isSaved);
             return CreateJsonResponse(response);
         }
 
@@ -172,8 +172,9 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
         [HttpPost]
         public ActionResult SavePdv(PdvEntity pdv)
         {
-            DataAccessAdapterBase adapter = Helper.GetDataAccessAdapter(User.Identity.Name);
+            bool isSaved = false;
 
+            DataAccessAdapterBase adapter = Helper.GetDataAccessAdapter(User.Identity.Name);
             using (adapter)
             {
                 PdvEntity pdv4Save;
@@ -188,11 +189,10 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
                     pdv4Save.UpdateDataFromOtherObject(pdv, null, null);
                 }
 
-                adapter.SaveEntity(pdv4Save);
+                isSaved = adapter.SaveEntity(pdv4Save);
             }
 
-            string response = string.Format(_jsonResponse, "true");
-
+            string response = JsonResponse(isSaved);
             return CreateJsonResponse(response);
         }
 
@@ -265,6 +265,34 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
 
                 return CreateJsonResponse(tarifaPager.CreateJqGridRespose());
             }
+        }
+
+        [HttpPost]
+        public ActionResult SaveTarifa(TarifaEntity tarifa)
+        {
+            bool isSaved = false;
+
+            DataAccessAdapterBase adapter = Helper.GetDataAccessAdapter(User.Identity.Name);
+            using (adapter)
+            {
+                TarifaEntity tarifa4Save;
+
+                if (tarifa.TarifaId == 0)
+                {
+                    tarifa.IsActive = true;
+                    tarifa4Save = tarifa;
+                }
+                else
+                {
+                    tarifa4Save = TarifaEntity.FetchTarifa(adapter, null, tarifa.TarifaId);
+                    tarifa4Save.UpdateDataFromOtherObject(tarifa, null, null);
+                }
+
+                isSaved = adapter.SaveEntity(tarifa4Save);
+            }
+
+            string response = JsonResponse(isSaved);
+            return CreateJsonResponse(response);
         }
 
         #endregion

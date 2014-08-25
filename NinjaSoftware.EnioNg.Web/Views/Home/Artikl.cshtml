@@ -105,6 +105,7 @@
 	}
 
 	$(document).on("ArtiklIsSaved", function () {
+	    closeArtiklDialog();
 		$("#ArtiklTable").trigger("reloadGrid");
 	});
 	

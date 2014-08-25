@@ -18,8 +18,7 @@ function ArtiklController ($scope) {
 			$scope.selectedArtikl.ArtiklId &&
 			$scope.selectedArtikl.ArtiklId > 0) {
 			return false;	
-		}
-		else {
+		} else {
 			return true;
 		}
 	};
@@ -33,9 +32,7 @@ function ArtiklController ($scope) {
 	            jsonObject: $scope.selectedArtikl,
 	            success: function (result) {
 	                if (result.IsSaved === "true") {
-	                    closeArtiklDialog();
 	                    $scope.selectedArtikl = EnioNg.Entities.Artikl();
-
 	                    $(document).trigger("ArtiklIsSaved");
 	                }
 	            },
@@ -53,7 +50,7 @@ function ArtiklController ($scope) {
 	        url: "/JsonService/GetArtikl",
 	        data: { "artiklId": artiklId },
 	        success: function (result) {
-	            fn = function () {
+	            var fn = function () {
 	                $scope.selectedArtikl = result;
 	            };
 
@@ -68,12 +65,10 @@ function ArtiklController ($scope) {
     $scope.pdvCollection = [];
 
     self.loadPdvCollection = function () {
-        $.ajax({
-            type: "GET",
-            contentType: "application/json; charset=utf8",
+        ninjaSoftware.ajaxHelper.getJson({
             url: "/JsonService/GetPdvCollection",
             success: function (result) {
-                fn = function () {
+                var fn = function () {
                     $scope.pdvCollection = result;
                 }
 
@@ -81,9 +76,7 @@ function ArtiklController ($scope) {
             },
             error: function () {
                 alert("nekaj se pojebalo");
-            },
-            async: false,
-            cache: false
+            }
         });
     };
 
@@ -117,8 +110,7 @@ function ArtiklController ($scope) {
 	$scope.validation.isNazivValid = function () { 
 		if ($scope.selectedArtikl.Naziv) {
 			return String.trim($scope.selectedArtikl.Naziv).length < 101;
-		}
-		else {
+		} else {
 			return true;
 		}
 	};
