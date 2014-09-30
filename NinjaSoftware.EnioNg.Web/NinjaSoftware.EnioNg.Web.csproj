@@ -149,6 +149,8 @@
     <Compile Include="Models\ArtiklPager.cs" />
     <Compile Include="Models\PartnerPager.cs" />
     <Compile Include="Models\PdvPager.cs" />
+    <Compile Include="Models\RacunGlavaPager.cs" />
+    <Compile Include="Models\RacunViewModel.cs" />
     <Compile Include="Models\TarifaPager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -331,6 +333,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\Tarifa.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\RacunList.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

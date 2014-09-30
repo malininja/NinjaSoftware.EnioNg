@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Lista računa";
+}
+
+<h2>Lista računa</h2>
+
+<input type="button" value="Novi račun" onclick="alert('napravi kaj trebaš');" />
+
+<table id="RacunTable"></table>
+<div id="RacunTablePager"></div>
+
+<script type="text/javascript">
+
+    $("#RacunTable").jqGrid({
+        url: "/JsonService/GetRacunGlavaCollectionForPaging",
+        datatype: "json",
+        colNames: ["RacunGlavaId", "Datum", "Partner"],
+        colModel: [
+            { name: "RacunGlavaId", index: "RacunGlavaId", hidden: true, width: 0 },
+            { name: "Datum", index: "Datum", width: 200 },
+            { name: "PartnerId", index: "PartnerId", width: 200 }
+        ],
+        pager: "#RacunTablePager",
+        caption: "Lista računa",
+        onSelectRow: function (id) {
+            var rowData = $(this).getRowData(id);
+            var racunGlavaId = rowData["RacunGlavaId"];
+            alert(racunGlavaId);
+        }
+    });
+</script>

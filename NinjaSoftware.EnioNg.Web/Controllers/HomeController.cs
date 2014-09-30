@@ -32,5 +32,10 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
         {
             return View();
         }
+
+        public ActionResult RacunList()
+        {
+            return View();
+        }
     }
 }

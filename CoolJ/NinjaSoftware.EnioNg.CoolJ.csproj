@@ -53,6 +53,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DatabaseGeneric\BusinessLogic\Enums.cs" />
+    <Compile Include="DatabaseGeneric\BusinessLogic\RacunGlavaEntity.cs" />
+    <Compile Include="DatabaseGeneric\BusinessLogic\RacunStavkaEntity.cs" />
     <Compile Include="DatabaseGeneric\BusinessLogic\UserEntity.cs" />
     <Compile Include="DatabaseGeneric\HelperClasses\EntityCollection.cs">
       <GeneratedBy>LLBLGen Pro</GeneratedBy>

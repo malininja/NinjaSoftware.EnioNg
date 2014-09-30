@@ -143,7 +143,7 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
                     bucket = new RelationPredicateBucket();
                     bucket.PredicateExpression.Add(PredicateHelper.CreatePredicateFromJqGridFilterString(filters, typeof(PartnerFields)));
                 }
-                bool isSortAscending = PagerBase.IsJqgridSortAscending(sord).Value;
+                bool isSortAscending = PagerBase.IsJqgridSortAscending(sord);
 
                 PartnerPager partnerPager = new PartnerPager();
                 partnerPager.LoadData(adapter, bucket, page, this.JqGridPageSize, sidx, isSortAscending);
@@ -220,7 +220,7 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
                     bucket.PredicateExpression.Add(PredicateHelper.CreatePredicateFromJqGridFilterString(filters, typeof(PdvFields)));
                 }
 
-                bool isSortAscending = PagerBase.IsJqgridSortAscending(sord).Value;
+                bool isSortAscending = PagerBase.IsJqgridSortAscending(sord);
 
                 PdvPager pdvPager = new PdvPager();
                 pdvPager.LoadData(adapter, bucket, page, this.JqGridPageSize, sidx, isSortAscending);
@@ -258,7 +258,7 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
                     bucket.PredicateExpression.Add(PredicateHelper.CreatePredicateFromJqGridFilterString(filters, typeof(TarifaFields)));
                 }
 
-                bool isSortAscending = PagerBase.IsJqgridSortAscending(sord).Value;
+                bool isSortAscending = PagerBase.IsJqgridSortAscending(sord);
 
                 TarifaPager tarifaPager = new TarifaPager();
                 tarifaPager.LoadData(adapter, bucket, page, this.JqGridPageSize, sidx, isSortAscending);
@@ -293,6 +293,31 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
 
             string response = JsonResponse(isSaved);
             return CreateJsonResponse(response);
+        }
+
+        #endregion
+
+        #region RacunGlava
+
+        [HttpGet]
+        public ActionResult GetRacunGlavaCollectionForPaging(string sidx, string sord, string filters, int page = 1)
+        {
+            DataAccessAdapterBase adapter = new DataAccessAdapter();
+            using (adapter)
+            {
+                RelationPredicateBucket bucket = new RelationPredicateBucket();
+                if (!string.IsNullOrWhiteSpace(filters))
+                { 
+                    bucket.PredicateExpression.Add(PredicateHelper.CreatePredicateFromJqGridFilterString(filters, typeof(RacunGlavaFields)));
+                }
+
+                bool isSortAscending = PagerBase.IsJqgridSortAscending(sord);
+
+                RacunGlavaPager pager = new RacunGlavaPager();
+                pager.LoadData(adapter, bucket, page, this.JqGridPageSize, sidx, isSortAscending);
+
+                return CreateJsonResponse(pager.CreateJqGridRespose());
+            }
         }
 
         #endregion
