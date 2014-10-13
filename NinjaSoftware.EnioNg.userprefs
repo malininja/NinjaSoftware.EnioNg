@@ -1,20 +1,21 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="NinjaSoftware.EnioNg.Web/App_Start/BundleConfig.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="NinjaSoftware.EnioNg.Web/Global.asax.cs">
     <Files>
       <File FileName="NinjaSoftware.EnioNg/Scripts/EnioNg.Entities.js" Line="1" Column="1" />
-      <File FileName="NinjaSoftware.EnioNg/Scripts/Home/ArtiklController.js" Line="92" Column="16" />
+      <File FileName="NinjaSoftware.EnioNg/Scripts/Home/ArtiklController.js" Line="1" Column="1" />
       <File FileName="NinjaSoftware.EnioNg/Scripts/Home/PartnerController.js" Line="1" Column="1" />
       <File FileName="NinjaSoftware.EnioNg/Scripts/NinjaSoftwareLib.js" Line="1" Column="1" />
       <File FileName="NinjaSoftware.EnioNg/Views/Home/Artikl.cshtml" Line="1" Column="1" />
       <File FileName="NinjaSoftware.EnioNg/Views/Home/Partner.cshtml" Line="1" Column="1" />
       <File FileName="NinjaSoftware.EnioNg.Web/App_Start/BundleConfig.cs" Line="2" Column="18" />
+      <File FileName="NinjaSoftware.EnioNg.Web/Global.asax.cs" Line="27" Column="2" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="NinjaSoftware.EnioNg.Web" expanded="True">
-            <Node name="References" expanded="True" selected="True" />
+            <Node name="References" selected="True" />
           </Node>
         </State>
       </Pad>
