@@ -1,8 +1,6 @@
 function ArtiklController ($scope) {
 	var self = {};
 	
-	$scope.artiklCollection = [];
-
 	$scope.selectedArtikl = EnioNg.Entities.Artikl();
 	
 	$scope.newArtikl = function () {
