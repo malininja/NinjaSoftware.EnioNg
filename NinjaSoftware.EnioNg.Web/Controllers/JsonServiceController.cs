@@ -152,6 +152,18 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
             }
         }
 
+        [HttpGet]
+        public ActionResult GetPartnerCollection()
+        {
+            DataAccessAdapterBase adapter = Helper.GetDataAccessAdapter(User.Identity.Name);
+            using (adapter)
+            {
+                IEnumerable<PartnerEntity> partnerCollection = PartnerEntity.FetchPartnerCollection(adapter, null, null).OrderBy(p => p.Naziv);
+                string partnerCollectionJson = JsonConvert.SerializeObject(partnerCollection);
+                return CreateJsonResponse(partnerCollectionJson);
+            }
+        }
+
         #endregion
 
         #region Pdv
