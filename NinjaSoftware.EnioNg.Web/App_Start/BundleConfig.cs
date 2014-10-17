@@ -27,7 +27,7 @@ namespace NinjaSoftware.EnioNg.Web
                 "~/Scripts/angular.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                "~/Content/site.css",
+                "~/Content/Site.css",
                 "~/Content/jqGrid/ui.jqgrid.css"));
 
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(

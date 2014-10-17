@@ -52,3 +52,23 @@ eniongEntities.Tarifa = function () {
 
     return self;
 };
+
+eniongEntities.RacunGlava = function () {
+	var self = {};
+	
+	self.RacunGlavaId = null;
+	self.Datum = null;
+	self.Godina = null;
+	self.MjestoRadaAdresa = null;
+	self.MjestoRadaNaziv = null;
+	self.PartnerId = null;
+	self.TarifaId = null;
+	self.TarifaStopa = null;
+	self.Valuta = null;
+	self.StatusId = null;
+	self.BrojRacuna = null;
+	self.Vrijeme = null;
+	self.ConcurrencyGuid = null;
+	
+	return self;
+};

@@ -1,13 +1,11 @@
 ﻿function TarifaController($scope) {
     var self = {};
 
-    $scope.tarifaCollection = [];
-
     $scope.selectedTarifa = EnioNg.Entities.Tarifa();
 
     $scope.newTarifa = function () {
         var fn = function () {
-            $scope.selectedArtikl = EnioNg.Entities.Tarifa();
+            $scope.selectedTarifa = EnioNg.Entities.Tarifa();
         };
 
         ninjaSoftware.angularjs.safeApply($scope, fn);

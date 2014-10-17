@@ -1,0 +1,93 @@
+﻿@{
+    ViewBag.Title = "RacunEdit";
+}
+
+<script type="text/javascript" src="~/Scripts/Home/RacunController.js"></script>
+
+<div id="RacunEdit" ng-app>
+	<h2>racun edit</h2>
+	
+	<div id="divNgController" ng-controller="RacunController">
+		
+	<table border="1">
+		<tbody>
+	        <tr>
+	            <td style="margin-left: 80px">
+	                <span >Partner:</span>
+	            </td>
+	            <td colspan="3">
+	 				<select ng-model="selectedRacunGlava.PartnerId"
+	 					ng-options="partner.PartnerId as partner.Naziv for partner in partnerCollection"></select>
+	            </td>
+	            <td>
+	                <span>Datum:</span>
+	            </td>
+	            <td>
+	                <input ng-model="selectedRacunGlava.Godina" />
+	            </td>
+	            <td>
+	                <span>Tarifa:</span>
+	            </td>
+	            <td>
+	                tarifa dropdown
+	            </td>
+	            <td>
+	                button save
+	            </td>
+	        </tr>
+	        <tr>
+	            <td>
+	                <span>Mjesto rada:</span>
+	            </td>
+	            <td>
+	                input mjesto rada
+	            </td>
+	            <td>
+	                <span>Adresa rada:</span>
+	            </td>
+	            <td>
+	                input adresa rada
+	            </td>
+	            <td>
+	                <span>Valuta:</span>
+	            </td>
+	            <td>
+	                input valuta
+	                <span> dana</span>
+	            </td>
+	            <td>
+	                <span>Status:</span>
+	            </td>
+	            <td>
+	                dropdown status
+	            </td>
+	            <td align="center">
+	                ispis (pdf download)
+	            </td>
+	        </tr>
+	        <tr>
+	            <td>
+	                Vrijeme:
+	            </td>
+	            <td>
+	                input vrijeme
+	            </td>
+	            <td>Je PDV račun:</td>
+	            <td>
+	                checkbox
+	            </td>
+	            <td colspan="5">
+	            </td>
+	        </tr>
+	        <tr>
+	            <td>Dodatak zaglavlju:</td>
+	            <td colspan="8">
+	                textarea dodatak zaglavlju
+	            </td>        
+	        </tr>
+		</tbody>
+	</table>
+    
+	</div>
+	
+</div>

@@ -152,6 +152,18 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
             }
         }
 
+        [HttpGet]
+        public ActionResult GetPartnerCollection()
+        {
+            DataAccessAdapterBase adapter = Helper.GetDataAccessAdapter(User.Identity.Name);
+            using (adapter)
+            {
+                IEnumerable<PartnerEntity> partnerCollection = PartnerEntity.FetchPartnerCollection(adapter, null, null).OrderBy(p => p.Naziv);
+                string partnerCollectionJson = JsonConvert.SerializeObject(partnerCollection);
+                return CreateJsonResponse(partnerCollectionJson);
+            }
+        }
+
         #endregion
 
         #region Pdv
@@ -298,6 +310,33 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
         #endregion
 
         #region RacunGlava
+
+		[HttpPost]
+		public ActionResult SaveRacun(RacunGlavaEntity racunGlava)
+		{
+			bool isSaved = false;
+
+			DataAccessAdapterBase adapter = Helper.GetDataAccessAdapter(User.Identity.Name);
+			using (adapter)
+			{
+				RacunGlavaEntity racunGlava4Save;
+
+				if (racunGlava.RacunGlavaId == 0)
+				{
+					racunGlava4Save = racunGlava;
+				}
+				else
+				{
+					racunGlava4Save = RacunGlavaEntity.FetchRacunGlava(adapter, null, racunGlava.RacunGlavaId);
+					racunGlava4Save.UpdateDataFromOtherObject(racunGlava, null, null);
+				}
+
+				isSaved = adapter.SaveEntity(racunGlava4Save);
+			} 
+
+			string response = JsonResponse(isSaved);
+			return CreateJsonResponse(response);
+		}
 
         [HttpGet]
         public ActionResult GetRacunGlavaCollectionForPaging(string sidx, string sord, string filters, int page = 1)

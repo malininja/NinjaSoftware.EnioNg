@@ -15,14 +15,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9BE7D7EC-E981-4CAF-87B8-F2347089B1EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9BE7D7EC-E981-4CAF-87B8-F2347089B1EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9BE7D7EC-E981-4CAF-87B8-F2347089B1EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9BE7D7EC-E981-4CAF-87B8-F2347089B1EA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B90938ED-9581-4E1B-9962-0F0E4F034668}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B90938ED-9581-4E1B-9962-0F0E4F034668}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B90938ED-9581-4E1B-9962-0F0E4F034668}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B90938ED-9581-4E1B-9962-0F0E4F034668}.Release|Any CPU.Build.0 = Release|Any CPU
 		{253D955A-127D-4DBD-B2C2-5CD80F3C9315}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{253D955A-127D-4DBD-B2C2-5CD80F3C9315}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{253D955A-127D-4DBD-B2C2-5CD80F3C9315}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -31,11 +23,19 @@ Global
 		{5DC8DFCD-21E1-4A6A-AA44-0ABC0AC3C27D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5DC8DFCD-21E1-4A6A-AA44-0ABC0AC3C27D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5DC8DFCD-21E1-4A6A-AA44-0ABC0AC3C27D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BE7D7EC-E981-4CAF-87B8-F2347089B1EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BE7D7EC-E981-4CAF-87B8-F2347089B1EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BE7D7EC-E981-4CAF-87B8-F2347089B1EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BE7D7EC-E981-4CAF-87B8-F2347089B1EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B90938ED-9581-4E1B-9962-0F0E4F034668}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B90938ED-9581-4E1B-9962-0F0E4F034668}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B90938ED-9581-4E1B-9962-0F0E4F034668}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B90938ED-9581-4E1B-9962-0F0E4F034668}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = NinjaSoftware.EnioNg.Web\NinjaSoftware.EnioNg.Web.csproj
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = NinjaSoftware.EnioNg\NinjaSoftware.EnioNg.csproj
 	EndGlobalSection
 EndGlobal
