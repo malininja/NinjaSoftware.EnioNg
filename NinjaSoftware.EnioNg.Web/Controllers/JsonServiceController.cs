@@ -307,6 +307,18 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
             return CreateJsonResponse(response);
         }
 
+        [HttpGet]
+        public ActionResult GetTarifaCollection()
+        {
+            DataAccessAdapterBase adapter = Helper.GetDataAccessAdapter(User.Identity.Name);
+            using (adapter)
+            {
+                IEnumerable<TarifaEntity> tarifaCollection = TarifaEntity.FetchTarifaCollection(adapter, null, null).OrderBy(t => t.Naziv);
+                string tarifaCollectionJson = JsonConvert.SerializeObject(tarifaCollection);
+                return CreateJsonResponse(tarifaCollectionJson);
+            }
+        }
+
         #endregion
 
         #region RacunGlava
@@ -356,6 +368,22 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
                 pager.LoadData(adapter, bucket, page, this.JqGridPageSize, sidx, isSortAscending);
 
                 return CreateJsonResponse(pager.CreateJqGridRespose());
+            }
+        }
+
+        #endregion
+
+        #region Status
+
+        [HttpGet]
+        public ActionResult GetStatusCollection()
+        {
+            DataAccessAdapterBase adapter = Helper.GetDataAccessAdapter(User.Identity.Name);
+            using (adapter)
+            {
+                IEnumerable<StatusRoEntity> statusCollection = StatusRoEntity.FetchStatusRoCollection(adapter, null, null).OrderBy(s => s.Name);
+                string statusCollectionJson = JsonConvert.SerializeObject(statusCollection);
+                return CreateJsonResponse(statusCollectionJson);
             }
         }
 

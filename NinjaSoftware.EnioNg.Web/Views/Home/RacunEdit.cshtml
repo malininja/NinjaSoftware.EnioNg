@@ -16,20 +16,21 @@
 	                <span >Partner:</span>
 	            </td>
 	            <td colspan="3">
-	 				<select ng-model="selectedRacunGlava.PartnerId"
+	 				<select ng-model="racunGlava.PartnerId"
 	 					ng-options="partner.PartnerId as partner.Naziv for partner in partnerCollection"></select>
 	            </td>
 	            <td>
 	                <span>Datum:</span>
 	            </td>
 	            <td>
-	                <input ng-model="selectedRacunGlava.Godina" />
+	                <input ng-model="racunGlava.Datum" />
 	            </td>
 	            <td>
 	                <span>Tarifa:</span>
 	            </td>
 	            <td>
-	                tarifa dropdown
+	                <select ng-model="racunGlava.TarifaId"
+	                	ng-options="tarifa.TarifaId as tarifa.Naziv for tarifa in tarifaCollection"></select>
 	            </td>
 	            <td>
 	                button save
@@ -40,26 +41,27 @@
 	                <span>Mjesto rada:</span>
 	            </td>
 	            <td>
-	                input mjesto rada
+	                <input ng-model="racunGlava.MjestoRadaNaziv" />
 	            </td>
 	            <td>
 	                <span>Adresa rada:</span>
 	            </td>
 	            <td>
-	                input adresa rada
+	                <input ng-model="racunGlava.MjestoRadaAdresa" />
 	            </td>
 	            <td>
 	                <span>Valuta:</span>
 	            </td>
 	            <td>
-	                input valuta
+	                <input ng-model="racunGlava.Valuta" />
 	                <span> dana</span>
 	            </td>
 	            <td>
 	                <span>Status:</span>
 	            </td>
 	            <td>
-	                dropdown status
+	                <select ng-model="racunGlava.StatusId"
+	                	ng-options="status.StatusId as status.Name for status in statusCollection"></select>
 	            </td>
 	            <td align="center">
 	                ispis (pdf download)
@@ -70,11 +72,11 @@
 	                Vrijeme:
 	            </td>
 	            <td>
-	                input vrijeme
+	                <input ng-model="racunGlava.Vrijeme" />
 	            </td>
 	            <td>Je PDV račun:</td>
 	            <td>
-	                checkbox
+	                <input type="checkbox" ng-model="racunGlava.
 	            </td>
 	            <td colspan="5">
 	            </td>

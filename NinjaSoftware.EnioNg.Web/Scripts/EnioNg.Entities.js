@@ -72,3 +72,13 @@ eniongEntities.RacunGlava = function () {
 	
 	return self;
 };
+
+eniongEntities.Status = function () {
+	var _me = {};
+	
+	_me.StatusId = null;
+	_me.Name = null;
+	_me.Code = null;
+	
+	return _me;
+};
