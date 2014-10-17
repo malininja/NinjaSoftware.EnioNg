@@ -33,7 +33,7 @@
 	                	ng-options="tarifa.TarifaId as tarifa.Naziv for tarifa in tarifaCollection"></select>
 	            </td>
 	            <td>
-	                button save
+	                <input type="button" value="Pohrani" ng-click="save()" />
 	            </td>
 	        </tr>
 	        <tr>
@@ -76,7 +76,7 @@
 	            </td>
 	            <td>Je PDV račun:</td>
 	            <td>
-	                <input type="checkbox" ng-model="racunGlava.
+	                <input type="checkbox" ng-model="racunGlava.JePdvRacun" />
 	            </td>
 	            <td colspan="5">
 	            </td>
@@ -84,7 +84,7 @@
 	        <tr>
 	            <td>Dodatak zaglavlju:</td>
 	            <td colspan="8">
-	                textarea dodatak zaglavlju
+	                <textarea ng-model="racunGlava.Zaglavlje"></textarea>
 	            </td>        
 	        </tr>
 		</tbody>

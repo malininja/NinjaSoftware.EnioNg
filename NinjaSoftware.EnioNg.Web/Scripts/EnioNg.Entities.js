@@ -59,6 +59,7 @@ eniongEntities.RacunGlava = function () {
 	self.RacunGlavaId = null;
 	self.Datum = null;
 	self.Godina = null;
+	self.JePdvRacun = null;
 	self.MjestoRadaAdresa = null;
 	self.MjestoRadaNaziv = null;
 	self.PartnerId = null;
@@ -68,6 +69,7 @@ eniongEntities.RacunGlava = function () {
 	self.StatusId = null;
 	self.BrojRacuna = null;
 	self.Vrijeme = null;
+	self.Zaglavlje = null;
 	self.ConcurrencyGuid = null;
 	
 	return self;

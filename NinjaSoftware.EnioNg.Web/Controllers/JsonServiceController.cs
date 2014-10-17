@@ -331,19 +331,27 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
 			DataAccessAdapterBase adapter = Helper.GetDataAccessAdapter(User.Identity.Name);
 			using (adapter)
 			{
-				RacunGlavaEntity racunGlava4Save;
+                try
+                {
+                    RacunGlavaEntity racunGlava4Save;
 
-				if (racunGlava.RacunGlavaId == 0)
-				{
-					racunGlava4Save = racunGlava;
-				}
-				else
-				{
-					racunGlava4Save = RacunGlavaEntity.FetchRacunGlava(adapter, null, racunGlava.RacunGlavaId);
-					racunGlava4Save.UpdateDataFromOtherObject(racunGlava, null, null);
-				}
+                    if (racunGlava.RacunGlavaId == 0)
+                    {
+                        racunGlava4Save = racunGlava;
+                    }
+                    else
+                    {
+                        racunGlava4Save = RacunGlavaEntity.FetchRacunGlava(adapter, null, racunGlava.RacunGlavaId);
+                        racunGlava4Save.UpdateDataFromOtherObject(racunGlava, null, null);
+                    }
 
-				isSaved = adapter.SaveEntity(racunGlava4Save);
+                    isSaved = adapter.SaveEntity(racunGlava4Save);
+                }
+                catch (Exception ex)
+                {
+                    int i = 3;
+                    i = 5 - i;
+                }
 			} 
 
 			string response = JsonResponse(isSaved);
