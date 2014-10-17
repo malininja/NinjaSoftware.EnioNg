@@ -346,6 +346,11 @@ namespace NinjaSoftware.EnioNg.CoolJ.HelperClasses
 		{
 			get { return (EntityField2)EntityFieldFactory.Create(RacunGlavaFieldIndex.Godina);}
 		}
+		/// <summary>Creates a new RacunGlavaEntity.JePdvRacun field instance</summary>
+		public static EntityField2 JePdvRacun
+		{
+			get { return (EntityField2)EntityFieldFactory.Create(RacunGlavaFieldIndex.JePdvRacun);}
+		}
 		/// <summary>Creates a new RacunGlavaEntity.MjestoRadaAdresa field instance</summary>
 		public static EntityField2 MjestoRadaAdresa
 		{
@@ -390,6 +395,11 @@ namespace NinjaSoftware.EnioNg.CoolJ.HelperClasses
 		public static EntityField2 Vrijeme
 		{
 			get { return (EntityField2)EntityFieldFactory.Create(RacunGlavaFieldIndex.Vrijeme);}
+		}
+		/// <summary>Creates a new RacunGlavaEntity.Zaglavlje field instance</summary>
+		public static EntityField2 Zaglavlje
+		{
+			get { return (EntityField2)EntityFieldFactory.Create(RacunGlavaFieldIndex.Zaglavlje);}
 		}
 	}
 

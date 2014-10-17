@@ -15,7 +15,6 @@ namespace NinjaSoftware.EnioNg.CoolJ.HelperClasses
 	// __LLBLGENPRO_USER_CODE_REGION_START AdditionalNamespaces
 	// __LLBLGENPRO_USER_CODE_REGION_END
 	
-	
 	/// <summary>Singleton implementation of the FieldInfoProvider. This class is the singleton wrapper through which the actual instance is retrieved.</summary>
 	/// <remarks>It uses a single instance of an internal class. The access isn't marked with locks as the FieldInfoProviderBase class is threadsafe.</remarks>
 	internal static class FieldInfoProviderSingleton
@@ -175,6 +174,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.HelperClasses
 			this.AddElementFieldInfo("RacunGlavaEntity", "ConcurrencyGuid", typeof(System.String), false, false, false, false,  (int)RacunGlavaFieldIndex.ConcurrencyGuid, 50, 0, 0);
 			this.AddElementFieldInfo("RacunGlavaEntity", "Datum", typeof(System.DateTime), false, false, false, false,  (int)RacunGlavaFieldIndex.Datum, 0, 0, 0);
 			this.AddElementFieldInfo("RacunGlavaEntity", "Godina", typeof(System.Int16), false, false, false, false,  (int)RacunGlavaFieldIndex.Godina, 0, 0, 0);
+			this.AddElementFieldInfo("RacunGlavaEntity", "JePdvRacun", typeof(System.Boolean), false, false, false, false,  (int)RacunGlavaFieldIndex.JePdvRacun, 0, 0, 0);
 			this.AddElementFieldInfo("RacunGlavaEntity", "MjestoRadaAdresa", typeof(System.String), false, false, false, true,  (int)RacunGlavaFieldIndex.MjestoRadaAdresa, 100, 0, 0);
 			this.AddElementFieldInfo("RacunGlavaEntity", "MjestoRadaNaziv", typeof(System.String), false, false, false, true,  (int)RacunGlavaFieldIndex.MjestoRadaNaziv, 100, 0, 0);
 			this.AddElementFieldInfo("RacunGlavaEntity", "PartnerId", typeof(System.Int64), false, true, false, false,  (int)RacunGlavaFieldIndex.PartnerId, 0, 0, 19);
@@ -184,6 +184,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.HelperClasses
 			this.AddElementFieldInfo("RacunGlavaEntity", "TarifaStopa", typeof(System.Decimal), false, false, false, false,  (int)RacunGlavaFieldIndex.TarifaStopa, 0, 2, 5);
 			this.AddElementFieldInfo("RacunGlavaEntity", "Valuta", typeof(System.Int16), false, false, false, false,  (int)RacunGlavaFieldIndex.Valuta, 0, 0, 0);
 			this.AddElementFieldInfo("RacunGlavaEntity", "Vrijeme", typeof(System.String), false, false, false, false,  (int)RacunGlavaFieldIndex.Vrijeme, 10, 0, 0);
+			this.AddElementFieldInfo("RacunGlavaEntity", "Zaglavlje", typeof(System.String), false, false, false, true,  (int)RacunGlavaFieldIndex.Zaglavlje, 1024, 0, 0);
 		}
 		/// <summary>Inits RacunStavkaEntity's FieldInfo objects</summary>
 		private void InitRacunStavkaEntityInfos()

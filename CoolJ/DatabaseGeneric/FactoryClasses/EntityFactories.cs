@@ -19,7 +19,6 @@ namespace NinjaSoftware.EnioNg.CoolJ.FactoryClasses
 	// __LLBLGENPRO_USER_CODE_REGION_START AdditionalNamespaces
 	// __LLBLGENPRO_USER_CODE_REGION_END
 	
-	
 	/// <summary>general base class for the generated factories</summary>
 	[Serializable]
 	public partial class EntityFactoryBase2<TEntity> : EntityFactoryCore2
@@ -112,7 +111,6 @@ namespace NinjaSoftware.EnioNg.CoolJ.FactoryClasses
 			IEntity2 toReturn = new ArtiklEntity(fields);
 			// __LLBLGENPRO_USER_CODE_REGION_START CreateNewArtiklUsingFields
 			// __LLBLGENPRO_USER_CODE_REGION_END
-			
 			return toReturn;
 		}
 		#region Included Code
@@ -133,7 +131,6 @@ namespace NinjaSoftware.EnioNg.CoolJ.FactoryClasses
 			IEntity2 toReturn = new AuditInfoEntity(fields);
 			// __LLBLGENPRO_USER_CODE_REGION_START CreateNewAuditInfoUsingFields
 			// __LLBLGENPRO_USER_CODE_REGION_END
-			
 			return toReturn;
 		}
 		#region Included Code
@@ -154,7 +151,6 @@ namespace NinjaSoftware.EnioNg.CoolJ.FactoryClasses
 			IEntity2 toReturn = new AuditInfoActionTypeRoEntity(fields);
 			// __LLBLGENPRO_USER_CODE_REGION_START CreateNewAuditInfoActionTypeRoUsingFields
 			// __LLBLGENPRO_USER_CODE_REGION_END
-			
 			return toReturn;
 		}
 		#region Included Code
@@ -175,7 +171,6 @@ namespace NinjaSoftware.EnioNg.CoolJ.FactoryClasses
 			IEntity2 toReturn = new BrojacEntity(fields);
 			// __LLBLGENPRO_USER_CODE_REGION_START CreateNewBrojacUsingFields
 			// __LLBLGENPRO_USER_CODE_REGION_END
-			
 			return toReturn;
 		}
 		#region Included Code
@@ -196,7 +191,6 @@ namespace NinjaSoftware.EnioNg.CoolJ.FactoryClasses
 			IEntity2 toReturn = new ConfigEntity(fields);
 			// __LLBLGENPRO_USER_CODE_REGION_START CreateNewConfigUsingFields
 			// __LLBLGENPRO_USER_CODE_REGION_END
-			
 			return toReturn;
 		}
 		#region Included Code
@@ -217,7 +211,6 @@ namespace NinjaSoftware.EnioNg.CoolJ.FactoryClasses
 			IEntity2 toReturn = new EntityRoEntity(fields);
 			// __LLBLGENPRO_USER_CODE_REGION_START CreateNewEntityRoUsingFields
 			// __LLBLGENPRO_USER_CODE_REGION_END
-			
 			return toReturn;
 		}
 		#region Included Code
@@ -238,7 +231,6 @@ namespace NinjaSoftware.EnioNg.CoolJ.FactoryClasses
 			IEntity2 toReturn = new ErrorEntity(fields);
 			// __LLBLGENPRO_USER_CODE_REGION_START CreateNewErrorUsingFields
 			// __LLBLGENPRO_USER_CODE_REGION_END
-			
 			return toReturn;
 		}
 		#region Included Code
@@ -259,7 +251,6 @@ namespace NinjaSoftware.EnioNg.CoolJ.FactoryClasses
 			IEntity2 toReturn = new PartnerEntity(fields);
 			// __LLBLGENPRO_USER_CODE_REGION_START CreateNewPartnerUsingFields
 			// __LLBLGENPRO_USER_CODE_REGION_END
-			
 			return toReturn;
 		}
 		#region Included Code
@@ -280,7 +271,6 @@ namespace NinjaSoftware.EnioNg.CoolJ.FactoryClasses
 			IEntity2 toReturn = new PdvEntity(fields);
 			// __LLBLGENPRO_USER_CODE_REGION_START CreateNewPdvUsingFields
 			// __LLBLGENPRO_USER_CODE_REGION_END
-			
 			return toReturn;
 		}
 		#region Included Code
@@ -301,7 +291,6 @@ namespace NinjaSoftware.EnioNg.CoolJ.FactoryClasses
 			IEntity2 toReturn = new RacunGlavaEntity(fields);
 			// __LLBLGENPRO_USER_CODE_REGION_START CreateNewRacunGlavaUsingFields
 			// __LLBLGENPRO_USER_CODE_REGION_END
-			
 			return toReturn;
 		}
 		#region Included Code
@@ -322,7 +311,6 @@ namespace NinjaSoftware.EnioNg.CoolJ.FactoryClasses
 			IEntity2 toReturn = new RacunStavkaEntity(fields);
 			// __LLBLGENPRO_USER_CODE_REGION_START CreateNewRacunStavkaUsingFields
 			// __LLBLGENPRO_USER_CODE_REGION_END
-			
 			return toReturn;
 		}
 		#region Included Code
@@ -343,7 +331,6 @@ namespace NinjaSoftware.EnioNg.CoolJ.FactoryClasses
 			IEntity2 toReturn = new RoleRoEntity(fields);
 			// __LLBLGENPRO_USER_CODE_REGION_START CreateNewRoleRoUsingFields
 			// __LLBLGENPRO_USER_CODE_REGION_END
-			
 			return toReturn;
 		}
 		#region Included Code
@@ -364,7 +351,6 @@ namespace NinjaSoftware.EnioNg.CoolJ.FactoryClasses
 			IEntity2 toReturn = new StatusRoEntity(fields);
 			// __LLBLGENPRO_USER_CODE_REGION_START CreateNewStatusRoUsingFields
 			// __LLBLGENPRO_USER_CODE_REGION_END
-			
 			return toReturn;
 		}
 		#region Included Code
@@ -385,7 +371,6 @@ namespace NinjaSoftware.EnioNg.CoolJ.FactoryClasses
 			IEntity2 toReturn = new TarifaEntity(fields);
 			// __LLBLGENPRO_USER_CODE_REGION_START CreateNewTarifaUsingFields
 			// __LLBLGENPRO_USER_CODE_REGION_END
-			
 			return toReturn;
 		}
 		#region Included Code
@@ -406,7 +391,6 @@ namespace NinjaSoftware.EnioNg.CoolJ.FactoryClasses
 			IEntity2 toReturn = new UserEntity(fields);
 			// __LLBLGENPRO_USER_CODE_REGION_START CreateNewUserUsingFields
 			// __LLBLGENPRO_USER_CODE_REGION_END
-			
 			return toReturn;
 		}
 		#region Included Code

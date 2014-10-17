@@ -181,6 +181,8 @@ namespace NinjaSoftware.EnioNg.CoolJ
 		Datum,
 		///<summary>Godina. </summary>
 		Godina,
+		///<summary>JePdvRacun. </summary>
+		JePdvRacun,
 		///<summary>MjestoRadaAdresa. </summary>
 		MjestoRadaAdresa,
 		///<summary>MjestoRadaNaziv. </summary>
@@ -199,6 +201,8 @@ namespace NinjaSoftware.EnioNg.CoolJ
 		Valuta,
 		///<summary>Vrijeme. </summary>
 		Vrijeme,
+		///<summary>Zaglavlje. </summary>
+		Zaglavlje,
 		/// <summary></summary>
 		AmountOfFields
 	}
@@ -329,7 +333,6 @@ namespace NinjaSoftware.EnioNg.CoolJ
 	
 	// __LLBLGENPRO_USER_CODE_REGION_START CustomUserConstants
 	// __LLBLGENPRO_USER_CODE_REGION_END
-	
 	#endregion
 
 	#region Included code
