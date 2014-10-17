@@ -86,7 +86,7 @@
     </OutputType>
     <OutputType Value="2">
       <LastUsedPreferences>
-        <DestinationRootFolder Value="G:\Documents\Visual Studio 2010\Projects\NinjaSoftware.Enio\DbScripts" />
+        <DestinationRootFolder Value="G:\Documents\Visual Studio 2010\Projects\NinjaSoftware.EnioNg\DbScripts" />
         <FrameworkName Value="DDL SQL" />
         <LanguageName Value="SQL" />
         <PlatformName Value="RDBMS" />
@@ -95,7 +95,6 @@
         <TemplateGroup Value="Update DDL SQL" />
         <TemplateBindings>
           <Binding Name="SD.TemplateBindings.PostgreSqlSpecific.DDLSQL" />
-          <Binding Name="SD.TemplateBindings.SqlServerSpecific.DDLSQL" />
           <Binding Name="SD.TemplateBindings.SharedTemplates.DDLSQL" />
         </TemplateBindings>
       </LastUsedPreferences>
@@ -225,6 +224,7 @@
           <Field Name="ConcurrencyGuid" Type="string" MaxLength="50" />
           <Field Name="Datum" Type="datetime" />
           <Field Name="Godina" Type="short" />
+          <Field Name="JePdvRacun" Type="bool" />
           <Field Name="MjestoRadaAdresa" Type="string" IsOptional="true" MaxLength="100" />
           <Field Name="MjestoRadaNaziv" Type="string" IsOptional="true" MaxLength="100" />
           <Field Name="PartnerId" Type="long" />
@@ -234,6 +234,7 @@
           <Field Name="TarifaStopa" Type="decimal" Precision="5" Scale="2" />
           <Field Name="Valuta" Type="short" />
           <Field Name="Vrijeme" Type="string" MaxLength="10" />
+          <Field Name="Zaglavlje" Type="string" IsOptional="true" MaxLength="1024" />
         </Fields>
       </EntityDefinition>
       <EntityDefinition Name="RacunStavka">
@@ -461,6 +462,8 @@
                     <Field Name="StatusId" Ordinal="13" DbType="10" Precision="19" />
                     <Field Name="BrojRacuna" Ordinal="14" DbType="9" />
                     <Field Name="Vrijeme" Ordinal="15" DbType="24" Length="10" />
+                    <Field Name="JePdvRacun" Ordinal="16" DbType="0" />
+                    <Field Name="Zaglavlje" Ordinal="17" IsOptional="true" DbType="24" Length="1024" />
                   </Fields>
                 </Table>
                 <Table Name="RacunStavka">
@@ -672,6 +675,7 @@
             <FieldMapping FieldName="ConcurrencyGuid" TargetFieldName="ConcurrencyGuid" />
             <FieldMapping FieldName="Datum" TargetFieldName="Datum" />
             <FieldMapping FieldName="Godina" TargetFieldName="Godina" />
+            <FieldMapping FieldName="JePdvRacun" TargetFieldName="JePdvRacun" />
             <FieldMapping FieldName="MjestoRadaAdresa" TargetFieldName="MjestoRadaAdresa" />
             <FieldMapping FieldName="MjestoRadaNaziv" TargetFieldName="MjestoRadaNaziv" />
             <FieldMapping FieldName="PartnerId" TargetFieldName="PartnerId" />
@@ -681,6 +685,7 @@
             <FieldMapping FieldName="TarifaStopa" TargetFieldName="TarifaStopa" />
             <FieldMapping FieldName="Valuta" TargetFieldName="Valuta" />
             <FieldMapping FieldName="Vrijeme" TargetFieldName="Vrijeme" />
+            <FieldMapping FieldName="Zaglavlje" TargetFieldName="Zaglavlje" />
           </FieldMappings>
         </EntityMapping>
         <EntityMapping EntityName=":RacunStavka" TargetName="Default:public:RacunStavka">

@@ -20,19 +20,16 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 {
 	// __LLBLGENPRO_USER_CODE_REGION_START AdditionalNamespaces
 	// __LLBLGENPRO_USER_CODE_REGION_END
-	
 
 	/// <summary>Common base class which is the base class for all generated entities which aren't a subtype of another entity.</summary>
 	[Serializable]
 	public abstract partial class CommonEntityBase : EntityBase2
 		// __LLBLGENPRO_USER_CODE_REGION_START AdditionalInterfaces
-		// __LLBLGENPRO_USER_CODE_REGION_END
-			
+		// __LLBLGENPRO_USER_CODE_REGION_END	
 	{
 		#region Class Member Declarations
 		// __LLBLGENPRO_USER_CODE_REGION_START PrivateMembers
 		// __LLBLGENPRO_USER_CODE_REGION_END
-		
 		#endregion
 		
 		/// <summary>CTor</summary>
@@ -52,7 +49,6 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 		{
 			// __LLBLGENPRO_USER_CODE_REGION_START DeserializationConstructor
 			// __LLBLGENPRO_USER_CODE_REGION_END
-			
 		}
 		
 		/// <summary>Gets the inheritance info provider instance of the project this entity instance is located in. </summary>
@@ -110,7 +106,6 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
         }
 
 		// __LLBLGENPRO_USER_CODE_REGION_END
-		
 		#endregion
 
 		#region Included code

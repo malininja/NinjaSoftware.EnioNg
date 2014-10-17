@@ -2,7 +2,7 @@
 // This is generated code. 
 //////////////////////////////////////////////////////////////
 // Code is generated using LLBLGen Pro version: 4.0
-// Code is generated on: 4. rujna 2013. 15:52:57
+// Code is generated on: 17. listopada 2014. 18:56:14
 // Code is generated using templates: SD.TemplateBindings.SharedTemplates
 // Templates vendor: Solutions Design.
 //////////////////////////////////////////////////////////////
@@ -174,20 +174,22 @@ namespace NinjaSoftware.EnioNg.CoolJ.DatabaseSpecific
 		/// <summary>Inits RacunGlavaEntity's mappings</summary>
 		private void InitRacunGlavaEntityMappings()
 		{
-			this.AddElementMapping("RacunGlavaEntity", @"Default", @"public", "RacunGlava", 13);
+			this.AddElementMapping("RacunGlavaEntity", @"Default", @"public", "RacunGlava", 15);
 			this.AddElementFieldMapping("RacunGlavaEntity", "BrojRacuna", "BrojRacuna", false, "Integer", 0, 0, 0, false, "", null, typeof(System.Int32), 0);
 			this.AddElementFieldMapping("RacunGlavaEntity", "ConcurrencyGuid", "ConcurrencyGuid", false, "Varchar", 50, 0, 0, false, "", null, typeof(System.String), 1);
 			this.AddElementFieldMapping("RacunGlavaEntity", "Datum", "Datum", false, "Date", 0, 0, 0, false, "", null, typeof(System.DateTime), 2);
 			this.AddElementFieldMapping("RacunGlavaEntity", "Godina", "Godina", false, "Smallint", 0, 0, 0, false, "", null, typeof(System.Int16), 3);
-			this.AddElementFieldMapping("RacunGlavaEntity", "MjestoRadaAdresa", "MjestoRadaAdresa", true, "Varchar", 100, 0, 0, false, "", null, typeof(System.String), 4);
-			this.AddElementFieldMapping("RacunGlavaEntity", "MjestoRadaNaziv", "MjestoRadaNaziv", true, "Varchar", 100, 0, 0, false, "", null, typeof(System.String), 5);
-			this.AddElementFieldMapping("RacunGlavaEntity", "PartnerId", "PartnerId", false, "Bigint", 0, 19, 0, false, "", null, typeof(System.Int64), 6);
-			this.AddElementFieldMapping("RacunGlavaEntity", "RacunGlavaId", "RacunGlavaId", false, "Bigint", 0, 19, 0, true, "public.GenericSequence", null, typeof(System.Int64), 7);
-			this.AddElementFieldMapping("RacunGlavaEntity", "StatusId", "StatusId", false, "Bigint", 0, 19, 0, false, "", null, typeof(System.Int64), 8);
-			this.AddElementFieldMapping("RacunGlavaEntity", "TarifaId", "TarifaId", false, "Bigint", 0, 19, 0, false, "", null, typeof(System.Int64), 9);
-			this.AddElementFieldMapping("RacunGlavaEntity", "TarifaStopa", "TarifaStopa", false, "Numeric", 0, 5, 2, false, "", null, typeof(System.Decimal), 10);
-			this.AddElementFieldMapping("RacunGlavaEntity", "Valuta", "Valuta", false, "Smallint", 0, 0, 0, false, "", null, typeof(System.Int16), 11);
-			this.AddElementFieldMapping("RacunGlavaEntity", "Vrijeme", "Vrijeme", false, "Varchar", 10, 0, 0, false, "", null, typeof(System.String), 12);
+			this.AddElementFieldMapping("RacunGlavaEntity", "JePdvRacun", "JePdvRacun", false, "Boolean", 0, 0, 0, false, "", null, typeof(System.Boolean), 4);
+			this.AddElementFieldMapping("RacunGlavaEntity", "MjestoRadaAdresa", "MjestoRadaAdresa", true, "Varchar", 100, 0, 0, false, "", null, typeof(System.String), 5);
+			this.AddElementFieldMapping("RacunGlavaEntity", "MjestoRadaNaziv", "MjestoRadaNaziv", true, "Varchar", 100, 0, 0, false, "", null, typeof(System.String), 6);
+			this.AddElementFieldMapping("RacunGlavaEntity", "PartnerId", "PartnerId", false, "Bigint", 0, 19, 0, false, "", null, typeof(System.Int64), 7);
+			this.AddElementFieldMapping("RacunGlavaEntity", "RacunGlavaId", "RacunGlavaId", false, "Bigint", 0, 19, 0, true, "public.GenericSequence", null, typeof(System.Int64), 8);
+			this.AddElementFieldMapping("RacunGlavaEntity", "StatusId", "StatusId", false, "Bigint", 0, 19, 0, false, "", null, typeof(System.Int64), 9);
+			this.AddElementFieldMapping("RacunGlavaEntity", "TarifaId", "TarifaId", false, "Bigint", 0, 19, 0, false, "", null, typeof(System.Int64), 10);
+			this.AddElementFieldMapping("RacunGlavaEntity", "TarifaStopa", "TarifaStopa", false, "Numeric", 0, 5, 2, false, "", null, typeof(System.Decimal), 11);
+			this.AddElementFieldMapping("RacunGlavaEntity", "Valuta", "Valuta", false, "Smallint", 0, 0, 0, false, "", null, typeof(System.Int16), 12);
+			this.AddElementFieldMapping("RacunGlavaEntity", "Vrijeme", "Vrijeme", false, "Varchar", 10, 0, 0, false, "", null, typeof(System.String), 13);
+			this.AddElementFieldMapping("RacunGlavaEntity", "Zaglavlje", "Zaglavlje", true, "Varchar", 1024, 0, 0, false, "", null, typeof(System.String), 14);
 		}
 
 		/// <summary>Inits RacunStavkaEntity's mappings</summary>

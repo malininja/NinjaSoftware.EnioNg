@@ -26,14 +26,12 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 {
 	// __LLBLGENPRO_USER_CODE_REGION_START AdditionalNamespaces
 	// __LLBLGENPRO_USER_CODE_REGION_END
-	
 	/// <summary>Entity class which represents the entity 'RacunGlava'.<br/><br/></summary>
 	[Serializable]
 	[JsonObject(MemberSerialization.OptIn)] 
 	public partial class RacunGlavaEntity : CommonEntityBase
 		// __LLBLGENPRO_USER_CODE_REGION_START AdditionalInterfaces
-		// __LLBLGENPRO_USER_CODE_REGION_END
-			
+		// __LLBLGENPRO_USER_CODE_REGION_END	
 	{
 		#region Class Member Declarations
 		private EntityCollection<RacunStavkaEntity> _racunStavkaCollection;
@@ -43,7 +41,6 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		// __LLBLGENPRO_USER_CODE_REGION_START PrivateMembers
 		// __LLBLGENPRO_USER_CODE_REGION_END
-		
 		#endregion
 
 		#region Statics
@@ -198,7 +195,6 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 			}
 			// __LLBLGENPRO_USER_CODE_REGION_START DeserializationConstructor
 			// __LLBLGENPRO_USER_CODE_REGION_END
-			
 		}
 
 		
@@ -400,7 +396,6 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 			}
 			// __LLBLGENPRO_USER_CODE_REGION_START GetObjectInfo
 			// __LLBLGENPRO_USER_CODE_REGION_END
-			
 			base.GetObjectData(info, context);
 		}
 
@@ -510,7 +505,6 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 			
 			// __LLBLGENPRO_USER_CODE_REGION_START InitClassMembers
 			// __LLBLGENPRO_USER_CODE_REGION_END
-			
 			OnInitClassMembersComplete();
 		}
 
@@ -531,6 +525,8 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 			fieldHashtable = new Dictionary<string, string>();
 			_fieldsCustomProperties.Add("Godina", fieldHashtable);
 			fieldHashtable = new Dictionary<string, string>();
+			_fieldsCustomProperties.Add("JePdvRacun", fieldHashtable);
+			fieldHashtable = new Dictionary<string, string>();
 			_fieldsCustomProperties.Add("MjestoRadaAdresa", fieldHashtable);
 			fieldHashtable = new Dictionary<string, string>();
 			_fieldsCustomProperties.Add("MjestoRadaNaziv", fieldHashtable);
@@ -548,6 +544,8 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 			_fieldsCustomProperties.Add("Valuta", fieldHashtable);
 			fieldHashtable = new Dictionary<string, string>();
 			_fieldsCustomProperties.Add("Vrijeme", fieldHashtable);
+			fieldHashtable = new Dictionary<string, string>();
+			_fieldsCustomProperties.Add("Zaglavlje", fieldHashtable);
 		}
 		#endregion
 
@@ -662,7 +660,6 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 			// __LLBLGENPRO_USER_CODE_REGION_START InitClassEmpty
 			// __LLBLGENPRO_USER_CODE_REGION_END
-			
 
 			OnInitialized();
 
@@ -778,6 +775,17 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 			set	{ SetValue((int)RacunGlavaFieldIndex.Godina, value); }
 		}
 
+		/// <summary> The JePdvRacun property of the Entity RacunGlava<br/><br/></summary>
+		/// <remarks>Mapped on  table field: "RacunGlava"."JePdvRacun"<br/>
+		/// Table field type characteristics (type, precision, scale, length): Boolean, 0, 0, 0<br/>
+		/// Table field behavior characteristics (is nullable, is PK, is identity): false, false, false</remarks>
+		[JsonProperty]
+		public virtual System.Boolean JePdvRacun
+		{
+			get { return (System.Boolean)GetValue((int)RacunGlavaFieldIndex.JePdvRacun, true); }
+			set	{ SetValue((int)RacunGlavaFieldIndex.JePdvRacun, value); }
+		}
+
 		/// <summary> The MjestoRadaAdresa property of the Entity RacunGlava<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "RacunGlava"."MjestoRadaAdresa"<br/>
 		/// Table field type characteristics (type, precision, scale, length): Varchar, 0, 0, 100<br/>
@@ -877,6 +885,17 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 			set	{ SetValue((int)RacunGlavaFieldIndex.Vrijeme, value); }
 		}
 
+		/// <summary> The Zaglavlje property of the Entity RacunGlava<br/><br/></summary>
+		/// <remarks>Mapped on  table field: "RacunGlava"."Zaglavlje"<br/>
+		/// Table field type characteristics (type, precision, scale, length): Varchar, 0, 0, 1024<br/>
+		/// Table field behavior characteristics (is nullable, is PK, is identity): true, false, false</remarks>
+		[JsonProperty]
+		public virtual System.String Zaglavlje
+		{
+			get { return (System.String)GetValue((int)RacunGlavaFieldIndex.Zaglavlje, true); }
+			set	{ SetValue((int)RacunGlavaFieldIndex.Zaglavlje, value); }
+		}
+
 		/// <summary> Gets the EntityCollection with the related entities of type 'RacunStavkaEntity' which are related to this entity via a relation of type '1:n'. If the EntityCollection hasn't been fetched yet, the collection returned will be empty.<br/><br/></summary>
 		[TypeContainedAttribute(typeof(RacunStavkaEntity))]
 		public virtual EntityCollection<RacunStavkaEntity> RacunStavkaCollection
@@ -967,7 +986,6 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 		
 		// __LLBLGENPRO_USER_CODE_REGION_START CustomEntityCode
 		// __LLBLGENPRO_USER_CODE_REGION_END
-		
 		#endregion
 
 		#region Included code
