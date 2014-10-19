@@ -1,5 +1,5 @@
-function ArtiklController ($scope) {
-	var self = {};
+function ArtiklController($scope) {
+	var _me = {};
 	
 	$scope.selectedArtikl = EnioNg.Entities.Artikl();
 	
@@ -62,7 +62,7 @@ function ArtiklController ($scope) {
 
     $scope.pdvCollection = [];
 
-    self.loadPdvCollection = function () {
+    _me.loadPdvCollection = function () {
         ninjaSoftware.ajaxHelper.getJson({
             url: "/JsonService/GetPdvCollection",
             success: function (result) {
@@ -78,7 +78,7 @@ function ArtiklController ($scope) {
         });
     };
 
-    self.loadPdvCollection();
+    _me.loadPdvCollection();
 
 	$scope.validation = {};
 	
@@ -129,5 +129,5 @@ function ArtiklController ($scope) {
 		return ninjaSoftware.angularjs.isObjectExist($scope.selectedArtikl.PdvId);
 	}
 	
-	return self;
+	return _me;
 }

@@ -90,6 +90,52 @@
 		</tbody>
 	</table>
     
+    <br />
+    <br />
+    
+	<table border="1" class="style2">
+		<tbody>
+			<tr>
+				<td rowspan="1" colspan="4">
+	                <span style="font-weight: bold">Unos nove stavke</span>
+				</td>
+	        </tr>
+	        <tr>
+	            <td>
+	                <span >Artikl</span></td>
+	            <td>
+	                <span >Količina</span></td>
+	            <td>
+	                <span >Cijena</span></td>
+	            <td rowspan="2">
+	                <input type="button" value="Unesi stavku" ng-click="nekaj()" />
+	            </td>
+	        </tr>
+	        <tr>
+	            <td class="style3">
+	                <select style="width:250px;" ng-model="newRacunStavka.ArtiklId"
+	                	ng-options="artikl.ArtiklId as artikl.Naziv for artikl in artiklCollection"
+	                	ng-change="nekaj()"></select>
+	            </td>
+	            <td class="style4">
+	                <input type="text" ng-model="newRacunStavka.Kolicina" />
+	            </td>
+	            <td class="style4">
+	                <input type="text" ng-model="newRacunStavka.Cijena" />
+	            </td>
+	        </tr>
+	    </tbody>
+	</table>
+    
 	</div>
-	
 </div>
+
+<script type="text/javascript">
+	$(document).on("RacunControlerLoaded", function(event, scope) {
+		var racunGlavaId = ninjaSoftware.url.getParameterValue("racunGlavaId");
+		
+		if (racunGlavaId) {
+			scope.loadRacun(racunGlavaId);
+		}
+	});
+</script>

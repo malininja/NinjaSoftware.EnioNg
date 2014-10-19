@@ -35,6 +35,18 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
         }
 
         [HttpGet]
+        public ActionResult GetArtiklCollection()
+        {
+            DataAccessAdapterBase adapter = Helper.GetDataAccessAdapter(User.Identity.Name);
+            using (adapter)
+            {
+                IEnumerable<ArtiklEntity> artiklCollection = ArtiklEntity.FetchArtiklCollection(adapter, null, null);
+                string response = JsonConvert.SerializeObject(artiklCollection);
+                return CreateJsonResponse(response);
+            }
+        }
+
+        [HttpGet]
         public ActionResult GetArtiklCollectionForPaging(string sidx, string sord, string filters, int page = 1)
         {
             DataAccessAdapterBase adapter = new DataAccessAdapter();
@@ -331,32 +343,50 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
 			DataAccessAdapterBase adapter = Helper.GetDataAccessAdapter(User.Identity.Name);
 			using (adapter)
 			{
-                try
-                {
-                    RacunGlavaEntity racunGlava4Save;
+                RacunGlavaEntity racunGlava4Save;
 
-                    if (racunGlava.RacunGlavaId == 0)
-                    {
-                        racunGlava4Save = racunGlava;
-                    }
-                    else
-                    {
-                        racunGlava4Save = RacunGlavaEntity.FetchRacunGlava(adapter, null, racunGlava.RacunGlavaId);
-                        racunGlava4Save.UpdateDataFromOtherObject(racunGlava, null, null);
-                    }
-
-                    isSaved = adapter.SaveEntity(racunGlava4Save);
-                }
-                catch (Exception ex)
+                if (racunGlava.RacunGlavaId == 0)
                 {
-                    int i = 3;
-                    i = 5 - i;
+                    racunGlava4Save = racunGlava;
+                    racunGlava4Save.Godina = ConfigEntity.FetchConfigCollection(adapter, null, null).Single().AktivnaGodina;
                 }
+                else
+                {
+                    racunGlava4Save = RacunGlavaEntity.FetchRacunGlava(adapter, null, racunGlava.RacunGlavaId);
+                    racunGlava4Save.UpdateDataFromOtherObject(racunGlava, null, null);
+                }
+
+                racunGlava4Save.TarifaStopa = TarifaEntity.FetchTarifa(adapter, null, racunGlava4Save.TarifaId).Stopa;
+                racunGlava4Save.BrojRacuna = -1; // TODO: iz brojača
+
+                isSaved = adapter.SaveEntity(racunGlava4Save);
 			} 
 
 			string response = JsonResponse(isSaved);
 			return CreateJsonResponse(response);
 		}
+
+        [HttpGet]
+        public ActionResult GetRacun(long racunGlavaId)
+        {
+            DataAccessAdapterBase adapter = Helper.GetDataAccessAdapter(User.Identity.Name);
+            using (adapter)
+            {
+                PrefetchPath2 prefetchPath = new PrefetchPath2(EntityType.RacunGlavaEntity);
+                prefetchPath.Add(RacunGlavaEntity.PrefetchPathRacunStavkaCollection);
+
+                RacunGlavaEntity racunGlava = RacunGlavaEntity.FetchRacunGlava(adapter, prefetchPath, racunGlavaId);
+
+                var toReturn = new
+                {
+                    RacunGlava = racunGlava,
+                    RacunStavkaCollection = racunGlava.RacunStavkaCollection
+                };
+
+                string toReturnJson = JsonConvert.SerializeObject(toReturn);
+                return CreateJsonResponse(toReturnJson);
+            }
+        }
 
         [HttpGet]
         public ActionResult GetRacunGlavaCollectionForPaging(string sidx, string sord, string filters, int page = 1)

@@ -6,6 +6,9 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using SD.LLBLGen.Pro.ORMSupportClasses;
+using NinjaSoftware.EnioNg.CoolJ.EntityClasses;
+using NinjaSoftware.EnioNg.CoolJ.DatabaseSpecific;
 
 namespace NinjaSoftware.EnioNg.Web
 {
@@ -22,6 +25,36 @@ namespace NinjaSoftware.EnioNg.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+        }
+
+        protected void Application_Error()
+        {
+            Exception exception = Server.GetLastError();
+
+            try
+            {
+                DataAccessAdapterBase adapter = new DataAccessAdapter();
+                ErrorEntity.LogException(adapter, exception);
+            }
+            catch (Exception)
+            {
+//                ErrorEntity error = new ErrorEntity(exception);
+//                StringWriter stringWriter = new StringWriter();
+//                XmlSerializer xmlSerializer = new XmlSerializer(typeof(ErrorEntity));
+//                xmlSerializer.Serialize(stringWriter, error);
+//                stringWriter.Close();
+//
+//                StringBuilder xmlFilePath = new StringBuilder(HttpContext.Current.Request.MapPath(HttpContext.Current.Request.ApplicationPath));
+//
+//                if (xmlFilePath.Length > 0 && xmlFilePath.ToString().Substring(xmlFilePath.Length - 1, 1) != @"\")
+//                {
+//                    xmlFilePath.Append(@"\");
+//                }
+//
+//                xmlFilePath.Append("Errors.xml");
+//
+//                File.AppendAllText(xmlFilePath.ToString(), stringWriter.ToString());
+            }
         }
     }
 }
