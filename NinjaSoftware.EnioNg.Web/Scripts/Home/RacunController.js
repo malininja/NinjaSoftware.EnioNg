@@ -8,6 +8,7 @@ function RacunController($scope) {
 	$scope.tarifaCollection = [];
 	$scope.statusCollection = [];
 	$scope.artiklCollection = [];
+	_me.pdvCollection = [];
 	
 	$scope.loadRacun = function(racunGlavaId) {
 		ninjaSoftware.ajaxHelper.getJson({
@@ -108,6 +109,18 @@ function RacunController($scope) {
 		});
 	};
 	
+    _me.loadPdvCollection = function () {
+        ninjaSoftware.ajaxHelper.getJson({
+            url: "/JsonService/GetPdvCollection",
+            success: function (result) {
+                 _me.pdvCollection = result;
+            },
+            error: function () {
+                alert("nekaj se pojebalo");
+            }
+        });
+    };
+
 	$scope.validation = {};
 	
 	$scope.validation.isValid = function () {
@@ -118,11 +131,11 @@ function RacunController($scope) {
 	_me.loadTarifaCollection();
 	_me.loadStatusCollection();	
 	_me.loadArtiklCollection();
-	
+    _me.loadPdvCollection();
+    	
 	$(document).trigger("RacunControlerLoaded", $scope);
 		
-	$scope.nekaj = function () {
-		//alert($scope.newRacunStavka.ArtiklId);
+	$scope.onArtiklChange = function () {
 		var artikl;
 		
 		$($scope.artiklCollection).each(function (index, item) {
@@ -130,9 +143,38 @@ function RacunController($scope) {
 				artikl = item;
 			}
 		});
+
+		var pdv;
 		
+		$(_me.pdvCollection).each(function (index, item) {
+			if (item.PdvId === artikl.PdvId) {
+				pdv = item;
+			}
+		});
+		
+		$scope.newRacunStavka.Artikl = artikl;
+		$scope.newRacunStavka.ArtiklId = artikl.ArtiklId;
 		$scope.newRacunStavka.Kolicina = 0;
 		$scope.newRacunStavka.Cijena = artikl.Cijena;
+		$scope.newRacunStavka.PdvPosto = pdv.Stopa;
 	};
+	
+	
+	$scope.addRacunStavka = function () {
+		var stavka = {
+			Artikl: $scope.newRacunStavka.Artikl,
+			ArtiklId:  $scope.newRacunStavka.ArtiklId,
+			Kolicina: $scope.newRacunStavka.Kolicina,
+			Cijena: $scope.newRacunStavka.Cijena,
+			PdvPosto: $scope.newRacunStavka.PdvPosto
+		};
+		
+		$scope.racunStavkaCollection.push(stavka);
+	};
+	
+	$scope.deleteRacunStavka = function (artiklId) {
+		alert(artiklId);
+	};
+	
 	return _me;
 }

@@ -108,14 +108,14 @@
 	            <td>
 	                <span >Cijena</span></td>
 	            <td rowspan="2">
-	                <input type="button" value="Unesi stavku" ng-click="nekaj()" />
+	                <input type="button" value="Unesi stavku" ng-click="addRacunStavka()" />
 	            </td>
 	        </tr>
 	        <tr>
 	            <td class="style3">
 	                <select style="width:250px;" ng-model="newRacunStavka.ArtiklId"
 	                	ng-options="artikl.ArtiklId as artikl.Naziv for artikl in artiklCollection"
-	                	ng-change="nekaj()"></select>
+	                	ng-change="onArtiklChange()"></select>
 	            </td>
 	            <td class="style4">
 	                <input type="text" ng-model="newRacunStavka.Kolicina" />
@@ -127,6 +127,30 @@
 	    </tbody>
 	</table>
     
+    <table>
+    	<thead>
+    		<tr>
+    			<th>Artikl</th>
+    			<th>Naziv</th>
+    			<th>Količina</th>
+    			<th>Cijena</th>
+    			<th>PDV (%)</th>
+    			</th></th>
+    		</tr>
+    	</thead>
+    	<tbody>
+    		<tr ng-repeat="racunStavka in racunStavkaCollection">
+    			<td>{{ racunStavka.ArtiklId }}</td>
+    			<td>{{ racunStavka.Artikl.Naziv }}</td>
+    			<td>{{ racunStavka.Kolicina }}</td>
+    			<td>{{ racunStavka.Cijena }}</td>
+    			<td>{{ racunStavka.PdvPosto }}</td>
+    			<td>
+    				<a href="javascript:" ng-click="deleteRacunStavka(racunStavka.ArtiklId)">X</a>
+    			</td>
+    		</tr>
+    	</tbody>
+    </table>
 	</div>
 </div>
 
