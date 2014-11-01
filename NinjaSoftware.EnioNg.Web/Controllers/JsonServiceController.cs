@@ -14,6 +14,7 @@ using NinjaSoftware.EnioNg.CoolJ;
 using NinjaSoftware.EnioNg.Web.Helpers;
 using NinjaSoftware.EnioNg.Web.Models;
 using NinjaSoftware.Api.Mvc;
+using System.Globalization;
 
 namespace NinjaSoftware.EnioNg.Web.Controllers
 {
@@ -335,15 +336,19 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
 
         #region RacunGlava
 
-		[HttpPost]
-		public ActionResult SaveRacun(RacunGlavaEntity racunGlava)
-		{
-			bool isSaved = false;
-
-			DataAccessAdapterBase adapter = Helper.GetDataAccessAdapter(User.Identity.Name);
-			using (adapter)
-			{
+        [HttpPost]
+        public ActionResult SaveRacun(string racunGlavaJson, string racunStavkaCollectionJson)
+        {
+            DataAccessAdapterBase adapter = Helper.GetDataAccessAdapter(User.Identity.Name);
+            using (adapter)
+            {
                 RacunGlavaEntity racunGlava4Save;
+
+                JsonSerializerSettings jsonSettings = new JsonSerializerSettings();
+                CultureInfo currentCulture = System.Threading.Thread.CurrentThread.CurrentCulture;
+                jsonSettings.Culture = currentCulture;
+
+                RacunGlavaEntity racunGlava = JsonConvert.DeserializeObject<RacunGlavaEntity>(racunGlavaJson, jsonSettings);
 
                 if (racunGlava.RacunGlavaId == 0)
                 {
@@ -352,19 +357,39 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
                 }
                 else
                 {
-                    racunGlava4Save = RacunGlavaEntity.FetchRacunGlava(adapter, null, racunGlava.RacunGlavaId);
+                    PrefetchPath2 prefetchPath = new PrefetchPath2(EntityType.RacunGlavaEntity);
+                    prefetchPath.Add(RacunGlavaEntity.PrefetchPathRacunStavkaCollection);
+
+                    racunGlava4Save = RacunGlavaEntity.FetchRacunGlava(adapter, prefetchPath, racunGlava.RacunGlavaId);
                     racunGlava4Save.UpdateDataFromOtherObject(racunGlava, null, null);
                 }
 
                 racunGlava4Save.TarifaStopa = TarifaEntity.FetchTarifa(adapter, null, racunGlava4Save.TarifaId).Stopa;
                 racunGlava4Save.BrojRacuna = -1; // TODO: iz brojača
 
-                isSaved = adapter.SaveEntity(racunGlava4Save);
-			} 
+                adapter.SaveEntity(racunGlava4Save, true, false);
 
-			string response = JsonResponse(isSaved);
-			return CreateJsonResponse(response);
-		}
+                IEnumerable<RacunStavkaEntity> racunStavkaCollectionToDelete = 
+                    racunGlava4Save.RacunStavkaCollection.GetEntitiesNotIncludedInJson(racunStavkaCollectionJson, jsonSettings);
+
+                foreach (RacunStavkaEntity racunStavka in racunStavkaCollectionToDelete)
+                {
+                    racunGlava4Save.RacunStavkaCollection.Remove(racunStavka);
+                    adapter.DeleteEntity(racunStavka);
+                }
+
+                racunGlava4Save.RacunStavkaCollection.UpdateEntityCollectionFromJson(racunStavkaCollectionJson, RacunStavkaFields.RacunStavkaId, null, null, jsonSettings);
+                foreach (RacunStavkaEntity racunStavka in racunGlava4Save.RacunStavkaCollection)
+                {
+                    racunStavka.RecalculateData(racunGlava.TarifaStopa);
+                    adapter.SaveEntity(racunStavka, false, false);
+                }
+
+            } 
+
+            string response = JsonResponse(true);
+            return CreateJsonResponse(response);
+        }
 
         [HttpGet]
         public ActionResult GetRacun(long racunGlavaId)
@@ -373,14 +398,15 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
             using (adapter)
             {
                 PrefetchPath2 prefetchPath = new PrefetchPath2(EntityType.RacunGlavaEntity);
-                prefetchPath.Add(RacunGlavaEntity.PrefetchPathRacunStavkaCollection);
+                prefetchPath.Add(RacunGlavaEntity.PrefetchPathRacunStavkaCollection).
+                    SubPath.Add(RacunStavkaEntity.PrefetchPathArtikl);
 
                 RacunGlavaEntity racunGlava = RacunGlavaEntity.FetchRacunGlava(adapter, prefetchPath, racunGlavaId);
 
                 var toReturn = new
                 {
                     RacunGlava = racunGlava,
-                    RacunStavkaCollection = racunGlava.RacunStavkaCollection
+                    RacunStavkaCollection = racunGlava.RacunStavkaCollection.OrderBy(rs => rs.Pozicija)
                 };
 
                 string toReturnJson = JsonConvert.SerializeObject(toReturn);

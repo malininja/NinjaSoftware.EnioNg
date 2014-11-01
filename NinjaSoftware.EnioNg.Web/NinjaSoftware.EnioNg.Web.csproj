@@ -193,7 +193,6 @@
     <Content Include="Global.asax" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\DataAnnotations.js" />
-    <Content Include="Scripts\EnioNg.Entities.js" />
     <Content Include="Scripts\Home\ArtiklController.js" />
     <Content Include="Scripts\Home\PartnerController.js" />
     <Content Include="Scripts\Home\PdvController.js" />

@@ -26,7 +26,7 @@
         onSelectRow: function (id) {
             var rowData = $(this).getRowData(id);
             var racunGlavaId = rowData["RacunGlavaId"];
-            alert(racunGlavaId);
+            window.location.href = "/Home/RacunEdit?racunGlavaId=" + racunGlavaId;
         }
     });
 </script>

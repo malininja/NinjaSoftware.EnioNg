@@ -1,8 +1,8 @@
 function RacunController($scope) {
 	var _me = {};
 	
-	$scope.racunGlava = EnioNg.Entities.RacunGlava();
-	$scope.newRacunStavka = EnioNg.Entities.RacunStavka();
+	$scope.racunGlava = {};
+	$scope.newRacunStavka = {};
 	$scope.racunStavkaCollection = [];
 	$scope.partnerCollection = [];
 	$scope.tarifaCollection = [];
@@ -32,7 +32,10 @@ function RacunController($scope) {
 		if ($scope.validation.isValid()) {
 			ninjaSoftware.ajaxHelper.postJson({
 				url: "/JsonService/SaveRacun",
-				jsonObject: $scope.racunGlava,
+				jsonObject: {
+					racunGlavaJson: JSON.stringify($scope.racunGlava),
+					racunStavkaCollectionJson: JSON.stringify($scope.racunStavkaCollection)
+				},
 				success: function(result) {
 					alert(result);
 				},
@@ -161,7 +164,15 @@ function RacunController($scope) {
 	
 	
 	$scope.addRacunStavka = function () {
+		var pozicija = 0;
+		var arrayLength = $scope.racunStavkaCollection.length;
+		
+		if (arrayLength) {
+			pozicija = $scope.racunStavkaCollection[arrayLength - 1].Pozicija + 1;
+		}
+		
 		var stavka = {
+			Pozicija: pozicija,
 			Artikl: $scope.newRacunStavka.Artikl,
 			ArtiklId:  $scope.newRacunStavka.ArtiklId,
 			Kolicina: $scope.newRacunStavka.Kolicina,
@@ -172,8 +183,13 @@ function RacunController($scope) {
 		$scope.racunStavkaCollection.push(stavka);
 	};
 	
-	$scope.deleteRacunStavka = function (artiklId) {
-		alert(artiklId);
+	$scope.deleteRacunStavka = function (pozicija) {
+		$($scope.racunStavkaCollection).each(function (index, item){
+			if (item.Pozicija === pozicija) {
+				$scope.racunStavkaCollection.splice(index, 1);
+				return false;
+			}
+		});
 	};
 	
 	return _me;
