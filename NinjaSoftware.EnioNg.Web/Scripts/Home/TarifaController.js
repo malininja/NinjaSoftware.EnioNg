@@ -1,11 +1,11 @@
 ﻿function TarifaController($scope) {
     var self = {};
 
-    $scope.selectedTarifa = EnioNg.Entities.Tarifa();
+    $scope.selectedTarifa = {};
 
     $scope.newTarifa = function () {
         var fn = function () {
-            $scope.selectedTarifa = EnioNg.Entities.Tarifa();
+            $scope.selectedTarifa = {};
         };
 
         ninjaSoftware.angularjs.safeApply($scope, fn);
@@ -28,7 +28,7 @@
                 jsonObject: $scope.selectedTarifa,
                 success: function (result) {
                     if (result.IsSaved == "true") {
-                        $scope.selectedTarifa = EnioNg.Entities.Tarifa();
+                        $scope.newTarifa();
                         $(document).trigger("TarifaIsSaved");
                     } else {
                         alert("error");

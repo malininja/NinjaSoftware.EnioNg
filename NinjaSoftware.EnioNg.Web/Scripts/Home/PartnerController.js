@@ -1,11 +1,11 @@
 function PartnerController ($scope) {
 	var self = {};
 	
-	$scope.selectedPartner = EnioNg.Entities.Partner();
+	$scope.selectedPartner = {};
 	
 	$scope.newPartner = function () {
 		var fn = function () {
-			$scope.selectedPartner = EnioNg.Entities.Partner();
+			$scope.selectedPartner = {};
 			$scope.selectedPartner.Valuta = 15;
 		};
 		
@@ -30,9 +30,7 @@ function PartnerController ($scope) {
 	            jsonObject: $scope.selectedPartner,
 	            success: function (result) {
 	                if (result.IsSaved === "true") {
-	                    closePartnerDialog();
 	                    $scope.newPartner();
-
 	                    $(document).trigger("PartnerIsSaved");
 	                }
 	            },

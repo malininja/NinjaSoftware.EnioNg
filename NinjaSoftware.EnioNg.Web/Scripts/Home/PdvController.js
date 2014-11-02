@@ -1,11 +1,11 @@
 ﻿function PdvController($scope) {
     var self = {};
 
-    $scope.selectedPdv = EnioNg.Entities.Pdv();
+    $scope.selectedPdv =  {};
 
     $scope.newPdv = function () {
         var fn = function () {
-            $scope.selectedPdv = EnioNg.Entities.Pdv();
+            $scope.selectedPdv = {};
         };
 
         ninjaSoftware.angularjs.safeApply($scope, fn);
@@ -20,9 +20,7 @@
                 jsonObject: $scope.selectedPdv,
                 success: function (result) {
                     if (result.IsSaved === "true") {
-                        closePdvDialog();
                         $scope.newPdv();
-
                         $(document).trigger("PdvIsSaved");
                     }
                 },

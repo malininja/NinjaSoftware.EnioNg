@@ -1,11 +1,11 @@
 function ArtiklController($scope) {
 	var _me = {};
 	
-	$scope.selectedArtikl = EnioNg.Entities.Artikl();
+	$scope.selectedArtikl = {};
 	
 	$scope.newArtikl = function () {
 		var fn = function () {
-			$scope.selectedArtikl = EnioNg.Entities.Artikl();
+			$scope.selectedArtikl = {};
 		};
 		
 		ninjaSoftware.angularjs.safeApply($scope, fn);
@@ -30,7 +30,7 @@ function ArtiklController($scope) {
 	            jsonObject: $scope.selectedArtikl,
 	            success: function (result) {
 	                if (result.IsSaved === "true") {
-	                    $scope.selectedArtikl = EnioNg.Entities.Artikl();
+	                    $scope.newArtikl();
 	                    $(document).trigger("ArtiklIsSaved");
 	                }
 	            },
