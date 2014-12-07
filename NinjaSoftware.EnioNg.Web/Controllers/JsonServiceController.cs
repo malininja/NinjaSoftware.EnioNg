@@ -353,7 +353,8 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
                 if (racunGlava.RacunGlavaId == 0)
                 {
                     racunGlava4Save = racunGlava;
-                    racunGlava4Save.Godina = ConfigEntity.FetchConfigCollection(adapter, null, null).Single().AktivnaGodina;
+                    racunGlava4Save.Godina = ConfigEntity.GetInstance(adapter).AktivnaGodina;
+                    racunGlava4Save.BrojRacuna = BrojacEntity.GetNextNumber(adapter, BrojacEnum.Racun, racunGlava4Save.Godina);
                 }
                 else
                 {
@@ -365,7 +366,6 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
                 }
 
                 racunGlava4Save.TarifaStopa = TarifaEntity.FetchTarifa(adapter, null, racunGlava4Save.TarifaId).Stopa;
-                racunGlava4Save.BrojRacuna = -1; // TODO: iz brojača
 
                 adapter.SaveEntity(racunGlava4Save, true, false);
 

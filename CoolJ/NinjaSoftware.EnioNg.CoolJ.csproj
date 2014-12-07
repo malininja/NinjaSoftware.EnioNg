@@ -192,6 +192,8 @@
       <GeneratedBy>LLBLGen Pro</GeneratedBy>
     </Compile>
     <Compile Include="DatabaseGeneric\BusinessLogic\ErrorEntity.cs" />
+    <Compile Include="DatabaseGeneric\BusinessLogic\BrojacEntity.cs" />
+    <Compile Include="DatabaseGeneric\BusinessLogic\ConfigEntity.cs" />
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
