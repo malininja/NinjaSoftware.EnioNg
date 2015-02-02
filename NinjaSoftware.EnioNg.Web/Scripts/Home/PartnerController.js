@@ -32,6 +32,8 @@ function PartnerController ($scope) {
 	                if (result.IsSaved === "true") {
 	                    $scope.newPartner();
 	                    $(document).trigger("PartnerIsSaved");
+	                } else {
+	                	alert("nekaj se malo manje pojebalo");
 	                }
 	            },
 	            error: function (XMLHttpRequest, textStatus, errorThrown) {

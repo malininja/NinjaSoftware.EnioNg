@@ -37,7 +37,11 @@ function RacunController($scope) {
 					racunStavkaCollectionJson: JSON.stringify($scope.racunStavkaCollection)
 				},
 				success: function(result) {
-					alert(result);
+					if (result.IsSaved === "true") {
+						alert("Podaci su uspješno pohranjeni");
+					} else {
+						alert("Desila se greška pri pohrani podataka");
+					}
 				},
 				error: function() {
 					alert("nekaj se pojebalo");

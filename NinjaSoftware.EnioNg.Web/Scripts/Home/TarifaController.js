@@ -31,8 +31,8 @@
                         $scope.newTarifa();
                         $(document).trigger("TarifaIsSaved");
                     } else {
-                        alert("error");
-                    }
+	                	alert("nekaj se malo manje pojebalo");
+	                }
                 },
                 error: function () {
                     alert("nekaj se pojebalo");

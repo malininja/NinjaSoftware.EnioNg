@@ -142,9 +142,13 @@
     		<tr ng-repeat="racunStavka in racunStavkaCollection">
     			<td>{{ racunStavka.ArtiklId }}</td>
     			<td>{{ racunStavka.Artikl.Naziv }}</td>
-    			<td>{{ racunStavka.Kolicina }}</td>
-    			<td>{{ racunStavka.Cijena }}</td>
-    			<td>{{ racunStavka.PdvPosto }}</td>
+    			<td>
+    				<input class="number" ng-model="racunStavka.Kolicina" /> 
+    			</td>
+    			<td>
+    				<input class="number" ng-model="racunStavka.Cijena" /> 
+    			</td>
+    			<td>{{ racunStavka.PdvPosto  | number:2 }}</td>
     			<td>
     				<a href="javascript:" ng-click="deleteRacunStavka(racunStavka.Pozicija)">X</a>
     			</td>

@@ -754,3 +754,8 @@ tr.pager td {
             margin: 0;
         }
 }
+
+/* custom ---------------------------------------*/
+input.number {
+    text-align: right;
+}

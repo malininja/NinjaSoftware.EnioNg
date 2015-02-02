@@ -22,7 +22,9 @@
                     if (result.IsSaved === "true") {
                         $scope.newPdv();
                         $(document).trigger("PdvIsSaved");
-                    }
+                    } else {
+	                	alert("nekaj se malo manje pojebalo");
+	                }
                 },
                 error: function () {
                     //alert ....

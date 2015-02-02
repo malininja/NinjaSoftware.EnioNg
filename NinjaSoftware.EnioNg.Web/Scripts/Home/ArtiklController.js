@@ -32,6 +32,8 @@ function ArtiklController($scope) {
 	                if (result.IsSaved === "true") {
 	                    $scope.newArtikl();
 	                    $(document).trigger("ArtiklIsSaved");
+	                } else {
+	                	alert("nekaj se malo manje pojebalo");
 	                }
 	            },
 	            error: function (XMLHttpRequest, textStatus, errorThrown) {
