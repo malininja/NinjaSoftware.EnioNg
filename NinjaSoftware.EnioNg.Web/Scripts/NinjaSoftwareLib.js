@@ -147,3 +147,21 @@ nsAjaxHelper.getJson = function (params) {
 };
 
 /* START AJAX helpers */
+
+
+/* START format number */
+
+var nsFormatNo = namespace("ninjaSoftware.formatNo");
+
+nsFormatNo.toHrNoFormat = function (collection, memberToFormat) {
+	if (collection) {
+		for (i = 0; i < collection.length; i++) {
+			var parsedValue = parseFloat(collection[i][memberToFormat]);
+			collection[i][memberToFormat] = parsedValue.toFixed(2).replace(".", ",");
+		}
+	}
+	
+	return collection;
+};
+
+/* END format number */

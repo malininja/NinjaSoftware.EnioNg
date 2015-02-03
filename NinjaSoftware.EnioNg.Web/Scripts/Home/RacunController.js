@@ -17,7 +17,7 @@ function RacunController($scope) {
 			success: function (result) {
 				var fn = function () {
 					$scope.racunGlava = result.RacunGlava;
-					$scope.racunStavkaCollection = result.RacunStavkaCollection;
+					$scope.racunStavkaCollection = ninjaSoftware.formatNo.toHrNoFormat(result.RacunStavkaCollection, "Cijena");
 				};
 				
 				ninjaSoftware.angularjs.safeApply($scope, fn);
@@ -29,6 +29,8 @@ function RacunController($scope) {
 	};
 	
 	$scope.save = function () {
+		alert ("provjeri validnost sa $('#pero').get(0).validity.valid");
+		return;
 		if ($scope.validation.isValid()) {
 			ninjaSoftware.ajaxHelper.postJson({
 				url: "/JsonService/SaveRacun",
