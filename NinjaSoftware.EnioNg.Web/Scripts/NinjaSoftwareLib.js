@@ -164,4 +164,14 @@ nsFormatNo.toHrNoFormat = function (collection, memberToFormat) {
 	return collection;
 };
 
+nsFormatNo.hrCurrencyFormat = function (hrNo) {
+	if (hrNo) {
+		var enNo = hrNo.toString().replace(",", ".");
+		var parsedValue = parseFloat(enNo);
+		return parsedValue.toFixed(2).replace(".", ",");
+	}
+	
+	return null;
+}
+
 /* END format number */

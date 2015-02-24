@@ -4,11 +4,10 @@
 
 <script type="text/javascript" src="~/Scripts/Home/RacunController.js"></script>
 
-<div id="RacunEdit" ng-app>
+<div id="RacunEdit">
 	<h2>racun edit</h2>
 	
-	<div id="divNgController" ng-controller="RacunController">
-		
+	<form ng-app="" ng-controller="RacunController" name="racunForm">
 	<table border="1">
 		<tbody>
 	        <tr>
@@ -23,7 +22,7 @@
 	                <span>Datum:</span>
 	            </td>
 	            <td>
-	                <input ng-model="racunGlava.Datum" />
+	                <input ng-model="racunGlava.Datum" name="datum" ng-pattern="/\d{1,2}\.\d{1,2}\.\d{4,4}/" />
 	            </td>
 	            <td>
 	                <span>Tarifa:</span>
@@ -41,7 +40,7 @@
 	                <span>Mjesto rada:</span>
 	            </td>
 	            <td>
-	                <input ng-model="racunGlava.MjestoRadaNaziv" />
+	                <input ng-model="racunGlava.MjestoRadaNaziv" ng-maxlength="60" />
 	            </td>
 	            <td>
 	                <span>Adresa rada:</span>
@@ -112,16 +111,16 @@
 	            </td>
 	        </tr>
 	        <tr>
-	            <td class="style3">
+	            <td>
 	                <select style="width:250px;" ng-model="newRacunStavka.ArtiklId"
 	                	ng-options="artikl.ArtiklId as artikl.Naziv for artikl in artiklCollection"
 	                	ng-change="onArtiklChange()"></select>
 	            </td>
-	            <td class="style4">
-	                <input type="text" ng-model="newRacunStavka.Kolicina" />
+	            <td>
+	                <input class="number" id="newStavkaKolicina" name="newStavkaKolicina" type="text" ng-model="newRacunStavka.Kolicina" ng-required="true" ng-pattern="/^[0-9]{1,8}(,{1}[0-9]{2})?$/" />
 	            </td>
-	            <td class="style4">
-	                <input type="text" ng-model="newRacunStavka.Cijena" />
+	            <td>
+	                <input class="number" name="newStavkaCijena" type="text" ng-model="newRacunStavka.Cijena" ng-pattern="/^[0-9]{1,8}(,{1}[0-9]{2})?$/" />
 	            </td>
 	        </tr>
 	    </tbody>
@@ -135,7 +134,7 @@
     			<th>Količina</th>
     			<th>Cijena</th>
     			<th>PDV (%)</th>
-    			</th></th>
+    			<th></th>
     		</tr>
     	</thead>
     	<tbody>
@@ -143,19 +142,19 @@
     			<td>{{ racunStavka.ArtiklId }}</td>
     			<td>{{ racunStavka.Artikl.Naziv }}</td>
     			<td>
-    				<input class="number" ng-model="racunStavka.Kolicina" /> 
+    				<input class="number" ng-model="racunStavka.Kolicina" ng-pattern="/^[0-9]{1,8}(,{1}[0-9]{2})?$/" /> 
     			</td>
     			<td>
-    				<input id="pero" class="number" ng-model="racunStavka.Cijena" pattern="^[0-9]{1,8},{1}[0-9]{2}$" /> 
+    				<input id="pero" class="number" ng-model="racunStavka.Cijena" ng-pattern="/^[0-9]{1,8}(,{1}[0-9]{2})?$/" /> 
     			</td>
-    			<td>{{ racunStavka.PdvPosto  | number:2 }}</td>
+    			<td>{{ racunStavka.PdvPosto | number:2 }}</td>
     			<td>
     				<a href="javascript:" ng-click="deleteRacunStavka(racunStavka.Pozicija)">X</a>
     			</td>
     		</tr>
     	</tbody>
     </table>
-	</div>
+    </form>
 </div>
 
 <script type="text/javascript">
@@ -165,5 +164,9 @@
 		if (racunGlavaId) {
 			scope.loadRacun(racunGlavaId);
 		}
+	});
+	
+	$(document).on("ArtiklChanged", function () {
+		$("#newStavkaKolicina").select();
 	});
 </script>

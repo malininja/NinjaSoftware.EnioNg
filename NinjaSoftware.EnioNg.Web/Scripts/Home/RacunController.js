@@ -29,8 +29,6 @@ function RacunController($scope) {
 	};
 	
 	$scope.save = function () {
-		alert ("provjeri validnost sa $('#pero').get(0).validity.valid");
-		return;
 		if ($scope.validation.isValid()) {
 			ninjaSoftware.ajaxHelper.postJson({
 				url: "/JsonService/SaveRacun",
@@ -142,8 +140,6 @@ function RacunController($scope) {
 	_me.loadArtiklCollection();
     _me.loadPdvCollection();
     	
-	$(document).trigger("RacunControlerLoaded", $scope);
-		
 	$scope.onArtiklChange = function () {
 		var artikl;
 		
@@ -163,13 +159,28 @@ function RacunController($scope) {
 		
 		$scope.newRacunStavka.Artikl = artikl;
 		$scope.newRacunStavka.ArtiklId = artikl.ArtiklId;
-		$scope.newRacunStavka.Kolicina = 0;
-		$scope.newRacunStavka.Cijena = artikl.Cijena;
+		$scope.newRacunStavka.Kolicina = null;
+		$scope.newRacunStavka.Cijena = ninjaSoftware.formatNo.hrCurrencyFormat(artikl.Cijena);
 		$scope.newRacunStavka.PdvPosto = pdv.Stopa;
+		
+		$(document).trigger("ArtiklChanged");
 	};
 	
 	
 	$scope.addRacunStavka = function () {
+		if (!$scope.newRacunStavka.ArtiklId ||
+			!$scope.racunForm.newStavkaKolicina.$valid ||
+			!$scope.racunForm.newStavkaCijena.$valid) {
+			//alert("nevalja!!!");
+			return;
+		}
+		
+		var existingObjects = $.grep($scope.racunStavkaCollection, function (e) { return e.ArtiklId == $scope.newRacunStavka.ArtiklId; });
+		if (existingObjects.length > 0) {
+			alert("Artikl je već dodan na račun.");
+			return;
+		}
+		
 		var pozicija = 0;
 		var arrayLength = $scope.racunStavkaCollection.length;
 		
@@ -182,7 +193,7 @@ function RacunController($scope) {
 			Artikl: $scope.newRacunStavka.Artikl,
 			ArtiklId:  $scope.newRacunStavka.ArtiklId,
 			Kolicina: $scope.newRacunStavka.Kolicina,
-			Cijena: $scope.newRacunStavka.Cijena,
+			Cijena: ninjaSoftware.formatNo.hrCurrencyFormat($scope.newRacunStavka.Cijena),
 			PdvPosto: $scope.newRacunStavka.PdvPosto
 		};
 		
@@ -197,6 +208,8 @@ function RacunController($scope) {
 			}
 		});
 	};
+	
+	$(document).trigger("RacunControlerLoaded", $scope);
 	
 	return _me;
 }
