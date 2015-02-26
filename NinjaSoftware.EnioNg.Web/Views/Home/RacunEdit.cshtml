@@ -22,7 +22,7 @@
 	                <span>Datum:</span>
 	            </td>
 	            <td>
-	                <input ng-model="racunGlava.Datum" name="datum" ng-pattern="/\d{1,2}\.\d{1,2}\.\d{4,4}/" />
+	                <input ng-model="racunGlava.Datum" name="datum" ng-pattern="/^\d{1,2}\.\d{1,2}\.\d{4,4}$/" />
 	            </td>
 	            <td>
 	                <span>Tarifa:</span>
@@ -46,13 +46,13 @@
 	                <span>Adresa rada:</span>
 	            </td>
 	            <td>
-	                <input ng-model="racunGlava.MjestoRadaAdresa" />
+	                <input ng-model="racunGlava.MjestoRadaAdresa" ng-maxlength="60" />
 	            </td>
 	            <td>
 	                <span>Valuta:</span>
 	            </td>
 	            <td>
-	                <input ng-model="racunGlava.Valuta" />
+	                <input ng-model="racunGlava.Valuta" ng-pattern="/^\d*$/" required="required" />
 	                <span> dana</span>
 	            </td>
 	            <td>

@@ -16,6 +16,8 @@ function RacunController($scope) {
 			data: { "racunGlavaId": racunGlavaId },
 			success: function (result) {
 				var fn = function () {
+					var datum = new Date(result.RacunGlava.Datum);
+					result.RacunGlava.Datum = datum.getDate() + "." + (datum.getMonth() + 1) + "." + datum.getFullYear();
 					$scope.racunGlava = result.RacunGlava;
 					$scope.racunStavkaCollection = ninjaSoftware.formatNo.toHrNoFormat(result.RacunStavkaCollection, "Cijena");
 				};
