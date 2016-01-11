@@ -6,6 +6,7 @@
 // Templates vendor: Solutions Design.
 //////////////////////////////////////////////////////////////
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using SD.LLBLGen.Pro.LinqSupportClasses;
 using SD.LLBLGen.Pro.ORMSupportClasses;
@@ -110,6 +111,15 @@ namespace NinjaSoftware.EnioNg.CoolJ.Linq
 					break;
 			}
 			return toReturn;
+		}
+
+		/// <summary>returns the datasource to use in a Linq query for the entity type specified</summary>
+		/// <typeparam name="TEntity">the type of the entity to get the datasource for</typeparam>
+		/// <returns>the requested datasource</returns>
+		public DataSource2<TEntity> GetQueryableForEntity<TEntity>()
+			    where TEntity : class
+		{
+    		return new DataSource2<TEntity>(_adapterToUse, new ElementCreator(), _customFunctionMappings, _contextToUse);
 		}
 
 		/// <summary>returns the datasource to use in a Linq query when targeting ArtiklEntity instances in the database.</summary>

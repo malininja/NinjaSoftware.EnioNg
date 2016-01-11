@@ -8,14 +8,15 @@
 //////////////////////////////////////////////////////////////
 using System;
 using System.Data;
+using System.Collections.Generic;
 using SD.LLBLGen.Pro.ORMSupportClasses;
+using SD.LLBLGen.Pro.QuerySpec.Adapter;
 
 namespace NinjaSoftware.EnioNg.CoolJ.DatabaseSpecific
 {
 	/// <summary>Class which contains the static logic to execute retrieval stored procedures in the database.</summary>
 	public static partial class RetrievalProcedures
 	{
-
 
 
 
