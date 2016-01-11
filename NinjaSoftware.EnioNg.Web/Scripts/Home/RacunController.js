@@ -1,7 +1,13 @@
 function RacunController($scope) {
 	var _me = {};
 	
-	$scope.racunGlava = {};
+	var dateString = ninjaSoftware.date.getDateString(new Date());
+	
+	$scope.racunGlava = {
+		Datum: dateString,
+		JePdvRacun: true
+	};
+	
 	$scope.newRacunStavka = {};
 	$scope.racunStavkaCollection = [];
 	$scope.partnerCollection = [];
@@ -17,7 +23,7 @@ function RacunController($scope) {
 			success: function (result) {
 				var fn = function () {
 					var datum = new Date(result.RacunGlava.Datum);
-					result.RacunGlava.Datum = datum.getDate() + "." + (datum.getMonth() + 1) + "." + datum.getFullYear();
+					result.RacunGlava.Datum = ninjaSoftware.date.getDateString(datum);
 					$scope.racunGlava = result.RacunGlava;
 					$scope.racunStavkaCollection = ninjaSoftware.formatNo.toHrNoFormat(result.RacunStavkaCollection, "Cijena");
 				};
@@ -168,6 +174,18 @@ function RacunController($scope) {
 		$(document).trigger("ArtiklChanged");
 	};
 	
+	$scope.onPartnerChange = function () {
+		var partnerId = $scope.racunGlava.PartnerId;
+		
+		for (var i = 0; i < $scope.partnerCollection.length; i++) {
+			var partner = $scope.partnerCollection[i];
+			
+			if (partner.PartnerId === partnerId) {
+				$scope.racunGlava.Valuta = partner.Valuta;
+				break;
+			}
+		}
+	};
 	
 	$scope.addRacunStavka = function () {
 		if (!$scope.newRacunStavka.ArtiklId ||

@@ -16,7 +16,8 @@
 	            </td>
 	            <td colspan="3">
 	 				<select ng-model="racunGlava.PartnerId"
-	 					ng-options="partner.PartnerId as partner.Naziv for partner in partnerCollection"></select>
+	 					ng-options="partner.PartnerId as partner.Naziv for partner in partnerCollection"
+	 					ng-change="onPartnerChange()"></select>
 	            </td>
 	            <td>
 	                <span>Datum:</span>
@@ -158,6 +159,10 @@
 </div>
 
 <script type="text/javascript">
+	$(document).ready(function () {
+		$("section").removeClass("content-wrapper")
+	});
+	
 	$(document).on("RacunControlerLoaded", function(event, scope) {
 		var racunGlavaId = ninjaSoftware.url.getParameterValue("racunGlavaId");
 		

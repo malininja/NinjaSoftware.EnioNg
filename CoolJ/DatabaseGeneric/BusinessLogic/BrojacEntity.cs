@@ -36,9 +36,11 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
             brojac.SlijedeciBroj++;
 
+            var slijedeciBroj = brojac.SlijedeciBroj;
+
             adapter.SaveEntity(brojac);
 
-            return brojac.SlijedeciBroj;
+            return slijedeciBroj;
         }
     }
 

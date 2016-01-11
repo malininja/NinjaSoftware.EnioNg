@@ -45,9 +45,6 @@
     <Reference Include="NinjaSoftware.Api.Mvc">
       <HintPath>..\libs\NinjaSoftware.Api.Mvc.dll</HintPath>
     </Reference>
-    <Reference Include="Npgsql">
-      <HintPath>..\libs\Npgsql.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -83,9 +80,6 @@
     <Reference Include="SD.LLBLGen.Pro.ORMSupportClasses">
       <HintPath>..\libs\SD.LLBLGen.Pro.ORMSupportClasses.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Web.Infrastructure">
-      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
-    </Reference>
     <Reference Include="System.Web.Mvc">
       <HintPath>..\libs\System.Web.Mvc.dll</HintPath>
     </Reference>
@@ -103,6 +97,9 @@
     </Reference>
     <Reference Include="System.Web.Optimization">
       <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="Npgsql">
+      <HintPath>..\libs\Npgsql.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
