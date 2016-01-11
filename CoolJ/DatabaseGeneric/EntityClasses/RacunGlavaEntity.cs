@@ -1,7 +1,7 @@
 ﻿///////////////////////////////////////////////////////////////
 // This is generated code. 
 //////////////////////////////////////////////////////////////
-// Code is generated using LLBLGen Pro version: 4.0
+// Code is generated using LLBLGen Pro version: 4.2
 // Code is generated using templates: SD.TemplateBindings.SharedTemplates
 // Templates vendor: Solutions Design.
 // Templates version: 
@@ -877,7 +877,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 		/// <summary> The Vrijeme property of the Entity RacunGlava<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "RacunGlava"."Vrijeme"<br/>
 		/// Table field type characteristics (type, precision, scale, length): Varchar, 0, 0, 10<br/>
-		/// Table field behavior characteristics (is nullable, is PK, is identity): false, false, false</remarks>
+		/// Table field behavior characteristics (is nullable, is PK, is identity): true, false, false</remarks>
 		[JsonProperty]
 		public virtual System.String Vrijeme
 		{

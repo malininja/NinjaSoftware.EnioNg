@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<!--LLBLGen Pro v4.0 project file. Do not manually edit this file. Incorrect references could lead to an unloadable project file.-->
-<Project Version="4.0" TargetFrameworkName="LLBLGen Pro Runtime Framework">
+<!--LLBLGen Pro v4.2 project file. Do not manually edit this file. Incorrect references could lead to an unloadable project file.-->
+<Project Version="4.2" TargetFrameworkName="LLBLGen Pro Runtime Framework">
   <Properties>
     <Abbreviations />
     <Property Name="AdditionalTaskPerformerFolder" Value="" />
@@ -18,13 +18,15 @@
     <Property Name="DefaultDeleteRuleAction" Value="1" />
     <Property Name="DefaultUpdateRuleAction" Value="0" />
     <Property Name="EncodingToUse" Value="0" />
-    <Property Name="EnforcePascalCasingAlways" Value="true" />
+    <Property Name="EntityActionCombinationDefaultForTable" Value="0" />
+    <Property Name="EntityActionCombinationDefaultForView" Value="4" />
     <Property Name="EntityFieldNameStripPattern" Value="{}{}" />
     <Property Name="EntityNameStripPattern" Value="{tbl_}{}" />
     <Property Name="ExcludableOrphanedElementDetectedAction" Value="3" />
     <Property Name="FailCodeGenerationOnWriteError" Value="false" />
     <Property Name="FieldMappedOntoRelatedFieldPattern" Value="{$RelatedFieldName}" />
     <Property Name="FkFieldsAreNamedAfterTargetField" Value="true" />
+    <Property Name="ForeignKeyConstraintPattern" Value="FK_{$Guid}" />
     <Property Name="ForeignKeyFieldPattern" Value="{$NavigatorName}{$RelatedFieldName}" />
     <Property Name="GroupUsage" Value="0" />
     <Property Name="IdentifyingFieldsFollowDBPrimaryKeyConstraints" Value="0" />
@@ -38,7 +40,9 @@
     <Property Name="NonExcludableOrphanedElementDetectedAction" Value="3" />
     <Property Name="PreferDecimalOverCurrencyTypes" Value="true" />
     <Property Name="PreferNaturalCharacterTypes" Value="true" />
+    <Property Name="PreferSystemSequencesOverSchemaSequencesIfApplicable" Value="true" />
     <Property Name="PreferVariableLengthTypes" Value="true" />
+    <Property Name="PrimaryKeyConstraintPattern" Value="PK_{$Guid}" />
     <Property Name="ProjectCreator" Value="ninja" />
     <Property Name="ProjectName" Value="Enio" />
     <Property Name="ReflectNullabilityOfElementFieldInTargetField" Value="0" />
@@ -50,9 +54,11 @@
     <Property Name="ResetFieldOrderBasedOnTargetOrderAtRefresh" Value="false" />
     <Property Name="RetrieveDBCustomProperties" Value="false" />
     <Property Name="RootNamespace" Value="" />
+    <Property Name="SequenceNameMatchingPattern" Value="SEQ_{$TableName}" />
     <Property Name="SequencePattern" Value="SEQ_{$EntityName}" />
     <Property Name="SetGroupNameAfterSchemaName" Value="true" />
     <Property Name="SetSchemaNameAfterGroupName" Value="true" />
+    <Property Name="SingularizeElementNames" Value="true" />
     <Property Name="StoredProcNameStripPattern" Value="{pr_, sp_}{}" />
     <Property Name="StoreTimeLastGeneratedIntoProject" Value="false" />
     <Property Name="SyncMappedElementNamesAfterRefresh" Value="0" />
@@ -63,11 +69,14 @@
     <Property Name="TypedViewFieldNameStripPattern" Value="{}{}" />
     <Property Name="TypedViewMappedOnResultsetPattern" Value="{$ProcFunctionName}{$ResultsetName}Result" />
     <Property Name="TypedViewNameStripPattern" Value="{vw_}{}" />
+    <Property Name="UniqueConstraintPattern" Value="UC_{$Guid}" />
     <Property Name="UniqueConstraintsFollowDBUniqueConstraints" Value="0" />
     <Property Name="UpdateCustomPropertiesAfterRefresh" Value="0" />
     <Property Name="UseCustomFieldOrderingOnNewElements" Value="false" />
   </Properties>
   <TypeShortcuts />
+  <IgnoredWarnings />
+  <SavedSearchQueries />
   <CodeGenerationCyclePreferences>
     <OutputType Value="1">
       <LastUsedPreferences>
@@ -86,7 +95,7 @@
     </OutputType>
     <OutputType Value="2">
       <LastUsedPreferences>
-        <DestinationRootFolder Value="G:\Documents\Visual Studio 2010\Projects\NinjaSoftware.EnioNg\DbScripts" />
+        <DestinationRootFolder Value="c:\Users\marin.masic\Documents\GitHub\NinjaSoftware.EnioNg\DbScripts" />
         <FrameworkName Value="DDL SQL" />
         <LanguageName Value="SQL" />
         <PlatformName Value="RDBMS" />
@@ -101,7 +110,7 @@
     </OutputType>
     <OutputType Value="3">
       <LastUsedPreferences>
-        <DestinationRootFolder Value="g:\Documents\Visual Studio 2010\Projects\NinjaSoftware.EnioNg\CoolJ" />
+        <DestinationRootFolder Value="c:\Users\marin.masic\Documents\GitHub\NinjaSoftware.EnioNg\CoolJ" />
         <FrameworkName Value="LLBLGen Pro Runtime Framework" />
         <LanguageName Value="C#" />
         <PlatformName Value=".NET 4.0" />
@@ -109,9 +118,10 @@
         <RootNamespace Value="NinjaSoftware.EnioNg.CoolJ" />
         <TemplateGroup Value="Adapter" />
         <TemplateBindings>
+          <Binding Name="SD.TemplateBindings.SharedTemplates.Deprecated" />
+          <Binding Name="SD.TemplateBindings.SharedTemplates.NET40" />
           <Binding Name="SD.TemplateBindings.PostgreSqlSpecific" />
           <Binding Name="SD.TemplateBindings.SharedTemplates" />
-          <Binding Name="SD.TemplateBindings.SharedTemplates.NET4x" />
           <Binding Name="SD.TemplateBindings.General" />
         </TemplateBindings>
       </LastUsedPreferences>
@@ -129,7 +139,7 @@
   <EntityModel>
     <ValueTypeDefinitions />
     <EntityDefinitions>
-      <EntityDefinition Name="Artikl">
+      <EntityDefinition Name="Artikl" ObjectID="f883e34d-caee-445b-ae86-f8e879a8d15e">
         <Fields>
           <Field Name="ArtiklId" Type="long" IsPrimaryKey="true" />
           <Field Name="Cijena" Type="decimal" Precision="10" Scale="2" />
@@ -140,7 +150,7 @@
           <Field Name="PdvId" Type="long" />
         </Fields>
       </EntityDefinition>
-      <EntityDefinition Name="AuditInfo">
+      <EntityDefinition Name="AuditInfo" ObjectID="21be8646-e3e0-4149-9f13-2ce91b233b0c">
         <Fields>
           <Field Name="ActionDateTime" Type="datetime" />
           <Field Name="AuditInfoActionTypeId" Type="long" />
@@ -152,14 +162,14 @@
           <Field Name="UserId" Type="long" />
         </Fields>
       </EntityDefinition>
-      <EntityDefinition Name="AuditInfoActionTypeRo">
+      <EntityDefinition Name="AuditInfoActionTypeRo" ObjectID="1d1338fa-199b-4488-b53b-32e93de123e7">
         <Fields>
           <Field Name="AuditInfoActionTypeId" Type="long" IsPrimaryKey="true" />
           <Field Name="Code" Type="string" MaxLength="128" />
           <Field Name="Name" Type="string" MaxLength="256" />
         </Fields>
       </EntityDefinition>
-      <EntityDefinition Name="Brojac">
+      <EntityDefinition Name="Brojac" ObjectID="b921896f-eae8-4505-847b-ad4781542886">
         <Fields>
           <Field Name="BrojacId" Type="long" IsPrimaryKey="true" />
           <Field Name="ConcurrencyGuid" Type="string" MaxLength="50" />
@@ -168,7 +178,7 @@
           <Field Name="SlijedeciBroj" Type="int" />
         </Fields>
       </EntityDefinition>
-      <EntityDefinition Name="Config">
+      <EntityDefinition Name="Config" ObjectID="d1637f00-f112-4899-9ea3-fd6e1f81235e">
         <Fields>
           <Field Name="Adresa" Type="string" IsOptional="true" MaxLength="100" />
           <Field Name="AktivnaGodina" Type="short" />
@@ -180,14 +190,14 @@
           <Field Name="Zr" Type="string" IsOptional="true" MaxLength="50" />
         </Fields>
       </EntityDefinition>
-      <EntityDefinition Name="EntityRo">
+      <EntityDefinition Name="EntityRo" ObjectID="f8969d1e-6131-4d3c-b449-3f327ce81f9e">
         <Fields>
           <Field Name="Code" Type="string" MaxLength="128" />
           <Field Name="EntityId" Type="long" IsPrimaryKey="true" />
           <Field Name="Name" Type="string" MaxLength="256" />
         </Fields>
       </EntityDefinition>
-      <EntityDefinition Name="Error">
+      <EntityDefinition Name="Error" ObjectID="2f201183-1e30-4648-98c4-d65045ca1b71">
         <Fields>
           <Field Name="ConcurrencyGuid" Type="string" MaxLength="50" />
           <Field Name="ErrorDateTime" Type="datetime" />
@@ -197,7 +207,7 @@
           <Field Name="StackTrace" Type="string" IsOptional="true" />
         </Fields>
       </EntityDefinition>
-      <EntityDefinition Name="Partner">
+      <EntityDefinition Name="Partner" ObjectID="45df3c21-438d-4669-bf99-1d2ca56c44df">
         <Fields>
           <Field Name="Adresa" Type="string" IsOptional="true" MaxLength="100" />
           <Field Name="ConcurrencyGuid" Type="string" MaxLength="50" />
@@ -210,7 +220,7 @@
           <Field Name="Valuta" Type="short" />
         </Fields>
       </EntityDefinition>
-      <EntityDefinition Name="Pdv">
+      <EntityDefinition Name="Pdv" ObjectID="4c5d6d0c-2602-4fb5-9bb6-d72c3f7c8f44">
         <Fields>
           <Field Name="ConcurrencyGuid" Type="string" MaxLength="50" />
           <Field Name="Naziv" Type="string" MaxLength="128" />
@@ -218,7 +228,7 @@
           <Field Name="Stopa" Type="decimal" Precision="4" Scale="2" />
         </Fields>
       </EntityDefinition>
-      <EntityDefinition Name="RacunGlava">
+      <EntityDefinition Name="RacunGlava" ObjectID="cc35c90b-4a99-470a-b918-cf7d2bc6d638">
         <Fields>
           <Field Name="BrojRacuna" Type="int" />
           <Field Name="ConcurrencyGuid" Type="string" MaxLength="50" />
@@ -233,11 +243,11 @@
           <Field Name="TarifaId" Type="long" />
           <Field Name="TarifaStopa" Type="decimal" Precision="5" Scale="2" />
           <Field Name="Valuta" Type="short" />
-          <Field Name="Vrijeme" Type="string" MaxLength="10" />
+          <Field Name="Vrijeme" Type="string" IsOptional="true" MaxLength="10" />
           <Field Name="Zaglavlje" Type="string" IsOptional="true" MaxLength="1024" />
         </Fields>
       </EntityDefinition>
-      <EntityDefinition Name="RacunStavka">
+      <EntityDefinition Name="RacunStavka" ObjectID="8f9cf5d6-e69e-4485-9a2d-bf2f3ee0cedf">
         <Fields>
           <Field Name="ArtiklId" Type="long" />
           <Field Name="Cijena" Type="decimal" Precision="10" Scale="2" />
@@ -252,21 +262,21 @@
           <Field Name="TarifaIznos" Type="decimal" Precision="10" Scale="2" />
         </Fields>
       </EntityDefinition>
-      <EntityDefinition Name="RoleRo">
+      <EntityDefinition Name="RoleRo" ObjectID="dff3a7f9-f39a-4069-a68a-b265427b1884">
         <Fields>
           <Field Name="Code" Type="string" MaxLength="50" />
           <Field Name="Name" Type="string" MaxLength="50" />
           <Field Name="RoleId" Type="long" IsPrimaryKey="true" />
         </Fields>
       </EntityDefinition>
-      <EntityDefinition Name="StatusRo">
+      <EntityDefinition Name="StatusRo" ObjectID="ffe3a312-39ba-4121-b243-a6f017977d2b">
         <Fields>
           <Field Name="Code" Type="string" MaxLength="50" />
           <Field Name="Name" Type="string" MaxLength="50" />
           <Field Name="StatusId" Type="long" IsPrimaryKey="true" />
         </Fields>
       </EntityDefinition>
-      <EntityDefinition Name="Tarifa">
+      <EntityDefinition Name="Tarifa" ObjectID="ea55d41f-c035-4cf7-9014-9acbea87d0ab">
         <Fields>
           <Field Name="ConcurrencyGuid" Type="string" MaxLength="50" />
           <Field Name="IsActive" Type="bool" />
@@ -275,7 +285,7 @@
           <Field Name="TarifaId" Type="long" IsPrimaryKey="true" />
         </Fields>
       </EntityDefinition>
-      <EntityDefinition Name="User">
+      <EntityDefinition Name="User" ObjectID="26073275-177b-4555-b359-c37faa397572">
         <Fields>
           <Field Name="ConcurrencyGuid" Type="string" MaxLength="50" />
           <Field Name="Password" Type="string" MaxLength="50" />
@@ -359,8 +369,9 @@
               </Sequences>
               <Tables>
                 <Table Name="Artikl">
+                  <PkConstraintName Name="PK_8936853496aa7bc23377b00435f" />
                   <Fields>
-                    <Field Name="ArtiklId" Ordinal="1" IsPrimaryKey="true" PkConstraintName="PK_8936853496aa7bc23377b00435f" DbType="10" Precision="19" />
+                    <Field Name="ArtiklId" Ordinal="1" IsPrimaryKey="true" DbType="10" Precision="19" />
                     <Field Name="ConcurrencyGuid" Ordinal="2" DbType="24" Length="50" />
                     <Field Name="Jm" Ordinal="3" DbType="24" Length="10" />
                     <Field Name="Naziv" Ordinal="4" DbType="24" Length="100" />
@@ -370,10 +381,11 @@
                   </Fields>
                 </Table>
                 <Table Name="AuditInfo">
+                  <PkConstraintName Name="PK_0b908d34826b12bb7f49a3bff25" />
                   <Fields>
                     <Field Name="ActionDateTime" Ordinal="1" DbType="5" />
                     <Field Name="AuditInfoActionTypeId" Ordinal="2" DbType="10" Precision="19" />
-                    <Field Name="AuditInfoId" Ordinal="3" IsPrimaryKey="true" PkConstraintName="PK_0b908d34826b12bb7f49a3bff25" DbType="10" Precision="19" />
+                    <Field Name="AuditInfoId" Ordinal="3" IsPrimaryKey="true" DbType="10" Precision="19" />
                     <Field Name="ConcurrencyGuid" Ordinal="4" DbType="24" Length="50" />
                     <Field Name="EntityId" Ordinal="5" DbType="10" Precision="19" />
                     <Field Name="JsonData" Ordinal="6" DbType="19" Length="1073741823" />
@@ -382,15 +394,17 @@
                   </Fields>
                 </Table>
                 <Table Name="AuditInfoActionTypeRo">
+                  <PkConstraintName Name="PK_e26b5a24d0a8d27157211cb9154" />
                   <Fields>
-                    <Field Name="AuditInfoActionTypeId" Ordinal="1" IsPrimaryKey="true" PkConstraintName="PK_e26b5a24d0a8d27157211cb9154" DbType="10" Precision="19" />
+                    <Field Name="AuditInfoActionTypeId" Ordinal="1" IsPrimaryKey="true" DbType="10" Precision="19" />
                     <Field Name="Code" Ordinal="2" DbType="24" Length="128" />
                     <Field Name="Name" Ordinal="3" DbType="24" Length="256" />
                   </Fields>
                 </Table>
                 <Table Name="Brojac">
+                  <PkConstraintName Name="PK_35b0167480796dc7e7f871d25c8" />
                   <Fields>
-                    <Field Name="BrojacId" Ordinal="1" IsPrimaryKey="true" PkConstraintName="PK_35b0167480796dc7e7f871d25c8" DbType="10" Precision="19" />
+                    <Field Name="BrojacId" Ordinal="1" IsPrimaryKey="true" DbType="10" Precision="19" />
                     <Field Name="ConcurrencyGuid" Ordinal="2" DbType="24" Length="50" />
                     <Field Name="Godina" Ordinal="3" DbType="8" />
                     <Field Name="Naziv" Ordinal="4" DbType="24" Length="100" />
@@ -398,56 +412,62 @@
                   </Fields>
                 </Table>
                 <Table Name="Config">
+                  <PkConstraintName Name="PK_4861c114d20abf7ca2468310c58" />
                   <Fields>
                     <Field Name="Adresa" Ordinal="1" IsOptional="true" DbType="24" Length="100" />
                     <Field Name="AktivnaGodina" Ordinal="2" DbType="8" />
                     <Field Name="ConcurrencyGuid" Ordinal="3" DbType="24" Length="50" />
                     <Field Name="Mjesto" Ordinal="4" IsOptional="true" DbType="24" Length="100" />
                     <Field Name="Naziv" Ordinal="5" DbType="24" Length="100" />
-                    <Field Name="Oib" Ordinal="6" PkConstraintName="PK_af1b54743b1a8475f9e3f8a2642" DbType="24" Length="11" />
+                    <Field Name="Oib" Ordinal="6" DbType="24" Length="11" />
                     <Field Name="Zr" Ordinal="7" IsOptional="true" DbType="24" Length="50" />
-                    <Field Name="ConfigId" Ordinal="8" IsPrimaryKey="true" PkConstraintName="PK_4861c114d20abf7ca2468310c58" DbType="10" Precision="19" />
+                    <Field Name="ConfigId" Ordinal="8" IsPrimaryKey="true" DbType="10" Precision="19" />
                   </Fields>
                 </Table>
                 <Table Name="EntityRo">
+                  <PkConstraintName Name="PK_59b55aa44c4bece91530673aba6" />
                   <Fields>
                     <Field Name="Code" Ordinal="1" DbType="24" Length="128" />
-                    <Field Name="EntityId" Ordinal="2" IsPrimaryKey="true" PkConstraintName="PK_59b55aa44c4bece91530673aba6" DbType="10" Precision="19" />
+                    <Field Name="EntityId" Ordinal="2" IsPrimaryKey="true" DbType="10" Precision="19" />
                     <Field Name="Name" Ordinal="3" DbType="24" Length="256" />
                   </Fields>
                 </Table>
                 <Table Name="Error">
+                  <PkConstraintName Name="PK_b6348e9412e9413b94bc7580ebc" />
                   <Fields>
                     <Field Name="ConcurrencyGuid" Ordinal="1" DbType="24" Length="50" />
                     <Field Name="ErrorDateTime" Ordinal="2" DbType="5" />
-                    <Field Name="ErrorId" Ordinal="3" IsPrimaryKey="true" PkConstraintName="PK_b6348e9412e9413b94bc7580ebc" DbType="10" Precision="19" />
+                    <Field Name="ErrorId" Ordinal="3" IsPrimaryKey="true" DbType="10" Precision="19" />
                     <Field Name="Message" Ordinal="4" DbType="19" Length="1073741823" />
                     <Field Name="ParentErrorId" Ordinal="5" IsOptional="true" DbType="10" Precision="19" />
                     <Field Name="StackTrace" Ordinal="6" IsOptional="true" DbType="19" Length="1073741823" />
                   </Fields>
                 </Table>
                 <Table Name="Partner">
+                  <PkConstraintName Name="PK_ec363ca41a09a25ebb6c0283629" />
                   <Fields>
                     <Field Name="Adresa" Ordinal="1" IsOptional="true" DbType="24" Length="100" />
                     <Field Name="ConcurrencyGuid" Ordinal="2" DbType="24" Length="50" />
                     <Field Name="Mjesto" Ordinal="3" IsOptional="true" DbType="24" Length="20" />
                     <Field Name="Naziv" Ordinal="4" DbType="24" Length="100" />
                     <Field Name="Oib" Ordinal="5" DbType="24" Length="11" />
-                    <Field Name="PartnerId" Ordinal="6" IsPrimaryKey="true" PkConstraintName="PK_ec363ca41a09a25ebb6c0283629" DbType="10" Precision="19" />
+                    <Field Name="PartnerId" Ordinal="6" IsPrimaryKey="true" DbType="10" Precision="19" />
                     <Field Name="Posta" Ordinal="7" IsOptional="true" DbType="24" Length="10" />
                     <Field Name="Valuta" Ordinal="9" DbType="8" />
                     <Field Name="IsActive" Ordinal="10" DbType="0" />
                   </Fields>
                 </Table>
                 <Table Name="Pdv">
+                  <PkConstraintName Name="PK_f05e1b744968e53080a88f8b528" />
                   <Fields>
                     <Field Name="ConcurrencyGuid" Ordinal="1" DbType="24" Length="50" />
                     <Field Name="Naziv" Ordinal="2" DbType="24" Length="128" />
-                    <Field Name="PdvId" Ordinal="3" IsPrimaryKey="true" PkConstraintName="PK_f05e1b744968e53080a88f8b528" DbType="10" Precision="19" />
+                    <Field Name="PdvId" Ordinal="3" IsPrimaryKey="true" DbType="10" Precision="19" />
                     <Field Name="Stopa" Ordinal="4" DbType="14" Precision="4" Scale="2" />
                   </Fields>
                 </Table>
                 <Table Name="RacunGlava">
+                  <PkConstraintName Name="PK_2ace6ec4137803379b7e704c868" />
                   <Fields>
                     <Field Name="ConcurrencyGuid" Ordinal="1" DbType="24" Length="50" />
                     <Field Name="Datum" Ordinal="2" DbType="5" />
@@ -455,18 +475,19 @@
                     <Field Name="MjestoRadaAdresa" Ordinal="4" IsOptional="true" DbType="24" Length="100" />
                     <Field Name="MjestoRadaNaziv" Ordinal="5" IsOptional="true" DbType="24" Length="100" />
                     <Field Name="PartnerId" Ordinal="6" DbType="10" Precision="19" />
-                    <Field Name="RacunGlavaId" Ordinal="7" IsPrimaryKey="true" PkConstraintName="PK_2ace6ec4137803379b7e704c868" DbType="10" Precision="19" />
+                    <Field Name="RacunGlavaId" Ordinal="7" IsPrimaryKey="true" DbType="10" Precision="19" />
                     <Field Name="TarifaId" Ordinal="9" DbType="10" Precision="19" />
                     <Field Name="TarifaStopa" Ordinal="10" DbType="14" Precision="5" Scale="2" />
                     <Field Name="Valuta" Ordinal="11" DbType="8" />
                     <Field Name="StatusId" Ordinal="13" DbType="10" Precision="19" />
                     <Field Name="BrojRacuna" Ordinal="14" DbType="9" />
-                    <Field Name="Vrijeme" Ordinal="15" DbType="24" Length="10" />
+                    <Field Name="Vrijeme" Ordinal="15" IsOptional="true" DbType="24" Length="10" />
                     <Field Name="JePdvRacun" Ordinal="16" DbType="0" />
                     <Field Name="Zaglavlje" Ordinal="17" IsOptional="true" DbType="24" Length="1024" />
                   </Fields>
                 </Table>
                 <Table Name="RacunStavka">
+                  <PkConstraintName Name="PK_eea0bcd456c9a21f143257b7cdb" />
                   <Fields>
                     <Field Name="ArtiklId" Ordinal="1" DbType="10" Precision="19" />
                     <Field Name="Cijena" Ordinal="2" DbType="14" Precision="10" Scale="2" />
@@ -477,37 +498,41 @@
                     <Field Name="PdvPosto" Ordinal="7" DbType="14" Precision="4" Scale="2" />
                     <Field Name="Pozicija" Ordinal="8" DbType="8" />
                     <Field Name="RacunGlavaId" Ordinal="9" DbType="10" Precision="19" />
-                    <Field Name="RacunStavkaId" Ordinal="10" IsPrimaryKey="true" PkConstraintName="PK_eea0bcd456c9a21f143257b7cdb" DbType="10" Precision="19" />
+                    <Field Name="RacunStavkaId" Ordinal="10" IsPrimaryKey="true" DbType="10" Precision="19" />
                     <Field Name="TarifaIznos" Ordinal="11" DbType="14" Precision="10" Scale="2" />
                   </Fields>
                 </Table>
                 <Table Name="RoleRo">
+                  <PkConstraintName Name="PK_eb5df4740fda93e603b4a609eef" />
                   <Fields>
                     <Field Name="Code" Ordinal="1" DbType="24" Length="50" />
                     <Field Name="Name" Ordinal="2" DbType="24" Length="50" />
-                    <Field Name="RoleId" Ordinal="3" IsPrimaryKey="true" PkConstraintName="PK_eb5df4740fda93e603b4a609eef" DbType="10" Precision="19" />
+                    <Field Name="RoleId" Ordinal="3" IsPrimaryKey="true" DbType="10" Precision="19" />
                   </Fields>
                 </Table>
                 <Table Name="StatusRo">
+                  <PkConstraintName Name="PK_c966b344206835938ce0e1a22cb" />
                   <Fields>
                     <Field Name="Code" Ordinal="1" DbType="24" Length="50" />
                     <Field Name="Name" Ordinal="2" DbType="24" Length="50" />
-                    <Field Name="StatusId" Ordinal="3" IsPrimaryKey="true" PkConstraintName="PK_c966b344206835938ce0e1a22cb" DbType="10" Precision="19" />
+                    <Field Name="StatusId" Ordinal="3" IsPrimaryKey="true" DbType="10" Precision="19" />
                   </Fields>
                 </Table>
                 <Table Name="Tarifa">
+                  <PkConstraintName Name="PK_a89a7a34ced81027e34dae234e2" />
                   <Fields>
                     <Field Name="ConcurrencyGuid" Ordinal="1" DbType="24" Length="50" />
                     <Field Name="Naziv" Ordinal="2" DbType="24" Length="100" />
                     <Field Name="Stopa" Ordinal="4" DbType="14" Precision="5" Scale="2" />
-                    <Field Name="TarifaId" Ordinal="5" IsPrimaryKey="true" PkConstraintName="PK_a89a7a34ced81027e34dae234e2" DbType="10" Precision="19" />
+                    <Field Name="TarifaId" Ordinal="5" IsPrimaryKey="true" DbType="10" Precision="19" />
                     <Field Name="IsActive" Ordinal="6" DbType="0" />
                   </Fields>
                 </Table>
                 <Table Name="User">
+                  <PkConstraintName Name="PK_f232d1c4e00ad36363f6b81c847" />
                   <Fields>
                     <Field Name="ConcurrencyGuid" Ordinal="1" DbType="24" Length="50" />
-                    <Field Name="UserId" Ordinal="2" IsPrimaryKey="true" PkConstraintName="PK_f232d1c4e00ad36363f6b81c847" DbType="10" Precision="19" />
+                    <Field Name="UserId" Ordinal="2" IsPrimaryKey="true" DbType="10" Precision="19" />
                     <Field Name="Password" Ordinal="3" DbType="24" Length="50" />
                     <Field Name="Username" Ordinal="4" DbType="24" Length="20" />
                     <Field Name="RoleId" Ordinal="5" DbType="10" Precision="19" />
