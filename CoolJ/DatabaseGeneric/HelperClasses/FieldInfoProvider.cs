@@ -1,7 +1,7 @@
 ﻿///////////////////////////////////////////////////////////////
 // This is generated code. 
 //////////////////////////////////////////////////////////////
-// Code is generated using LLBLGen Pro version: 4.0
+// Code is generated using LLBLGen Pro version: 4.2
 // Code is generated using templates: SD.TemplateBindings.SharedTemplates
 // Templates vendor: Solutions Design.
 // Templates version: 
@@ -183,7 +183,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.HelperClasses
 			this.AddElementFieldInfo("RacunGlavaEntity", "TarifaId", typeof(System.Int64), false, true, false, false,  (int)RacunGlavaFieldIndex.TarifaId, 0, 0, 19);
 			this.AddElementFieldInfo("RacunGlavaEntity", "TarifaStopa", typeof(System.Decimal), false, false, false, false,  (int)RacunGlavaFieldIndex.TarifaStopa, 0, 2, 5);
 			this.AddElementFieldInfo("RacunGlavaEntity", "Valuta", typeof(System.Int16), false, false, false, false,  (int)RacunGlavaFieldIndex.Valuta, 0, 0, 0);
-			this.AddElementFieldInfo("RacunGlavaEntity", "Vrijeme", typeof(System.String), false, false, false, false,  (int)RacunGlavaFieldIndex.Vrijeme, 10, 0, 0);
+			this.AddElementFieldInfo("RacunGlavaEntity", "Vrijeme", typeof(System.String), false, false, false, true,  (int)RacunGlavaFieldIndex.Vrijeme, 10, 0, 0);
 			this.AddElementFieldInfo("RacunGlavaEntity", "Zaglavlje", typeof(System.String), false, false, false, true,  (int)RacunGlavaFieldIndex.Zaglavlje, 1024, 0, 0);
 		}
 		/// <summary>Inits RacunStavkaEntity's FieldInfo objects</summary>
