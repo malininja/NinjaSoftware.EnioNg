@@ -46,16 +46,15 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Configuration" />
     <Reference Include="SD.LLBLGen.Pro.DQE.PostgreSql">
       <HintPath>..\libs\SD.LLBLGen.Pro.DQE.PostgreSql.dll</HintPath>
     </Reference>
     <Reference Include="SD.LLBLGen.Pro.ORMSupportClasses">
       <HintPath>..\libs\SD.LLBLGen.Pro.ORMSupportClasses.dll</HintPath>
     </Reference>
-    <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup>
-    <AppDesigner Include="Properties\" />
     <Compile Include="DatabaseSpecific\ActionProcedures.cs">
       <GeneratedBy>LLBLGen Pro</GeneratedBy>
     </Compile>
@@ -74,6 +73,7 @@
     <Compile Include="DatabaseSpecific\RetrievalProcedures.cs">
       <GeneratedBy>LLBLGen Pro</GeneratedBy>
     </Compile>
+    <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

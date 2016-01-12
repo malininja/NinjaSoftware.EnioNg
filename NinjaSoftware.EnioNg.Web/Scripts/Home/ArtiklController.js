@@ -120,7 +120,7 @@ function ArtiklController($scope) {
 	};
 	
 	$scope.validation.isCijenaValid = function () {
-		return ninjaSoftware.validation.isNumeric($scope.selectedArtikl.Cijena);
+		return ninjaSoftware.validation.isHrNumeric($scope.selectedArtikl.Cijena);
 	}
 
 	$scope.validation.isCijenaExist = function () {

@@ -47,6 +47,9 @@
       <HintPath>..\libs\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System.Configuration" />
+    <Reference Include="SD.LLBLGen.Pro.ORMSupportClasses">
+      <HintPath>..\libs\SD.LLBLGen.Pro.ORMSupportClasses.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DatabaseGeneric\BusinessLogic\Enums.cs" />
@@ -56,7 +59,6 @@
     <Compile Include="DatabaseGeneric\BusinessLogic\ErrorEntity.cs" />
     <Compile Include="DatabaseGeneric\BusinessLogic\BrojacEntity.cs" />
     <Compile Include="DatabaseGeneric\BusinessLogic\ConfigEntity.cs" />
-    <AppDesigner Include="Properties\" />
     <Compile Include="DatabaseGeneric\AssemblyInfo.cs">
       <GeneratedBy>LLBLGen Pro</GeneratedBy>
     </Compile>
@@ -192,6 +194,7 @@
     <Compile Include="DatabaseGeneric\RelationClasses\UserRelations.cs">
       <GeneratedBy>LLBLGen Pro</GeneratedBy>
     </Compile>
+    <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

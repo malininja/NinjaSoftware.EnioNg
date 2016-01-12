@@ -41,6 +41,7 @@
             data: { "pdvId": pdvId },
             success: function (result) {
                 var fn = function () {
+                	result.Stopa = ninjaSoftware.formatNo.toHrCurrencyFormat(result.Stopa);
                     $scope.selectedPdv = result;
                 };
 
@@ -77,8 +78,9 @@
     };
 
     $scope.validation.isStopaValid = function () {
-        if (ninjaSoftware.validation.isNumeric($scope.selectedPdv.Stopa)) {
-            return ($scope.selectedPdv.Stopa >= 0 && $scope.selectedPdv.Stopa < 100);
+        if (ninjaSoftware.validation.isHrNumeric($scope.selectedPdv.Stopa)) {
+        	var stopa = ninjaSoftware.parser.parseHrFloat($scope.selectedPdv.Stopa);
+            return (stopa >= 0 && stopa < 100);
         } else {
             return false;
         }

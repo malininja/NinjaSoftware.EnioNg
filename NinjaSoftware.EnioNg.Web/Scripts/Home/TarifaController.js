@@ -49,6 +49,7 @@
             data: { "tarifaId": tarifaId },
             success: function (result) {
                 var fn = function () {
+                	result.Stopa = ninjaSoftware.formatNo.toHrCurrencyFormat(result.Stopa);
                     $scope.selectedTarifa = result;
                 };
 
@@ -80,8 +81,9 @@
     };
 
     $scope.validation.isStopaValid = function () {
-        if (ninjaSoftware.validation.isNumeric($scope.selectedTarifa.Stopa)) {
-            return $scope.selectedTarifa.Stopa >= 0 && $scope.selectedTarifa.Stopa < 100;
+        if (ninjaSoftware.validation.isHrNumeric($scope.selectedTarifa.Stopa)) {
+        	var stopa = ninjaSoftware.parser.parseHrFloat($scope.selectedTarifa.Stopa);
+            return stopa >= 0 && stopa < 100;
         } else {
             return false;
         }

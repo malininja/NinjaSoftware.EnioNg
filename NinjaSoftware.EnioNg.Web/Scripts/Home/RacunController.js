@@ -5,6 +5,7 @@ function RacunController($scope) {
 	
 	$scope.racunGlava = {
 		Datum: dateString,
+		Vrijeme: "12:00",
 		JePdvRacun: true
 	};
 	
@@ -14,6 +15,7 @@ function RacunController($scope) {
 	$scope.tarifaCollection = [];
 	$scope.statusCollection = [];
 	$scope.artiklCollection = [];
+	$scope.ukupniIznos = "0,00";
 	_me.pdvCollection = [];
 	
 	$scope.loadRacun = function(racunGlavaId) {
@@ -29,6 +31,7 @@ function RacunController($scope) {
 				};
 				
 				ninjaSoftware.angularjs.safeApply($scope, fn);
+				$scope.calculateTotal();
 			},
 			error: function () {
 				alert("nekaj se pojebalo");
@@ -81,7 +84,10 @@ function RacunController($scope) {
 			url: "/JsonService/GetTarifaCollection",
 			success: function (result) {
 				var fn = function () {
-					$scope.tarifaCollection = result;
+					if (result && result.length > 0) {
+						$scope.tarifaCollection = result;
+						$scope.racunGlava.TarifaId = result[0].TarifaId;
+					}
 				};
 				
 				ninjaSoftware.angularjs.safeApply($scope, fn);
@@ -97,7 +103,10 @@ function RacunController($scope) {
 			url: "/JsonService/GetStatusCollection",
 			success: function (result) {
 				var fn = function () {
-					$scope.statusCollection = result;
+					if (result && result.length > 0) {
+						$scope.statusCollection = result;
+						$scope.racunGlava.StatusId = result[0].StatusId;
+					}
 				};
 				
 				ninjaSoftware.angularjs.safeApply($scope, fn);
@@ -142,12 +151,43 @@ function RacunController($scope) {
 		return true;
 	};
 	
+	$scope.calculateTotal = function () {
+		var tarifaStopa;
+		if ($scope.racunGlava.TarifaStopa) {
+			tarifaStopa = $scope.racunGlava.TarifaStopa;
+		} else {
+			for (var i = 0; i < $scope.tarifaCollection.length; i++) {
+				if ($scope.tarifaCollection[i].TarifaId === $scope.racunGlava.TarifaId) {
+					tarifaStopa = $scope.tarifaCollection[i].Stopa;
+				}
+			}
+		}
+				
+		if ($scope.racunStavkaCollection.length > 0) {
+			var total = 0;
+			
+			for (var i = 0; i < $scope.racunStavkaCollection.length; i++) {
+				var racunStavka = $scope.racunStavkaCollection[i];
+				var kolicina = ninjaSoftware.parser.parseHrFloat(racunStavka.Kolicina);
+				var cijena = ninjaSoftware.parser.parseHrFloat(racunStavka.Cijena);
+				
+				var tarifaIznos = kolicina * cijena * tarifaStopa / 100;
+				var pdvIznos = (kolicina * cijena + tarifaIznos) * racunStavka.PdvPosto / 100;
+				var iznos = kolicina * cijena + tarifaIznos + pdvIznos;
+		
+				total = total + iznos;
+			}
+			
+			$scope.ukupniIznos = ninjaSoftware.formatNo.toHrCurrencyFormat(total);
+		}
+	};
+	
 	_me.loadPartnerCollection();
 	_me.loadTarifaCollection();
 	_me.loadStatusCollection();	
 	_me.loadArtiklCollection();
     _me.loadPdvCollection();
-    	
+    
 	$scope.onArtiklChange = function () {
 		var artikl;
 		
@@ -168,7 +208,7 @@ function RacunController($scope) {
 		$scope.newRacunStavka.Artikl = artikl;
 		$scope.newRacunStavka.ArtiklId = artikl.ArtiklId;
 		$scope.newRacunStavka.Kolicina = null;
-		$scope.newRacunStavka.Cijena = ninjaSoftware.formatNo.hrCurrencyFormat(artikl.Cijena);
+		$scope.newRacunStavka.Cijena = ninjaSoftware.formatNo.toHrCurrencyFormat(artikl.Cijena);
 		$scope.newRacunStavka.PdvPosto = pdv.Stopa;
 		
 		$(document).trigger("ArtiklChanged");
@@ -207,17 +247,18 @@ function RacunController($scope) {
 		if (arrayLength) {
 			pozicija = $scope.racunStavkaCollection[arrayLength - 1].Pozicija + 1;
 		}
-		
+			
 		var stavka = {
 			Pozicija: pozicija,
 			Artikl: $scope.newRacunStavka.Artikl,
 			ArtiklId:  $scope.newRacunStavka.ArtiklId,
 			Kolicina: $scope.newRacunStavka.Kolicina,
-			Cijena: ninjaSoftware.formatNo.hrCurrencyFormat($scope.newRacunStavka.Cijena),
+			Cijena: ninjaSoftware.formatNo.toHrCurrencyFormat($scope.newRacunStavka.Cijena),
 			PdvPosto: $scope.newRacunStavka.PdvPosto
 		};
 		
 		$scope.racunStavkaCollection.push(stavka);
+		$scope.calculateTotal();
 	};
 	
 	$scope.deleteRacunStavka = function (pozicija) {
@@ -227,6 +268,8 @@ function RacunController($scope) {
 				return false;
 			}
 		});
+		
+		$scope.calculateTotal();
 	};
 	
 	$(document).trigger("RacunControlerLoaded", $scope);

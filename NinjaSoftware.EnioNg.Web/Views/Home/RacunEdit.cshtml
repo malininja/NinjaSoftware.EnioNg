@@ -5,11 +5,20 @@
 <script type="text/javascript" src="~/Scripts/Home/RacunController.js"></script>
 
 <div id="RacunEdit">
-	<h2>racun edit</h2>
-	
 	<form ng-app="" ng-controller="RacunController" name="racunForm">
 	<table border="1">
 		<tbody>
+			<tr>
+				<td colspan="3">
+					<h2><span id="title">Unos novog računa</span></h2>
+				</td>
+				<td colspan="2">
+					<input type="button" value="Pohrani" ng-click="save()" />
+				</td>
+				<td colspan="3">
+					<a id="pdf" href="javascript:void()">PDF</a>
+				</td>
+			</tr>
 	        <tr>
 	            <td style="margin-left: 80px">
 	                <span >Partner:</span>
@@ -31,9 +40,6 @@
 	            <td>
 	                <select ng-model="racunGlava.TarifaId"
 	                	ng-options="tarifa.TarifaId as tarifa.Naziv for tarifa in tarifaCollection"></select>
-	            </td>
-	            <td>
-	                <input type="button" value="Pohrani" ng-click="save()" />
 	            </td>
 	        </tr>
 	        <tr>
@@ -63,9 +69,6 @@
 	                <select ng-model="racunGlava.StatusId"
 	                	ng-options="status.StatusId as status.Name for status in statusCollection"></select>
 	            </td>
-	            <td align="center">
-	                ispis (pdf download)
-	            </td>
 	        </tr>
 	        <tr>
 	            <td>
@@ -83,9 +86,14 @@
 	        </tr>
 	        <tr>
 	            <td>Dodatak zaglavlju:</td>
-	            <td colspan="8">
+	            <td colspan="5">
 	                <textarea ng-model="racunGlava.Zaglavlje"></textarea>
 	            </td>        
+	            <td colspan="3">
+	            	<h2>
+	            		Ukupno: <span ng-bind="ukupniIznos"></span> kn
+	            	</h2>
+	            </td>
 	        </tr>
 		</tbody>
 	</table>
@@ -143,10 +151,10 @@
     			<td>{{ racunStavka.ArtiklId }}</td>
     			<td>{{ racunStavka.Artikl.Naziv }}</td>
     			<td>
-    				<input class="number" ng-model="racunStavka.Kolicina" ng-pattern="/^[0-9]{1,8}(,{1}[0-9]{2})?$/" /> 
+    				<input class="number" ng-model="racunStavka.Kolicina" ng-pattern="/^[0-9]{1,8}(,{1}[0-9]{2})?$/" ng-change="calculateTotal()" /> 
     			</td>
     			<td>
-    				<input id="pero" class="number" ng-model="racunStavka.Cijena" ng-pattern="/^[0-9]{1,8}(,{1}[0-9]{2})?$/" /> 
+    				<input class="number" ng-model="racunStavka.Cijena" ng-pattern="/^[0-9]{1,8}(,{1}[0-9]{2})?$/" ng-change="calculateTotal()" /> 
     			</td>
     			<td>{{ racunStavka.PdvPosto | number:2 }}</td>
     			<td>
@@ -161,6 +169,11 @@
 <script type="text/javascript">
 	$(document).ready(function () {
 		$("section").removeClass("content-wrapper")
+		
+		$("#pdf").click(function () {
+			var racunGlavaId = ninjaSoftware.url.getParameterValue("racunGlavaId");
+			window.location.href = "/Home/RacunReport?racunGlavaId=" + racunGlavaId;
+		});
 	});
 	
 	$(document).on("RacunControlerLoaded", function(event, scope) {
@@ -168,6 +181,7 @@
 		
 		if (racunGlavaId) {
 			scope.loadRacun(racunGlavaId);
+			$("#title").text("Račun br. " + racunGlavaId);
 		}
 	});
 	

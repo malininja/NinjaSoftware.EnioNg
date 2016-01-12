@@ -101,6 +101,11 @@ nsValidation.isNumeric = function (input) {
     return !isNaN(parseFloat(input)) && isFinite(input);
 };
 
+nsValidation.isHrNumeric = function (input) {
+	input = input.toString().replace(",", ".");
+	
+	return nsValidation.isNumeric(input);
+};
 /* END js validation */
 
 /* START AJAX helpers */
@@ -164,7 +169,7 @@ nsFormatNo.toHrNoFormat = function (collection, memberToFormat) {
 	return collection;
 };
 
-nsFormatNo.hrCurrencyFormat = function (hrNo) {
+nsFormatNo.toHrCurrencyFormat = function (hrNo) {
 	if (hrNo) {
 		var enNo = hrNo.toString().replace(",", ".");
 		var parsedValue = parseFloat(enNo);
@@ -175,6 +180,17 @@ nsFormatNo.hrCurrencyFormat = function (hrNo) {
 }
 
 /* END format number */
+
+/* START PARSER helpers */
+
+var nsParser = namespace("ninjaSoftware.parser");
+
+nsParser.parseHrFloat = function (numberString) {
+	var enNo = numberString.toString().replace(",", ".");
+	return parseFloat(enNo);
+}
+
+/* START PARSER helpers */
 
 /* START DATE helpers*/
 
