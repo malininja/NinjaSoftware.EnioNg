@@ -1,5 +1,5 @@
 ﻿function TarifaController($scope) {
-    var self = {};
+    var _me = {};
 
     $scope.selectedTarifa = {};
 

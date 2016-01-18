@@ -15,11 +15,13 @@
     $("#RacunTable").jqGrid({
         url: "/JsonService/GetRacunGlavaCollectionForPaging",
         datatype: "json",
-        colNames: ["RacunGlavaId", "Datum", "Partner"],
+        colNames: ["Broj", "Partner", "Datum", "Iznos", "Status"],
         colModel: [
-            { name: "RacunGlavaId", index: "RacunGlavaId", hidden: true, width: 0 },
-            { name: "Datum", index: "Datum", width: 200 },
-            { name: "PartnerId", index: "PartnerId", width: 200 }
+            { name: "RacunGlavaId", index: "RacunGlavaId", width: 50 },
+            { name: "Partner.Naziv", index: "Partner.Naziv", width: 200 },
+            { name: "Datum", index: "Datum", width: 200, formatter: "date", formatoptions: { srcformat: "Y-m-d", newformat: "d.m.Y" } },
+            { name: "Iznos", index: "Iznos", width: 200, align: "right", formatter: "number", formatoptions: { decimalSeparator: ",", decimalPlaces: 2 } },
+            { name: "Status.Name", index: "Status.Name", width: 200 },
         ],
         pager: "#RacunTablePager",
         caption: "Lista računa",

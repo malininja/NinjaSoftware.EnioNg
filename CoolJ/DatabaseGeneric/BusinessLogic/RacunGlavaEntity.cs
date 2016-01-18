@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using SD.LLBLGen.Pro.ORMSupportClasses;
+using Newtonsoft.Json;
 
 namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 {
@@ -29,6 +30,31 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
             prefetchPath.Add(RacunGlavaEntity.PrefetchPathStatus);
 
             return FetchRacunGlava(adapter, prefetchPath, racunGlavaId);
+        }
+
+        private decimal? _iznos = null;
+
+        [JsonProperty]
+        public decimal? Iznos
+        {
+            get 
+            {
+                if (!_iznos.HasValue)
+                {
+                    if (this.RacunStavkaCollection != null)
+                    {
+                        decimal iznos = 0;
+                        foreach (RacunStavkaEntity racunStavka in this.RacunStavkaCollection)
+                        {
+                            iznos += racunStavka.Iznos;
+                        }
+
+                        _iznos = iznos;
+                    }
+                }
+
+                return _iznos;
+            }
         }
     }
 }

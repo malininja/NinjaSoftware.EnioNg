@@ -1,5 +1,5 @@
 function PartnerController ($scope) {
-	var self = {};
+	var _me = {};
 	
 	$scope.selectedPartner = {};
 	
@@ -50,7 +50,7 @@ function PartnerController ($scope) {
 	        url: "/JsonService/GetPartner",
 	        data: { "partnerId": partnerId },
 	        success: function (result) {
-	            fn = function () {
+	            var fn = function () {
 	                $scope.selectedPartner = result;
 	            };
 
@@ -137,5 +137,5 @@ function PartnerController ($scope) {
 		}
 	}
 	
-	return self;
+	return _me;
 }

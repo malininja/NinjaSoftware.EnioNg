@@ -1,5 +1,5 @@
 ﻿function PdvController($scope) {
-    var self = {};
+    var _me = {};
 
     $scope.selectedPdv =  {};
 
@@ -86,5 +86,5 @@
         }
     };
 
-    return self;
+    return _me;
 }

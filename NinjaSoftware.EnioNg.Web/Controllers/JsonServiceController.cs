@@ -452,5 +452,43 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
         }
 
         #endregion
+
+        #region Config
+
+        [HttpGet]
+        public ActionResult GetConfig()
+        {
+            DataAccessAdapterBase adapter = new DataAccessAdapter();
+            using (adapter)
+            {
+                ConfigEntity config = ConfigEntity.FetchConfigCollection(adapter, null, null).SingleOrDefault();
+                string json = JsonConvert.SerializeObject(config);
+                return CreateJsonResponse(json);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult SaveConfig(ConfigEntity config)
+        {
+            bool isSaved = false;
+
+            if (config.AktivnaGodina >= 2005 && config.AktivnaGodina <= 2025)
+            {
+                DataAccessAdapterBase adapter = Helper.GetDataAccessAdapter(User.Identity.Name);
+                using (adapter)
+                {
+
+                    ConfigEntity config4Save = ConfigEntity.FetchConfigCollection(adapter, null, null).SingleOrDefault();
+                    config4Save.UpdateDataFromOtherObject(config, null, null);
+
+                    isSaved = adapter.SaveEntity(config4Save);
+                }
+            }
+
+            string json = JsonResponse(isSaved);
+            return CreateJsonResponse(json);
+        }
+
+        #endregion
     }
 }

@@ -6,6 +6,7 @@ using NinjaSoftware.Api.Mvc;
 using NinjaSoftware.EnioNg.CoolJ.HelperClasses;
 using SD.LLBLGen.Pro.ORMSupportClasses;
 using NinjaSoftware.EnioNg.CoolJ.EntityClasses;
+using NinjaSoftware.EnioNg.CoolJ;
 
 namespace NinjaSoftware.EnioNg.Web.Models
 {
@@ -28,7 +29,12 @@ namespace NinjaSoftware.EnioNg.Web.Models
             string sortField, 
             bool isSortAscending)
         {
-            this.DataSource = RacunGlavaEntity.FetchRacunGlavaCollectionForPaging(adapter, bucket, null, pageNumber, pageSize, sortField, isSortAscending);
+            PrefetchPath2 prefetchPath = new PrefetchPath2(EntityType.RacunGlavaEntity);
+            prefetchPath.Add(RacunGlavaEntity.PrefetchPathPartner);
+            prefetchPath.Add(RacunGlavaEntity.PrefetchPathStatus);
+            prefetchPath.Add(RacunGlavaEntity.PrefetchPathRacunStavkaCollection);
+
+            this.DataSource = RacunGlavaEntity.FetchRacunGlavaCollectionForPaging(adapter, bucket, prefetchPath, pageNumber, pageSize, sortField, isSortAscending);
             this.NoOfRecords = RacunGlavaEntity.GetNumberOfEntities(adapter, bucket);
         }
     }

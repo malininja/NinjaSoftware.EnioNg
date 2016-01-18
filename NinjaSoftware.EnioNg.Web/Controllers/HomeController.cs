@@ -45,6 +45,11 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
             return View();
         }
 
+        public ActionResult Config()
+        {
+            return View();
+        }
+
         public FileContentResult RacunReport(long racunGlavaId)
         {
             string reportPath = Server.MapPath("~/ReportTemplates/Racun.xls");
