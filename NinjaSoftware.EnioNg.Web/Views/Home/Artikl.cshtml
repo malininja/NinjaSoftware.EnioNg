@@ -119,9 +119,9 @@
 			{ name: "ArtiklId", index: "ArtiklId", hidden: true, width: 0 },
 			{ name: "Naziv", index: "Naziv", width: 250 },
 			{ name: "Jm", index: "Jm", width: 90 },
-			{ name: "Pdv.Stopa", index: "Pdv.Stopa", width: 90, search: false, sortable: false },
-			{ name: "Cijena", index: "Cijena", width: 100 },
-			{ name: "IsActive", index: "IsActive", width: 50, formatter: 'select', editoptions: { value: 'true:Da;false:Ne'} }
+			{ name: "Pdv.Stopa", index: "Pdv.Stopa", width: 90, search: false, sortable: false, align: "right", formatter: "number", formatoptions: { decimalSeparator: ",", decimalPlaces: 2 } },
+			{ name: "Cijena", index: "Cijena", width: 100, align: "right", formatter: "number", formatoptions: { decimalSeparator: ",", decimalPlaces: 2 } },
+			{ name: "IsActive", index: "IsActive", width: 50, formatter: 'select', editoptions: { value: 'true:Da;false:Ne'}, align: "center" }
 		],
 		pager: "#ArtiklTablePager",
 		caption: "Lista artikala",
