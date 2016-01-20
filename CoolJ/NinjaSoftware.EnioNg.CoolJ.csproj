@@ -194,6 +194,7 @@
     <Compile Include="DatabaseGeneric\RelationClasses\UserRelations.cs">
       <GeneratedBy>LLBLGen Pro</GeneratedBy>
     </Compile>
+    <Compile Include="DatabaseGeneric\HelperClasses\Helper.cs" />
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>

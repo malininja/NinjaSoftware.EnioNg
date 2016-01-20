@@ -20,6 +20,12 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
 {
     public class JsonServiceController : BaseController
     {
+		private IPredicateExpression CreatePredicateFromJqGridFilterString(string filters, Type entityFieldsType)
+		{
+			string entitiesNamespace = System.Configuration.ConfigurationManager.AppSettings ["OrmEntitiesHelperClassesNamespace"];
+			return PredicateHelper.CreatePredicateFromJqGridFilterString (filters, entityFieldsType, DbGenericHelper.GetDbGenericTypeByName, entitiesNamespace);
+		}
+
         #region Artikl
 
         [HttpGet]
@@ -56,7 +62,7 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
                 RelationPredicateBucket bucket = new RelationPredicateBucket();
                 if (filters != null)
                 {
-                    bucket.PredicateExpression.Add(PredicateHelper.CreatePredicateFromJqGridFilterString(filters, typeof(ArtiklFields)));
+					bucket.PredicateExpression.Add(CreatePredicateFromJqGridFilterString(filters, typeof(ArtiklFields)));
                 }
 
                 bool? isSortAscending = PagerBase.IsJqgridSortAscending(sord);
@@ -154,7 +160,7 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
                 if (filters != null)
                 {
                     bucket = new RelationPredicateBucket();
-                    bucket.PredicateExpression.Add(PredicateHelper.CreatePredicateFromJqGridFilterString(filters, typeof(PartnerFields)));
+                    bucket.PredicateExpression.Add(CreatePredicateFromJqGridFilterString(filters, typeof(PartnerFields)));
                 }
                 bool isSortAscending = PagerBase.IsJqgridSortAscending(sord);
 
@@ -242,7 +248,7 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
                 RelationPredicateBucket bucket = new RelationPredicateBucket();
                 if (filters != null)
                 {
-                    bucket.PredicateExpression.Add(PredicateHelper.CreatePredicateFromJqGridFilterString(filters, typeof(PdvFields)));
+                    bucket.PredicateExpression.Add(CreatePredicateFromJqGridFilterString(filters, typeof(PdvFields)));
                 }
 
                 bool isSortAscending = PagerBase.IsJqgridSortAscending(sord);
@@ -280,7 +286,7 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
                 RelationPredicateBucket bucket = new RelationPredicateBucket();
                 if (!string.IsNullOrWhiteSpace(filters))
                 {
-                    bucket.PredicateExpression.Add(PredicateHelper.CreatePredicateFromJqGridFilterString(filters, typeof(TarifaFields)));
+                    bucket.PredicateExpression.Add(CreatePredicateFromJqGridFilterString(filters, typeof(TarifaFields)));
                 }
 
                 bool isSortAscending = PagerBase.IsJqgridSortAscending(sord);
@@ -423,7 +429,8 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
                 RelationPredicateBucket bucket = new RelationPredicateBucket();
                 if (!string.IsNullOrWhiteSpace(filters))
                 { 
-                    bucket.PredicateExpression.Add(PredicateHelper.CreatePredicateFromJqGridFilterString(filters, typeof(RacunGlavaFields)));
+					bucket.Relations.Add (RacunGlavaEntity.Relations.PartnerEntityUsingPartnerId);
+                    bucket.PredicateExpression.Add(CreatePredicateFromJqGridFilterString(filters, typeof(RacunGlavaFields)));
                 }
 
                 bool isSortAscending = PagerBase.IsJqgridSortAscending(sord);
