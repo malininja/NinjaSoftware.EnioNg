@@ -95,7 +95,7 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
                 isSaved = adapter.SaveEntity(artikl4Save);
             }
 
-            string response = JsonResponse(isSaved);
+            string response = JsonResponseString(isSaved);
             return CreateJsonResponse(response);
         }
 
@@ -127,7 +127,7 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
                 isSaved = adapter.SaveEntity(partner4Save);
             }
 
-            string response = JsonResponse(isSaved);
+            string response = JsonResponseString(isSaved);
             return CreateJsonResponse(response);
         }
 
@@ -217,7 +217,7 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
                 isSaved = adapter.SaveEntity(pdv4Save);
             }
 
-            string response = JsonResponse(isSaved);
+            string response = JsonResponseString(isSaved);
             return CreateJsonResponse(response);
         }
 
@@ -316,7 +316,7 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
                 isSaved = adapter.SaveEntity(tarifa4Save);
             }
 
-            string response = JsonResponse(isSaved);
+            string response = JsonResponseString(isSaved);
             return CreateJsonResponse(response);
         }
 
@@ -340,10 +340,11 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
         public ActionResult SaveRacun(string racunGlavaJson, string racunStavkaCollectionJson)
         {
             DataAccessAdapterBase adapter = Helper.GetDataAccessAdapter(User.Identity.Name);
+            RacunGlavaEntity racunGlava4Save;
+            bool isSaved = false;
+			
             using (adapter)
             {
-                RacunGlavaEntity racunGlava4Save;
-
                 JsonSerializerSettings jsonSettings = new JsonSerializerSettings();
                 CultureInfo currentCulture = System.Threading.Thread.CurrentThread.CurrentCulture;
                 jsonSettings.Culture = currentCulture;
@@ -367,28 +368,42 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
 
                 racunGlava4Save.TarifaStopa = TarifaEntity.FetchTarifa(adapter, null, racunGlava4Save.TarifaId).Stopa;
 
-                adapter.SaveEntity(racunGlava4Save, true, false);
+                isSaved = adapter.SaveEntity(racunGlava4Save, true, false);
 
-                IEnumerable<RacunStavkaEntity> racunStavkaCollectionToDelete = 
+                if (isSaved)
+                {
+                    IEnumerable<RacunStavkaEntity> racunStavkaCollectionToDelete = 
                     racunGlava4Save.RacunStavkaCollection.GetEntitiesNotIncludedInJson(racunStavkaCollectionJson, jsonSettings);
 
-                foreach (RacunStavkaEntity racunStavka in racunStavkaCollectionToDelete)
-                {
-                    racunGlava4Save.RacunStavkaCollection.Remove(racunStavka);
-                    adapter.DeleteEntity(racunStavka);
-                }
+                    foreach (RacunStavkaEntity racunStavka in racunStavkaCollectionToDelete)
+                    {
+                        if (isSaved)
+                        {
+                            racunGlava4Save.RacunStavkaCollection.Remove(racunStavka);
+                            isSaved = adapter.DeleteEntity(racunStavka);
+                        }
+                    }
 
-                racunGlava4Save.RacunStavkaCollection.UpdateEntityCollectionFromJson(racunStavkaCollectionJson, RacunStavkaFields.RacunStavkaId, null, null, jsonSettings);
-                foreach (RacunStavkaEntity racunStavka in racunGlava4Save.RacunStavkaCollection)
-                {
-                    racunStavka.RecalculateData(racunGlava.TarifaStopa);
-                    adapter.SaveEntity(racunStavka, false, false);
+                    racunGlava4Save.RacunStavkaCollection.UpdateEntityCollectionFromJson(racunStavkaCollectionJson, RacunStavkaFields.RacunStavkaId, null, null, jsonSettings);
+                    foreach (RacunStavkaEntity racunStavka in racunGlava4Save.RacunStavkaCollection)
+                    {
+                        if (isSaved)
+                        {
+                            racunStavka.RecalculateData(racunGlava.TarifaStopa);
+                            isSaved = adapter.SaveEntity(racunStavka, false, false);
+                        }
+                    }
                 }
-
             } 
-
-            string response = JsonResponse(true);
-            return CreateJsonResponse(response);
+		           
+            dynamic response = new 
+            {
+                IsSaved = isSaved,
+                RacunGlavaId = racunGlava4Save.RacunGlavaId
+            };
+            
+            string responseString = JsonConvert.SerializeObject(response);
+            return CreateJsonResponse(responseString);
         }
 
         [HttpGet]
@@ -486,7 +501,7 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
                 }
             }
 
-            string json = JsonResponse(isSaved);
+            string json = JsonResponseString(isSaved);
             return CreateJsonResponse(json);
         }
 
