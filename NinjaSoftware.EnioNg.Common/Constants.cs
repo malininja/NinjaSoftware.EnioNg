@@ -7,9 +7,6 @@ namespace NinjaSoftware.EnioNg.Common
 {
     public class Constants
     {
-        public class Config
-        {
-            public const string ConcurrencyFieldName = "ConcurrencyFieldName";
-        }
+        public const string ConcurrencyFieldName = "ConcurrencyFieldName";
     }
 }

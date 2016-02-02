@@ -101,7 +101,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
         protected override IConcurrencyPredicateFactory CreateConcurrencyPredicateFactory()
         {
-            string concurrencyFieldName = System.Configuration.ConfigurationManager.AppSettings[NinjaSoftware.EnioNg.Common.Constants.Config.ConcurrencyFieldName];
+            string concurrencyFieldName = System.Configuration.ConfigurationManager.AppSettings[NinjaSoftware.EnioNg.Common.Constants.ConcurrencyFieldName];
             return new NinjaSoftware.Api.CoolJ.OptimisticConcurrencyPredicateFactory(concurrencyFieldName, true, false);
         }
 

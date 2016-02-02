@@ -50,6 +50,8 @@ function RacunController($scope) {
 				success: function(result) {
 					if (result != null && result.IsSaved === true) {
 						alert("Podaci su uspješno pohranjeni");
+						window.location.href = "/Home/RacunEdit?racunGlavaId=" + result.RacunGlavaId;
+						
 					} else {
 						alert("Desila se greška pri pohrani podataka");
 					}

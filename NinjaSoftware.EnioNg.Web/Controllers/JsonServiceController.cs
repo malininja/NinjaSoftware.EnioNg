@@ -8,13 +8,13 @@ using NinjaSoftware.EnioNg.CoolJ.HelperClasses;
 using SD.LLBLGen.Pro.ORMSupportClasses;
 using NinjaSoftware.Api.CoolJ;
 using NinjaSoftware.EnioNg.CoolJ.DatabaseSpecific;
-using Newtonsoft.Json;
 using System.Configuration;
 using NinjaSoftware.EnioNg.CoolJ;
 using NinjaSoftware.EnioNg.Web.Helpers;
 using NinjaSoftware.EnioNg.Web.Models;
 using NinjaSoftware.Api.Mvc;
 using System.Globalization;
+using Newtonsoft.Json;
 
 namespace NinjaSoftware.EnioNg.Web.Controllers
 {
@@ -29,9 +29,7 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
             using (adapter)
             {
                 ArtiklEntity artikl = ArtiklEntity.FetchArtikl(adapter, null, artiklId);
-
-                string response = JsonConvert.SerializeObject(artikl);
-                return CreateJsonResponse(response);
+                return CreateJsonResponse(artikl);
             }
         }
 
@@ -42,8 +40,7 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
             using (adapter)
             {
                 IEnumerable<ArtiklEntity> artiklCollection = ArtiklEntity.FetchArtiklCollection(adapter, null, null);
-                string response = JsonConvert.SerializeObject(artiklCollection);
-                return CreateJsonResponse(response);
+                return CreateJsonResponse(artiklCollection);
             }
         }
 
@@ -65,7 +62,7 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
                 prefetchPath.Add(ArtiklEntity.PrefetchPathPdv);
 
                 ArtiklPager artiklPager = new ArtiklPager();
-                artiklPager.LoadData(adapter, bucket, page, this.JqGridPageSize, sidx, isSortAscending);
+                artiklPager.LoadData(adapter, bucket, page, Common.Config.JqGridPageSize, sidx, isSortAscending);
 
                 return CreateJsonResponse(artiklPager.CreateJqGridRespose());
             }
@@ -95,7 +92,7 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
                 isSaved = adapter.SaveEntity(artikl4Save);
             }
 
-            string response = JsonResponseString(isSaved);
+            dynamic response = new { IsSaved = isSaved };
             return CreateJsonResponse(response);
         }
 
@@ -127,7 +124,7 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
                 isSaved = adapter.SaveEntity(partner4Save);
             }
 
-            string response = JsonResponseString(isSaved);
+            dynamic response = new { IsSaved = isSaved };
             return CreateJsonResponse(response);
         }
 
@@ -138,9 +135,7 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
             using (adapter)
             {
                 PartnerEntity partner = PartnerEntity.FetchPartner(adapter, null, partnerId);
-                string response = JsonConvert.SerializeObject(partner);
-
-                return CreateJsonResponse(response);
+                return CreateJsonResponse(partner);
             }
         }
 
@@ -159,7 +154,7 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
                 bool isSortAscending = PagerBase.IsJqgridSortAscending(sord);
 
                 PartnerPager partnerPager = new PartnerPager();
-                partnerPager.LoadData(adapter, bucket, page, this.JqGridPageSize, sidx, isSortAscending);
+                partnerPager.LoadData(adapter, bucket, page, Common.Config.JqGridPageSize, sidx, isSortAscending);
 
                 return CreateJsonResponse(partnerPager.CreateJqGridRespose());
             }
@@ -172,8 +167,7 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
             using (adapter)
             {
                 IEnumerable<PartnerEntity> partnerCollection = PartnerEntity.FetchPartnerCollection(adapter, null, null).OrderBy(p => p.Naziv);
-                string partnerCollectionJson = JsonConvert.SerializeObject(partnerCollection);
-                return CreateJsonResponse(partnerCollectionJson);
+                return CreateJsonResponse(partnerCollection);
             }
         }
 
@@ -188,9 +182,7 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
             using (adapter)
             {
                 PdvEntity pdv = PdvEntity.FetchPdv(adapter, null, pdvId);
-
-                string response = JsonConvert.SerializeObject(pdv);
-                return CreateJsonResponse(response);
+                return CreateJsonResponse(pdv);
             }
         }
 
@@ -217,7 +209,7 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
                 isSaved = adapter.SaveEntity(pdv4Save);
             }
 
-            string response = JsonResponseString(isSaved);
+            dynamic response = new { IsSaved = isSaved };
             return CreateJsonResponse(response);
         }
 
@@ -228,8 +220,7 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
             using (adapter)
             {
                 IEnumerable<PdvEntity> pdvCollection = PdvEntity.FetchPdvCollection(adapter, null, null);
-                string json = JsonConvert.SerializeObject(pdvCollection);
-                return CreateJsonResponse(json);
+                return CreateJsonResponse(pdvCollection);
             }
         }
 
@@ -248,7 +239,7 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
                 bool isSortAscending = PagerBase.IsJqgridSortAscending(sord);
 
                 PdvPager pdvPager = new PdvPager();
-                pdvPager.LoadData(adapter, bucket, page, this.JqGridPageSize, sidx, isSortAscending);
+                pdvPager.LoadData(adapter, bucket, page, Common.Config.JqGridPageSize, sidx, isSortAscending);
 
                 return CreateJsonResponse(pdvPager.CreateJqGridRespose());
             }
@@ -265,9 +256,7 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
             using (adapter)
             {
                 TarifaEntity tarifa = TarifaEntity.FetchTarifa(adapter, null, tarifaId);
-
-                string response = JsonConvert.SerializeObject(tarifa);
-                return CreateJsonResponse(response);
+                return CreateJsonResponse(tarifa);
             }
         }
 
@@ -286,7 +275,7 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
                 bool isSortAscending = PagerBase.IsJqgridSortAscending(sord);
 
                 TarifaPager tarifaPager = new TarifaPager();
-                tarifaPager.LoadData(adapter, bucket, page, this.JqGridPageSize, sidx, isSortAscending);
+                tarifaPager.LoadData(adapter, bucket, page, Common.Config.JqGridPageSize, sidx, isSortAscending);
 
                 return CreateJsonResponse(tarifaPager.CreateJqGridRespose());
             }
@@ -316,7 +305,7 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
                 isSaved = adapter.SaveEntity(tarifa4Save);
             }
 
-            string response = JsonResponseString(isSaved);
+            dynamic response = new { IsSaved = isSaved };
             return CreateJsonResponse(response);
         }
 
@@ -327,8 +316,7 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
             using (adapter)
             {
                 IEnumerable<TarifaEntity> tarifaCollection = TarifaEntity.FetchTarifaCollection(adapter, null, null).OrderBy(t => t.Naziv);
-                string tarifaCollectionJson = JsonConvert.SerializeObject(tarifaCollection);
-                return CreateJsonResponse(tarifaCollectionJson);
+                return CreateJsonResponse(tarifaCollection);
             }
         }
 
@@ -402,8 +390,7 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
                 RacunGlavaId = racunGlava4Save.RacunGlavaId
             };
             
-            string responseString = JsonConvert.SerializeObject(response);
-            return CreateJsonResponse(responseString);
+            return CreateJsonResponse(response);
         }
 
         [HttpGet]
@@ -424,8 +411,7 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
                     RacunStavkaCollection = racunGlava.RacunStavkaCollection.OrderBy(rs => rs.Pozicija)
                 };
 
-                string toReturnJson = JsonConvert.SerializeObject(toReturn);
-                return CreateJsonResponse(toReturnJson);
+                return CreateJsonResponse(toReturn);
             }
         }
 
@@ -445,7 +431,7 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
                 bool isSortAscending = PagerBase.IsJqgridSortAscending(sord);
 
                 RacunGlavaPager pager = new RacunGlavaPager();
-                pager.LoadData(adapter, bucket, page, this.JqGridPageSize, sidx, isSortAscending);
+                pager.LoadData(adapter, bucket, page, Common.Config.JqGridPageSize, sidx, isSortAscending);
 
                 return CreateJsonResponse(pager.CreateJqGridRespose());
             }
@@ -462,8 +448,7 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
             using (adapter)
             {
                 IEnumerable<StatusRoEntity> statusCollection = StatusRoEntity.FetchStatusRoCollection(adapter, null, null).OrderBy(s => s.Name);
-                string statusCollectionJson = JsonConvert.SerializeObject(statusCollection);
-                return CreateJsonResponse(statusCollectionJson);
+                return CreateJsonResponse(statusCollection);
             }
         }
 
@@ -478,8 +463,7 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
             using (adapter)
             {
                 ConfigEntity config = ConfigEntity.FetchConfigCollection(adapter, null, null).SingleOrDefault();
-                string json = JsonConvert.SerializeObject(config);
-                return CreateJsonResponse(json);
+                return CreateJsonResponse(config);
             }
         }
 
@@ -501,8 +485,8 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
                 }
             }
 
-            string json = JsonResponseString(isSaved);
-            return CreateJsonResponse(json);
+            dynamic response = new { IsSaved = isSaved };
+            return CreateJsonResponse(response);
         }
 
         #endregion
