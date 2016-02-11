@@ -233,7 +233,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.HelperClasses
 		{
 			this.AddFieldIndexEnumForElementName(typeof(UserFieldIndex), "UserEntity");
 			this.AddElementFieldInfo("UserEntity", "ConcurrencyGuid", typeof(System.String), false, false, false, false,  (int)UserFieldIndex.ConcurrencyGuid, 50, 0, 0);
-			this.AddElementFieldInfo("UserEntity", "Password", typeof(System.String), false, false, false, false,  (int)UserFieldIndex.Password, 50, 0, 0);
+			this.AddElementFieldInfo("UserEntity", "Password", typeof(System.String), false, false, false, false,  (int)UserFieldIndex.Password, 256, 0, 0);
 			this.AddElementFieldInfo("UserEntity", "RoleId", typeof(System.Int64), false, true, false, false,  (int)UserFieldIndex.RoleId, 0, 0, 19);
 			this.AddElementFieldInfo("UserEntity", "UserId", typeof(System.Int64), true, false, false, false,  (int)UserFieldIndex.UserId, 0, 0, 19);
 			this.AddElementFieldInfo("UserEntity", "Username", typeof(System.String), false, false, false, false,  (int)UserFieldIndex.Username, 20, 0, 0);

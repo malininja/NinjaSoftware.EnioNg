@@ -568,7 +568,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The Password property of the Entity User<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "User"."Password"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Varchar, 0, 0, 50<br/>
+		/// Table field type characteristics (type, precision, scale, length): Varchar, 0, 0, 256<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): false, false, false</remarks>
 		[JsonProperty]
 		public virtual System.String Password

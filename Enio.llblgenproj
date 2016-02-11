@@ -95,7 +95,7 @@
     </OutputType>
     <OutputType Value="2">
       <LastUsedPreferences>
-        <DestinationRootFolder Value="c:\Users\marin.masic\Documents\GitHub\NinjaSoftware.EnioNg\DbScripts" />
+        <DestinationRootFolder Value="c:\Users\ninja\Documents\GitHub\NinjaSoftware.EnioNg\DbScripts" />
         <FrameworkName Value="DDL SQL" />
         <LanguageName Value="SQL" />
         <PlatformName Value="RDBMS" />
@@ -110,7 +110,7 @@
     </OutputType>
     <OutputType Value="3">
       <LastUsedPreferences>
-        <DestinationRootFolder Value="c:\Users\marin.masic\Documents\GitHub\NinjaSoftware.EnioNg\CoolJ" />
+        <DestinationRootFolder Value="c:\Users\ninja\Documents\GitHub\NinjaSoftware.EnioNg\CoolJ" />
         <FrameworkName Value="LLBLGen Pro Runtime Framework" />
         <LanguageName Value="C#" />
         <PlatformName Value=".NET 4.0" />
@@ -288,7 +288,7 @@
       <EntityDefinition Name="User" ObjectID="26073275-177b-4555-b359-c37faa397572">
         <Fields>
           <Field Name="ConcurrencyGuid" Type="string" MaxLength="50" />
-          <Field Name="Password" Type="string" MaxLength="50" />
+          <Field Name="Password" Type="string" MaxLength="256" />
           <Field Name="RoleId" Type="long" />
           <Field Name="UserId" Type="long" IsPrimaryKey="true" />
           <Field Name="Username" Type="string" MaxLength="20" />
@@ -533,7 +533,7 @@
                   <Fields>
                     <Field Name="ConcurrencyGuid" Ordinal="1" DbType="24" Length="50" />
                     <Field Name="UserId" Ordinal="2" IsPrimaryKey="true" DbType="10" Precision="19" />
-                    <Field Name="Password" Ordinal="3" DbType="24" Length="50" />
+                    <Field Name="Password" Ordinal="3" DbType="24" Length="256" />
                     <Field Name="Username" Ordinal="4" DbType="24" Length="20" />
                     <Field Name="RoleId" Ordinal="5" DbType="10" Precision="19" />
                   </Fields>

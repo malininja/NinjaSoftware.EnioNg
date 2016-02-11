@@ -59,6 +59,8 @@
     <Compile Include="DatabaseGeneric\BusinessLogic\ErrorEntity.cs" />
     <Compile Include="DatabaseGeneric\BusinessLogic\BrojacEntity.cs" />
     <Compile Include="DatabaseGeneric\BusinessLogic\ConfigEntity.cs" />
+    <Compile Include="DatabaseGeneric\HelperClasses\DbGenericHelper.cs" />
+    <AppDesigner Include="Properties\" />
     <Compile Include="DatabaseGeneric\AssemblyInfo.cs">
       <GeneratedBy>LLBLGen Pro</GeneratedBy>
     </Compile>
@@ -194,8 +196,6 @@
     <Compile Include="DatabaseGeneric\RelationClasses\UserRelations.cs">
       <GeneratedBy>LLBLGen Pro</GeneratedBy>
     </Compile>
-    <Compile Include="DatabaseGeneric\HelperClasses\DbGenericHelper.cs" />
-    <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

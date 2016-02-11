@@ -243,7 +243,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.DatabaseSpecific
 		{
 			this.AddElementMapping("UserEntity", @"Default", @"public", "User", 5, 0);
 			this.AddElementFieldMapping("UserEntity", "ConcurrencyGuid", "ConcurrencyGuid", false, "Varchar", 50, 0, 0, false, "", null, typeof(System.String), 0);
-			this.AddElementFieldMapping("UserEntity", "Password", "Password", false, "Varchar", 50, 0, 0, false, "", null, typeof(System.String), 1);
+			this.AddElementFieldMapping("UserEntity", "Password", "Password", false, "Varchar", 256, 0, 0, false, "", null, typeof(System.String), 1);
 			this.AddElementFieldMapping("UserEntity", "RoleId", "RoleId", false, "Bigint", 0, 19, 0, false, "", null, typeof(System.Int64), 2);
 			this.AddElementFieldMapping("UserEntity", "UserId", "UserId", false, "Bigint", 0, 19, 0, false, "public.GenericSequence", null, typeof(System.Int64), 3);
 			this.AddElementFieldMapping("UserEntity", "Username", "Username", false, "Varchar", 20, 0, 0, false, "", null, typeof(System.String), 4);
