@@ -121,9 +121,12 @@
     <Compile Include="Models\PartnerPager.cs" />
     <Compile Include="Models\PdvPager.cs" />
     <Compile Include="Models\RacunGlavaPager.cs" />
-    <Compile Include="Models\RacunViewModel.cs" />
     <Compile Include="Models\TarifaPager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Helpers\MembershipProviders.cs" />
+    <Compile Include="Helpers\RoleProvider.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Models\Account\LoginModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\jqGrid\ui.jqgrid.css" />
@@ -277,9 +280,12 @@
     <Content Include="Scripts\Home\RacunController.js" />
     <Content Include="Scripts\Home\ConfigController.js" />
     <Content Include="Views\Home\Config.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\Account\" />
+    <Folder Include="Views\Account\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

@@ -1,0 +1,44 @@
+﻿@model NinjaSoftware.EnioNg.Web.Models.Account.LoginModel
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-box">
+
+<h3>Autentifikacija korisnika</h3>
+
+    <div class="content">
+
+<section id="loginForm">
+<h3>Upišite korisničko ime i lozinku</h3>
+@using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl })) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend></legend>
+        <table>
+            <tr>
+                <td>Korisničko ime: </td>
+                <td>
+                @Html.TextBoxFor(m => m.UserName)
+                @Html.ValidationMessageFor(m => m.UserName)                
+                </td>
+            </tr>
+            <tr>
+                <td>Lozinka:</td>
+                <td>
+                @Html.PasswordFor(m => m.Password)
+                @Html.ValidationMessageFor(m => m.Password)                
+                </td>
+            </tr>
+        </table>
+
+        <input type="submit" value="Potvrdi" />
+    </fieldset>
+}
+</section>
+
+    </div>
+</div>

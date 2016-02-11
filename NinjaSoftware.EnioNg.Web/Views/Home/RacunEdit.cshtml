@@ -10,7 +10,8 @@
 		<tbody>
 			<tr>
 				<td colspan="3">
-					<h2><span id="title">Unos novog računa</span></h2>
+					<h2 ng-show="!racunGlava.RacunGlavaId" ><span>Unos novog računa</span></h2>
+					<h2 ng-show="racunGlava.RacunGlavaId" ><span>Račun br. {{ racunGlava.BrojRacuna }}/{{ racunGlava.Godina }}</span></h2>
 				</td>
 				<td colspan="2">
 					<input type="button" value="Pohrani" ng-click="save()" />
@@ -181,7 +182,6 @@
 		
 		if (racunGlavaId) {
 			scope.loadRacun(racunGlavaId);
-			$("#title").text("Račun br. " + racunGlavaId);
 		}
 	});
 	

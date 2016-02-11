@@ -25,8 +25,7 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
         [HttpGet]
         public ActionResult GetArtikl(long artiklId)
         {
-            DataAccessAdapterBase adapter = new DataAccessAdapter();
-            using (adapter)
+            using (DataAccessAdapterBase adapter = Helper.GetDataAccessAdapter())
             {
                 ArtiklEntity artikl = ArtiklEntity.FetchArtikl(adapter, null, artiklId);
                 return CreateJsonResponse(artikl);
@@ -47,8 +46,7 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
         [HttpGet]
         public ActionResult GetArtiklCollectionForPaging(string sidx, string sord, string filters, int page = 1)
         {
-            DataAccessAdapterBase adapter = new DataAccessAdapter();
-            using (adapter)
+            using (DataAccessAdapterBase adapter = Helper.GetDataAccessAdapter())
             {
                 RelationPredicateBucket bucket = new RelationPredicateBucket();
                 if (filters != null)
@@ -76,6 +74,8 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
             DataAccessAdapterBase adapter = Helper.GetDataAccessAdapter(User.Identity.Name);
             using (adapter)
             {
+                adapter.StartTransaction(System.Data.IsolationLevel.Serializable, "SaveArtikl");
+                
                 ArtiklEntity artikl4Save;
 
                 if (artikl.ArtiklId == 0)
@@ -90,6 +90,8 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
                 }
 
                 isSaved = adapter.SaveEntity(artikl4Save);
+                
+                adapter.Commit();
             }
 
             dynamic response = new { IsSaved = isSaved };
@@ -108,6 +110,8 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
             DataAccessAdapterBase adapter = Helper.GetDataAccessAdapter(User.Identity.Name);
             using (adapter)
             {
+                adapter.StartTransaction(System.Data.IsolationLevel.Serializable, "SavePartner");
+                
                 PartnerEntity partner4Save;
 
                 if (partner.PartnerId == 0)
@@ -122,6 +126,8 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
                 }
 
                 isSaved = adapter.SaveEntity(partner4Save);
+                
+                adapter.Commit();
             }
 
             dynamic response = new { IsSaved = isSaved };
@@ -131,8 +137,7 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
         [HttpGet]
         public ActionResult GetPartner(long partnerId)
         {
-            DataAccessAdapterBase adapter = new DataAccessAdapter();
-            using (adapter)
+            using (DataAccessAdapterBase adapter = Helper.GetDataAccessAdapter())
             {
                 PartnerEntity partner = PartnerEntity.FetchPartner(adapter, null, partnerId);
                 return CreateJsonResponse(partner);
@@ -142,8 +147,7 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
         [HttpGet]
         public ActionResult GetPartnerCollectionForPaging(string sidx, string sord, string filters, int page = 1)
         {
-            DataAccessAdapter adapter = new DataAccessAdapter();
-            using (adapter)
+            using (DataAccessAdapterBase adapter = Helper.GetDataAccessAdapter())
             {
                 RelationPredicateBucket bucket = null;
                 if (filters != null)
@@ -151,7 +155,7 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
                     bucket = new RelationPredicateBucket();
                     bucket.PredicateExpression.Add(PredicateHelper.CreatePredicateFromJqGridFilterString(filters, typeof(PartnerFields), DbGenericHelper.GetDbGenericTypeByName));
                 }
-                bool isSortAscending = PagerBase.IsJqgridSortAscending(sord);
+                bool? isSortAscending = PagerBase.IsJqgridSortAscending(sord);
 
                 PartnerPager partnerPager = new PartnerPager();
                 partnerPager.LoadData(adapter, bucket, page, Common.Config.JqGridPageSize, sidx, isSortAscending);
@@ -163,8 +167,7 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
         [HttpGet]
         public ActionResult GetPartnerCollection()
         {
-            DataAccessAdapterBase adapter = Helper.GetDataAccessAdapter(User.Identity.Name);
-            using (adapter)
+            using (DataAccessAdapterBase adapter = Helper.GetDataAccessAdapter())
             {
                 IEnumerable<PartnerEntity> partnerCollection = PartnerEntity.FetchPartnerCollection(adapter, null, null).OrderBy(p => p.Naziv);
                 return CreateJsonResponse(partnerCollection);
@@ -178,8 +181,7 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
         [HttpGet]
         public ActionResult GetPdv(long pdvId)
         {
-            DataAccessAdapterBase adapter = new DataAccessAdapter();
-            using (adapter)
+            using (DataAccessAdapterBase adapter = Helper.GetDataAccessAdapter())
             {
                 PdvEntity pdv = PdvEntity.FetchPdv(adapter, null, pdvId);
                 return CreateJsonResponse(pdv);
@@ -194,6 +196,8 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
             DataAccessAdapterBase adapter = Helper.GetDataAccessAdapter(User.Identity.Name);
             using (adapter)
             {
+                adapter.StartTransaction(System.Data.IsolationLevel.Serializable, "SavePdv");
+                
                 PdvEntity pdv4Save;
 
                 if (pdv.PdvId == 0)
@@ -207,6 +211,8 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
                 }
 
                 isSaved = adapter.SaveEntity(pdv4Save);
+                
+                adapter.Commit();
             }
 
             dynamic response = new { IsSaved = isSaved };
@@ -216,8 +222,7 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
         [HttpGet]
         public ActionResult GetPdvCollection()
         {
-            DataAccessAdapterBase adapter = new DataAccessAdapter();
-            using (adapter)
+            using (DataAccessAdapterBase adapter = Helper.GetDataAccessAdapter())
             {
                 IEnumerable<PdvEntity> pdvCollection = PdvEntity.FetchPdvCollection(adapter, null, null);
                 return CreateJsonResponse(pdvCollection);
@@ -227,8 +232,7 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
         [HttpGet]
         public ActionResult GetPdvCollectionForPaging(string sidx, string sord, string filters, int page = 1)
         {
-            DataAccessAdapterBase adapter = new DataAccessAdapter();
-            using (adapter)
+            using (DataAccessAdapterBase adapter = Helper.GetDataAccessAdapter())
             {
                 RelationPredicateBucket bucket = new RelationPredicateBucket();
                 if (filters != null)
@@ -236,7 +240,7 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
                     bucket.PredicateExpression.Add(PredicateHelper.CreatePredicateFromJqGridFilterString(filters, typeof(PdvFields), DbGenericHelper.GetDbGenericTypeByName));
                 }
 
-                bool isSortAscending = PagerBase.IsJqgridSortAscending(sord);
+                bool? isSortAscending = PagerBase.IsJqgridSortAscending(sord);
 
                 PdvPager pdvPager = new PdvPager();
                 pdvPager.LoadData(adapter, bucket, page, Common.Config.JqGridPageSize, sidx, isSortAscending);
@@ -252,8 +256,7 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
         [HttpGet]
         public ActionResult GetTarifa(long tarifaId)
         {
-            DataAccessAdapterBase adapter = new DataAccessAdapter();
-            using (adapter)
+            using (DataAccessAdapterBase adapter = Helper.GetDataAccessAdapter())
             {
                 TarifaEntity tarifa = TarifaEntity.FetchTarifa(adapter, null, tarifaId);
                 return CreateJsonResponse(tarifa);
@@ -263,8 +266,7 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
         [HttpGet]
         public ActionResult GetTarifaCollectionForPaging(string sidx, string sord, string filters, int page = 1)
         {
-            DataAccessAdapterBase adapter = new DataAccessAdapter();
-            using (adapter)
+            using (DataAccessAdapterBase adapter = Helper.GetDataAccessAdapter())
             {
                 RelationPredicateBucket bucket = new RelationPredicateBucket();
                 if (!string.IsNullOrWhiteSpace(filters))
@@ -272,7 +274,7 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
                     bucket.PredicateExpression.Add(PredicateHelper.CreatePredicateFromJqGridFilterString(filters, typeof(TarifaFields), DbGenericHelper.GetDbGenericTypeByName));
                 }
 
-                bool isSortAscending = PagerBase.IsJqgridSortAscending(sord);
+                bool? isSortAscending = PagerBase.IsJqgridSortAscending(sord);
 
                 TarifaPager tarifaPager = new TarifaPager();
                 tarifaPager.LoadData(adapter, bucket, page, Common.Config.JqGridPageSize, sidx, isSortAscending);
@@ -289,6 +291,8 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
             DataAccessAdapterBase adapter = Helper.GetDataAccessAdapter(User.Identity.Name);
             using (adapter)
             {
+                adapter.StartTransaction(System.Data.IsolationLevel.Serializable, "SaveTarifa");
+                
                 TarifaEntity tarifa4Save;
 
                 if (tarifa.TarifaId == 0)
@@ -303,6 +307,8 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
                 }
 
                 isSaved = adapter.SaveEntity(tarifa4Save);
+                
+                adapter.Commit();
             }
 
             dynamic response = new { IsSaved = isSaved };
@@ -312,8 +318,7 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
         [HttpGet]
         public ActionResult GetTarifaCollection()
         {
-            DataAccessAdapterBase adapter = Helper.GetDataAccessAdapter(User.Identity.Name);
-            using (adapter)
+            using (DataAccessAdapterBase adapter = Helper.GetDataAccessAdapter())
             {
                 IEnumerable<TarifaEntity> tarifaCollection = TarifaEntity.FetchTarifaCollection(adapter, null, null).OrderBy(t => t.Naziv);
                 return CreateJsonResponse(tarifaCollection);
@@ -333,6 +338,8 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
 			
             using (adapter)
             {
+                adapter.StartTransaction(System.Data.IsolationLevel.Serializable, "SaveRacun");
+                
                 JsonSerializerSettings jsonSettings = new JsonSerializerSettings();
                 CultureInfo currentCulture = System.Threading.Thread.CurrentThread.CurrentCulture;
                 jsonSettings.Culture = currentCulture;
@@ -382,6 +389,8 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
                         }
                     }
                 }
+                
+                adapter.Commit();
             } 
 		           
             dynamic response = new 
@@ -396,8 +405,7 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
         [HttpGet]
         public ActionResult GetRacun(long racunGlavaId)
         {
-            DataAccessAdapterBase adapter = Helper.GetDataAccessAdapter(User.Identity.Name);
-            using (adapter)
+            using (DataAccessAdapterBase adapter = Helper.GetDataAccessAdapter())
             {
                 PrefetchPath2 prefetchPath = new PrefetchPath2(EntityType.RacunGlavaEntity);
                 prefetchPath.Add(RacunGlavaEntity.PrefetchPathRacunStavkaCollection).
@@ -418,8 +426,7 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
         [HttpGet]
         public ActionResult GetRacunGlavaCollectionForPaging(string sidx, string sord, string filters, int page = 1)
         {
-            DataAccessAdapterBase adapter = new DataAccessAdapter();
-            using (adapter)
+            using (DataAccessAdapterBase adapter = Helper.GetDataAccessAdapter())
             {
                 RelationPredicateBucket bucket = new RelationPredicateBucket();
                 if (!string.IsNullOrWhiteSpace(filters))
@@ -428,7 +435,7 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
                     bucket.PredicateExpression.Add(PredicateHelper.CreatePredicateFromJqGridFilterString(filters, typeof(RacunGlavaFields), DbGenericHelper.GetDbGenericTypeByName));
                 }
 
-                bool isSortAscending = PagerBase.IsJqgridSortAscending(sord);
+                bool? isSortAscending = PagerBase.IsJqgridSortAscending(sord);
 
                 RacunGlavaPager pager = new RacunGlavaPager();
                 pager.LoadData(adapter, bucket, page, Common.Config.JqGridPageSize, sidx, isSortAscending);
@@ -444,8 +451,7 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
         [HttpGet]
         public ActionResult GetStatusCollection()
         {
-            DataAccessAdapterBase adapter = Helper.GetDataAccessAdapter(User.Identity.Name);
-            using (adapter)
+            using (DataAccessAdapterBase adapter = Helper.GetDataAccessAdapter())
             {
                 IEnumerable<StatusRoEntity> statusCollection = StatusRoEntity.FetchStatusRoCollection(adapter, null, null).OrderBy(s => s.Name);
                 return CreateJsonResponse(statusCollection);
@@ -459,8 +465,7 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
         [HttpGet]
         public ActionResult GetConfig()
         {
-            DataAccessAdapterBase adapter = new DataAccessAdapter();
-            using (adapter)
+            using (DataAccessAdapterBase adapter = Helper.GetDataAccessAdapter())
             {
                 ConfigEntity config = ConfigEntity.FetchConfigCollection(adapter, null, null).SingleOrDefault();
                 return CreateJsonResponse(config);
@@ -477,11 +482,14 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
                 DataAccessAdapterBase adapter = Helper.GetDataAccessAdapter(User.Identity.Name);
                 using (adapter)
                 {
-
+                    adapter.StartTransaction(System.Data.IsolationLevel.Serializable, "SaveConfig");
+                    
                     ConfigEntity config4Save = ConfigEntity.FetchConfigCollection(adapter, null, null).SingleOrDefault();
                     config4Save.UpdateDataFromOtherObject(config, null, null);
 
                     isSaved = adapter.SaveEntity(config4Save);
+                    
+                    adapter.Commit();
                 }
             }
 

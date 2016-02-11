@@ -12,8 +12,26 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
         public static UserEntity FetchUser(DataAccessAdapterBase adapter, string userName)
         {
             RelationPredicateBucket bucket = new RelationPredicateBucket(UserFields.Username == userName);
-            IEnumerable<UserEntity> userCollection = UserEntity.FetchUserCollection(adapter, bucket, null);
+            PrefetchPath2 prefetchPath = new PrefetchPath2(EntityType.UserEntity);
+            prefetchPath.Add(UserEntity.PrefetchPathRole);
+            IEnumerable<UserEntity> userCollection = UserEntity.FetchUserCollection(adapter, bucket, prefetchPath);
             return userCollection.SingleOrDefault();
+        }
+        
+        public static bool ChangePassword(DataAccessAdapterBase adapter, string userName, string oldPassword, string newPassword)
+        {
+            UserEntity user = FetchUser(adapter, userName);
+            
+            bool isOldCorrect = Common.Cryptography.ValidatePassword(user.Password, oldPassword);
+            
+            if (isOldCorrect)
+            {
+                user.Password = Common.Cryptography.CreatePasswordPackage(newPassword);
+                
+                return adapter.SaveEntity(user);
+            }
+            
+            return false;
         }
     }
 }

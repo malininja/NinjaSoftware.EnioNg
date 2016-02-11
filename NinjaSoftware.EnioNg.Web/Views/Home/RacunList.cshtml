@@ -15,9 +15,10 @@
     $("#RacunTable").jqGrid({
         url: "/JsonService/GetRacunGlavaCollectionForPaging",
         datatype: "json",
-        colNames: ["Broj", "Partner", "Datum", "Iznos", "Status"],
+        colNames: ["Id", "Broj", "Partner", "Datum", "Iznos", "Status"],
         colModel: [
-            { name: "RacunGlavaId", index: "RacunGlavaId", width: 50 },
+            { name: "RacunGlavaId", index: "RacunGlavaId", hidden: true },
+            { name: "BrojRacuna", index: "BrojRacuna", width: 50 },
             { name: "Partner.Naziv", index: "Partner.Naziv", width: 200 },
             { name: "Datum", index: "Datum", width: 200, formatter: "date", formatoptions: { srcformat: "Y-m-d", newformat: "d.m.Y" } },
             { name: "Iznos", index: "Iznos", width: 200, align: "right", formatter: "number", formatoptions: { decimalSeparator: ",", decimalPlaces: 2 } },
