@@ -29,7 +29,7 @@ function ArtiklController($scope) {
 	            url: "/JsonService/SaveArtikl",
 	            jsonObject: $scope.selectedArtikl,
 	            success: function (result) {
-	                if (result.IsSaved === "true") {
+	                if (result.IsSaved === true) {
 	                    $scope.newArtikl();
 	                    $(document).trigger("ArtiklIsSaved");
 	                } else {
@@ -51,6 +51,7 @@ function ArtiklController($scope) {
 	        data: { "artiklId": artiklId },
 	        success: function (result) {
 	            var fn = function () {
+	            	result.Cijena = ninjaSoftware.formatNo.toHrCurrencyFormat(result.Cijena);
 	                $scope.selectedArtikl = result;
 	            };
 

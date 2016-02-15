@@ -29,15 +29,7 @@ namespace NinjaSoftware.EnioNg.Web.Helpers
 
             UserEntity user = UserEntity.FetchUser(adapter, userName);
 
-            if (user == null)
-            {
-#if DEBUG
-                ((INsDataAccessAdapter)adapter).UserId = -1;
-#else
-                ((INsDataAccessAdapter)adapter).UserId = null;
-#endif
-            }
-            else
+            if (user != null)
             {
                 ((INsDataAccessAdapter)adapter).UserId = user.UserId;
             }

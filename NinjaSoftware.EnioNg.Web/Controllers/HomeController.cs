@@ -8,6 +8,7 @@ using NinjaSoftware.EnioNg.CoolJ.DatabaseSpecific;
 
 namespace NinjaSoftware.EnioNg.Web.Controllers
 {
+    [Authorize(Roles = "User, Admin")]
     public class HomeController : Controller
     {
         public ActionResult Index()

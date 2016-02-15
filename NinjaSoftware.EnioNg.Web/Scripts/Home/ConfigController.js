@@ -25,7 +25,7 @@ function ConfigController($scope) {
 				url: "/JsonService/SaveConfig",
 				jsonObject: $scope.config,
 				success: function (result) {
-					if (result.IsSaved === "true") {
+					if (result.IsSaved === true) {
 						$(document).trigger("ConfigIsSaved");
 					} else {
 						alert("nije snimljeno");

@@ -27,7 +27,7 @@
                 url: "/JsonService/SaveTarifa",
                 jsonObject: $scope.selectedTarifa,
                 success: function (result) {
-                    if (result.IsSaved == "true") {
+                    if (result.IsSaved == true) {
                         $scope.newTarifa();
                         $(document).trigger("TarifaIsSaved");
                     } else {

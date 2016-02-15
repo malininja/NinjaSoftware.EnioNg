@@ -29,7 +29,7 @@ function PartnerController ($scope) {
 	            url: "/JsonService/SavePartner",
 	            jsonObject: $scope.selectedPartner,
 	            success: function (result) {
-	                if (result.IsSaved === "true") {
+	                if (result.IsSaved === true) {
 	                    $scope.newPartner();
 	                    $(document).trigger("PartnerIsSaved");
 	                } else {
@@ -130,7 +130,7 @@ function PartnerController ($scope) {
 	
 	$scope.validation.isValutaValid = function () {
 		if ($scope.selectedPartner.Valuta) {
-			return ($scope.selectedPartner.Valuta > -1 && $scope.selectedPartner.Valuta < 65000);
+			return ($scope.selectedPartner.Valuta >= 0 && $scope.selectedPartner.Valuta < 65000);
 		}
 		else {
 			return false;

@@ -19,7 +19,7 @@
                 url: "/JsonService/SavePdv",
                 jsonObject: $scope.selectedPdv,
                 success: function (result) {
-                    if (result.IsSaved === "true") {
+                    if (result.IsSaved === true) {
                         $scope.newPdv();
                         $(document).trigger("PdvIsSaved");
                     } else {

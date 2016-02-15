@@ -28,7 +28,7 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
                     System.Web.Security.FormsAuthentication.RedirectFromLoginPage(model.UserName, false);
                     if (string.IsNullOrWhiteSpace(returnUrl))
                     {
-                        return RedirectToAction("Index", "BackOffice");
+                        return RedirectToAction("Index", "Home");
                     }
                     else
                     {
@@ -49,7 +49,7 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
         {
             System.Web.Security.FormsAuthentication.SignOut();
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login", "Account");
         }
     }
 }
