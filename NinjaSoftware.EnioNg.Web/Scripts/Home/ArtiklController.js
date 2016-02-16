@@ -23,44 +23,35 @@ function ArtiklController($scope) {
 
 	$scope.save = function () {
 	    if ($scope.validation.isValid()) {
+	        
 	        $scope.selectedArtikl.Cijena = $scope.selectedArtikl.Cijena.toString();
+	        
+	        var isSaved = enioNg.api.artikl.save($scope.selectedArtikl);
 
-	        ninjaSoftware.ajaxHelper.postJson({
-	            url: "/JsonService/SaveArtikl",
-	            jsonObject: $scope.selectedArtikl,
-	            success: function (result) {
-	                if (result.IsSaved === true) {
-	                    $scope.newArtikl();
-	                    $(document).trigger("ArtiklIsSaved");
-	                } else {
-	                	alert("nekaj se malo manje pojebalo");
-	                }
-	            },
-	            error: function (XMLHttpRequest, textStatus, errorThrown) {
-	                alert("nekaj se pojebalo");
-	            }
-	        });
+            if (isSaved === true) {
+	            $scope.newArtikl();
+	            $(document).trigger("ArtiklIsSaved");
+	        } else {
+	           	alert("Dogodila se greška prilikom pograne podataka");
+	        }
 	    } else {
 	        alert("validation error");
 	    }
 	};
 
 	$scope.loadArtikl = function (artiklId) {
-	    ninjaSoftware.ajaxHelper.getJson({
-	        url: "/JsonService/GetArtikl",
-	        data: { "artiklId": artiklId },
-	        success: function (result) {
-	            var fn = function () {
-	            	result.Cijena = ninjaSoftware.formatNo.toHrCurrencyFormat(result.Cijena);
-	                $scope.selectedArtikl = result;
-	            };
-
-	            ninjaSoftware.angularjs.safeApply($scope, fn);
-	        },
-	        error: function () {
-	            alert("nekaj se pojebalo");
-	        }
-	    });
+		var artikl = enioNg.api.artikl.getById(artiklId);
+		
+		if (artikl) {
+			var fn = function () {
+		    	artikl.Cijena = ninjaSoftware.formatNo.toHrCurrencyFormat(artikl.Cijena);
+		    	$scope.selectedArtikl = artikl;
+		    };
+	
+		    ninjaSoftware.angularjs.safeApply($scope, fn);
+	    } else {
+	    	alert("Dogodila se greška prilikom dohvata podataka");
+	    }
 	};
 
     $scope.pdvCollection = [];

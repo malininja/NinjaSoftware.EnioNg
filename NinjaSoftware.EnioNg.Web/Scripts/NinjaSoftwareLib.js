@@ -102,9 +102,12 @@ nsValidation.isNumeric = function (input) {
 };
 
 nsValidation.isHrNumeric = function (input) {
-	input = input.toString().replace(",", ".");
-	
-	return nsValidation.isNumeric(input);
+	if (input) {
+		input = input.toString().replace(",", ".");
+		return nsValidation.isNumeric(input);
+	} else {
+		return input;
+	}
 };
 /* END js validation */
 

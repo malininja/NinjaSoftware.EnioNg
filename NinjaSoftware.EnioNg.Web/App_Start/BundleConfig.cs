@@ -22,8 +22,8 @@ namespace NinjaSoftware.EnioNg.Web
                 "~/Scripts/jqGrid/i18n/grid.locale-hr.js",
                 "~/Scripts/jqGrid/jquery.jqGrid.js",
                 "~/Scripts/NinjaSoftwareLib.js",
-                "~/Scripts/EnioNg.Entities.js",
                 "~/Scripts/DataAnnotations.js",
+                "~/Scripts/Home/Api.js",
                 "~/Scripts/angular.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
