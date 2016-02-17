@@ -1,3 +1,9 @@
+/*
+Dependencies:
+	- NinjaSoftwareLib.js
+	- enioNg.textResources.js
+*/
+
 var enioNg = enioNg || {};
 enioNg.api = enioNg.api || {};
 
@@ -13,7 +19,7 @@ enioNg.api.artikl.getById = function (id) {
 	    	artikl = result;
 	    },
 	    error: function () {
-	    	console.log("nekaj se pojebalo");
+	    	console.log(enioNg.textResources.ajaxErrorMessage);
 	    }
 	});
 	
@@ -32,9 +38,27 @@ enioNg.api.artikl.save = function (artikl) {
 	    	}
         },
         error: function () {
-	        console.log("nekaj se pojebalo");
+	        console.log(enioNg.textResources.ajaxErrorMessage);
         }
 	});
 	        
 	return isSaved;
+};
+
+enioNg.api.pdv = enioNg.api.pdv || {};
+
+enioNg.api.pdv.getAll = function () {
+	var pdvCollection;
+	
+    ninjaSoftware.ajaxHelper.getJson({
+    	url: "/JsonService/GetPdvCollection",
+        success: function (result) {
+        	pdvCollection = result;
+        },
+        error: function () {
+        	console.log(enioNg.textResources.ajaxErrorMessage);
+        }
+	});
+        
+	return pdvCollection;
 };

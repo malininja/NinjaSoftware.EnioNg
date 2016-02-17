@@ -281,7 +281,7 @@
     <Content Include="Views\Home\Config.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Scripts\Home\Api.js" />
-    <Content Include="Scripts\DataAnnotations.js" />
+    <Content Include="Scripts\enioNg.textResources.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -32,10 +32,10 @@ function ArtiklController($scope) {
 	            $scope.newArtikl();
 	            $(document).trigger("ArtiklIsSaved");
 	        } else {
-	           	alert("Dogodila se greška prilikom pograne podataka");
+	           	alert(enioNg.textResources.dataFetchError);
 	        }
 	    } else {
-	        alert("validation error");
+	        alert(enioNg.textResources.validationError);
 	    }
 	};
 
@@ -50,26 +50,24 @@ function ArtiklController($scope) {
 	
 		    ninjaSoftware.angularjs.safeApply($scope, fn);
 	    } else {
-	    	alert("Dogodila se greška prilikom dohvata podataka");
+	    	alert(enioNg.textResources.dataFetchError);
 	    }
 	};
 
     $scope.pdvCollection = [];
 
     _me.loadPdvCollection = function () {
-        ninjaSoftware.ajaxHelper.getJson({
-            url: "/JsonService/GetPdvCollection",
-            success: function (result) {
-                var fn = function () {
-                    $scope.pdvCollection = result;
-                }
-
-                ninjaSoftware.angularjs.safeApply($scope, fn);
-            },
-            error: function () {
-                alert("nekaj se pojebalo");
+    	var pdvCollection = enioNg.api.pdv.getAll();
+    	
+    	if (pdvCollection) {
+	        var fn = function () {
+            	$scope.pdvCollection = pdvCollection;
             }
-        });
+
+            ninjaSoftware.angularjs.safeApply($scope, fn);
+    	} else {
+    		alert(enioNg.textResources.dataFetchError);
+    	}
     };
 
     _me.loadPdvCollection();

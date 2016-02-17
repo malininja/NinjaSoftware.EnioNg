@@ -22,7 +22,7 @@ namespace NinjaSoftware.EnioNg.Web
                 "~/Scripts/jqGrid/i18n/grid.locale-hr.js",
                 "~/Scripts/jqGrid/jquery.jqGrid.js",
                 "~/Scripts/NinjaSoftwareLib.js",
-                "~/Scripts/DataAnnotations.js",
+                "~/Scripts/enioNg.textResources.js",
                 "~/Scripts/Home/Api.js",
                 "~/Scripts/angular.js"));
 
