@@ -98,8 +98,7 @@
 		return ngControllerScope;
 	}
 	
-	var dataAnnotations = DataAnnotations();
-	$("span[name=RequiredField]").text(dataAnnotations.Required);
+	$("span[name=RequiredField]").text(enioNg.textResources.requiredField);
 	
 	$("#PartnerInput").dialog({
 		modal: true,

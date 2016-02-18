@@ -24,42 +24,32 @@ function PartnerController ($scope) {
 	};
 
 	$scope.save = function () {
-	    if ($scope.validation.isValid()) {
-	        ninjaSoftware.ajaxHelper.postJson({
-	            url: "/JsonService/SavePartner",
-	            jsonObject: $scope.selectedPartner,
-	            success: function (result) {
-	                if (result.IsSaved === true) {
-	                    $scope.newPartner();
-	                    $(document).trigger("PartnerIsSaved");
-	                } else {
-	                	alert("nekaj se malo manje pojebalo");
-	                }
-	            },
-	            error: function (XMLHttpRequest, textStatus, errorThrown) {
-	                //alert("nekaj se pojebalo");
-	            }
-	        });
-	    } else {
-	        alert("validation error");
-	    }
+        if ($scope.validation.isValid()) {
+			var isSaved = enioNg.api.partner.save($scope.selectedPartner);
+			
+			if (isSaved === true) {
+            	$scope.newPartner();
+                $(document).trigger("PartnerIsSaved");
+			} else {
+				alert(enioNg.textResources.dataSaveError);
+			}
+        } else {
+            alert(enioNg.textResources.validationError);
+        }
 	};
 
 	$scope.loadPartner = function (partnerId) {
-	    ninjaSoftware.ajaxHelper.getJson({
-	        url: "/JsonService/GetPartner",
-	        data: { "partnerId": partnerId },
-	        success: function (result) {
-	            var fn = function () {
-	                $scope.selectedPartner = result;
-	            };
+    	var partner = enioNg.api.partner.getById(partnerId);
+    	
+		if (partner) {
+			var fn = function () {
+	            $scope.selectedPartner = partner;
+        	};
 
-	            ninjaSoftware.angularjs.safeApply($scope, fn);
-	        },
-	        error: function () {
-	            alert("nekaj se pojebalo");
-	        }
-        });
+            ninjaSoftware.angularjs.safeApply($scope, fn);
+	    } else {
+	    	alert(enioNg.textResources.dataFetchError);
+	    }
 	};
 	
 	$scope.validation = {};

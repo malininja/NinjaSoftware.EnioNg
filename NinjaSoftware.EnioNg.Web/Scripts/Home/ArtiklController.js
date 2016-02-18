@@ -32,7 +32,7 @@ function ArtiklController($scope) {
 	            $scope.newArtikl();
 	            $(document).trigger("ArtiklIsSaved");
 	        } else {
-	           	alert(enioNg.textResources.dataFetchError);
+	           	alert(enioNg.textResources.dataSaveError);
 	        }
 	    } else {
 	        alert(enioNg.textResources.validationError);

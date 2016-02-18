@@ -23,42 +23,32 @@
 
     $scope.save = function () {
         if ($scope.validation.isValid()) {
-            ninjaSoftware.ajaxHelper.postJson({
-                url: "/JsonService/SaveTarifa",
-                jsonObject: $scope.selectedTarifa,
-                success: function (result) {
-                    if (result.IsSaved == true) {
-                        $scope.newTarifa();
-                        $(document).trigger("TarifaIsSaved");
-                    } else {
-	                	alert("nekaj se malo manje pojebalo");
-	                }
-                },
-                error: function () {
-                    alert("nekaj se pojebalo");
-                }
-            });
+			var isSaved = enioNg.api.tarifa.save($scope.selectedTarifa);
+			
+			if (isSaved === true) {
+            	$scope.newTarifa();
+                $(document).trigger("TarifaIsSaved");
+			} else {
+				alert(enioNg.textResources.dataSaveError);
+			}
         } else {
-            alert("validation error");
+            alert(enioNg.textResources.validationError);
         }
     };
 
     $scope.loadTarifa = function (tarifaId) {
-        ninjaSoftware.ajaxHelper.getJson({
-            url: "/JsonService/GetTarifa",
-            data: { "tarifaId": tarifaId },
-            success: function (result) {
-                var fn = function () {
-                	result.Stopa = ninjaSoftware.formatNo.toHrCurrencyFormat(result.Stopa);
-                    $scope.selectedTarifa = result;
-                };
+    	var tarifa = enioNg.api.tarifa.getById(tarifaId);
+    	
+		if (tarifa) {
+			var fn = function () {
+            	tarifa.Stopa = ninjaSoftware.formatNo.toHrCurrencyFormat(tarifa.Stopa);
+                $scope.selectedTarifa = tarifa;
+        	};
 
-                ninjaSoftware.angularjs.safeApply($scope, fn);
-            },
-            error: function () {
-                alert("nekaj se pojebalo");
-            }
-        });
+            ninjaSoftware.angularjs.safeApply($scope, fn);
+	    } else {
+	    	alert(enioNg.textResources.dataFetchError);
+	    }
     };
 
     $scope.validation = {};

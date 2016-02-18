@@ -15,42 +15,32 @@
         if ($scope.validation.isValid()) {
             $scope.selectedPdv.Stopa = $scope.selectedPdv.Stopa.toString();
 
-            ninjaSoftware.ajaxHelper.postJson({
-                url: "/JsonService/SavePdv",
-                jsonObject: $scope.selectedPdv,
-                success: function (result) {
-                    if (result.IsSaved === true) {
-                        $scope.newPdv();
-                        $(document).trigger("PdvIsSaved");
-                    } else {
-	                	alert("nekaj se malo manje pojebalo");
-	                }
-                },
-                error: function () {
-                    //alert ....
-                }
-            });
+			var isSaved = enioNg.api.pdv.save($scope.selectedPdv);
+			
+			if (isSaved === true) {
+            	$scope.newPdv();
+                $(document).trigger("PdvIsSaved");
+			} else {
+				alert(enioNg.textResources.dataSaveError);
+			}
         } else {
-            alert("validation error");
+            alert(enioNg.textResources.validationError);
         }
     };
 
     $scope.loadPdv = function (pdvId) {
-        ninjaSoftware.ajaxHelper.getJson({
-            url: "/JsonService/GetPdv",
-            data: { "pdvId": pdvId },
-            success: function (result) {
-                var fn = function () {
-                	result.Stopa = ninjaSoftware.formatNo.toHrCurrencyFormat(result.Stopa);
-                    $scope.selectedPdv = result;
-                };
+    	var pdv = enioNg.api.pdv.getById(pdvId);
 
-                ninjaSoftware.angularjs.safeApply($scope, fn);
-            },
-            error: function () {
-                // alert("nekaj se pojebalo");
-            }
-        });
+		if (pdv) {
+			var fn = function () {
+	            pdv.Stopa = ninjaSoftware.formatNo.toHrCurrencyFormat(pdv.Stopa);
+	            $scope.selectedPdv = pdv;
+        	};
+
+            ninjaSoftware.angularjs.safeApply($scope, fn);
+	    } else {
+	    	alert(enioNg.textResources.dataFetchError);
+	    }
     };
 
     $scope.validation = {};
