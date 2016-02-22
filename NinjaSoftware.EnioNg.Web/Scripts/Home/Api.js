@@ -7,6 +7,11 @@ Dependencies:
 var enioNg = enioNg || {};
 enioNg.api = enioNg.api || {};
 
+enioNg.api.errorFn = function () {
+	console.log(enioNg.textResources.ajaxErrorMessage);
+};
+
+// ARTIKL
 enioNg.api.artikl = enioNg.api.artikl || {};
 
 enioNg.api.artikl.getById = function (id) {
@@ -18,9 +23,7 @@ enioNg.api.artikl.getById = function (id) {
 	    success: function (result) {
 	    	artikl = result;
 	    },
-	    error: function () {
-	    	console.log(enioNg.textResources.ajaxErrorMessage);
-	    }
+	    error: enioNg.api.errorFn
 	});
 	
 	return artikl;
@@ -37,14 +40,64 @@ enioNg.api.artikl.save = function (artikl) {
 	    		isSaved = result.IsSaved;
 	    	}
         },
-        error: function () {
-	        console.log(enioNg.textResources.ajaxErrorMessage);
-        }
+        error: enioNg.api.errorFn
 	});
 	        
 	return isSaved;
 };
 
+// PARTNER
+enioNg.api.partner = enioNg.api.partner || {};
+
+enioNg.api.partner.save = function (partner) {
+	var isSaved = false;
+
+	ninjaSoftware.ajaxHelper.postJson({
+		url: "/JsonService/SavePartner",
+	    jsonObject: partner,
+	    success: function (result) {
+	    	if (result) {
+	    		isSaved = result.IsSaved;
+	    	}
+        },
+        error: enioNg.api.errorFn
+	});
+	        
+	return isSaved;
+};
+
+enioNg.api.partner.getById = function (id) {
+	var partner;
+
+	ninjaSoftware.ajaxHelper.getJson({
+		url: "/JsonService/GetPartner",
+	    data: { "partnerId": id },
+	    success: function (result) {
+	    	partner = result;
+	    },
+	    error: enioNg.api.errorFn
+	});
+	
+	return partner;
+};
+
+enioNg.api.partner.getAll = function () {
+	var partnerCollection;
+	
+	ninjaSoftware.ajaxHelper.getJson({
+		url: "/JsonService/GetPartnerCollection",
+		success: function (result){
+			partnerCollection = result;
+		},
+		error: function () {
+				alert("nekaj se pojebalo");
+		}
+	});
+	
+	return partnerCollection;
+};
+
+// PDV
 enioNg.api.pdv = enioNg.api.pdv || {};
 
 enioNg.api.pdv.getAll = function () {
@@ -55,9 +108,7 @@ enioNg.api.pdv.getAll = function () {
         success: function (result) {
         	pdvCollection = result;
         },
-        error: function () {
-        	console.log(enioNg.textResources.ajaxErrorMessage);
-        }
+        error: enioNg.api.errorFn
 	});
         
 	return pdvCollection;
@@ -74,9 +125,7 @@ enioNg.api.pdv.save = function (pdv) {
 	    		isSaved = result.IsSaved;
 	    	}
         },
-        error: function () {
-	        console.log(enioNg.textResources.ajaxErrorMessage);
-        }
+        error: enioNg.api.errorFn
 	});
 	        
 	return isSaved;
@@ -91,52 +140,48 @@ enioNg.api.pdv.getById = function (id) {
 	    success: function (result) {
 	    	pdv = result;
 	    },
-	    error: function () {
-	    	console.log(enioNg.textResources.ajaxErrorMessage);
-	    }
+	    error: enioNg.api.errorFn
 	});
 	
 	return pdv;
 };
 
-enioNg.api.partner = enioNg.api.partner || {};
+// RACUN
+enioNg.api.racun = enioNg.api.racun || {};
 
-enioNg.api.partner.save = function (partner) {
-	var isSaved = false;
-
-	ninjaSoftware.ajaxHelper.postJson({
-		url: "/JsonService/SavePartner",
-	    jsonObject: partner,
-	    success: function (result) {
-	    	if (result) {
-	    		isSaved = result.IsSaved;
-	    	}
-        },
-        error: function () {
-	        console.log(enioNg.textResources.ajaxErrorMessage);
-        }
-	});
-	        
-	return isSaved;
-};
-
-enioNg.api.partner.getById = function (id) {
-	var partner;
-
+enioNg.api.racun.getById = function (id) {
+	var racun;
+	
 	ninjaSoftware.ajaxHelper.getJson({
-		url: "/JsonService/GetPartner",
-	    data: { "partnerId": id },
-	    success: function (result) {
-	    	partner = result;
-	    },
-	    error: function () {
-	    	console.log(enioNg.textResources.ajaxErrorMessage);
-	    }
+		url: "/JsonService/GetRacun",
+		data: { "racunGlavaId": id },
+		success: function (result) {
+			racun = result;
+		},
+		error: enioNg.api.errorFn
 	});
 	
-	return partner;
+	return racun;
 };
 
+enioNg.api.racun.save = function (data) {
+	var racunGlavaId;
+	
+	ninjaSoftware.ajaxHelper.postJson({
+		url: "/JsonService/SaveRacun",
+		jsonObject: data,
+		success: function(result) {
+			if (result != null && result.IsSaved === true) {
+				racunGlavaId = result.RacunGlavaId;
+			}
+		},
+		error: enioNg.api.errorFn
+	});
+			
+	return racunGlavaId;
+};
+
+// TARIFA
 enioNg.api.tarifa = enioNg.api.tarifa || {};
 
 enioNg.api.tarifa.save = function (tarifa) {
@@ -150,9 +195,7 @@ enioNg.api.tarifa.save = function (tarifa) {
 	    		isSaved = result.IsSaved;
 	    	}
         },
-        error: function () {
-	        console.log(enioNg.textResources.ajaxErrorMessage);
-        }
+        error: enioNg.api.errorFn
 	});
 	        
 	return isSaved;
@@ -167,9 +210,7 @@ enioNg.api.tarifa.getById = function (id) {
 	    success: function (result) {
 	    	tarifa = result;
 	    },
-	    error: function () {
-	    	console.log(enioNg.textResources.ajaxErrorMessage);
-	    }
+	    error: enioNg.api.errorFn
 	});
 	
 	return tarifa;

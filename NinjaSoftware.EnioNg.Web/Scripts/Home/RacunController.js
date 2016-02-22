@@ -19,66 +19,51 @@ function RacunController($scope) {
 	_me.pdvCollection = [];
 	
 	$scope.loadRacun = function(racunGlavaId) {
-		ninjaSoftware.ajaxHelper.getJson({
-			url: "/JsonService/GetRacun",
-			data: { "racunGlavaId": racunGlavaId },
-			success: function (result) {
-				var fn = function () {
-					var datum = new Date(result.RacunGlava.Datum);
-					result.RacunGlava.Datum = ninjaSoftware.date.getDateString(datum);
-					$scope.racunGlava = result.RacunGlava;
-					$scope.racunStavkaCollection = ninjaSoftware.formatNo.toHrNoFormat(result.RacunStavkaCollection, "Cijena");
-				};
-				
-				ninjaSoftware.angularjs.safeApply($scope, fn);
-				$scope.calculateTotal();
-			},
-			error: function () {
-				alert("nekaj se pojebalo");
-			}
-		});
+		var racun = enioNg.api.racun.getById(racunGlavaId);
+		
+		if (racun) {
+			var fn = function () {
+				var datum = new Date(racun.RacunGlava.Datum);
+				racun.RacunGlava.Datum = ninjaSoftware.date.getDateString(datum);
+				$scope.racunGlava = racun.RacunGlava;
+				$scope.racunStavkaCollection = ninjaSoftware.formatNo.toHrNoFormat(racun.RacunStavkaCollection, "Cijena");
+			};
+			
+			ninjaSoftware.angularjs.safeApply($scope, fn);
+			$scope.calculateTotal();
+		}
 	};
 	
 	$scope.save = function () {
 		if ($scope.validation.isValid()) {
-			ninjaSoftware.ajaxHelper.postJson({
-				url: "/JsonService/SaveRacun",
-				jsonObject: {
-					racunGlavaJson: JSON.stringify($scope.racunGlava),
-					racunStavkaCollectionJson: JSON.stringify($scope.racunStavkaCollection)
-				},
-				success: function(result) {
-					if (result != null && result.IsSaved === true) {
-						alert("Podaci su uspješno pohranjeni");
-						window.location.href = "/Home/RacunEdit?racunGlavaId=" + result.RacunGlavaId;
-						
-					} else {
-						alert("Desila se greška pri pohrani podataka");
-					}
-				},
-				error: function() {
-					alert("nekaj se pojebalo");
-				}
+			var racunGlavaId = enioNg.api.racun.save({
+				racunGlavaJson: JSON.stringify($scope.racunGlava),
+				racunStavkaCollectionJson: JSON.stringify($scope.racunStavkaCollection)
 			});
+			
+			if (racunGlavaId) {
+				alert(enioNg.textResources.dataSaveSuccess);
+				window.location.href = "/Home/RacunEdit?racunGlavaId=" + racunGlavaId;
+			} else {
+				alert(enioNg.textResources.dataSaveError);
+			}
 		} else {
-			alert("validation error");
+			alert(enioNg.textResources.validationError);
 		}
 	};
 	
 	_me.loadPartnerCollection = function () {
-		ninjaSoftware.ajaxHelper.getJson({
-			url: "/JsonService/GetPartnerCollection",
-			success: function (result){
-				var fn = function () {
-					$scope.partnerCollection = result;
-				};
+		var partnerCollection = enioNg.api.partner.getAll();
+		
+		if (partnerCollection) {
+			var fn = function () {
+				$scope.partnerCollection = partnerCollection;
+			};
 					
-				ninjaSoftware.angularjs.safeApply($scope, fn);
-			},
-			error: function () {
-				alert("nekaj se pojebalo");
-			}
-		});
+			ninjaSoftware.angularjs.safeApply($scope, fn);
+		} else {
+			alert(enioNg.textResources.validationError);
+		}
 	};
 	
 	_me.loadTarifaCollection = function () {
