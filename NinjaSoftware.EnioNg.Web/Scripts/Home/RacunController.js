@@ -31,7 +31,9 @@ function RacunController($scope) {
 			
 			ninjaSoftware.angularjs.safeApply($scope, fn);
 			$scope.calculateTotal();
-		}
+		} else {
+	    	alert(enioNg.textResources.dataFetchError);
+	    }
 	};
 	
 	$scope.save = function () {
@@ -62,74 +64,66 @@ function RacunController($scope) {
 					
 			ninjaSoftware.angularjs.safeApply($scope, fn);
 		} else {
-			alert(enioNg.textResources.validationError);
-		}
+	    	alert(enioNg.textResources.dataFetchError);
+	    }
 	};
 	
 	_me.loadTarifaCollection = function () {
-		ninjaSoftware.ajaxHelper.getJson({
-			url: "/JsonService/GetTarifaCollection",
-			success: function (result) {
-				var fn = function () {
-					if (result && result.length > 0) {
-						$scope.tarifaCollection = result;
-						$scope.racunGlava.TarifaId = result[0].TarifaId;
-					}
-				};
+		var tarifaCollection = enioNg.api.tarifa.getAll();
+		
+		if (tarifaCollection) {
+			var fn = function () {
+				if (tarifaCollection.length > 0) {
+					$scope.tarifaCollection = tarifaCollection;
+					$scope.racunGlava.TarifaId = tarifaCollection[0].TarifaId;
+				}
+			};
 				
-				ninjaSoftware.angularjs.safeApply($scope, fn);
-			},
-			error: function () {
-				alert("nekaj se pojebalooooo");
-			}
-		});
+			ninjaSoftware.angularjs.safeApply($scope, fn);
+		} else {
+			alert(enioNg.textResources.dataFetchError);
+		}
 	};
 	
 	_me.loadStatusCollection = function () {
-		ninjaSoftware.ajaxHelper.getJson({
-			url: "/JsonService/GetStatusCollection",
-			success: function (result) {
-				var fn = function () {
-					if (result && result.length > 0) {
-						$scope.statusCollection = result;
-						$scope.racunGlava.StatusId = result[0].StatusId;
-					}
-				};
+		var statusCollection = enioNg.api.status.getAll();
+		
+		if (statusCollection) {
+			var fn = function () {
+				if (statusCollection.length > 0) {
+					$scope.statusCollection = statusCollection;
+					$scope.racunGlava.StatusId = statusCollection[0].StatusId;
+				}
+			};
 				
-				ninjaSoftware.angularjs.safeApply($scope, fn);
-			},
-			error: function () {
-				alert ("nekaj se pojebalo");
-			}
-		});
+			ninjaSoftware.angularjs.safeApply($scope, fn);
+		} else {
+			alert(enioNg.textResources.dataFetchError);
+		}
 	};
 	
 	_me.loadArtiklCollection = function () {
-		ninjaSoftware.ajaxHelper.getJson({
-			url: "/JsonService/GetArtiklCollection",
-			success: function (result) {
-				var fn = function () {
-					$scope.artiklCollection = result;
-				};
+		var artiklCollection = enioNg.api.artikl.getAll();
+		
+		if (artiklCollection) {
+			var fn = function () {
+				$scope.artiklCollection = artiklCollection;
+			};
 				
-				ninjaSoftware.angularjs.safeApply($scope, fn);
-			},
-			error: function () {
-				alert("nekaj se pojebalo");
-			}
-		});
+			ninjaSoftware.angularjs.safeApply($scope, fn);
+		} else {
+			alert(enioNg.textResources.dataFetchError);
+		}
 	};
 	
     _me.loadPdvCollection = function () {
-        ninjaSoftware.ajaxHelper.getJson({
-            url: "/JsonService/GetPdvCollection",
-            success: function (result) {
-                 _me.pdvCollection = result;
-            },
-            error: function () {
-                alert("nekaj se pojebalo");
-            }
-        });
+		var pdvCollection = enioNg.api.pdv.getAll();
+		
+		if (pdvCollection) {
+			_me.pdvCollection = pdvCollection;
+		} else {
+			alert(enioNg.textResources.dataFetchError);
+		}
     };
 
 	$scope.validation = {};

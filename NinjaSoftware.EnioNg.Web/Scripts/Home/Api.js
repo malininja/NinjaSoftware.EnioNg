@@ -46,6 +46,54 @@ enioNg.api.artikl.save = function (artikl) {
 	return isSaved;
 };
 
+enioNg.api.artikl.getAll = function () {
+	var artiklCollection;
+	
+	ninjaSoftware.ajaxHelper.getJson({
+		url: "/JsonService/GetArtiklCollection",
+		success: function (result){
+			artiklCollection = result;
+		},
+		error: enioNg.api.errorFn
+	});
+	
+	return artiklCollection;
+};
+
+// CONFIG
+enioNg.api.config = enioNg.api.config || {};
+
+enioNg.api.config.get = function () {
+	var config;
+
+	ninjaSoftware.ajaxHelper.getJson({
+		url: "/JsonService/GetConfig",
+	    success: function (result) {
+	    	config = result;
+	    },
+	    error: enioNg.api.errorFn
+	});
+	
+	return config;
+};
+
+enioNg.api.config.save = function (config) {
+	var isSaved = false;
+
+	ninjaSoftware.ajaxHelper.postJson({
+		url: "/JsonService/SaveConfig",
+	    jsonObject: config,
+	    success: function (result) {
+	    	if (result) {
+	    		isSaved = result.IsSaved;
+	    	}
+        },
+        error: enioNg.api.errorFn
+	});
+	        
+	return isSaved;
+};
+
 // PARTNER
 enioNg.api.partner = enioNg.api.partner || {};
 
@@ -89,9 +137,7 @@ enioNg.api.partner.getAll = function () {
 		success: function (result){
 			partnerCollection = result;
 		},
-		error: function () {
-				alert("nekaj se pojebalo");
-		}
+		error: enioNg.api.errorFn
 	});
 	
 	return partnerCollection;
@@ -181,6 +227,23 @@ enioNg.api.racun.save = function (data) {
 	return racunGlavaId;
 };
 
+// STATUS
+enioNg.api.status = enioNg.api.status || {};
+
+enioNg.api.status.getAll = function () {
+	var statusCollection;
+	
+    ninjaSoftware.ajaxHelper.getJson({
+    	url: "/JsonService/GetStatusCollection",
+        success: function (result) {
+        	statusCollection = result;
+        },
+        error: enioNg.api.errorFn
+	});
+        
+	return statusCollection;
+};
+
 // TARIFA
 enioNg.api.tarifa = enioNg.api.tarifa || {};
 
@@ -214,4 +277,18 @@ enioNg.api.tarifa.getById = function (id) {
 	});
 	
 	return tarifa;
+};
+
+enioNg.api.tarifa.getAll = function () {
+	var tarifaCollection;
+	
+    ninjaSoftware.ajaxHelper.getJson({
+    	url: "/JsonService/GetTarifaCollection",
+        success: function (result) {
+        	tarifaCollection = result;
+        },
+        error: enioNg.api.errorFn
+	});
+        
+	return tarifaCollection;
 };
