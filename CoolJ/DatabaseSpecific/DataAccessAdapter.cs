@@ -111,6 +111,11 @@ namespace NinjaSoftware.EnioNg.CoolJ.DatabaseSpecific
 
 		#region Custom DataAccessAdapter code.
 		
+        protected override void OnFetchEntityCollection(IRetrievalQuery selectQuery, IEntityCollection2 entityCollectionToFetch)
+        {
+            base.OnFetchEntityCollection(selectQuery, entityCollectionToFetch);
+        }
+        
 		public long? UserId { get; set; }		
 		
         /// <summary>

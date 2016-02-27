@@ -51,6 +51,7 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
                 RelationPredicateBucket bucket = new RelationPredicateBucket();
                 if (filters != null)
                 {
+                    bucket.Relations.Add(ArtiklEntity.Relations.PdvEntityUsingPdvId);
 					bucket.PredicateExpression.Add(PredicateHelper.CreatePredicateFromJqGridFilterString(filters, typeof(ArtiklFields), DbGenericHelper.GetDbGenericTypeByName));
                 }
 
@@ -149,12 +150,24 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
         {
             using (DataAccessAdapterBase adapter = Helper.GetDataAccessAdapter())
             {
-                RelationPredicateBucket bucket = null;
+                RelationPredicateBucket bucket = new RelationPredicateBucket();
                 if (filters != null)
                 {
-                    bucket = new RelationPredicateBucket();
                     bucket.PredicateExpression.Add(PredicateHelper.CreatePredicateFromJqGridFilterString(filters, typeof(PartnerFields), DbGenericHelper.GetDbGenericTypeByName));
                 }
+                
+                if (!string.IsNullOrWhiteSpace(filters))
+                {
+                    JqGridFilter jqGridFilter = JsonConvert.DeserializeObject<JqGridFilter>(filters); 
+                    bool foo;
+                    JqGridFilterItem filterItem = jqGridFilter.rules.Where(r => r.field == PartnerFields.IsActive.Name && bool.TryParse(r.data, out foo)).SingleOrDefault();
+                    if (filterItem != null)
+                    {
+                        bool isActive = bool.Parse(filterItem.data);
+                        bucket.PredicateExpression.Add(PartnerFields.IsActive == isActive);
+                    }
+                }
+                
                 bool? isSortAscending = PagerBase.IsJqgridSortAscending(sord);
 
                 PartnerPager partnerPager = new PartnerPager();
