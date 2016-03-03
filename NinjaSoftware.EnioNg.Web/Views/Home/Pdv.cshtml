@@ -89,7 +89,8 @@
         colModel: [
             { name: "PdvId", index: "PdvId", hidden: true, width: 0 },
             { name: "Naziv", index: "Naziv", width: 250, searchoptions: { clearSearch: false } },
-            { name: "Stopa", index: "Stopa", width: 200, search: false, align: "right", formatter: "number", formatoptions: { decimalSeparator: ",", decimalPlaces: 2 } }
+            { name: "Stopa", index: "Stopa", width: 200, align: "right", formatter: "number", formatoptions: { decimalSeparator: ",", decimalPlaces: 2 },
+            	searchoptions: { clearSearch: false } }
         ],
         pager: "#PdvTablePager",
         caption: "Stope PDV-a",

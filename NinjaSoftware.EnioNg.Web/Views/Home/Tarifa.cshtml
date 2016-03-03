@@ -96,8 +96,10 @@
         colModel: [
             { name: "TarifaId", index: "TarifaId", hidden: true, width: 0 },
             { name: "Naziv", index: "Naziv", width: 250, searchoptions: { clearSearch: false } },
-            { name: "Stopa", index: "Stopa", width: 200, align: "right", formatter: "number", formatoptions: { decimalSeparator: ",", decimalPlaces: 2 }, search: false },
-            { name: "IsActive", index: "IsActive", width: 50, formatter: "select", editoptions: { value: "true:Da;false:Ne"}, align: "center", search: false }
+            { name: "Stopa", index: "Stopa", width: 200, align: "right", formatter: "number", formatoptions: { decimalSeparator: ",", decimalPlaces: 2 },
+            	searchoptions: { clearSearch: false }},
+            { name: "IsActive", index: "IsActive", width: 50, formatter: "select", editoptions: { value: "true:Da;false:Ne"}, align: "center", stype: "select",
+            	searchoptions: { sopt: ["eq"], value: ":--;True:Da;False:Ne", clearSearch: false } }
         ],
         pager: "#TarifaTablePager",
         caption: "Lista tarifa",
