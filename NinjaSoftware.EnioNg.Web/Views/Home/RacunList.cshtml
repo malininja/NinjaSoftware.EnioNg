@@ -6,12 +6,14 @@
 
 @Html.ActionLink("Novi račun", "RacunEdit", "Home")
 <input type="button" value="Novi račun" onclick="alert('napravi kaj trebaš');" />
-
+<input id="datum-od" type="text" />
+<input id="datum-do" type="text" />
 <table id="RacunTable"></table>
 <div id="RacunTablePager"></div>
 
 <script type="text/javascript">
-
+	Globalize.culture("hr");
+	
     $("#RacunTable").jqGrid({
         url: "/JsonService/GetRacunGlavaCollectionForPaging",
         datatype: "json",
@@ -40,6 +42,9 @@
     		var postData = $grid.jqGrid('getGridParam', 'postData');
     		var filters = $.parseJSON(postData.filters);
     		
+    		addDateFilter("datum-od", filters, "ge");
+    		addDateFilter("datum-do", filters, "le");
+    		
     		if (filters && filters.rules && filters.rules.length > 0) {
     			for (var i = 0; i < filters.rules.length; i++) {
     				var rule = filters.rules[i];
@@ -53,4 +58,28 @@
     		}
     	}	 
     });;
+    
+    function addDateFilter(dateField, filters, operator) {
+    	var dateString = $("#" + dateField).val();
+    	
+    	if (dateString) {
+    		var date = Globalize.parseDate(dateString);
+    		
+    		if (date) {
+    			var param = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
+    			filters.rules.push({field: "Datum", data: date, op: operator});
+    		}
+    	}
+    }
+    
+    $("#datum-od, #datum-do").datepicker({
+        yearRange: "2000:2016",
+        changeMonth: true,
+        changeYear: true,
+        onSelect: function (dateText) {
+            //var datum = Globalize.parseDate(this.value);
+            //var linkParameter = datum.getFullYear() + "-" + (datum.getMonth() + 1) + "-" + datum.getDate();
+            $("#RacunTable")[0].triggerToolbar();
+        }
+    });
 </script>

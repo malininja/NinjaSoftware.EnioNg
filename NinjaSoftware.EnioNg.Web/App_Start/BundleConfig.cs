@@ -12,7 +12,8 @@ namespace NinjaSoftware.EnioNg.Web
                         "~/Scripts/jquery-2.1.1.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
-                        "~/Scripts/jquery-ui.js"));
+                        "~/Scripts/jquery-ui.js",
+                        "~/Scripts/jquery.datepicker.hr.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.unobtrusive*",
@@ -32,6 +33,10 @@ namespace NinjaSoftware.EnioNg.Web
 
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
             "~/Content/themes/base/jquery-ui.css"));
+            
+            bundles.Add(new ScriptBundle("~/bundles/globalize").Include(
+                "~/Scripts/globalize.js",
+                "~/Scripts/globalize.culture.hr.js"));
         }
 
         //    bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(

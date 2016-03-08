@@ -444,10 +444,32 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
                 RelationPredicateBucket bucket = new RelationPredicateBucket();
                 if (!string.IsNullOrWhiteSpace(filters))
                 { 
-					bucket.Relations.Add (RacunGlavaEntity.Relations.PartnerEntityUsingPartnerId);
+                    bucket.Relations.Add(RacunGlavaEntity.Relations.PartnerEntityUsingPartnerId);
                     bucket.PredicateExpression.Add(PredicateHelper.CreatePredicateFromJqGridFilterString(filters, typeof(RacunGlavaFields), DbGenericHelper.GetDbGenericTypeByName));
+                    
+                    JqGridFilter jqGrid = JsonConvert.DeserializeObject<JqGridFilter>(filters);
+                    if (jqGrid != null &&
+                        jqGrid.rules != null)
+                    {
+                        DateTime? datumOd = null;
+                        DateTime? datumDo = null;
+                        foreach (JqGridFilterItem item in jqGrid.rules.Where(r => r.field == "Datum"))
+                        {
+                            if (item.op == "ge")
+                            {
+                                datumOd = DateTime.Parse(item.data).Date;
+                            }
+                            
+                            if (item.op == "le")
+                            {
+                                datumDo = DateTime.Parse(item.data).Date.AddDays(1);
+                            }
+                            
+                            bucket.PredicateExpression.Add(PredicateHelper.FilterValidEntities(datumOd, datumDo, RacunGlavaFields.Datum));
+                        }
+                    }
                 }
-
+                
                 bool? isSortAscending = PagerBase.IsJqgridSortAscending(sord);
 
                 RacunGlavaPager pager = new RacunGlavaPager();
