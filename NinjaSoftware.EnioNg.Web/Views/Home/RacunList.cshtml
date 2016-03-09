@@ -4,10 +4,13 @@
 
 <h2>Lista računa</h2>
 
-@Html.ActionLink("Novi račun", "RacunEdit", "Home")
-<input type="button" value="Novi račun" onclick="alert('napravi kaj trebaš');" />
+<input type="button" value="Novi račun" onclick="window.location.href='/Home/RacunEdit'" />
+<br />
+<span>Datum od:</span>
 <input id="datum-od" type="text" />
+<span>Datum do:</span>
 <input id="datum-do" type="text" />
+
 <table id="RacunTable"></table>
 <div id="RacunTablePager"></div>
 
@@ -77,9 +80,11 @@
         changeMonth: true,
         changeYear: true,
         onSelect: function (dateText) {
-            //var datum = Globalize.parseDate(this.value);
-            //var linkParameter = datum.getFullYear() + "-" + (datum.getMonth() + 1) + "-" + datum.getDate();
             $("#RacunTable")[0].triggerToolbar();
         }
+    });
+    
+    $("#datum-od, #datum-do").change(function () {
+    	$("#RacunTable")[0].triggerToolbar();
     });
 </script>
