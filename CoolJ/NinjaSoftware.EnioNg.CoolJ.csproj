@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="DatabaseGeneric\BusinessLogic\Enums.cs" />
     <Compile Include="DatabaseGeneric\BusinessLogic\RacunGlavaEntity.cs" />
+    <Compile Include="DatabaseGeneric\BusinessLogic\RacunReport.cs" />
     <Compile Include="DatabaseGeneric\BusinessLogic\RacunStavkaEntity.cs" />
     <Compile Include="DatabaseGeneric\BusinessLogic\UserEntity.cs" />
     <Compile Include="DatabaseGeneric\BusinessLogic\ErrorEntity.cs" />

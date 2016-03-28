@@ -6,15 +6,9 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 {
     public partial class ConfigEntity
     {
-        private static ConfigEntity _instance = null;
         public static ConfigEntity GetInstance(DataAccessAdapterBase adapter)
         {
-            if (_instance == null)
-            {
-                _instance = ConfigEntity.FetchConfigCollection(adapter, null, null).Single();
-            }
-
-            return _instance;
+            return ConfigEntity.FetchConfigCollection(adapter, null, null).Single();
         }
 
     }

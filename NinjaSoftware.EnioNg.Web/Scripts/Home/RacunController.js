@@ -3,10 +3,11 @@ function RacunController($scope) {
 	
 	var dateString = ninjaSoftware.date.getDateString(new Date());
 	
-	$scope.racunGlava = {
+	$scope.racunGlava =  {
 		Datum: dateString,
 		Vrijeme: "12:00",
-		JePdvRacun: true
+		JePdvRacun: true,
+		StatusId: 2
 	};
 	
 	$scope.newRacunStavka = {};
@@ -90,10 +91,7 @@ function RacunController($scope) {
 		
 		if (statusCollection) {
 			var fn = function () {
-				if (statusCollection.length > 0) {
-					$scope.statusCollection = statusCollection;
-					$scope.racunGlava.StatusId = statusCollection[0].StatusId;
-				}
+			    $scope.statusCollection = statusCollection;
 			};
 				
 			ninjaSoftware.angularjs.safeApply($scope, fn);
@@ -129,9 +127,24 @@ function RacunController($scope) {
 	$scope.validation = {};
 	
 	$scope.validation.isValid = function () {
-		return true;
+	    return $scope.validation.isPoslovnaGodinaValid();
 	};
 	
+	$scope.validation.isPoslovnaGodinaValid = function () {
+	    Globalize.culture("hr");
+	    var date = Globalize.parseDate($scope.racunGlava.Datum);
+	    var year = date.getFullYear();
+
+	    var config = enioNg.api.config.get();
+
+	    if (config.AktivnaGodina !== year) {
+	        alert("Datum računa nije u aktivnoj poslovnoj godini. Račun nije pohranjen.");
+	        return false;
+	    }
+
+	    return true;
+    };
+
 	$scope.calculateTotal = function () {
 		var tarifaStopa;
 		if ($scope.racunGlava.TarifaStopa) {
@@ -143,10 +156,10 @@ function RacunController($scope) {
 				}
 			}
 		}
-				
+	    
+		var total = 0;
+
 		if ($scope.racunStavkaCollection.length > 0) {
-			var total = 0;
-			
 			for (var i = 0; i < $scope.racunStavkaCollection.length; i++) {
 				var racunStavka = $scope.racunStavkaCollection[i];
 				var kolicina = ninjaSoftware.parser.parseHrFloat(racunStavka.Kolicina);
@@ -158,9 +171,9 @@ function RacunController($scope) {
 		
 				total = total + iznos;
 			}
-			
-			$scope.ukupniIznos = ninjaSoftware.formatNo.toHrCurrencyFormat(total);
 		}
+
+		$scope.ukupniIznos = ninjaSoftware.formatNo.toHrCurrencyFormat(total);
 	};
 	
 	_me.loadPartnerCollection();
@@ -208,6 +221,21 @@ function RacunController($scope) {
 		}
 	};
 	
+	$scope.onTarifaChange = function () {
+	    var tarifaId = $scope.racunGlava.TarifaId;
+
+	    for (var i = 0; i < $scope.tarifaCollection.length; i++) {
+	        var tarifa = $scope.tarifaCollection[i];
+
+	        if (tarifa.TarifaId === tarifaId) {
+	            $scope.racunGlava.TarifaStopa = tarifa.Stopa;
+	            break;
+	        }
+	    }
+
+	    $scope.calculateTotal();
+	};
+
 	$scope.addRacunStavka = function () {
 		if (!$scope.newRacunStavka.ArtiklId ||
 			!$scope.racunForm.newStavkaKolicina.$valid ||

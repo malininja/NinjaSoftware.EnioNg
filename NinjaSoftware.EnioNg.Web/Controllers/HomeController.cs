@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using NinjaSoftware.EnioNg.CoolJ.EntityClasses;
-using NinjaSoftware.EnioNg.CoolJ.DatabaseSpecific;
+using NinjaSoftware.EnioNg.CoolJ.DatabaseGeneric.BusinessLogic;
+using SD.LLBLGen.Pro.ORMSupportClasses;
 
 namespace NinjaSoftware.EnioNg.Web.Controllers
 {
@@ -57,10 +57,10 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
             FlexCel.XlsAdapter.XlsFile xls = new FlexCel.XlsAdapter.XlsFile();
             xls.Open(reportPath);
 
-            DataAccessAdapter adapter = new DataAccessAdapter();
-            RacunGlavaEntity racunGlava = RacunGlavaEntity.FetchRacunGlavaForReport(adapter, racunGlavaId);
-            List<RacunGlavaEntity> racunGlavaList = new List<RacunGlavaEntity>();
-            racunGlavaList.Add(racunGlava);
+            DataAccessAdapterBase adapter = Helpers.Helper.GetDataAccessAdapter();
+
+            List<RacunReport> racunGlavaList = new List<RacunReport>();
+            racunGlavaList.Add(new RacunReport(adapter, racunGlavaId));
 
             FlexCel.Report.FlexCelReport report = new FlexCel.Report.FlexCelReport();
             report.AddTable("Racun", racunGlavaList);
@@ -68,7 +68,12 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
 
             using (System.IO.MemoryStream ms = new System.IO.MemoryStream())
             {
-                xls.Save(ms);
+                FlexCel.Render.FlexCelPdfExport pdfExport = new FlexCel.Render.FlexCelPdfExport(xls);
+                pdfExport.BeginExport(ms);
+                pdfExport.ExportAllVisibleSheets(false, "");
+                pdfExport.EndExport();
+
+                //xls.Save(ms);
                 ms.Position = 0;
 
                 return File(ms.ToArray(), "application/pdf");

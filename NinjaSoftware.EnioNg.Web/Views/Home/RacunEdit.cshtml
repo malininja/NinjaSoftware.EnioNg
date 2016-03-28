@@ -17,7 +17,7 @@
 					<input type="button" value="Pohrani" ng-click="save()" />
 				</td>
 				<td colspan="3">
-					<a id="pdf" href="javascript:void()">PDF</a>
+                    @Html.ActionLink("PDF", "RacunReport", new { racunGlavaId = Request.Params["racunGlavaId"] }, new { target = "_blank" })
 				</td>
 			</tr>
 	        <tr>
@@ -40,7 +40,8 @@
 	            </td>
 	            <td>
 	                <select ng-model="racunGlava.TarifaId"
-	                	ng-options="tarifa.TarifaId as tarifa.Naziv for tarifa in tarifaCollection"></select>
+	                	ng-options="tarifa.TarifaId as tarifa.Naziv for tarifa in tarifaCollection"
+                        ng-change="onTarifaChange()"></select>
 	            </td>
 	        </tr>
 	        <tr>
@@ -88,9 +89,9 @@
 	        <tr>
 	            <td>Dodatak zaglavlju:</td>
 	            <td colspan="5">
-	                <textarea ng-model="racunGlava.Zaglavlje"></textarea>
+	                <textarea style="width: 800px" ng-model="racunGlava.Zaglavlje"></textarea>
 	            </td>        
-	            <td colspan="3">
+	            <td colspan="2">
 	            	<h2>
 	            		Ukupno: <span ng-bind="ukupniIznos"></span> kn
 	            	</h2>
@@ -168,15 +169,6 @@
 </div>
 
 <script type="text/javascript">
-	$(document).ready(function () {
-		$("section").removeClass("content-wrapper")
-		
-		$("#pdf").click(function () {
-			var racunGlavaId = ninjaSoftware.url.getParameterValue("racunGlavaId");
-			window.location.href = "/Home/RacunReport?racunGlavaId=" + racunGlavaId;
-		});
-	});
-	
 	$(document).on("RacunControlerLoaded", function(event, scope) {
 		var racunGlavaId = ninjaSoftware.url.getParameterValue("racunGlavaId");
 		

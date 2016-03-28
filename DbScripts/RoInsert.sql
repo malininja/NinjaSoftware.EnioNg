@@ -14,6 +14,12 @@ INSERT INTO "StatusRo" ("Code", "Name", "StatusId")
 	
 INSERT INTO "StatusRo" ("Code", "Name", "StatusId")
 	VALUES('Cancelled', 'Storniran', 3);
+
+INSERT INTO "StatusRo" ("Code", "Name", "StatusId")
+	VALUES('WriteOff', 'Otpis', 4);
+
+INSERT INTO "StatusRo" ("Code", "Name", "StatusId")
+	VALUES('Blockade', 'Blokada', 5);
 	
 -- AuditInfoActionTypeRo
 INSERT INTO "AuditInfoActionTypeRo" ("Code", "Name", "AuditInfoActionTypeId")

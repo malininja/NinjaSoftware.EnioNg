@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using SD.LLBLGen.Pro.ORMSupportClasses;
-using NinjaSoftware.EnioNg.CoolJ.DatabaseSpecific;
 using NinjaSoftware.EnioNg.CoolJ.EntityClasses;
 using NinjaSoftware.Api.CoolJ;
 
@@ -16,7 +15,7 @@ namespace NinjaSoftware.EnioNg.Web.Helpers
         /// </summary>
         public static DataAccessAdapterBase GetDataAccessAdapter()
         {
-            return new DataAccessAdapter();
+            return new CoolJ.SqlServer.DatabaseSpecific.DataAccessAdapter();
         }
 
         /// <summary>
@@ -25,7 +24,7 @@ namespace NinjaSoftware.EnioNg.Web.Helpers
         /// <param name="userName">Used for audit info log.</param>
         public static DataAccessAdapterBase GetDataAccessAdapter(string userName)
         {
-            DataAccessAdapter adapter = new DataAccessAdapter();
+            CoolJ.SqlServer.DatabaseSpecific.DataAccessAdapter adapter = new CoolJ.SqlServer.DatabaseSpecific.DataAccessAdapter();
 
             UserEntity user = UserEntity.FetchUser(adapter, userName);
 

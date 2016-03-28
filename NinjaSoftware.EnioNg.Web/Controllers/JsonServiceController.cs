@@ -7,7 +7,6 @@ using NinjaSoftware.EnioNg.CoolJ.EntityClasses;
 using NinjaSoftware.EnioNg.CoolJ.HelperClasses;
 using SD.LLBLGen.Pro.ORMSupportClasses;
 using NinjaSoftware.Api.CoolJ;
-using NinjaSoftware.EnioNg.CoolJ.DatabaseSpecific;
 using System.Configuration;
 using NinjaSoftware.EnioNg.CoolJ;
 using NinjaSoftware.EnioNg.Web.Helpers;
@@ -376,7 +375,14 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
 
                 racunGlava4Save.TarifaStopa = TarifaEntity.FetchTarifa(adapter, null, racunGlava4Save.TarifaId).Stopa;
 
-                isSaved = adapter.SaveEntity(racunGlava4Save, true, false);
+                if (racunGlava4Save.Godina != racunGlava4Save.Datum.Year)
+                {
+                    // TODO: create mechanism for pushing errors to client. Currently check is on client. Remove client check after push error mechanism is implemented.
+                }
+                else
+                {
+                    isSaved = adapter.SaveEntity(racunGlava4Save, true, false);
+                }
 
                 if (isSaved)
                 {
@@ -441,7 +447,7 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
         {
             using (DataAccessAdapterBase adapter = Helper.GetDataAccessAdapter())
             {
-                RelationPredicateBucket bucket = new RelationPredicateBucket();
+                RelationPredicateBucket bucket = new RelationPredicateBucket(RacunGlavaFields.Godina == ConfigEntity.GetInstance(adapter).AktivnaGodina);
                 if (!string.IsNullOrWhiteSpace(filters))
                 { 
                     bucket.Relations.Add(RacunGlavaEntity.Relations.PartnerEntityUsingPartnerId);

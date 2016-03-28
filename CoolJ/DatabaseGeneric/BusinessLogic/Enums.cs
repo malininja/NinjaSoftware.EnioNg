@@ -38,6 +38,8 @@ namespace NinjaSoftware.EnioNg.CoolJ.Enums
     { 
         Paid = 1,
         Unpaid = 2,
-        Delete = 3
+        Delete = 3,
+        WriteOff = 4,
+        Blockade = 5
     }
 }
