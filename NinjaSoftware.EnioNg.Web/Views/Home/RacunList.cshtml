@@ -10,7 +10,7 @@
     </div>
 </div>
 
-<input type="button" value="Unos novog računa" onclick="window.location.href='/Home/RacunEdit'" />
+<input style="font-size: 130%;" type="button" value="Unos novog računa" onclick="window.location.href='/Home/RacunEdit'" />
 <br /><br />
 <span>Datum od:</span>
 <input id="datum-od" type="text" />
@@ -44,7 +44,8 @@
             var rowData = $(this).getRowData(id);
             var racunGlavaId = rowData["RacunGlavaId"];
             window.location.href = "/Home/RacunEdit?racunGlavaId=" + racunGlavaId;
-        }
+        },
+        height: 'auto'
     }).filterToolbar({
         groupOp: "AND",
         stringResult: true,

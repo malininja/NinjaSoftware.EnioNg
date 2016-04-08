@@ -149,7 +149,7 @@
           <Field Name="ConcurrencyGuid" Type="string" MaxLength="50" />
           <Field Name="IsActive" Type="bool" />
           <Field Name="Jm" Type="string" MaxLength="10" />
-          <Field Name="Naziv" Type="string" MaxLength="100" />
+          <Field Name="Naziv" Type="string" MaxLength="150" />
           <Field Name="PdvId" Type="long" />
         </Fields>
       </EntityDefinition>
@@ -382,7 +382,7 @@
                     <Field Name="ConcurrencyGuid" Ordinal="3" DbType="12" Length="50" />
                     <Field Name="IsActive" Ordinal="4" DbType="2" />
                     <Field Name="Jm" Ordinal="5" DbType="12" Length="10" />
-                    <Field Name="Naziv" Ordinal="6" DbType="12" Length="100" />
+                    <Field Name="Naziv" Ordinal="6" DbType="12" Length="150" />
                     <Field Name="PdvId" Ordinal="7" DbType="0" Precision="19" />
                   </Fields>
                 </Table>
@@ -626,7 +626,7 @@
                     <Field Name="ArtiklId" Ordinal="1" IsPrimaryKey="true" DbType="10" Precision="19" />
                     <Field Name="ConcurrencyGuid" Ordinal="2" DbType="24" Length="50" />
                     <Field Name="Jm" Ordinal="3" DbType="24" Length="10" />
-                    <Field Name="Naziv" Ordinal="4" DbType="24" Length="100" />
+                    <Field Name="Naziv" Ordinal="4" DbType="24" Length="150" />
                     <Field Name="PdvId" Ordinal="7" DbType="10" Precision="19" />
                     <Field Name="IsActive" Ordinal="8" DbType="0" />
                     <Field Name="Cijena" Ordinal="9" DbType="14" Precision="10" Scale="2" />

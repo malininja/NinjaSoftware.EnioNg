@@ -1,15 +1,16 @@
 ﻿@{
-    ViewBag.Title = "Partnerići";
+    ViewBag.Title = "Lista partnera";
 }
 
 <script src="@Url.Content("~/Scripts/Home/PartnerController.js")" type="text/javascript"></script>
 
 <div>
 
-	<h2>Partner</h2>
+	<h2>Lista partnera</h2>
 
-	<input type="button" value="Dodaj novog partnera" onclick="openPartnerDialogNew();" />
-		
+	<input style="font-size: 130%;" type="button" value="Dodaj novog partnera" onclick="openPartnerDialogNew();" />
+    <br /><br />
+
 	<table id="PartnerTable"></table>
 	<div id="PartnerTablePager"></div>	
 	<br /><br />
@@ -148,7 +149,8 @@
 			var scope = getNgControllerScope();
 			scope.loadPartner(rowData["PartnerId"]);
 			openPartnerDialog();
-		}
+		},
+		height: 'auto'
 	}).filterToolbar({ groupOp : 'AND', stringResult: true, searchOnEnter: false });
 	
 	$("#PartnerTable").jqGrid("navGrid", "#PartnerTablePager");

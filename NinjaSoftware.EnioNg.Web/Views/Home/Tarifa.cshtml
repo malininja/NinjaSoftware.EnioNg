@@ -1,13 +1,14 @@
 ﻿@{
-    ViewBag.Title = "Tarifa";
+    ViewBag.Title = "Lista tarifa";
 }
 
 <script src="@Url.Content("~/Scripts/Home/TarifaController.js")" type="text/javascript"></script>
 
 <div>
-    <h2>Tarifa</h2>
+    <h2>Lista tarifa</h2>
 
-    <input type="button" value="Dodaj novu tarifu" onclick="openNewTarifaDialog();" />
+    <input style="font-size: 130%;" type="button" value="Dodaj novu tarifu" onclick="openNewTarifaDialog();" />
+    <br /><br />
 
     <table id="TarifaTable"></table>
     <div id="TarifaTablePager"></div>
@@ -108,7 +109,8 @@
             var scope = getNgControllerScope();
             scope.loadTarifa(rowData["TarifaId"]);
             openTarifaDialog();
-        }
+        },
+        height: 'auto'
     }).filterToolbar({ groupOp: "AND", stringResult: true, searchOnEnter: false });
 
     $("#TarifaTable").jqGrid("navGrid", "#TarifaTablePager");

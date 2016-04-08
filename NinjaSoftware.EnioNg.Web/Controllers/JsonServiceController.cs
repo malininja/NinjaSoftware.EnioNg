@@ -37,7 +37,7 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
             DataAccessAdapterBase adapter = Helper.GetDataAccessAdapter(User.Identity.Name);
             using (adapter)
             {
-                IEnumerable<ArtiklEntity> artiklCollection = ArtiklEntity.FetchArtiklCollection(adapter, null, null);
+                IEnumerable<ArtiklEntity> artiklCollection = ArtiklEntity.FetchArtiklCollection(adapter, null, null).OrderBy(a => a.Naziv);
                 return CreateJsonResponse(artiklCollection);
             }
         }

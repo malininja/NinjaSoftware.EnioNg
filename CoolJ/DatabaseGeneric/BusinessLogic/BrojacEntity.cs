@@ -30,13 +30,13 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
                 {
                     Godina = godina.Value,
                     Naziv = brojacEnum.ToString(),
-                    SlijedeciBroj = 0
+                    SlijedeciBroj = 1
                 };
             }
 
-            brojac.SlijedeciBroj++;
+            int slijedeciBroj = brojac.SlijedeciBroj;
 
-            var slijedeciBroj = brojac.SlijedeciBroj;
+            brojac.SlijedeciBroj++;
 
             adapter.SaveEntity(brojac);
 

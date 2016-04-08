@@ -5,9 +5,10 @@
 <script src="@Url.Content("~/Scripts/Home/PdvController.js")" type="text/javascript"></script>
 
 <div>
-    <h2>Pdv</h2>
+    <h2>Lista stopa PDV-a</h2>
 
-    <input type="button" value="Dodaj novi PDV" onclick="openPdvDialogNew();" />
+    <input style="font-size: 130%;" type="button" value="Dodaj novi PDV" onclick="openPdvDialogNew();" />
+    <br /><br />
 
 	<table id="PdvTable"></table>
 	<div id="PdvTablePager"></div>	
@@ -99,7 +100,8 @@
             var scope = getNgControllerScope();
             scope.loadPdv(rowData["PdvId"]);
             openPdvDialog();
-        }
+        },
+        height: 'auto'
     }).filterToolbar({ groupOp: "AND", stringResult: true, searchOnEnter: false });
 
     $("#PdvTable").jqGrid("navGrid", "#PdvTablePager");

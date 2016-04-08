@@ -153,7 +153,7 @@
     			<td>{{ racunStavka.ArtiklId }}</td>
     			<td>{{ racunStavka.Artikl.Naziv }}</td>
     			<td>
-    				<input class="number" ng-model="racunStavka.Kolicina" ng-pattern="/^[0-9]{1,8}(,{1}[0-9]{2})?$/" ng-change="calculateTotal()" /> 
+    				<input class="number" ng-model="racunStavka.Kolicina" ng-pattern="/^[-]?[0-9]{1,8}(,{1}[0-9]{2})?$/" ng-change="calculateTotal()" /> 
     			</td>
     			<td>
     				<input class="number" ng-model="racunStavka.Cijena" ng-pattern="/^[0-9]{1,8}(,{1}[0-9]{2})?$/" ng-change="calculateTotal()" /> 

@@ -1,15 +1,16 @@
 ﻿@{
-    ViewBag.Title = "Artiklići";
+    ViewBag.Title = "Lista artikala";
 }
 
 <script src="@Url.Content("~/Scripts/Home/ArtiklController.js")" type="text/javascript"></script>
 
 <div>
 
-	<h2>Artikl</h2>
+	<h2>Lista artikala</h2>
 
-	<input type="button" value="Dodaj novi artikl" onclick="openNewArtiklDialog();" />
-		
+	<input style="font-size: 130%;" type="button" value="Dodaj novi artikl" onclick="openNewArtiklDialog();" />
+    <br /><br />
+
 	<table id="ArtiklTable"></table>
 	<div id="ArtiklTablePager"></div>	
 	<br /><br />
@@ -132,7 +133,8 @@
 			var scope = getNgControllerScope();
 			scope.loadArtikl(rowData["ArtiklId"]);
 			openArtiklDialog();
-		}
+		},
+		height: 'auto'
 	}).filterToolbar({ groupOp : 'AND', stringResult: true, searchOnEnter: false });
 	
 	$("#ArtiklTable").jqGrid("navGrid", "#ArtiklTablePager");
