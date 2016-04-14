@@ -12,6 +12,7 @@ function ConfigController($scope) {
 			}
 				
 			ninjaSoftware.angularjs.safeApply($scope, fn);
+			$(document).trigger("ConfigIsLoaded");
 		} else {
 			alert(enioNg.textResources.dataFetchError);
 		}

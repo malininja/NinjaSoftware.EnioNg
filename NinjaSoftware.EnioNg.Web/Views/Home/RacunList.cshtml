@@ -5,12 +5,15 @@
 <script src="@Url.Content("~/Scripts/Home/ConfigController.js")" type="text/javascript"></script>
 
 <div ng-app>
-    <div ng-controller="ConfigController">
+    <div id="divNgController" ng-controller="ConfigController">
         <h2>Lista računa za {{ config.AktivnaGodina }}. godinu</h2>
     </div>
 </div>
 
 <input style="font-size: 130%;" type="button" value="Unos novog računa" onclick="window.location.href='/Home/RacunEdit'" />
+<input style="font-size: 130%;" type="button" value="Ispis računa" onclick="ispisRacuna();" />
+<input style="font-size: 130%;" type="button" value="Ispis liste računa" onclick="ispisListeRacuna();" />
+
 <br /><br />
 <span>Datum od:</span>
 <input id="datum-od" type="text" />
@@ -22,6 +25,11 @@
 
 <script type="text/javascript">
     Globalize.culture("hr");
+
+    var filters = "";
+    function setFilters(f) {
+        filters = f;
+    }
 
     $("#RacunTable").jqGrid({
         url: "/JsonService/GetRacunGlavaCollectionForPaging",
@@ -68,6 +76,7 @@
                 }
 
                 postData.filters = JSON.stringify(filters);
+                setFilters(postData.filters);
             }
         }
     });;
@@ -85,16 +94,28 @@
         }
     }
 
-    $("#datum-od, #datum-do").datepicker({
-        yearRange: "2000:2016",
-        changeMonth: true,
-        changeYear: true,
-        onSelect: function (dateText) {
-            $("#RacunTable")[0].triggerToolbar();
-        }
+    $(document).on("ConfigIsLoaded", function () {
+        ngControllerScope = angular.element($("#divNgController")).scope();
+
+        $("#datum-od, #datum-do").datepicker({
+            yearRange: ngControllerScope.config.AktivnaGodina + ":" + ngControllerScope.config.AktivnaGodina,
+            changeMonth: true,
+            changeYear: true,
+            onSelect: function (dateText) {
+                $("#RacunTable")[0].triggerToolbar();
+            }
+        });
     });
 
     $("#datum-od, #datum-do").change(function () {
         $("#RacunTable")[0].triggerToolbar();
     });
+
+    function ispisRacuna() {
+        window.open("/Home/RacunReportCollection?jqGridFilters=" + encodeURIComponent(filters));
+    }
+
+    function ispisListeRacuna() {
+        window.open("/Home/RacunReportCollectionAsList?jqGridFilters=" + encodeURIComponent(filters));
+    }
 </script>

@@ -23,8 +23,16 @@ namespace NinjaSoftware.EnioNg.CoolJ.DatabaseGeneric.BusinessLogic
         public RacunReport(DataAccessAdapterBase adapter, long racunGlavaId)
         {
             this.RacunGlava = RacunGlavaEntity.FetchRacunGlavaForReport(adapter, racunGlavaId);
-            this.RacunStavkaCollection = this.RacunGlava.RacunStavkaCollection;
             this.Config = ConfigEntity.FetchConfigCollection(adapter, null, null).First();
+
+        }
+
+        public RacunReport(RacunGlavaEntity racunGlava, ConfigEntity config)
+        {
+            this.RacunGlava = racunGlava;
+            this.Config = config;
+
+            this.RacunStavkaCollection = this.RacunGlava.RacunStavkaCollection;
 
             switch ((StatusEnum)this.RacunGlava.StatusId)
             {
@@ -42,6 +50,17 @@ namespace NinjaSoftware.EnioNg.CoolJ.DatabaseGeneric.BusinessLogic
                 this.TarifaIznos += racunStavka.TarifaIznos;
                 this.PdvIznos += racunStavka.PdvIznos;
                 this.Ukupno += racunStavka.Iznos;
+            }
+        }
+
+        public static IEnumerable<RacunReport> GetRacunReportCollection(DataAccessAdapterBase adapter, RelationPredicateBucket bucket)
+        {
+            IEnumerable<RacunGlavaEntity> racunGlavaCollection = RacunGlavaEntity.FetchRacunGlavaCollectionForReport(adapter, bucket);
+            ConfigEntity config = ConfigEntity.FetchConfigCollection(adapter, null, null).First();
+
+            foreach (RacunGlavaEntity racunGlava in racunGlavaCollection)
+            {
+                yield return new RacunReport(racunGlava, config);
             }
         }
     }

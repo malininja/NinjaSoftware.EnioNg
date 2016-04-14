@@ -447,35 +447,10 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
         {
             using (DataAccessAdapterBase adapter = Helper.GetDataAccessAdapter())
             {
-                RelationPredicateBucket bucket = new RelationPredicateBucket(RacunGlavaFields.Godina == ConfigEntity.GetInstance(adapter).AktivnaGodina);
-                if (!string.IsNullOrWhiteSpace(filters))
-                { 
-                    bucket.Relations.Add(RacunGlavaEntity.Relations.PartnerEntityUsingPartnerId);
-                    bucket.PredicateExpression.Add(PredicateHelper.CreatePredicateFromJqGridFilterString(filters, typeof(RacunGlavaFields), DbGenericHelper.GetDbGenericTypeByName));
-                    
-                    JqGridFilter jqGrid = JsonConvert.DeserializeObject<JqGridFilter>(filters);
-                    if (jqGrid != null &&
-                        jqGrid.rules != null)
-                    {
-                        DateTime? datumOd = null;
-                        DateTime? datumDo = null;
-                        foreach (JqGridFilterItem item in jqGrid.rules.Where(r => r.field == "Datum"))
-                        {
-                            if (item.op == "ge")
-                            {
-                                datumOd = DateTime.Parse(item.data).Date;
-                            }
-                            
-                            if (item.op == "le")
-                            {
-                                datumDo = DateTime.Parse(item.data).Date.AddDays(1);
-                            }
-                            
-                            bucket.PredicateExpression.Add(PredicateHelper.FilterValidEntities(datumOd, datumDo, RacunGlavaFields.Datum));
-                        }
-                    }
-                }
-                
+                short godina = ConfigEntity.GetInstance(adapter).AktivnaGodina;
+                RelationPredicateBucket bucket = RacunGlavaPager.CreateBucket(godina, filters);
+                bucket.Relations.Add(RacunGlavaEntity.Relations.PartnerEntityUsingPartnerId);
+
                 bool? isSortAscending = PagerBase.IsJqgridSortAscending(sord);
 
                 RacunGlavaPager pager = new RacunGlavaPager();

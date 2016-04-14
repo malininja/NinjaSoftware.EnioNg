@@ -36,9 +36,7 @@ namespace NinjaSoftware.EnioNg.Web
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css",
-                      "~/Content/themes/base/jquery-ui.css",
-                      "~/Content/jqGrid/ui.jqgrid.css"));
+                      "~/Content/site.css"));
         }
     }
 }

@@ -24,14 +24,25 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
         public static RacunGlavaEntity FetchRacunGlavaForReport(DataAccessAdapterBase adapter, long racunGlavaId)
         {
+            PrefetchPath2 prefetchPath = PrefetchPathForRacunReport();
+            return FetchRacunGlava(adapter, prefetchPath, racunGlavaId);
+        }
+
+        public static IEnumerable<RacunGlavaEntity> FetchRacunGlavaCollectionForReport(DataAccessAdapterBase adapter, RelationPredicateBucket bucket)
+        {
+            PrefetchPath2 prefetchPath = PrefetchPathForRacunReport();
+            return FetchRacunGlavaCollection(adapter, bucket, prefetchPath);
+        }
+
+        private static PrefetchPath2 PrefetchPathForRacunReport()
+        {
             PrefetchPath2 prefetchPath = new PrefetchPath2(EntityType.RacunGlavaEntity);
             prefetchPath.Add(RacunGlavaEntity.PrefetchPathRacunStavkaCollection).
                 SubPath.Add(RacunStavkaEntity.PrefetchPathArtikl).
                 SubPath.Add(ArtiklEntity.PrefetchPathPdv);
             prefetchPath.Add(RacunGlavaEntity.PrefetchPathPartner);
             prefetchPath.Add(RacunGlavaEntity.PrefetchPathStatus);
-
-            return FetchRacunGlava(adapter, prefetchPath, racunGlavaId);
+            return prefetchPath;
         }
 
         private decimal? _iznos = null;
