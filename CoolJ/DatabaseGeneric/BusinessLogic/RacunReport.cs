@@ -22,12 +22,18 @@ namespace NinjaSoftware.EnioNg.CoolJ.DatabaseGeneric.BusinessLogic
 
         public RacunReport(DataAccessAdapterBase adapter, long racunGlavaId)
         {
-            this.RacunGlava = RacunGlavaEntity.FetchRacunGlavaForReport(adapter, racunGlavaId);
-            this.Config = ConfigEntity.FetchConfigCollection(adapter, null, null).First();
+            RacunGlavaEntity racunGlava = RacunGlavaEntity.FetchRacunGlavaForReport(adapter, racunGlavaId);
+            ConfigEntity config = ConfigEntity.FetchConfigCollection(adapter, null, null).First();
 
+            CreateObject(racunGlava, config);
         }
 
         public RacunReport(RacunGlavaEntity racunGlava, ConfigEntity config)
+        {
+            CreateObject(racunGlava, config);
+        }
+
+        private void CreateObject(RacunGlavaEntity racunGlava, ConfigEntity config)
         {
             this.RacunGlava = racunGlava;
             this.Config = config;
