@@ -19,6 +19,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.DatabaseGeneric.BusinessLogic
         public decimal PdvIznos { get; set; }
         public decimal Ukupno { get; set; }
         public decimal UkupnoBezPdv { get { return this.Ukupno - this.PdvIznos; } }
+        public decimal PdvPosto { get; set; }
 
         public RacunReport(DataAccessAdapterBase adapter, long racunGlavaId)
         {
@@ -48,6 +49,11 @@ namespace NinjaSoftware.EnioNg.CoolJ.DatabaseGeneric.BusinessLogic
                 default:
                     this.Valuta = this.RacunGlava.Status.Name;
                     break;
+            }
+
+            if (this.RacunStavkaCollection.Count() > 0)
+            {
+                this.PdvPosto = this.RacunStavkaCollection.First().PdvPosto;
             }
 
             foreach (RacunStavkaEntity racunStavka in this.RacunStavkaCollection)

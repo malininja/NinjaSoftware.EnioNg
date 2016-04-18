@@ -42,6 +42,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
                 SubPath.Add(ArtiklEntity.PrefetchPathPdv);
             prefetchPath.Add(RacunGlavaEntity.PrefetchPathPartner);
             prefetchPath.Add(RacunGlavaEntity.PrefetchPathStatus);
+            prefetchPath.Add(RacunGlavaEntity.PrefetchPathTarifa);
             return prefetchPath;
         }
 
