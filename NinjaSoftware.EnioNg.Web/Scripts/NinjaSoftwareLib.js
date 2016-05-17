@@ -173,7 +173,7 @@ nsFormatNo.toHrNoFormat = function (collection, memberToFormat) {
 };
 
 nsFormatNo.toHrCurrencyFormat = function (hrNo) {
-    if (nsValidation.isNumeric(hrNo)) {
+    if (nsValidation.isHrNumeric(hrNo)) {
 		var enNo = hrNo.toString().replace(",", ".");
 		var parsedValue = parseFloat(enNo);
 		return parsedValue.toFixed(2).replace(".", ",");
