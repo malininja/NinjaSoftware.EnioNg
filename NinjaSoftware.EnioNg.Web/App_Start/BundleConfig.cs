@@ -26,6 +26,16 @@ namespace NinjaSoftware.EnioNg.Web
                 "~/Scripts/Home/Api.js",
                 "~/Scripts/angular.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/angular-app").Include(
+                "~/Scripts/Home/EnioApp.js",
+                "~/Scripts/Home/ArtiklController.js",
+                "~/Scripts/Home/PdvController.js",
+                "~/Scripts/Home/PartnerController.js",
+                "~/Scripts/Home/TarifaController.js",
+                "~/Scripts/Home/ConfigController.js",
+                "~/Scripts/Home/RacunController.js"
+                ));
+
             bundles.Add(new ScriptBundle("~/bundles/globalize").Include(
                 "~/Scripts/globalize.js",
                 "~/Scripts/globalize.culture.hr.js"));

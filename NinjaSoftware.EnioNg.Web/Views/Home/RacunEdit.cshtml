@@ -2,10 +2,8 @@
     ViewBag.Title = "RacunEdit";
 }
 
-<script type="text/javascript" src="~/Scripts/Home/RacunController.js"></script>
-
 <div id="RacunEdit">
-	<form ng-app="" ng-controller="RacunController" name="racunForm">
+	<form ng-app="enioApp" ng-controller="RacunController" name="racunForm">
 	<table border="1">
 		<tbody>
 			<tr>
@@ -128,10 +126,10 @@
 	                	ng-change="onArtiklChange()"></select>
 	            </td>
 	            <td>
-	                <input class="number" id="newStavkaKolicina" name="newStavkaKolicina" type="text" ng-model="newRacunStavka.Kolicina" ng-required="true" ng-pattern="/^[0-9]{1,8}(,{1}[0-9]{2})?$/" />
+	                <input class="number" id="newStavkaKolicina" name="newStavkaKolicina" type="text" ng-model="newRacunStavka.Kolicina" ng-required="true" ng-pattern="/^[0-9]{1,8}(,{1}[0-9]{1,2})?$/" />
 	            </td>
 	            <td>
-	                <input class="number" name="newStavkaCijena" type="text" ng-model="newRacunStavka.Cijena" ng-pattern="/^[0-9]{1,8}(,{1}[0-9]{2})?$/" />
+	                <input class="number" name="newStavkaCijena" type="text" ng-model="newRacunStavka.Cijena" ng-required="true" ng-pattern="/^[0-9]{1,8}(,{1}[0-9]{1,2})?$/" />
 	            </td>
 	        </tr>
 	    </tbody>
@@ -142,8 +140,8 @@
     		<tr>
     			<th>Artikl</th>
     			<th>Naziv</th>
-    			<th>Količina</th>
-    			<th>Cijena</th>
+    			<th style="text-align: center">Količina</th>
+    			<th style="text-align: center">Cijena</th>
     			<th>PDV (%)</th>
     			<th></th>
     		</tr>
