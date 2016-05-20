@@ -66,7 +66,7 @@ app.controller("PartnerController", ["$scope", function ($scope) {
 
     $scope.validation.isNazivValid = function () {
         if ($scope.selectedPartner.Naziv) {
-            return String.trim($scope.selectedPartner.Naziv).length < 101;
+            return $scope.selectedPartner.Naziv.trim().length < 101;
         }
         else {
             return true;
@@ -75,7 +75,7 @@ app.controller("PartnerController", ["$scope", function ($scope) {
 
     $scope.validation.isNazivExist = function () {
         if ($scope.selectedPartner.Naziv) {
-            return String.trim($scope.selectedPartner.Naziv).length > 0;
+            return $scope.selectedPartner.Naziv.trim().length > 0;
         }
         else {
             return false;
@@ -84,7 +84,7 @@ app.controller("PartnerController", ["$scope", function ($scope) {
 
     $scope.validation.isOibValid = function () {
         if ($scope.selectedPartner.Oib) {
-            return String.trim($scope.selectedPartner.Oib).length === 11;
+            return $scope.selectedPartner.Oib.trim().length === 11;
         }
         else {
             return false;
@@ -93,7 +93,7 @@ app.controller("PartnerController", ["$scope", function ($scope) {
 
     $scope.validation.isAdresaValid = function () {
         if ($scope.selectedPartner.Adresa) {
-            return String.trim($scope.selectedPartner.Adresa).length < 101;
+            return $scope.selectedPartner.Adresa.trim().length < 101;
         }
         else {
             return true;
@@ -102,7 +102,7 @@ app.controller("PartnerController", ["$scope", function ($scope) {
 
     $scope.validation.isMjestoValid = function () {
         if ($scope.selectedPartner.Mjesto) {
-            return String.trim($scope.selectedPartner.Mjesto).length < 21;
+            return $scope.selectedPartner.Mjesto.trim().length < 21;
         }
         else {
             return true;
@@ -111,7 +111,7 @@ app.controller("PartnerController", ["$scope", function ($scope) {
 
     $scope.validation.isPostaValid = function () {
         if ($scope.selectedPartner.Posta) {
-            return String.trim($scope.selectedPartner.Posta).length < 11;
+            return $scope.selectedPartner.Posta.trim().length < 11;
         }
         else {
             return true;

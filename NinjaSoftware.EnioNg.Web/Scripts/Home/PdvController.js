@@ -53,7 +53,7 @@
 
     $scope.validation.isNazivValid = function () {
         if ($scope.selectedPdv.Naziv) {
-            return String.trim($scope.selectedPdv.Naziv).length < 129;
+            return $scope.selectedPdv.Naziv.trim().length < 129;
         } else {
             return true;
         }
@@ -61,7 +61,7 @@
 
     $scope.validation.isNazivExist = function () {
         if ($scope.selectedPdv.Naziv) {
-            return String.trim($scope.selectedPdv.Naziv).length > 0;
+            return $scope.selectedPdv.Naziv.trim().length > 0;
         } else {
             return false;
         }

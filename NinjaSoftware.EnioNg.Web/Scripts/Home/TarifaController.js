@@ -64,7 +64,7 @@
 
     $scope.validation.isNazivValid = function () {
         if ($scope.selectedTarifa.Naziv) {
-            return String.trim($scope.selectedTarifa.Naziv).length < 101;
+            return $scope.selectedTarifa.Naziv.trim().length < 101;
         } else {
             return true;
         }

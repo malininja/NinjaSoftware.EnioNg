@@ -86,7 +86,7 @@ app.controller("ArtiklController", ["$scope", function ($scope) {
 
     $scope.validation.isJmValid = function () {
         if ($scope.selectedArtikl.Jm) {
-            return String.trim($scope.selectedArtikl.Jm).length < 11;
+            return $scope.selectedArtikl.Jm.trim().length < 11;
         }
         else {
             return true;
@@ -99,7 +99,7 @@ app.controller("ArtiklController", ["$scope", function ($scope) {
 
     $scope.validation.isNazivValid = function () {
         if ($scope.selectedArtikl.Naziv) {
-            return String.trim($scope.selectedArtikl.Naziv).length < 101;
+            return $scope.selectedArtikl.Naziv.trim().length < 101;
         } else {
             return true;
         }

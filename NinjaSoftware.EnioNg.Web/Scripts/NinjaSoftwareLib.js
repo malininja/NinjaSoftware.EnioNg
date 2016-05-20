@@ -83,8 +83,8 @@ nsAngular.safeApply = function ($scope, fn) {
 };
 
 nsAngular.isObjectExist = function (item) {
-	if (item) {
-		return String.trim(item.toString()).length > 0;
+	if (item != null) {
+		return item.toString().trim().length > 0;
 	}
 	else {
 		return false;
@@ -102,7 +102,7 @@ nsValidation.isNumeric = function (input) {
 };
 
 nsValidation.isHrNumeric = function (input) {
-	if (input) {
+	if (input != null) {
 		input = input.toString().replace(",", ".");
 		return nsValidation.isNumeric(input);
 	} else {
