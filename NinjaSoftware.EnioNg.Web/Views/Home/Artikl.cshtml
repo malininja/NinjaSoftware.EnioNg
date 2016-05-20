@@ -2,8 +2,6 @@
     ViewBag.Title = "Lista artikala";
 }
 
-<script src="@Url.Content("~/Scripts/Home/ArtiklController.js")" type="text/javascript"></script>
-
 <div>
 
 	<h2>Lista artikala</h2>
@@ -15,7 +13,7 @@
 	<div id="ArtiklTablePager"></div>	
 	<br /><br />
 	
-	<div id="ArtiklInput" ng-app>
+	<div id="ArtiklInput" ng-app="enioApp">
 	<div id="divNgController" ng-controller="ArtiklController">
 		<table>
 			<tr>
