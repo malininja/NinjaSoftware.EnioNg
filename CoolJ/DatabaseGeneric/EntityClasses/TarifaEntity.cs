@@ -467,7 +467,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The ConcurrencyGuid property of the Entity Tarifa<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "Tarifa"."ConcurrencyGuid"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Varchar, 0, 0, 50<br/>
+		/// Table field type characteristics (type, precision, scale, length): NVarChar, 0, 0, 50<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): false, false, false</remarks>
 		[JsonProperty]
 		public virtual System.String ConcurrencyGuid
@@ -478,7 +478,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The IsActive property of the Entity Tarifa<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "Tarifa"."IsActive"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Boolean, 0, 0, 0<br/>
+		/// Table field type characteristics (type, precision, scale, length): Bit, 0, 0, 0<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): false, false, false</remarks>
 		[JsonProperty]
 		public virtual System.Boolean IsActive
@@ -489,7 +489,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The Naziv property of the Entity Tarifa<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "Tarifa"."Naziv"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Varchar, 0, 0, 100<br/>
+		/// Table field type characteristics (type, precision, scale, length): NVarChar, 0, 0, 100<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): false, false, false</remarks>
 		[JsonProperty]
 		public virtual System.String Naziv
@@ -500,7 +500,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The Stopa property of the Entity Tarifa<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "Tarifa"."Stopa"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Numeric, 5, 2, 0<br/>
+		/// Table field type characteristics (type, precision, scale, length): Decimal, 5, 2, 0<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): false, false, false</remarks>
 		[JsonProperty]
 		public virtual System.Decimal Stopa
@@ -511,7 +511,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The TarifaId property of the Entity Tarifa<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "Tarifa"."TarifaId"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Bigint, 19, 0, 0<br/>
+		/// Table field type characteristics (type, precision, scale, length): BigInt, 19, 0, 0<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): false, true, true</remarks>
 		[JsonProperty]
 		public virtual System.Int64 TarifaId
@@ -546,17 +546,17 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 			get { return (int)NinjaSoftware.EnioNg.CoolJ.EntityType.TarifaEntity; }
 		}
 
-		#endregion
+        #endregion
 
 
-		#region Custom Entity code
-		
-		// __LLBLGENPRO_USER_CODE_REGION_START CustomEntityCode
-		// __LLBLGENPRO_USER_CODE_REGION_END
-		#endregion
+        #region Custom Entity code
 
-		#region Included code
+        // __LLBLGENPRO_USER_CODE_REGION_START CustomEntityCode
+        // __LLBLGENPRO_USER_CODE_REGION_END
+        #endregion
 
-		#endregion
-	}
+        #region Included code
+
+        #endregion
+    }
 }

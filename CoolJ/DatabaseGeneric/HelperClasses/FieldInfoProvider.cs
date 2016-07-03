@@ -77,7 +77,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.HelperClasses
 			this.AddElementFieldInfo("ArtiklEntity", "ConcurrencyGuid", typeof(System.String), false, false, false, false,  (int)ArtiklFieldIndex.ConcurrencyGuid, 50, 0, 0);
 			this.AddElementFieldInfo("ArtiklEntity", "IsActive", typeof(System.Boolean), false, false, false, false,  (int)ArtiklFieldIndex.IsActive, 0, 0, 0);
 			this.AddElementFieldInfo("ArtiklEntity", "Jm", typeof(System.String), false, false, false, false,  (int)ArtiklFieldIndex.Jm, 10, 0, 0);
-			this.AddElementFieldInfo("ArtiklEntity", "Naziv", typeof(System.String), false, false, false, false,  (int)ArtiklFieldIndex.Naziv, 100, 0, 0);
+			this.AddElementFieldInfo("ArtiklEntity", "Naziv", typeof(System.String), false, false, false, false,  (int)ArtiklFieldIndex.Naziv, 150, 0, 0);
 			this.AddElementFieldInfo("ArtiklEntity", "PdvId", typeof(System.Int64), false, true, false, false,  (int)ArtiklFieldIndex.PdvId, 0, 0, 19);
 		}
 		/// <summary>Inits AuditInfoEntity's FieldInfo objects</summary>
@@ -89,7 +89,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.HelperClasses
 			this.AddElementFieldInfo("AuditInfoEntity", "AuditInfoId", typeof(System.Int64), true, false, false, false,  (int)AuditInfoFieldIndex.AuditInfoId, 0, 0, 19);
 			this.AddElementFieldInfo("AuditInfoEntity", "ConcurrencyGuid", typeof(System.String), false, false, false, false,  (int)AuditInfoFieldIndex.ConcurrencyGuid, 50, 0, 0);
 			this.AddElementFieldInfo("AuditInfoEntity", "EntityId", typeof(System.Int64), false, true, false, false,  (int)AuditInfoFieldIndex.EntityId, 0, 0, 19);
-			this.AddElementFieldInfo("AuditInfoEntity", "JsonData", typeof(System.String), false, false, false, false,  (int)AuditInfoFieldIndex.JsonData, 1073741823, 0, 0);
+			this.AddElementFieldInfo("AuditInfoEntity", "JsonData", typeof(System.String), false, false, false, false,  (int)AuditInfoFieldIndex.JsonData, 2147483647, 0, 0);
 			this.AddElementFieldInfo("AuditInfoEntity", "PrimaryKeyValue", typeof(System.Int64), false, false, false, false,  (int)AuditInfoFieldIndex.PrimaryKeyValue, 0, 0, 19);
 			this.AddElementFieldInfo("AuditInfoEntity", "UserId", typeof(System.Int64), false, true, false, false,  (int)AuditInfoFieldIndex.UserId, 0, 0, 19);
 		}
@@ -107,16 +107,16 @@ namespace NinjaSoftware.EnioNg.CoolJ.HelperClasses
 			this.AddFieldIndexEnumForElementName(typeof(BrojacFieldIndex), "BrojacEntity");
 			this.AddElementFieldInfo("BrojacEntity", "BrojacId", typeof(System.Int64), true, false, false, false,  (int)BrojacFieldIndex.BrojacId, 0, 0, 19);
 			this.AddElementFieldInfo("BrojacEntity", "ConcurrencyGuid", typeof(System.String), false, false, false, false,  (int)BrojacFieldIndex.ConcurrencyGuid, 50, 0, 0);
-			this.AddElementFieldInfo("BrojacEntity", "Godina", typeof(System.Int16), false, false, false, false,  (int)BrojacFieldIndex.Godina, 0, 0, 0);
+			this.AddElementFieldInfo("BrojacEntity", "Godina", typeof(System.Int16), false, false, false, false,  (int)BrojacFieldIndex.Godina, 0, 0, 5);
 			this.AddElementFieldInfo("BrojacEntity", "Naziv", typeof(System.String), false, false, false, false,  (int)BrojacFieldIndex.Naziv, 100, 0, 0);
-			this.AddElementFieldInfo("BrojacEntity", "SlijedeciBroj", typeof(System.Int32), false, false, false, false,  (int)BrojacFieldIndex.SlijedeciBroj, 0, 0, 0);
+			this.AddElementFieldInfo("BrojacEntity", "SlijedeciBroj", typeof(System.Int32), false, false, false, false,  (int)BrojacFieldIndex.SlijedeciBroj, 0, 0, 10);
 		}
 		/// <summary>Inits ConfigEntity's FieldInfo objects</summary>
 		private void InitConfigEntityInfos()
 		{
 			this.AddFieldIndexEnumForElementName(typeof(ConfigFieldIndex), "ConfigEntity");
 			this.AddElementFieldInfo("ConfigEntity", "Adresa", typeof(System.String), false, false, false, true,  (int)ConfigFieldIndex.Adresa, 100, 0, 0);
-			this.AddElementFieldInfo("ConfigEntity", "AktivnaGodina", typeof(System.Int16), false, false, false, false,  (int)ConfigFieldIndex.AktivnaGodina, 0, 0, 0);
+			this.AddElementFieldInfo("ConfigEntity", "AktivnaGodina", typeof(System.Int16), false, false, false, false,  (int)ConfigFieldIndex.AktivnaGodina, 0, 0, 5);
 			this.AddElementFieldInfo("ConfigEntity", "ConcurrencyGuid", typeof(System.String), false, false, false, false,  (int)ConfigFieldIndex.ConcurrencyGuid, 50, 0, 0);
 			this.AddElementFieldInfo("ConfigEntity", "ConfigId", typeof(System.Int64), true, false, false, false,  (int)ConfigFieldIndex.ConfigId, 0, 0, 19);
 			this.AddElementFieldInfo("ConfigEntity", "Mjesto", typeof(System.String), false, false, false, true,  (int)ConfigFieldIndex.Mjesto, 100, 0, 0);
@@ -139,9 +139,9 @@ namespace NinjaSoftware.EnioNg.CoolJ.HelperClasses
 			this.AddElementFieldInfo("ErrorEntity", "ConcurrencyGuid", typeof(System.String), false, false, false, false,  (int)ErrorFieldIndex.ConcurrencyGuid, 50, 0, 0);
 			this.AddElementFieldInfo("ErrorEntity", "ErrorDateTime", typeof(System.DateTime), false, false, false, false,  (int)ErrorFieldIndex.ErrorDateTime, 0, 0, 0);
 			this.AddElementFieldInfo("ErrorEntity", "ErrorId", typeof(System.Int64), true, false, false, false,  (int)ErrorFieldIndex.ErrorId, 0, 0, 19);
-			this.AddElementFieldInfo("ErrorEntity", "Message", typeof(System.String), false, false, false, false,  (int)ErrorFieldIndex.Message, 1073741823, 0, 0);
+			this.AddElementFieldInfo("ErrorEntity", "Message", typeof(System.String), false, false, false, false,  (int)ErrorFieldIndex.Message, 2147483647, 0, 0);
 			this.AddElementFieldInfo("ErrorEntity", "ParentErrorId", typeof(Nullable<System.Int64>), false, true, false, true,  (int)ErrorFieldIndex.ParentErrorId, 0, 0, 19);
-			this.AddElementFieldInfo("ErrorEntity", "StackTrace", typeof(System.String), false, false, false, true,  (int)ErrorFieldIndex.StackTrace, 1073741823, 0, 0);
+			this.AddElementFieldInfo("ErrorEntity", "StackTrace", typeof(System.String), false, false, false, true,  (int)ErrorFieldIndex.StackTrace, 2147483647, 0, 0);
 		}
 		/// <summary>Inits PartnerEntity's FieldInfo objects</summary>
 		private void InitPartnerEntityInfos()
@@ -150,12 +150,12 @@ namespace NinjaSoftware.EnioNg.CoolJ.HelperClasses
 			this.AddElementFieldInfo("PartnerEntity", "Adresa", typeof(System.String), false, false, false, true,  (int)PartnerFieldIndex.Adresa, 100, 0, 0);
 			this.AddElementFieldInfo("PartnerEntity", "ConcurrencyGuid", typeof(System.String), false, false, false, false,  (int)PartnerFieldIndex.ConcurrencyGuid, 50, 0, 0);
 			this.AddElementFieldInfo("PartnerEntity", "IsActive", typeof(System.Boolean), false, false, false, false,  (int)PartnerFieldIndex.IsActive, 0, 0, 0);
-			this.AddElementFieldInfo("PartnerEntity", "Mjesto", typeof(System.String), false, false, false, true,  (int)PartnerFieldIndex.Mjesto, 20, 0, 0);
+			this.AddElementFieldInfo("PartnerEntity", "Mjesto", typeof(System.String), false, false, false, true,  (int)PartnerFieldIndex.Mjesto, 40, 0, 0);
 			this.AddElementFieldInfo("PartnerEntity", "Naziv", typeof(System.String), false, false, false, false,  (int)PartnerFieldIndex.Naziv, 100, 0, 0);
-			this.AddElementFieldInfo("PartnerEntity", "Oib", typeof(System.String), false, false, false, false,  (int)PartnerFieldIndex.Oib, 11, 0, 0);
+			this.AddElementFieldInfo("PartnerEntity", "Oib", typeof(System.String), false, false, false, true,  (int)PartnerFieldIndex.Oib, 11, 0, 0);
 			this.AddElementFieldInfo("PartnerEntity", "PartnerId", typeof(System.Int64), true, false, false, false,  (int)PartnerFieldIndex.PartnerId, 0, 0, 19);
 			this.AddElementFieldInfo("PartnerEntity", "Posta", typeof(System.String), false, false, false, true,  (int)PartnerFieldIndex.Posta, 10, 0, 0);
-			this.AddElementFieldInfo("PartnerEntity", "Valuta", typeof(System.Int16), false, false, false, false,  (int)PartnerFieldIndex.Valuta, 0, 0, 0);
+			this.AddElementFieldInfo("PartnerEntity", "Valuta", typeof(System.Int16), false, false, false, false,  (int)PartnerFieldIndex.Valuta, 0, 0, 5);
 		}
 		/// <summary>Inits PdvEntity's FieldInfo objects</summary>
 		private void InitPdvEntityInfos()
@@ -170,10 +170,10 @@ namespace NinjaSoftware.EnioNg.CoolJ.HelperClasses
 		private void InitRacunGlavaEntityInfos()
 		{
 			this.AddFieldIndexEnumForElementName(typeof(RacunGlavaFieldIndex), "RacunGlavaEntity");
-			this.AddElementFieldInfo("RacunGlavaEntity", "BrojRacuna", typeof(System.Int32), false, false, false, false,  (int)RacunGlavaFieldIndex.BrojRacuna, 0, 0, 0);
+			this.AddElementFieldInfo("RacunGlavaEntity", "BrojRacuna", typeof(System.Int32), false, false, false, false,  (int)RacunGlavaFieldIndex.BrojRacuna, 0, 0, 10);
 			this.AddElementFieldInfo("RacunGlavaEntity", "ConcurrencyGuid", typeof(System.String), false, false, false, false,  (int)RacunGlavaFieldIndex.ConcurrencyGuid, 50, 0, 0);
 			this.AddElementFieldInfo("RacunGlavaEntity", "Datum", typeof(System.DateTime), false, false, false, false,  (int)RacunGlavaFieldIndex.Datum, 0, 0, 0);
-			this.AddElementFieldInfo("RacunGlavaEntity", "Godina", typeof(System.Int16), false, false, false, false,  (int)RacunGlavaFieldIndex.Godina, 0, 0, 0);
+			this.AddElementFieldInfo("RacunGlavaEntity", "Godina", typeof(System.Int16), false, false, false, false,  (int)RacunGlavaFieldIndex.Godina, 0, 0, 5);
 			this.AddElementFieldInfo("RacunGlavaEntity", "JePdvRacun", typeof(System.Boolean), false, false, false, false,  (int)RacunGlavaFieldIndex.JePdvRacun, 0, 0, 0);
 			this.AddElementFieldInfo("RacunGlavaEntity", "MjestoRadaAdresa", typeof(System.String), false, false, false, true,  (int)RacunGlavaFieldIndex.MjestoRadaAdresa, 100, 0, 0);
 			this.AddElementFieldInfo("RacunGlavaEntity", "MjestoRadaNaziv", typeof(System.String), false, false, false, true,  (int)RacunGlavaFieldIndex.MjestoRadaNaziv, 100, 0, 0);
@@ -182,7 +182,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.HelperClasses
 			this.AddElementFieldInfo("RacunGlavaEntity", "StatusId", typeof(System.Int64), false, true, false, false,  (int)RacunGlavaFieldIndex.StatusId, 0, 0, 19);
 			this.AddElementFieldInfo("RacunGlavaEntity", "TarifaId", typeof(System.Int64), false, true, false, false,  (int)RacunGlavaFieldIndex.TarifaId, 0, 0, 19);
 			this.AddElementFieldInfo("RacunGlavaEntity", "TarifaStopa", typeof(System.Decimal), false, false, false, false,  (int)RacunGlavaFieldIndex.TarifaStopa, 0, 2, 5);
-			this.AddElementFieldInfo("RacunGlavaEntity", "Valuta", typeof(System.Int16), false, false, false, false,  (int)RacunGlavaFieldIndex.Valuta, 0, 0, 0);
+			this.AddElementFieldInfo("RacunGlavaEntity", "Valuta", typeof(System.Int16), false, false, false, false,  (int)RacunGlavaFieldIndex.Valuta, 0, 0, 5);
 			this.AddElementFieldInfo("RacunGlavaEntity", "Vrijeme", typeof(System.String), false, false, false, true,  (int)RacunGlavaFieldIndex.Vrijeme, 10, 0, 0);
 			this.AddElementFieldInfo("RacunGlavaEntity", "Zaglavlje", typeof(System.String), false, false, false, true,  (int)RacunGlavaFieldIndex.Zaglavlje, 1024, 0, 0);
 		}
@@ -197,7 +197,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.HelperClasses
 			this.AddElementFieldInfo("RacunStavkaEntity", "Kolicina", typeof(System.Decimal), false, false, false, false,  (int)RacunStavkaFieldIndex.Kolicina, 0, 2, 8);
 			this.AddElementFieldInfo("RacunStavkaEntity", "PdvIznos", typeof(System.Decimal), false, false, false, false,  (int)RacunStavkaFieldIndex.PdvIznos, 0, 2, 10);
 			this.AddElementFieldInfo("RacunStavkaEntity", "PdvPosto", typeof(System.Decimal), false, false, false, false,  (int)RacunStavkaFieldIndex.PdvPosto, 0, 2, 4);
-			this.AddElementFieldInfo("RacunStavkaEntity", "Pozicija", typeof(System.Int16), false, false, false, false,  (int)RacunStavkaFieldIndex.Pozicija, 0, 0, 0);
+			this.AddElementFieldInfo("RacunStavkaEntity", "Pozicija", typeof(System.Int16), false, false, false, false,  (int)RacunStavkaFieldIndex.Pozicija, 0, 0, 5);
 			this.AddElementFieldInfo("RacunStavkaEntity", "RacunGlavaId", typeof(System.Int64), false, true, false, false,  (int)RacunStavkaFieldIndex.RacunGlavaId, 0, 0, 19);
 			this.AddElementFieldInfo("RacunStavkaEntity", "RacunStavkaId", typeof(System.Int64), true, false, false, false,  (int)RacunStavkaFieldIndex.RacunStavkaId, 0, 0, 19);
 			this.AddElementFieldInfo("RacunStavkaEntity", "TarifaIznos", typeof(System.Decimal), false, false, false, false,  (int)RacunStavkaFieldIndex.TarifaIznos, 0, 2, 10);

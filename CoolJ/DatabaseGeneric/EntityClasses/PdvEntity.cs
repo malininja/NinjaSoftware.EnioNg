@@ -465,7 +465,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The ConcurrencyGuid property of the Entity Pdv<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "Pdv"."ConcurrencyGuid"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Varchar, 0, 0, 50<br/>
+		/// Table field type characteristics (type, precision, scale, length): NVarChar, 0, 0, 50<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): false, false, false</remarks>
 		[JsonProperty]
 		public virtual System.String ConcurrencyGuid
@@ -476,7 +476,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The Naziv property of the Entity Pdv<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "Pdv"."Naziv"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Varchar, 0, 0, 128<br/>
+		/// Table field type characteristics (type, precision, scale, length): NVarChar, 0, 0, 128<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): false, false, false</remarks>
 		[JsonProperty]
 		public virtual System.String Naziv
@@ -487,7 +487,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The PdvId property of the Entity Pdv<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "Pdv"."PdvId"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Bigint, 19, 0, 0<br/>
+		/// Table field type characteristics (type, precision, scale, length): BigInt, 19, 0, 0<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): false, true, true</remarks>
 		[JsonProperty]
 		public virtual System.Int64 PdvId
@@ -498,7 +498,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The Stopa property of the Entity Pdv<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "Pdv"."Stopa"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Numeric, 4, 2, 0<br/>
+		/// Table field type characteristics (type, precision, scale, length): Decimal, 4, 2, 0<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): false, false, false</remarks>
 		[JsonProperty]
 		public virtual System.Decimal Stopa

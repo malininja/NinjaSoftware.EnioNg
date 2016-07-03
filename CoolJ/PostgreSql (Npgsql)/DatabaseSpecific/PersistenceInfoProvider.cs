@@ -73,7 +73,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.PostgreSql.DatabaseSpecific
 			this.AddElementFieldMapping("ArtiklEntity", "ConcurrencyGuid", "ConcurrencyGuid", false, "Varchar", 50, 0, 0, false, "", null, typeof(System.String), 2);
 			this.AddElementFieldMapping("ArtiklEntity", "IsActive", "IsActive", false, "Boolean", 0, 0, 0, false, "", null, typeof(System.Boolean), 3);
 			this.AddElementFieldMapping("ArtiklEntity", "Jm", "Jm", false, "Varchar", 10, 0, 0, false, "", null, typeof(System.String), 4);
-			this.AddElementFieldMapping("ArtiklEntity", "Naziv", "Naziv", false, "Varchar", 100, 0, 0, false, "", null, typeof(System.String), 5);
+			this.AddElementFieldMapping("ArtiklEntity", "Naziv", "Naziv", false, "Varchar", 150, 0, 0, false, "", null, typeof(System.String), 5);
 			this.AddElementFieldMapping("ArtiklEntity", "PdvId", "PdvId", false, "Bigint", 0, 19, 0, false, "", null, typeof(System.Int64), 6);
 		}
 
@@ -153,9 +153,9 @@ namespace NinjaSoftware.EnioNg.CoolJ.PostgreSql.DatabaseSpecific
 			this.AddElementFieldMapping("PartnerEntity", "Adresa", "Adresa", true, "Varchar", 100, 0, 0, false, "", null, typeof(System.String), 0);
 			this.AddElementFieldMapping("PartnerEntity", "ConcurrencyGuid", "ConcurrencyGuid", false, "Varchar", 50, 0, 0, false, "", null, typeof(System.String), 1);
 			this.AddElementFieldMapping("PartnerEntity", "IsActive", "IsActive", false, "Boolean", 0, 0, 0, false, "", null, typeof(System.Boolean), 2);
-			this.AddElementFieldMapping("PartnerEntity", "Mjesto", "Mjesto", true, "Varchar", 20, 0, 0, false, "", null, typeof(System.String), 3);
+			this.AddElementFieldMapping("PartnerEntity", "Mjesto", "Mjesto", true, "Varchar", 40, 0, 0, false, "", null, typeof(System.String), 3);
 			this.AddElementFieldMapping("PartnerEntity", "Naziv", "Naziv", false, "Varchar", 100, 0, 0, false, "", null, typeof(System.String), 4);
-			this.AddElementFieldMapping("PartnerEntity", "Oib", "Oib", false, "Varchar", 11, 0, 0, false, "", null, typeof(System.String), 5);
+			this.AddElementFieldMapping("PartnerEntity", "Oib", "Oib", true, "Varchar", 11, 0, 0, false, "", null, typeof(System.String), 5);
 			this.AddElementFieldMapping("PartnerEntity", "PartnerId", "PartnerId", false, "Bigint", 0, 19, 0, false, "public.GenericSequence", null, typeof(System.Int64), 6);
 			this.AddElementFieldMapping("PartnerEntity", "Posta", "Posta", true, "Varchar", 10, 0, 0, false, "", null, typeof(System.String), 7);
 			this.AddElementFieldMapping("PartnerEntity", "Valuta", "Valuta", false, "Smallint", 0, 0, 0, false, "", null, typeof(System.Int16), 8);

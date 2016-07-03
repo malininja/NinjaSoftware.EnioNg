@@ -733,7 +733,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The BrojRacuna property of the Entity RacunGlava<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "RacunGlava"."BrojRacuna"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Integer, 0, 0, 0<br/>
+		/// Table field type characteristics (type, precision, scale, length): Int, 10, 0, 0<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): false, false, false</remarks>
 		[JsonProperty]
 		public virtual System.Int32 BrojRacuna
@@ -744,7 +744,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The ConcurrencyGuid property of the Entity RacunGlava<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "RacunGlava"."ConcurrencyGuid"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Varchar, 0, 0, 50<br/>
+		/// Table field type characteristics (type, precision, scale, length): NVarChar, 0, 0, 50<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): false, false, false</remarks>
 		[JsonProperty]
 		public virtual System.String ConcurrencyGuid
@@ -755,7 +755,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The Datum property of the Entity RacunGlava<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "RacunGlava"."Datum"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Date, 0, 0, 0<br/>
+		/// Table field type characteristics (type, precision, scale, length): DateTime, 0, 0, 0<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): false, false, false</remarks>
 		[JsonProperty]
 		public virtual System.DateTime Datum
@@ -766,7 +766,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The Godina property of the Entity RacunGlava<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "RacunGlava"."Godina"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Smallint, 0, 0, 0<br/>
+		/// Table field type characteristics (type, precision, scale, length): SmallInt, 5, 0, 0<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): false, false, false</remarks>
 		[JsonProperty]
 		public virtual System.Int16 Godina
@@ -777,7 +777,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The JePdvRacun property of the Entity RacunGlava<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "RacunGlava"."JePdvRacun"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Boolean, 0, 0, 0<br/>
+		/// Table field type characteristics (type, precision, scale, length): Bit, 0, 0, 0<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): false, false, false</remarks>
 		[JsonProperty]
 		public virtual System.Boolean JePdvRacun
@@ -788,7 +788,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The MjestoRadaAdresa property of the Entity RacunGlava<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "RacunGlava"."MjestoRadaAdresa"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Varchar, 0, 0, 100<br/>
+		/// Table field type characteristics (type, precision, scale, length): NVarChar, 0, 0, 100<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): true, false, false</remarks>
 		[JsonProperty]
 		public virtual System.String MjestoRadaAdresa
@@ -799,7 +799,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The MjestoRadaNaziv property of the Entity RacunGlava<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "RacunGlava"."MjestoRadaNaziv"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Varchar, 0, 0, 100<br/>
+		/// Table field type characteristics (type, precision, scale, length): NVarChar, 0, 0, 100<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): true, false, false</remarks>
 		[JsonProperty]
 		public virtual System.String MjestoRadaNaziv
@@ -810,7 +810,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The PartnerId property of the Entity RacunGlava<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "RacunGlava"."PartnerId"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Bigint, 19, 0, 0<br/>
+		/// Table field type characteristics (type, precision, scale, length): BigInt, 19, 0, 0<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): false, false, false</remarks>
 		[JsonProperty]
 		public virtual System.Int64 PartnerId
@@ -821,7 +821,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The RacunGlavaId property of the Entity RacunGlava<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "RacunGlava"."RacunGlavaId"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Bigint, 19, 0, 0<br/>
+		/// Table field type characteristics (type, precision, scale, length): BigInt, 19, 0, 0<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): false, true, true</remarks>
 		[JsonProperty]
 		public virtual System.Int64 RacunGlavaId
@@ -832,7 +832,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The StatusId property of the Entity RacunGlava<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "RacunGlava"."StatusId"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Bigint, 19, 0, 0<br/>
+		/// Table field type characteristics (type, precision, scale, length): BigInt, 19, 0, 0<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): false, false, false</remarks>
 		[JsonProperty]
 		public virtual System.Int64 StatusId
@@ -843,7 +843,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The TarifaId property of the Entity RacunGlava<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "RacunGlava"."TarifaId"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Bigint, 19, 0, 0<br/>
+		/// Table field type characteristics (type, precision, scale, length): BigInt, 19, 0, 0<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): false, false, false</remarks>
 		[JsonProperty]
 		public virtual System.Int64 TarifaId
@@ -854,7 +854,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The TarifaStopa property of the Entity RacunGlava<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "RacunGlava"."TarifaStopa"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Numeric, 5, 2, 0<br/>
+		/// Table field type characteristics (type, precision, scale, length): Decimal, 5, 2, 0<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): false, false, false</remarks>
 		[JsonProperty]
 		public virtual System.Decimal TarifaStopa
@@ -865,7 +865,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The Valuta property of the Entity RacunGlava<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "RacunGlava"."Valuta"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Smallint, 0, 0, 0<br/>
+		/// Table field type characteristics (type, precision, scale, length): SmallInt, 5, 0, 0<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): false, false, false</remarks>
 		[JsonProperty]
 		public virtual System.Int16 Valuta
@@ -876,7 +876,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The Vrijeme property of the Entity RacunGlava<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "RacunGlava"."Vrijeme"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Varchar, 0, 0, 10<br/>
+		/// Table field type characteristics (type, precision, scale, length): NVarChar, 0, 0, 10<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): true, false, false</remarks>
 		[JsonProperty]
 		public virtual System.String Vrijeme
@@ -887,7 +887,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The Zaglavlje property of the Entity RacunGlava<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "RacunGlava"."Zaglavlje"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Varchar, 0, 0, 1024<br/>
+		/// Table field type characteristics (type, precision, scale, length): NVarChar, 0, 0, 1024<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): true, false, false</remarks>
 		[JsonProperty]
 		public virtual System.String Zaglavlje

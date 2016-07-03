@@ -680,7 +680,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The ActionDateTime property of the Entity AuditInfo<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "AuditInfo"."ActionDateTime"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Date, 0, 0, 0<br/>
+		/// Table field type characteristics (type, precision, scale, length): DateTime, 0, 0, 0<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): false, false, false</remarks>
 		[JsonProperty]
 		public virtual System.DateTime ActionDateTime
@@ -691,7 +691,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The AuditInfoActionTypeId property of the Entity AuditInfo<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "AuditInfo"."AuditInfoActionTypeId"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Bigint, 19, 0, 0<br/>
+		/// Table field type characteristics (type, precision, scale, length): BigInt, 19, 0, 0<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): false, false, false</remarks>
 		[JsonProperty]
 		public virtual System.Int64 AuditInfoActionTypeId
@@ -702,7 +702,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The AuditInfoId property of the Entity AuditInfo<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "AuditInfo"."AuditInfoId"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Bigint, 19, 0, 0<br/>
+		/// Table field type characteristics (type, precision, scale, length): BigInt, 19, 0, 0<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): false, true, true</remarks>
 		[JsonProperty]
 		public virtual System.Int64 AuditInfoId
@@ -713,7 +713,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The ConcurrencyGuid property of the Entity AuditInfo<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "AuditInfo"."ConcurrencyGuid"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Varchar, 0, 0, 50<br/>
+		/// Table field type characteristics (type, precision, scale, length): NVarChar, 0, 0, 50<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): false, false, false</remarks>
 		[JsonProperty]
 		public virtual System.String ConcurrencyGuid
@@ -724,7 +724,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The EntityId property of the Entity AuditInfo<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "AuditInfo"."EntityId"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Bigint, 19, 0, 0<br/>
+		/// Table field type characteristics (type, precision, scale, length): BigInt, 19, 0, 0<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): false, false, false</remarks>
 		[JsonProperty]
 		public virtual System.Int64 EntityId
@@ -735,7 +735,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The JsonData property of the Entity AuditInfo<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "AuditInfo"."JsonData"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Text, 0, 0, 1073741823<br/>
+		/// Table field type characteristics (type, precision, scale, length): NVarChar, 0, 0, 2147483647<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): false, false, false</remarks>
 		[JsonProperty]
 		public virtual System.String JsonData
@@ -746,7 +746,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The PrimaryKeyValue property of the Entity AuditInfo<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "AuditInfo"."PrimaryKeyValue"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Bigint, 19, 0, 0<br/>
+		/// Table field type characteristics (type, precision, scale, length): BigInt, 19, 0, 0<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): false, false, false</remarks>
 		[JsonProperty]
 		public virtual System.Int64 PrimaryKeyValue
@@ -757,7 +757,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The UserId property of the Entity AuditInfo<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "AuditInfo"."UserId"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Bigint, 19, 0, 0<br/>
+		/// Table field type characteristics (type, precision, scale, length): BigInt, 19, 0, 0<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): false, false, false</remarks>
 		[JsonProperty]
 		public virtual System.Int64 UserId

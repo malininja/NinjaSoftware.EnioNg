@@ -84,10 +84,11 @@ app.controller("PartnerController", ["$scope", function ($scope) {
 
     $scope.validation.isOibValid = function () {
         if ($scope.selectedPartner.Oib) {
-            return $scope.selectedPartner.Oib.trim().length === 11;
+            var oibLength = $scope.selectedPartner.Oib.trim().length;
+            return oibLength === 11 || oibLength === 0;
         }
         else {
-            return false;
+            return true;
         }
     };
 

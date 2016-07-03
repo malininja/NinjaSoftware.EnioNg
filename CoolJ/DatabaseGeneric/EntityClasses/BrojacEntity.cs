@@ -428,7 +428,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The BrojacId property of the Entity Brojac<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "Brojac"."BrojacId"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Bigint, 19, 0, 0<br/>
+		/// Table field type characteristics (type, precision, scale, length): BigInt, 19, 0, 0<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): false, true, true</remarks>
 		[JsonProperty]
 		public virtual System.Int64 BrojacId
@@ -439,7 +439,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The ConcurrencyGuid property of the Entity Brojac<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "Brojac"."ConcurrencyGuid"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Varchar, 0, 0, 50<br/>
+		/// Table field type characteristics (type, precision, scale, length): NVarChar, 0, 0, 50<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): false, false, false</remarks>
 		[JsonProperty]
 		public virtual System.String ConcurrencyGuid
@@ -450,7 +450,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The Godina property of the Entity Brojac<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "Brojac"."Godina"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Smallint, 0, 0, 0<br/>
+		/// Table field type characteristics (type, precision, scale, length): SmallInt, 5, 0, 0<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): false, false, false</remarks>
 		[JsonProperty]
 		public virtual System.Int16 Godina
@@ -461,7 +461,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The Naziv property of the Entity Brojac<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "Brojac"."Naziv"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Varchar, 0, 0, 100<br/>
+		/// Table field type characteristics (type, precision, scale, length): NVarChar, 0, 0, 100<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): false, false, false</remarks>
 		[JsonProperty]
 		public virtual System.String Naziv
@@ -472,7 +472,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The SlijedeciBroj property of the Entity Brojac<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "Brojac"."SlijedeciBroj"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Integer, 0, 0, 0<br/>
+		/// Table field type characteristics (type, precision, scale, length): Int, 10, 0, 0<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): false, false, false</remarks>
 		[JsonProperty]
 		public virtual System.Int32 SlijedeciBroj

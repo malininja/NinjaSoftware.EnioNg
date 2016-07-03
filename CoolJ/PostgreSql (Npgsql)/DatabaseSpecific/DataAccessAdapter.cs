@@ -18,17 +18,16 @@ using SD.LLBLGen.Pro.DQE.PostgreSql;
 
 namespace NinjaSoftware.EnioNg.CoolJ.PostgreSql.DatabaseSpecific
 {
-
+	
     // __LLBLGENPRO_USER_CODE_REGION_START AdditionalNamespaces
     using NinjaSoftware.EnioNg.CoolJ.EntityClasses;
     using NinjaSoftware.EnioNg.CoolJ.Enums;
     // __LLBLGENPRO_USER_CODE_REGION_END
-
-    /// <summary>Data access adapter class, which controls the complete database interaction with the database for all objects.</summary>
-    /// <remarks>Use a DataAccessAdapter object solely per thread, and per connection. A DataAccessAdapter object contains 1 active connection 
-    /// and no thread-access scheduling code. This means that you need to create a new DataAccessAdapter object if you want to utilize
-    /// in another thread a new connection and a new transaction or want to open a new connection.</remarks>
-    public partial class DataAccessAdapter : DataAccessAdapterBase, INsDataAccessAdapter
+	/// <summary>Data access adapter class, which controls the complete database interaction with the database for all objects.</summary>
+	/// <remarks>Use a DataAccessAdapter object solely per thread, and per connection. A DataAccessAdapter object contains 1 active connection 
+	/// and no thread-access scheduling code. This means that you need to create a new DataAccessAdapter object if you want to utilize
+	/// in another thread a new connection and a new transaction or want to open a new connection.</remarks>
+	public partial class DataAccessAdapter : DataAccessAdapterBase, INsDataAccessAdapter
 	{
 		#region Public static members
 		/// <summary>The name of the key in the *.config file of the executing application which contains the connection string.</summary>
@@ -211,7 +210,6 @@ namespace NinjaSoftware.EnioNg.CoolJ.PostgreSql.DatabaseSpecific
 		
 		// __LLBLGENPRO_USER_CODE_REGION_START CustomDataAccessAdapterCode
 		// __LLBLGENPRO_USER_CODE_REGION_END
-		
 		#endregion
 		
 		#region Included Code

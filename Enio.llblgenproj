@@ -217,7 +217,7 @@
           <Field Name="IsActive" Type="bool" />
           <Field Name="Mjesto" Type="string" IsOptional="true" MaxLength="40" />
           <Field Name="Naziv" Type="string" MaxLength="100" />
-          <Field Name="Oib" Type="string" MaxLength="11" />
+          <Field Name="Oib" Type="string" IsOptional="true" MaxLength="11" />
           <Field Name="PartnerId" Type="long" IsPrimaryKey="true" />
           <Field Name="Posta" Type="string" IsOptional="true" MaxLength="10" />
           <Field Name="Valuta" Type="short" />
@@ -457,7 +457,7 @@
                     <Field Name="IsActive" Ordinal="3" DbType="2" />
                     <Field Name="Mjesto" Ordinal="4" IsOptional="true" DbType="12" Length="40" />
                     <Field Name="Naziv" Ordinal="5" DbType="12" Length="100" />
-                    <Field Name="Oib" Ordinal="6" DbType="12" Length="11" />
+                    <Field Name="Oib" Ordinal="6" IsOptional="true" DbType="12" Length="11" />
                     <Field Name="PartnerId" Ordinal="7" IsPrimaryKey="true" DbType="0" Precision="19" />
                     <Field Name="Posta" Ordinal="8" IsOptional="true" DbType="12" Length="10" />
                     <Field Name="Valuta" Ordinal="9" DbType="16" Precision="5" />
@@ -702,7 +702,7 @@
                     <Field Name="ConcurrencyGuid" Ordinal="2" DbType="24" Length="50" />
                     <Field Name="Mjesto" Ordinal="3" IsOptional="true" DbType="24" Length="40" />
                     <Field Name="Naziv" Ordinal="4" DbType="24" Length="100" />
-                    <Field Name="Oib" Ordinal="5" DbType="24" Length="11" />
+                    <Field Name="Oib" Ordinal="5" IsOptional="true" DbType="24" Length="11" />
                     <Field Name="PartnerId" Ordinal="6" IsPrimaryKey="true" DbType="10" Precision="19" />
                     <Field Name="Posta" Ordinal="7" IsOptional="true" DbType="24" Length="10" />
                     <Field Name="Valuta" Ordinal="9" DbType="8" />

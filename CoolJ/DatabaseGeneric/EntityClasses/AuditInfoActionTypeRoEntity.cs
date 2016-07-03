@@ -463,7 +463,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The AuditInfoActionTypeId property of the Entity AuditInfoActionTypeRo<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "AuditInfoActionTypeRo"."AuditInfoActionTypeId"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Bigint, 19, 0, 0<br/>
+		/// Table field type characteristics (type, precision, scale, length): BigInt, 19, 0, 0<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): false, true, false</remarks>
 		[JsonProperty]
 		public virtual System.Int64 AuditInfoActionTypeId
@@ -474,7 +474,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The Code property of the Entity AuditInfoActionTypeRo<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "AuditInfoActionTypeRo"."Code"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Varchar, 0, 0, 128<br/>
+		/// Table field type characteristics (type, precision, scale, length): NVarChar, 0, 0, 128<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): false, false, false</remarks>
 		[JsonProperty]
 		public virtual System.String Code
@@ -485,7 +485,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The Name property of the Entity AuditInfoActionTypeRo<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "AuditInfoActionTypeRo"."Name"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Varchar, 0, 0, 256<br/>
+		/// Table field type characteristics (type, precision, scale, length): NVarChar, 0, 0, 256<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): false, false, false</remarks>
 		[JsonProperty]
 		public virtual System.String Name

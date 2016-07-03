@@ -52,6 +52,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DatabaseGeneric\BusinessLogic\TarifaEntity.cs" />
+    <Compile Include="DatabaseGeneric\BusinessLogic\ArtiklEntity.cs" />
+    <Compile Include="DatabaseGeneric\BusinessLogic\PartnerEntity.cs" />
     <Compile Include="DatabaseGeneric\BusinessLogic\Enums.cs" />
     <Compile Include="DatabaseGeneric\BusinessLogic\RacunGlavaEntity.cs" />
     <Compile Include="DatabaseGeneric\BusinessLogic\RacunReport.cs" />

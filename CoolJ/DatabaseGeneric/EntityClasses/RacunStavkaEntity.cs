@@ -608,7 +608,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The ArtiklId property of the Entity RacunStavka<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "RacunStavka"."ArtiklId"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Bigint, 19, 0, 0<br/>
+		/// Table field type characteristics (type, precision, scale, length): BigInt, 19, 0, 0<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): false, false, false</remarks>
 		[JsonProperty]
 		public virtual System.Int64 ArtiklId
@@ -619,7 +619,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The Cijena property of the Entity RacunStavka<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "RacunStavka"."Cijena"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Numeric, 10, 2, 0<br/>
+		/// Table field type characteristics (type, precision, scale, length): Decimal, 10, 2, 0<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): false, false, false</remarks>
 		[JsonProperty]
 		public virtual System.Decimal Cijena
@@ -630,7 +630,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The ConcurrencyGuid property of the Entity RacunStavka<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "RacunStavka"."ConcurrencyGuid"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Varchar, 0, 0, 50<br/>
+		/// Table field type characteristics (type, precision, scale, length): NVarChar, 0, 0, 50<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): false, false, false</remarks>
 		[JsonProperty]
 		public virtual System.String ConcurrencyGuid
@@ -641,7 +641,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The Iznos property of the Entity RacunStavka<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "RacunStavka"."Iznos"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Numeric, 10, 2, 0<br/>
+		/// Table field type characteristics (type, precision, scale, length): Decimal, 10, 2, 0<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): false, false, false</remarks>
 		[JsonProperty]
 		public virtual System.Decimal Iznos
@@ -652,7 +652,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The Kolicina property of the Entity RacunStavka<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "RacunStavka"."Kolicina"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Numeric, 8, 2, 0<br/>
+		/// Table field type characteristics (type, precision, scale, length): Decimal, 8, 2, 0<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): false, false, false</remarks>
 		[JsonProperty]
 		public virtual System.Decimal Kolicina
@@ -663,7 +663,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The PdvIznos property of the Entity RacunStavka<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "RacunStavka"."PdvIznos"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Numeric, 10, 2, 0<br/>
+		/// Table field type characteristics (type, precision, scale, length): Decimal, 10, 2, 0<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): false, false, false</remarks>
 		[JsonProperty]
 		public virtual System.Decimal PdvIznos
@@ -674,7 +674,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The PdvPosto property of the Entity RacunStavka<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "RacunStavka"."PdvPosto"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Numeric, 4, 2, 0<br/>
+		/// Table field type characteristics (type, precision, scale, length): Decimal, 4, 2, 0<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): false, false, false</remarks>
 		[JsonProperty]
 		public virtual System.Decimal PdvPosto
@@ -685,7 +685,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The Pozicija property of the Entity RacunStavka<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "RacunStavka"."Pozicija"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Smallint, 0, 0, 0<br/>
+		/// Table field type characteristics (type, precision, scale, length): SmallInt, 5, 0, 0<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): false, false, false</remarks>
 		[JsonProperty]
 		public virtual System.Int16 Pozicija
@@ -696,7 +696,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The RacunGlavaId property of the Entity RacunStavka<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "RacunStavka"."RacunGlavaId"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Bigint, 19, 0, 0<br/>
+		/// Table field type characteristics (type, precision, scale, length): BigInt, 19, 0, 0<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): false, false, false</remarks>
 		[JsonProperty]
 		public virtual System.Int64 RacunGlavaId
@@ -707,7 +707,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The RacunStavkaId property of the Entity RacunStavka<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "RacunStavka"."RacunStavkaId"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Bigint, 19, 0, 0<br/>
+		/// Table field type characteristics (type, precision, scale, length): BigInt, 19, 0, 0<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): false, true, true</remarks>
 		[JsonProperty]
 		public virtual System.Int64 RacunStavkaId
@@ -718,7 +718,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The TarifaIznos property of the Entity RacunStavka<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "RacunStavka"."TarifaIznos"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Numeric, 10, 2, 0<br/>
+		/// Table field type characteristics (type, precision, scale, length): Decimal, 10, 2, 0<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): false, false, false</remarks>
 		[JsonProperty]
 		public virtual System.Decimal TarifaIznos

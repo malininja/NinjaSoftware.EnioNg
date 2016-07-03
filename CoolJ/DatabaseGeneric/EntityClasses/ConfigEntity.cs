@@ -434,7 +434,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The Adresa property of the Entity Config<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "Config"."Adresa"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Varchar, 0, 0, 100<br/>
+		/// Table field type characteristics (type, precision, scale, length): NVarChar, 0, 0, 100<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): true, false, false</remarks>
 		[JsonProperty]
 		public virtual System.String Adresa
@@ -445,7 +445,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The AktivnaGodina property of the Entity Config<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "Config"."AktivnaGodina"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Smallint, 0, 0, 0<br/>
+		/// Table field type characteristics (type, precision, scale, length): SmallInt, 5, 0, 0<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): false, false, false</remarks>
 		[JsonProperty]
 		public virtual System.Int16 AktivnaGodina
@@ -456,7 +456,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The ConcurrencyGuid property of the Entity Config<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "Config"."ConcurrencyGuid"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Varchar, 0, 0, 50<br/>
+		/// Table field type characteristics (type, precision, scale, length): NVarChar, 0, 0, 50<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): false, false, false</remarks>
 		[JsonProperty]
 		public virtual System.String ConcurrencyGuid
@@ -467,7 +467,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The ConfigId property of the Entity Config<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "Config"."ConfigId"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Bigint, 19, 0, 0<br/>
+		/// Table field type characteristics (type, precision, scale, length): BigInt, 19, 0, 0<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): false, true, false</remarks>
 		[JsonProperty]
 		public virtual System.Int64 ConfigId
@@ -478,7 +478,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The Mjesto property of the Entity Config<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "Config"."Mjesto"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Varchar, 0, 0, 100<br/>
+		/// Table field type characteristics (type, precision, scale, length): NVarChar, 0, 0, 100<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): true, false, false</remarks>
 		[JsonProperty]
 		public virtual System.String Mjesto
@@ -489,7 +489,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The Naziv property of the Entity Config<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "Config"."Naziv"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Varchar, 0, 0, 100<br/>
+		/// Table field type characteristics (type, precision, scale, length): NVarChar, 0, 0, 100<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): false, false, false</remarks>
 		[JsonProperty]
 		public virtual System.String Naziv
@@ -500,7 +500,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The Oib property of the Entity Config<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "Config"."Oib"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Varchar, 0, 0, 11<br/>
+		/// Table field type characteristics (type, precision, scale, length): NVarChar, 0, 0, 11<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): false, false, false</remarks>
 		[JsonProperty]
 		public virtual System.String Oib
@@ -511,7 +511,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The Zr property of the Entity Config<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "Config"."Zr"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Varchar, 0, 0, 50<br/>
+		/// Table field type characteristics (type, precision, scale, length): NVarChar, 0, 0, 50<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): true, false, false</remarks>
 		[JsonProperty]
 		public virtual System.String Zr

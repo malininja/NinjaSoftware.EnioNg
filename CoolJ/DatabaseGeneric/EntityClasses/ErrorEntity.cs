@@ -559,7 +559,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The ConcurrencyGuid property of the Entity Error<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "Error"."ConcurrencyGuid"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Varchar, 0, 0, 50<br/>
+		/// Table field type characteristics (type, precision, scale, length): NVarChar, 0, 0, 50<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): false, false, false</remarks>
 		[JsonProperty]
 		public virtual System.String ConcurrencyGuid
@@ -570,7 +570,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The ErrorDateTime property of the Entity Error<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "Error"."ErrorDateTime"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Date, 0, 0, 0<br/>
+		/// Table field type characteristics (type, precision, scale, length): DateTime, 0, 0, 0<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): false, false, false</remarks>
 		[JsonProperty]
 		public virtual System.DateTime ErrorDateTime
@@ -581,7 +581,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The ErrorId property of the Entity Error<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "Error"."ErrorId"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Bigint, 19, 0, 0<br/>
+		/// Table field type characteristics (type, precision, scale, length): BigInt, 19, 0, 0<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): false, true, true</remarks>
 		[JsonProperty]
 		public virtual System.Int64 ErrorId
@@ -592,7 +592,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The Message property of the Entity Error<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "Error"."Message"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Text, 0, 0, 1073741823<br/>
+		/// Table field type characteristics (type, precision, scale, length): NVarChar, 0, 0, 2147483647<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): false, false, false</remarks>
 		[JsonProperty]
 		public virtual System.String Message
@@ -603,7 +603,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The ParentErrorId property of the Entity Error<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "Error"."ParentErrorId"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Bigint, 19, 0, 0<br/>
+		/// Table field type characteristics (type, precision, scale, length): BigInt, 19, 0, 0<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): true, false, false</remarks>
 		[JsonProperty]
 		public virtual Nullable<System.Int64> ParentErrorId
@@ -614,7 +614,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The StackTrace property of the Entity Error<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "Error"."StackTrace"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Text, 0, 0, 1073741823<br/>
+		/// Table field type characteristics (type, precision, scale, length): NVarChar, 0, 0, 2147483647<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): true, false, false</remarks>
 		[JsonProperty]
 		public virtual System.String StackTrace

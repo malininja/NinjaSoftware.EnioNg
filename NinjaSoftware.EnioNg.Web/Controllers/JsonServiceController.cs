@@ -37,7 +37,7 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
             DataAccessAdapterBase adapter = Helper.GetDataAccessAdapter(User.Identity.Name);
             using (adapter)
             {
-                IEnumerable<ArtiklEntity> artiklCollection = ArtiklEntity.FetchArtiklCollection(adapter, null, null).OrderBy(a => a.Naziv);
+                IEnumerable<ArtiklEntity> artiklCollection = ArtiklEntity.FetchActiveArtiklCollection(adapter).OrderBy(a => a.Naziv);
                 return CreateJsonResponse(artiklCollection);
             }
         }
@@ -181,7 +181,7 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
         {
             using (DataAccessAdapterBase adapter = Helper.GetDataAccessAdapter())
             {
-                IEnumerable<PartnerEntity> partnerCollection = PartnerEntity.FetchPartnerCollection(adapter, null, null).OrderBy(p => p.Naziv);
+                IEnumerable<PartnerEntity> partnerCollection = PartnerEntity.FetchActivePartnerCollection(adapter).OrderBy(p => p.Naziv);
                 return CreateJsonResponse(partnerCollection);
             }
         }
@@ -332,7 +332,7 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
         {
             using (DataAccessAdapterBase adapter = Helper.GetDataAccessAdapter())
             {
-                IEnumerable<TarifaEntity> tarifaCollection = TarifaEntity.FetchTarifaCollection(adapter, null, null).OrderBy(t => t.Naziv);
+                IEnumerable<TarifaEntity> tarifaCollection = TarifaEntity.FetchActiveTarifaCollection(adapter).OrderBy(t => t.Naziv);
                 return CreateJsonResponse(tarifaCollection);
             }
         }

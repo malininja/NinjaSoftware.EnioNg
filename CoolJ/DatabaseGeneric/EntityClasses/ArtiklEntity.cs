@@ -561,7 +561,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The ArtiklId property of the Entity Artikl<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "Artikl"."ArtiklId"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Bigint, 19, 0, 0<br/>
+		/// Table field type characteristics (type, precision, scale, length): BigInt, 19, 0, 0<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): false, true, true</remarks>
 		[JsonProperty]
 		public virtual System.Int64 ArtiklId
@@ -572,7 +572,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The Cijena property of the Entity Artikl<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "Artikl"."Cijena"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Numeric, 10, 2, 0<br/>
+		/// Table field type characteristics (type, precision, scale, length): Decimal, 10, 2, 0<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): false, false, false</remarks>
 		[JsonProperty]
 		public virtual System.Decimal Cijena
@@ -583,7 +583,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The ConcurrencyGuid property of the Entity Artikl<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "Artikl"."ConcurrencyGuid"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Varchar, 0, 0, 50<br/>
+		/// Table field type characteristics (type, precision, scale, length): NVarChar, 0, 0, 50<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): false, false, false</remarks>
 		[JsonProperty]
 		public virtual System.String ConcurrencyGuid
@@ -594,7 +594,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The IsActive property of the Entity Artikl<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "Artikl"."IsActive"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Boolean, 0, 0, 0<br/>
+		/// Table field type characteristics (type, precision, scale, length): Bit, 0, 0, 0<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): false, false, false</remarks>
 		[JsonProperty]
 		public virtual System.Boolean IsActive
@@ -605,7 +605,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The Jm property of the Entity Artikl<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "Artikl"."Jm"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Varchar, 0, 0, 10<br/>
+		/// Table field type characteristics (type, precision, scale, length): NVarChar, 0, 0, 10<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): false, false, false</remarks>
 		[JsonProperty]
 		public virtual System.String Jm
@@ -616,7 +616,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The Naziv property of the Entity Artikl<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "Artikl"."Naziv"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Varchar, 0, 0, 100<br/>
+		/// Table field type characteristics (type, precision, scale, length): NVarChar, 0, 0, 150<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): false, false, false</remarks>
 		[JsonProperty]
 		public virtual System.String Naziv
@@ -627,7 +627,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
 		/// <summary> The PdvId property of the Entity Artikl<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "Artikl"."PdvId"<br/>
-		/// Table field type characteristics (type, precision, scale, length): Bigint, 19, 0, 0<br/>
+		/// Table field type characteristics (type, precision, scale, length): BigInt, 19, 0, 0<br/>
 		/// Table field behavior characteristics (is nullable, is PK, is identity): false, false, false</remarks>
 		[JsonProperty]
 		public virtual System.Int64 PdvId
@@ -681,17 +681,17 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 			get { return (int)NinjaSoftware.EnioNg.CoolJ.EntityType.ArtiklEntity; }
 		}
 
-		#endregion
+        #endregion
 
 
-		#region Custom Entity code
-		
-		// __LLBLGENPRO_USER_CODE_REGION_START CustomEntityCode
-		// __LLBLGENPRO_USER_CODE_REGION_END
-		#endregion
+        #region Custom Entity code
 
-		#region Included code
+        // __LLBLGENPRO_USER_CODE_REGION_START CustomEntityCode
+        // __LLBLGENPRO_USER_CODE_REGION_END
+        #endregion
 
-		#endregion
-	}
+        #region Included code
+
+        #endregion
+    }
 }
