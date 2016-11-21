@@ -124,6 +124,7 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
 
             short godina = ConfigEntity.GetInstance(adapter).AktivnaGodina;
             RelationPredicateBucket bucket = RacunGlavaPager.CreateBucket(godina, jqGridFilters);
+            bucket.Relations.Add(RacunGlavaEntity.Relations.PartnerEntityUsingPartnerId);
 
             IEnumerable<RacunReport> racunReportCollection = NinjaSoftware.EnioNg.CoolJ.DatabaseGeneric.BusinessLogic.RacunReport.GetRacunReportCollection(adapter, bucket);
 
