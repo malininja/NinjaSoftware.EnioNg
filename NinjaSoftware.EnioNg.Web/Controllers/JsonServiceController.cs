@@ -37,7 +37,8 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
             DataAccessAdapterBase adapter = Helper.GetDataAccessAdapter(User.Identity.Name);
             using (adapter)
             {
-                IEnumerable<ArtiklEntity> artiklCollection = ArtiklEntity.FetchActiveArtiklCollection(adapter).OrderBy(a => a.Naziv);
+                long firmaId = UserEntity.GetFirmaId(adapter, User.Identity.Name);
+                IEnumerable<ArtiklEntity> artiklCollection = ArtiklEntity.FetchActiveArtiklCollection(adapter, firmaId).OrderBy(a => a.Naziv);
                 return CreateJsonResponse(artiklCollection);
             }
         }
@@ -48,6 +49,9 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
             using (DataAccessAdapterBase adapter = Helper.GetDataAccessAdapter())
             {
                 RelationPredicateBucket bucket = new RelationPredicateBucket();
+                long firmaId = UserEntity.GetFirmaId(adapter, User.Identity.Name);
+                bucket.PredicateExpression.Add(ArtiklFields.FirmaId == firmaId);
+
                 if (filters != null)
                 {
                     bucket.Relations.Add(ArtiklEntity.Relations.PdvEntityUsingPdvId);
@@ -82,6 +86,7 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
                 {
                     artikl4Save = artikl;
                     artikl4Save.IsActive = true;
+                    artikl4Save.FirmaId = UserEntity.GetFirmaId(adapter, User.Identity.Name);
                 }
                 else
                 {
@@ -118,6 +123,7 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
                 {
                     partner.IsActive = true;
                     partner4Save = partner;
+                    partner4Save.FirmaId = UserEntity.GetFirmaId(adapter, User.Identity.Name);
                 }
                 else
                 {
@@ -150,6 +156,9 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
             using (DataAccessAdapterBase adapter = Helper.GetDataAccessAdapter())
             {
                 RelationPredicateBucket bucket = new RelationPredicateBucket();
+                long firmaId = UserEntity.GetFirmaId(adapter, User.Identity.Name);
+                bucket.PredicateExpression.Add(PartnerFields.FirmaId == firmaId);
+                
                 if (filters != null)
                 {
                     bucket.PredicateExpression.Add(PredicateHelper.CreatePredicateFromJqGridFilterString(filters, typeof(PartnerFields), DbGenericHelper.GetDbGenericTypeByName));
@@ -181,7 +190,8 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
         {
             using (DataAccessAdapterBase adapter = Helper.GetDataAccessAdapter())
             {
-                IEnumerable<PartnerEntity> partnerCollection = PartnerEntity.FetchActivePartnerCollection(adapter).OrderBy(p => p.Naziv);
+                long firmaId = UserEntity.GetFirmaId(adapter, User.Identity.Name);
+                IEnumerable<PartnerEntity> partnerCollection = PartnerEntity.FetchActivePartnerCollection(adapter, firmaId).OrderBy(p => p.Naziv);
                 return CreateJsonResponse(partnerCollection);
             }
         }
@@ -215,6 +225,7 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
                 if (pdv.PdvId == 0)
                 {
                     pdv4Save = pdv;
+                    pdv4Save.FirmaId = UserEntity.GetFirmaId(adapter, User.Identity.Name);
                 }
                 else
                 {
@@ -236,7 +247,9 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
         {
             using (DataAccessAdapterBase adapter = Helper.GetDataAccessAdapter())
             {
-                IEnumerable<PdvEntity> pdvCollection = PdvEntity.FetchPdvCollection(adapter, null, null);
+                long firmaId = UserEntity.GetFirmaId(adapter, User.Identity.Name);
+                RelationPredicateBucket bucket = new RelationPredicateBucket(PdvFields.FirmaId == firmaId);
+                IEnumerable<PdvEntity> pdvCollection = PdvEntity.FetchPdvCollection(adapter, bucket, null);
                 return CreateJsonResponse(pdvCollection);
             }
         }
@@ -247,6 +260,9 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
             using (DataAccessAdapterBase adapter = Helper.GetDataAccessAdapter())
             {
                 RelationPredicateBucket bucket = new RelationPredicateBucket();
+                long firmaId = UserEntity.GetFirmaId(adapter, User.Identity.Name);
+                bucket.PredicateExpression.Add(PdvFields.FirmaId == firmaId);
+
                 if (filters != null)
                 {
                     bucket.PredicateExpression.Add(PredicateHelper.CreatePredicateFromJqGridFilterString(filters, typeof(PdvFields), DbGenericHelper.GetDbGenericTypeByName));
@@ -281,6 +297,9 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
             using (DataAccessAdapterBase adapter = Helper.GetDataAccessAdapter())
             {
                 RelationPredicateBucket bucket = new RelationPredicateBucket();
+                long firmaId = UserEntity.GetFirmaId(adapter, User.Identity.Name);
+                bucket.PredicateExpression.Add(TarifaFields.FirmaId == firmaId);
+
                 if (!string.IsNullOrWhiteSpace(filters))
                 {
                     bucket.PredicateExpression.Add(PredicateHelper.CreatePredicateFromJqGridFilterString(filters, typeof(TarifaFields), DbGenericHelper.GetDbGenericTypeByName));
@@ -311,6 +330,7 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
                 {
                     tarifa.IsActive = true;
                     tarifa4Save = tarifa;
+                    tarifa4Save.FirmaId = UserEntity.GetFirmaId(adapter, User.Identity.Name);
                 }
                 else
                 {
@@ -332,7 +352,8 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
         {
             using (DataAccessAdapterBase adapter = Helper.GetDataAccessAdapter())
             {
-                IEnumerable<TarifaEntity> tarifaCollection = TarifaEntity.FetchActiveTarifaCollection(adapter).OrderBy(t => t.Naziv);
+                long firmaId = UserEntity.GetFirmaId(adapter, User.Identity.Name);
+                IEnumerable<TarifaEntity> tarifaCollection = TarifaEntity.FetchActiveTarifaCollection(adapter, firmaId).OrderBy(t => t.Naziv);
                 return CreateJsonResponse(tarifaCollection);
             }
         }
@@ -360,9 +381,12 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
 
                 if (racunGlava.RacunGlavaId == 0)
                 {
+                    long firmaId = UserEntity.GetFirmaId(adapter, User.Identity.Name);
+
                     racunGlava4Save = racunGlava;
-                    racunGlava4Save.Godina = ConfigEntity.GetInstance(adapter).AktivnaGodina;
-                    racunGlava4Save.BrojRacuna = BrojacEntity.GetNextNumber(adapter, BrojacEnum.Racun, racunGlava4Save.Godina);
+                    racunGlava4Save.Godina = ConfigEntity.GetInstance(adapter, firmaId).AktivnaGodina;
+                    racunGlava4Save.BrojRacuna = BrojacEntity.GetNextNumber(adapter, firmaId, BrojacEnum.Racun, racunGlava4Save.Godina);
+                    racunGlava4Save.FirmaId = firmaId;
                 }
                 else
                 {
@@ -447,8 +471,13 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
         {
             using (DataAccessAdapterBase adapter = Helper.GetDataAccessAdapter())
             {
-                short godina = ConfigEntity.GetInstance(adapter).AktivnaGodina;
+                long firmaId = UserEntity.GetFirmaId(adapter, User.Identity.Name);
+
+                short godina = ConfigEntity.GetInstance(adapter, firmaId).AktivnaGodina;
                 RelationPredicateBucket bucket = RacunGlavaPager.CreateBucket(godina, filters);
+
+                bucket.PredicateExpression.Add(RacunGlavaFields.FirmaId == firmaId);
+
                 bucket.Relations.Add(RacunGlavaEntity.Relations.PartnerEntityUsingPartnerId);
 
                 bool? isSortAscending = PagerBase.IsJqgridSortAscending(sord);
@@ -483,7 +512,10 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
         {
             using (DataAccessAdapterBase adapter = Helper.GetDataAccessAdapter())
             {
-                ConfigEntity config = ConfigEntity.FetchConfigCollection(adapter, null, null).SingleOrDefault();
+                long firmaId = UserEntity.GetFirmaId(adapter, User.Identity.Name);
+                RelationPredicateBucket bucket = new RelationPredicateBucket(ConfigFields.FirmaId == firmaId);
+
+                ConfigEntity config = ConfigEntity.FetchConfigCollection(adapter, bucket, null).SingleOrDefault();
                 return CreateJsonResponse(config);
             }
         }
@@ -499,9 +531,18 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
                 using (adapter)
                 {
                     adapter.StartTransaction(System.Data.IsolationLevel.Serializable, "SaveConfig");
-                    
-                    ConfigEntity config4Save = ConfigEntity.FetchConfigCollection(adapter, null, null).SingleOrDefault();
-                    config4Save.UpdateDataFromOtherObject(config, null, null);
+
+                    ConfigEntity config4Save;
+                    if (config.ConfigId == 0)
+                    {
+                        config4Save = config;
+                        config4Save.FirmaId = UserEntity.GetFirmaId(adapter, User.Identity.Name);
+                    }
+                    else
+                    {
+                        config4Save = ConfigEntity.FetchConfig(adapter, null, config.ConfigId);
+                        config4Save.UpdateDataFromOtherObject(config, null, null);
+                    }
 
                     isSaved = adapter.SaveEntity(config4Save);
                     

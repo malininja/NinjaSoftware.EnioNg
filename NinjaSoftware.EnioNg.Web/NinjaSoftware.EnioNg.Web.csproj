@@ -231,9 +231,6 @@
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="ReportTemplates\Racun-old.xls" />
-    <Content Include="ReportTemplates\Racun.xls" />
-    <Content Include="ReportTemplates\RacunList.xls" />
     <Content Include="Scripts\Home\EnioApp.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -331,6 +328,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="ReportTemplates\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

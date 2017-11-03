@@ -29,6 +29,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.RelationClasses
 		public virtual List<IEntityRelation> GetAllRelations()
 		{
 			List<IEntityRelation> toReturn = new List<IEntityRelation>();
+			toReturn.Add(this.FirmaEntityUsingFirmaId);
 			return toReturn;
 		}
 
@@ -36,6 +37,20 @@ namespace NinjaSoftware.EnioNg.CoolJ.RelationClasses
 
 
 
+		/// <summary>Returns a new IEntityRelation object, between ConfigEntity and FirmaEntity over the m:1 relation they have, using the relation between the fields:
+		/// Config.FirmaId - Firma.FirmaId
+		/// </summary>
+		public virtual IEntityRelation FirmaEntityUsingFirmaId
+		{
+			get
+			{
+				IEntityRelation relation = new EntityRelation(SD.LLBLGen.Pro.ORMSupportClasses.RelationType.ManyToOne, "Firma", false);
+				relation.AddEntityFieldPair(FirmaFields.FirmaId, ConfigFields.FirmaId);
+				relation.InheritanceInfoPkSideEntity = InheritanceInfoProviderSingleton.GetInstance().GetInheritanceInfo("FirmaEntity", false);
+				relation.InheritanceInfoFkSideEntity = InheritanceInfoProviderSingleton.GetInstance().GetInheritanceInfo("ConfigEntity", true);
+				return relation;
+			}
+		}
 		/// <summary>stub, not used in this entity, only for TargetPerEntity entities.</summary>
 		public virtual IEntityRelation GetSubTypeRelation(string subTypeEntityName) { return null; }
 		/// <summary>stub, not used in this entity, only for TargetPerEntity entities.</summary>
@@ -50,6 +65,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.RelationClasses
 	/// <summary>Static class which is used for providing relationship instances which are re-used internally for syncing</summary>
 	internal static class StaticConfigRelations
 	{
+		internal static readonly IEntityRelation FirmaEntityUsingFirmaIdStatic = new ConfigRelations().FirmaEntityUsingFirmaId;
 
 		/// <summary>CTor</summary>
 		static StaticConfigRelations()

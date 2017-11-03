@@ -30,6 +30,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.RelationClasses
 		{
 			List<IEntityRelation> toReturn = new List<IEntityRelation>();
 			toReturn.Add(this.RacunStavkaEntityUsingArtiklId);
+			toReturn.Add(this.FirmaEntityUsingFirmaId);
 			toReturn.Add(this.PdvEntityUsingPdvId);
 			return toReturn;
 		}
@@ -52,6 +53,20 @@ namespace NinjaSoftware.EnioNg.CoolJ.RelationClasses
 		}
 
 
+		/// <summary>Returns a new IEntityRelation object, between ArtiklEntity and FirmaEntity over the m:1 relation they have, using the relation between the fields:
+		/// Artikl.FirmaId - Firma.FirmaId
+		/// </summary>
+		public virtual IEntityRelation FirmaEntityUsingFirmaId
+		{
+			get
+			{
+				IEntityRelation relation = new EntityRelation(SD.LLBLGen.Pro.ORMSupportClasses.RelationType.ManyToOne, "Firma", false);
+				relation.AddEntityFieldPair(FirmaFields.FirmaId, ArtiklFields.FirmaId);
+				relation.InheritanceInfoPkSideEntity = InheritanceInfoProviderSingleton.GetInstance().GetInheritanceInfo("FirmaEntity", false);
+				relation.InheritanceInfoFkSideEntity = InheritanceInfoProviderSingleton.GetInstance().GetInheritanceInfo("ArtiklEntity", true);
+				return relation;
+			}
+		}
 		/// <summary>Returns a new IEntityRelation object, between ArtiklEntity and PdvEntity over the m:1 relation they have, using the relation between the fields:
 		/// Artikl.PdvId - Pdv.PdvId
 		/// </summary>
@@ -81,6 +96,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.RelationClasses
 	internal static class StaticArtiklRelations
 	{
 		internal static readonly IEntityRelation RacunStavkaEntityUsingArtiklIdStatic = new ArtiklRelations().RacunStavkaEntityUsingArtiklId;
+		internal static readonly IEntityRelation FirmaEntityUsingFirmaIdStatic = new ArtiklRelations().FirmaEntityUsingFirmaId;
 		internal static readonly IEntityRelation PdvEntityUsingPdvIdStatic = new ArtiklRelations().PdvEntityUsingPdvId;
 
 		/// <summary>CTor</summary>

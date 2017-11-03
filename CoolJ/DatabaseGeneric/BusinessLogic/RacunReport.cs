@@ -1,5 +1,6 @@
 ﻿using NinjaSoftware.EnioNg.CoolJ.EntityClasses;
 using NinjaSoftware.EnioNg.CoolJ.Enums;
+using NinjaSoftware.EnioNg.CoolJ.HelperClasses;
 using SD.LLBLGen.Pro.ORMSupportClasses;
 using System;
 using System.Collections.Generic;
@@ -24,7 +25,9 @@ namespace NinjaSoftware.EnioNg.CoolJ.DatabaseGeneric.BusinessLogic
         public RacunReport(DataAccessAdapterBase adapter, long racunGlavaId)
         {
             RacunGlavaEntity racunGlava = RacunGlavaEntity.FetchRacunGlavaForReport(adapter, racunGlavaId);
-            ConfigEntity config = ConfigEntity.FetchConfigCollection(adapter, null, null).First();
+
+            RelationPredicateBucket configBucket = new RelationPredicateBucket(ConfigFields.FirmaId == racunGlava.FirmaId);
+            ConfigEntity config = ConfigEntity.FetchConfigCollection(adapter, configBucket, null).Single();
 
             CreateObject(racunGlava, config);
         }
@@ -65,10 +68,12 @@ namespace NinjaSoftware.EnioNg.CoolJ.DatabaseGeneric.BusinessLogic
             }
         }
 
-        public static IEnumerable<RacunReport> GetRacunReportCollection(DataAccessAdapterBase adapter, RelationPredicateBucket bucket)
+        public static IEnumerable<RacunReport> GetRacunReportCollection(DataAccessAdapterBase adapter, RelationPredicateBucket bucket, long firmaId)
         {
             IEnumerable<RacunGlavaEntity> racunGlavaCollection = RacunGlavaEntity.FetchRacunGlavaCollectionForReport(adapter, bucket);
-            ConfigEntity config = ConfigEntity.FetchConfigCollection(adapter, null, null).First();
+
+            RelationPredicateBucket configBucket = new RelationPredicateBucket(ConfigFields.FirmaId == firmaId);
+            ConfigEntity config = ConfigEntity.FetchConfigCollection(adapter, configBucket, null).Single();
 
             foreach (RacunGlavaEntity racunGlava in racunGlavaCollection)
             {

@@ -35,6 +35,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 	{
 		#region Class Member Declarations
 		private EntityCollection<RacunStavkaEntity> _racunStavkaCollection;
+		private FirmaEntity _firma;
 		private PdvEntity _pdv;
 
 		// __LLBLGENPRO_USER_CODE_REGION_START PrivateMembers
@@ -48,6 +49,8 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 		/// <summary>All names of fields mapped onto a relation. Usable for in-memory filtering</summary>
 		public static partial class MemberNames
 		{
+			/// <summary>Member name Firma</summary>
+			public static readonly string Firma = "Firma";
 			/// <summary>Member name Pdv</summary>
 			public static readonly string Pdv = "Pdv";
 			/// <summary>Member name RacunStavkaCollection</summary>
@@ -170,6 +173,11 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 			if(SerializationHelper.Optimization != SerializationOptimization.Fast) 
 			{
 				_racunStavkaCollection = (EntityCollection<RacunStavkaEntity>)info.GetValue("_racunStavkaCollection", typeof(EntityCollection<RacunStavkaEntity>));
+				_firma = (FirmaEntity)info.GetValue("_firma", typeof(FirmaEntity));
+				if(_firma!=null)
+				{
+					_firma.AfterSave+=new EventHandler(OnEntityAfterSave);
+				}
 				_pdv = (PdvEntity)info.GetValue("_pdv", typeof(PdvEntity));
 				if(_pdv!=null)
 				{
@@ -188,6 +196,9 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 		{
 			switch((ArtiklFieldIndex)fieldIndex)
 			{
+				case ArtiklFieldIndex.FirmaId:
+					DesetupSyncFirma(true, false);
+					break;
 				case ArtiklFieldIndex.PdvId:
 					DesetupSyncPdv(true, false);
 					break;
@@ -205,6 +216,9 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 		{
 			switch(propertyName)
 			{
+				case "Firma":
+					this.Firma = (FirmaEntity)entity;
+					break;
 				case "Pdv":
 					this.Pdv = (PdvEntity)entity;
 					break;
@@ -233,6 +247,9 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 			RelationCollection toReturn = new RelationCollection();
 			switch(fieldName)
 			{
+				case "Firma":
+					toReturn.Add(Relations.FirmaEntityUsingFirmaId);
+					break;
 				case "Pdv":
 					toReturn.Add(Relations.PdvEntityUsingPdvId);
 					break;
@@ -267,6 +284,9 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 		{
 			switch(fieldName)
 			{
+				case "Firma":
+					SetupSyncFirma(relatedEntity);
+					break;
 				case "Pdv":
 					SetupSyncPdv(relatedEntity);
 					break;
@@ -286,6 +306,9 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 		{
 			switch(fieldName)
 			{
+				case "Firma":
+					DesetupSyncFirma(false, true);
+					break;
 				case "Pdv":
 					DesetupSyncPdv(false, true);
 					break;
@@ -311,6 +334,10 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 		protected override List<IEntity2> GetDependentRelatedEntities()
 		{
 			List<IEntity2> toReturn = new List<IEntity2>();
+			if(_firma!=null)
+			{
+				toReturn.Add(_firma);
+			}
 			if(_pdv!=null)
 			{
 				toReturn.Add(_pdv);
@@ -336,6 +363,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 			if (SerializationHelper.Optimization != SerializationOptimization.Fast) 
 			{
 				info.AddValue("_racunStavkaCollection", ((_racunStavkaCollection!=null) && (_racunStavkaCollection.Count>0) && !this.MarkedForDeletion)?_racunStavkaCollection:null);
+				info.AddValue("_firma", (!this.MarkedForDeletion?_firma:null));
 				info.AddValue("_pdv", (!this.MarkedForDeletion?_pdv:null));
 			}
 			// __LLBLGENPRO_USER_CODE_REGION_START GetObjectInfo
@@ -358,6 +386,15 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 		{
 			IRelationPredicateBucket bucket = new RelationPredicateBucket();
 			bucket.PredicateExpression.Add(new FieldCompareValuePredicate(RacunStavkaFields.ArtiklId, null, ComparisonOperator.Equal, this.ArtiklId));
+			return bucket;
+		}
+
+		/// <summary> Creates a new IRelationPredicateBucket object which contains the predicate expression and relation collection to fetch the related entity of type 'Firma' to this entity.</summary>
+		/// <returns></returns>
+		public virtual IRelationPredicateBucket GetRelationInfoFirma()
+		{
+			IRelationPredicateBucket bucket = new RelationPredicateBucket();
+			bucket.PredicateExpression.Add(new FieldCompareValuePredicate(FirmaFields.FirmaId, null, ComparisonOperator.Equal, this.FirmaId));
 			return bucket;
 		}
 
@@ -417,6 +454,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 		protected override Dictionary<string, object> GetRelatedData()
 		{
 			Dictionary<string, object> toReturn = new Dictionary<string, object>();
+			toReturn.Add("Firma", _firma);
 			toReturn.Add("Pdv", _pdv);
 			toReturn.Add("RacunStavkaCollection", _racunStavkaCollection);
 			return toReturn;
@@ -447,6 +485,8 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 			fieldHashtable = new Dictionary<string, string>();
 			_fieldsCustomProperties.Add("ConcurrencyGuid", fieldHashtable);
 			fieldHashtable = new Dictionary<string, string>();
+			_fieldsCustomProperties.Add("FirmaId", fieldHashtable);
+			fieldHashtable = new Dictionary<string, string>();
 			_fieldsCustomProperties.Add("IsActive", fieldHashtable);
 			fieldHashtable = new Dictionary<string, string>();
 			_fieldsCustomProperties.Add("Jm", fieldHashtable);
@@ -456,6 +496,39 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 			_fieldsCustomProperties.Add("PdvId", fieldHashtable);
 		}
 		#endregion
+
+		/// <summary> Removes the sync logic for member _firma</summary>
+		/// <param name="signalRelatedEntity">If set to true, it will call the related entity's UnsetRelatedEntity method</param>
+		/// <param name="resetFKFields">if set to true it will also reset the FK fields pointing to the related entity</param>
+		private void DesetupSyncFirma(bool signalRelatedEntity, bool resetFKFields)
+		{
+			this.PerformDesetupSyncRelatedEntity( _firma, new PropertyChangedEventHandler( OnFirmaPropertyChanged ), "Firma", NinjaSoftware.EnioNg.CoolJ.RelationClasses.StaticArtiklRelations.FirmaEntityUsingFirmaIdStatic, true, signalRelatedEntity, "ArtiklCollection", resetFKFields, new int[] { (int)ArtiklFieldIndex.FirmaId } );
+			_firma = null;
+		}
+
+		/// <summary> setups the sync logic for member _firma</summary>
+		/// <param name="relatedEntity">Instance to set as the related entity of type entityType</param>
+		private void SetupSyncFirma(IEntityCore relatedEntity)
+		{
+			if(_firma!=relatedEntity)
+			{
+				DesetupSyncFirma(true, true);
+				_firma = (FirmaEntity)relatedEntity;
+				this.PerformSetupSyncRelatedEntity( _firma, new PropertyChangedEventHandler( OnFirmaPropertyChanged ), "Firma", NinjaSoftware.EnioNg.CoolJ.RelationClasses.StaticArtiklRelations.FirmaEntityUsingFirmaIdStatic, true, new string[] {  } );
+			}
+		}
+		
+		/// <summary>Handles property change events of properties in a related entity.</summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void OnFirmaPropertyChanged( object sender, PropertyChangedEventArgs e )
+		{
+			switch( e.PropertyName )
+			{
+				default:
+					break;
+			}
+		}
 
 		/// <summary> Removes the sync logic for member _pdv</summary>
 		/// <param name="signalRelatedEntity">If set to true, it will call the related entity's UnsetRelatedEntity method</param>
@@ -528,6 +601,13 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 			get	{ return new PrefetchPathElement2( new EntityCollection<RacunStavkaEntity>(EntityFactoryCache2.GetEntityFactory(typeof(RacunStavkaEntityFactory))), (IEntityRelation)GetRelationsForField("RacunStavkaCollection")[0], (int)NinjaSoftware.EnioNg.CoolJ.EntityType.ArtiklEntity, (int)NinjaSoftware.EnioNg.CoolJ.EntityType.RacunStavkaEntity, 0, null, null, null, null, "RacunStavkaCollection", SD.LLBLGen.Pro.ORMSupportClasses.RelationType.OneToMany);	}
 		}
 
+		/// <summary> Creates a new PrefetchPathElement2 object which contains all the information to prefetch the related entities of type 'Firma' for this entity.</summary>
+		/// <returns>Ready to use IPrefetchPathElement2 implementation.</returns>
+		public static IPrefetchPathElement2 PrefetchPathFirma
+		{
+			get	{ return new PrefetchPathElement2(new EntityCollection(EntityFactoryCache2.GetEntityFactory(typeof(FirmaEntityFactory))),	(IEntityRelation)GetRelationsForField("Firma")[0], (int)NinjaSoftware.EnioNg.CoolJ.EntityType.ArtiklEntity, (int)NinjaSoftware.EnioNg.CoolJ.EntityType.FirmaEntity, 0, null, null, null, null, "Firma", SD.LLBLGen.Pro.ORMSupportClasses.RelationType.ManyToOne); }
+		}
+
 		/// <summary> Creates a new PrefetchPathElement2 object which contains all the information to prefetch the related entities of type 'Pdv' for this entity.</summary>
 		/// <returns>Ready to use IPrefetchPathElement2 implementation.</returns>
 		public static IPrefetchPathElement2 PrefetchPathPdv
@@ -592,6 +672,17 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 			set	{ SetValue((int)ArtiklFieldIndex.ConcurrencyGuid, value); }
 		}
 
+		/// <summary> The FirmaId property of the Entity Artikl<br/><br/></summary>
+		/// <remarks>Mapped on  table field: "Artikl"."FirmaId"<br/>
+		/// Table field type characteristics (type, precision, scale, length): BigInt, 19, 0, 0<br/>
+		/// Table field behavior characteristics (is nullable, is PK, is identity): false, false, false</remarks>
+		[JsonProperty]
+		public virtual System.Int64 FirmaId
+		{
+			get { return (System.Int64)GetValue((int)ArtiklFieldIndex.FirmaId, true); }
+			set	{ SetValue((int)ArtiklFieldIndex.FirmaId, value); }
+		}
+
 		/// <summary> The IsActive property of the Entity Artikl<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "Artikl"."IsActive"<br/>
 		/// Table field type characteristics (type, precision, scale, length): Bit, 0, 0, 0<br/>
@@ -643,6 +734,25 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 			get { return GetOrCreateEntityCollection<RacunStavkaEntity, RacunStavkaEntityFactory>("Artikl", true, false, ref _racunStavkaCollection);	}
 		}
 
+		/// <summary> Gets / sets related entity of type 'FirmaEntity' which has to be set using a fetch action earlier. If no related entity is set for this property, null is returned..<br/><br/></summary>
+		[Browsable(false)]
+		[JsonProperty]
+		public virtual FirmaEntity Firma
+		{
+			get	{ return _firma; }
+			set
+			{
+				if(this.IsDeserializing)
+				{
+					SetupSyncFirma(value);
+				}
+				else
+				{
+					SetSingleRelatedEntityNavigator(value, "ArtiklCollection", "Firma", _firma, true); 
+				}
+			}
+		}
+
 		/// <summary> Gets / sets related entity of type 'PdvEntity' which has to be set using a fetch action earlier. If no related entity is set for this property, null is returned..<br/><br/></summary>
 		[Browsable(false)]
 		[JsonProperty]
@@ -681,17 +791,17 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 			get { return (int)NinjaSoftware.EnioNg.CoolJ.EntityType.ArtiklEntity; }
 		}
 
-        #endregion
+		#endregion
 
 
-        #region Custom Entity code
-
+		#region Custom Entity code
+		
         // __LLBLGENPRO_USER_CODE_REGION_START CustomEntityCode
         // __LLBLGENPRO_USER_CODE_REGION_END
-        #endregion
+		#endregion
 
-        #region Included code
+		#region Included code
 
-        #endregion
-    }
+		#endregion
+	}
 }

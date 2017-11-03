@@ -147,6 +147,7 @@
           <Field Name="ArtiklId" Type="long" IsPrimaryKey="true" />
           <Field Name="Cijena" Type="decimal" Precision="10" Scale="2" />
           <Field Name="ConcurrencyGuid" Type="string" MaxLength="50" />
+          <Field Name="FirmaId" Type="long" />
           <Field Name="IsActive" Type="bool" />
           <Field Name="Jm" Type="string" MaxLength="10" />
           <Field Name="Naziv" Type="string" MaxLength="150" />
@@ -176,6 +177,7 @@
         <Fields>
           <Field Name="BrojacId" Type="long" IsPrimaryKey="true" />
           <Field Name="ConcurrencyGuid" Type="string" MaxLength="50" />
+          <Field Name="FirmaId" Type="long" />
           <Field Name="Godina" Type="short" />
           <Field Name="Naziv" Type="string" MaxLength="100" />
           <Field Name="SlijedeciBroj" Type="int" />
@@ -187,6 +189,7 @@
           <Field Name="AktivnaGodina" Type="short" />
           <Field Name="ConcurrencyGuid" Type="string" MaxLength="50" />
           <Field Name="ConfigId" Type="long" IsPrimaryKey="true" />
+          <Field Name="FirmaId" Type="long" />
           <Field Name="Mjesto" Type="string" IsOptional="true" MaxLength="100" />
           <Field Name="Naziv" Type="string" MaxLength="100" />
           <Field Name="Oib" Type="string" MaxLength="11" />
@@ -210,10 +213,16 @@
           <Field Name="StackTrace" Type="string" IsOptional="true" />
         </Fields>
       </EntityDefinition>
+      <EntityDefinition Name="Firma" ObjectID="61116b6c-0818-4721-926a-7b475e3472bf">
+        <Fields>
+          <Field Name="FirmaId" Type="long" IsPrimaryKey="true" />
+        </Fields>
+      </EntityDefinition>
       <EntityDefinition Name="Partner" ObjectID="45df3c21-438d-4669-bf99-1d2ca56c44df">
         <Fields>
           <Field Name="Adresa" Type="string" IsOptional="true" MaxLength="100" />
           <Field Name="ConcurrencyGuid" Type="string" MaxLength="50" />
+          <Field Name="FirmaId" Type="long" />
           <Field Name="IsActive" Type="bool" />
           <Field Name="Mjesto" Type="string" IsOptional="true" MaxLength="40" />
           <Field Name="Naziv" Type="string" MaxLength="100" />
@@ -226,6 +235,7 @@
       <EntityDefinition Name="Pdv" ObjectID="4c5d6d0c-2602-4fb5-9bb6-d72c3f7c8f44">
         <Fields>
           <Field Name="ConcurrencyGuid" Type="string" MaxLength="50" />
+          <Field Name="FirmaId" Type="long" />
           <Field Name="Naziv" Type="string" MaxLength="128" />
           <Field Name="PdvId" Type="long" IsPrimaryKey="true" />
           <Field Name="Stopa" Type="decimal" Precision="4" Scale="2" />
@@ -236,6 +246,7 @@
           <Field Name="BrojRacuna" Type="int" />
           <Field Name="ConcurrencyGuid" Type="string" MaxLength="50" />
           <Field Name="Datum" Type="datetime" />
+          <Field Name="FirmaId" Type="long" />
           <Field Name="Godina" Type="short" />
           <Field Name="JePdvRacun" Type="bool" />
           <Field Name="MjestoRadaAdresa" Type="string" IsOptional="true" MaxLength="100" />
@@ -282,6 +293,7 @@
       <EntityDefinition Name="Tarifa" ObjectID="ea55d41f-c035-4cf7-9014-9acbea87d0ab">
         <Fields>
           <Field Name="ConcurrencyGuid" Type="string" MaxLength="50" />
+          <Field Name="FirmaId" Type="long" />
           <Field Name="IsActive" Type="bool" />
           <Field Name="Naziv" Type="string" MaxLength="100" />
           <Field Name="Stopa" Type="decimal" Precision="5" Scale="2" />
@@ -291,6 +303,7 @@
       <EntityDefinition Name="User" ObjectID="26073275-177b-4555-b359-c37faa397572">
         <Fields>
           <Field Name="ConcurrencyGuid" Type="string" MaxLength="50" />
+          <Field Name="FirmaId" Type="long" />
           <Field Name="Password" Type="string" MaxLength="256" />
           <Field Name="RoleId" Type="long" />
           <Field Name="UserId" Type="long" IsPrimaryKey="true" />
@@ -299,6 +312,11 @@
       </EntityDefinition>
     </EntityDefinitions>
     <Relationships>
+      <NormalRelationship Name="Artikl.Firma-Firma.ArtiklCollection" Start=":Artikl" End=":Firma" StartNavigator="Firma" EndNavigator="ArtiklCollection" Type="4" DeleteRuleAction="1">
+        <FieldRelationships>
+          <FieldFieldRelationship FkField="FirmaId" PkField="FirmaId" />
+        </FieldRelationships>
+      </NormalRelationship>
       <NormalRelationship Name="Artikl.Pdv-Pdv.ArtiklCollection" Start=":Artikl" End=":Pdv" StartNavigator="Pdv" EndNavigator="ArtiklCollection" Type="4">
         <FieldRelationships>
           <FieldFieldRelationship FkField="PdvId" PkField="PdvId" />
@@ -319,9 +337,34 @@
           <FieldFieldRelationship FkField="UserId" PkField="UserId" />
         </FieldRelationships>
       </NormalRelationship>
+      <NormalRelationship Name="Brojac.Firma-Firma.BrojacCollection" Start=":Brojac" End=":Firma" StartNavigator="Firma" EndNavigator="BrojacCollection" Type="4" DeleteRuleAction="1">
+        <FieldRelationships>
+          <FieldFieldRelationship FkField="FirmaId" PkField="FirmaId" />
+        </FieldRelationships>
+      </NormalRelationship>
+      <NormalRelationship Name="Config.Firma-Firma.ConfigCollection" Start=":Config" End=":Firma" StartNavigator="Firma" EndNavigator="ConfigCollection" Type="4" DeleteRuleAction="1">
+        <FieldRelationships>
+          <FieldFieldRelationship FkField="FirmaId" PkField="FirmaId" />
+        </FieldRelationships>
+      </NormalRelationship>
       <NormalRelationship Name="Error.ParentError-Error.ChildErrorCollection" Start=":Error" End=":Error" StartNavigator="ParentError" EndNavigator="ChildErrorCollection" Type="4" EndIsOptional="true">
         <FieldRelationships>
           <FieldFieldRelationship FkField="ParentErrorId" PkField="ErrorId" />
+        </FieldRelationships>
+      </NormalRelationship>
+      <NormalRelationship Name="Partner.Firma-Firma.PartnerCollection" Start=":Partner" End=":Firma" StartNavigator="Firma" EndNavigator="PartnerCollection" Type="4" DeleteRuleAction="1">
+        <FieldRelationships>
+          <FieldFieldRelationship FkField="FirmaId" PkField="FirmaId" />
+        </FieldRelationships>
+      </NormalRelationship>
+      <NormalRelationship Name="Pdv.Firma-Firma.PdvCollection" Start=":Pdv" End=":Firma" StartNavigator="Firma" EndNavigator="PdvCollection" Type="4" DeleteRuleAction="1">
+        <FieldRelationships>
+          <FieldFieldRelationship FkField="FirmaId" PkField="FirmaId" />
+        </FieldRelationships>
+      </NormalRelationship>
+      <NormalRelationship Name="RacunGlava.Firma-Firma.RacunGlavaCollection" Start=":RacunGlava" End=":Firma" StartNavigator="Firma" EndNavigator="RacunGlavaCollection" Type="4" DeleteRuleAction="1">
+        <FieldRelationships>
+          <FieldFieldRelationship FkField="FirmaId" PkField="FirmaId" />
         </FieldRelationships>
       </NormalRelationship>
       <NormalRelationship Name="RacunGlava.Partner-Partner.RacunGlavaCollection" Start=":RacunGlava" End=":Partner" StartNavigator="Partner" EndNavigator="RacunGlavaCollection" Type="4">
@@ -347,6 +390,16 @@
       <NormalRelationship Name="RacunStavka.RacunGlava-RacunGlava.RacunStavkaCollection" Start=":RacunStavka" End=":RacunGlava" StartNavigator="RacunGlava" EndNavigator="RacunStavkaCollection" Type="4">
         <FieldRelationships>
           <FieldFieldRelationship FkField="RacunGlavaId" PkField="RacunGlavaId" />
+        </FieldRelationships>
+      </NormalRelationship>
+      <NormalRelationship Name="Tarifa.Firma-Firma.TarifaCollection" Start=":Tarifa" End=":Firma" StartNavigator="Firma" EndNavigator="TarifaCollection" Type="4" DeleteRuleAction="1">
+        <FieldRelationships>
+          <FieldFieldRelationship FkField="FirmaId" PkField="FirmaId" />
+        </FieldRelationships>
+      </NormalRelationship>
+      <NormalRelationship Name="User.Firma-Firma.UserCollection" Start=":User" End=":Firma" StartNavigator="Firma" EndNavigator="UserCollection" Type="4" DeleteRuleAction="1">
+        <FieldRelationships>
+          <FieldFieldRelationship FkField="FirmaId" PkField="FirmaId" />
         </FieldRelationships>
       </NormalRelationship>
       <NormalRelationship Name="User.Role-RoleRo.KorisnikCollection" Start=":User" End=":RoleRo" StartNavigator="Role" EndNavigator="KorisnikCollection" Type="4">
@@ -384,6 +437,7 @@
                     <Field Name="Jm" Ordinal="5" DbType="12" Length="10" />
                     <Field Name="Naziv" Ordinal="6" DbType="12" Length="150" />
                     <Field Name="PdvId" Ordinal="7" DbType="0" Precision="19" />
+                    <Field Name="FirmaId" Ordinal="8" DbType="0" Precision="19" />
                   </Fields>
                 </Table>
                 <Table Name="AuditInfo">
@@ -415,6 +469,7 @@
                     <Field Name="Godina" Ordinal="3" DbType="16" Precision="5" />
                     <Field Name="Naziv" Ordinal="4" DbType="12" Length="100" />
                     <Field Name="SlijedeciBroj" Ordinal="5" DbType="8" Precision="10" />
+                    <Field Name="FirmaId" Ordinal="6" DbType="0" Precision="19" />
                   </Fields>
                 </Table>
                 <Table Name="Config">
@@ -428,6 +483,7 @@
                     <Field Name="Naziv" Ordinal="6" DbType="12" Length="100" />
                     <Field Name="Oib" Ordinal="7" DbType="12" Length="11" />
                     <Field Name="Zr" Ordinal="8" IsOptional="true" DbType="12" Length="50" />
+                    <Field Name="FirmaId" Ordinal="9" DbType="0" Precision="19" />
                   </Fields>
                 </Table>
                 <Table Name="EntityRo">
@@ -449,6 +505,12 @@
                     <Field Name="StackTrace" Ordinal="6" IsOptional="true" DbType="12" Length="2147483647" />
                   </Fields>
                 </Table>
+                <Table Name="Firma">
+                  <PkConstraintName Name="PK_dc048334f91a208a531bcb2db7f" />
+                  <Fields>
+                    <Field Name="FirmaId" Ordinal="1" IsPrimaryKey="true" DbType="0" Precision="19" />
+                  </Fields>
+                </Table>
                 <Table Name="Partner">
                   <PkConstraintName Name="PK_4b068ed45d1a4b9f5c82a158472" />
                   <Fields>
@@ -461,6 +523,7 @@
                     <Field Name="PartnerId" Ordinal="7" IsPrimaryKey="true" DbType="0" Precision="19" />
                     <Field Name="Posta" Ordinal="8" IsOptional="true" DbType="12" Length="10" />
                     <Field Name="Valuta" Ordinal="9" DbType="16" Precision="5" />
+                    <Field Name="FirmaId" Ordinal="10" DbType="0" Precision="19" />
                   </Fields>
                 </Table>
                 <Table Name="Pdv">
@@ -470,6 +533,7 @@
                     <Field Name="Naziv" Ordinal="2" DbType="12" Length="128" />
                     <Field Name="PdvId" Ordinal="3" IsPrimaryKey="true" DbType="0" Precision="19" />
                     <Field Name="Stopa" Ordinal="4" DbType="5" Precision="4" Scale="2" />
+                    <Field Name="FirmaId" Ordinal="5" DbType="0" Precision="19" />
                   </Fields>
                 </Table>
                 <Table Name="RacunGlava">
@@ -490,6 +554,7 @@
                     <Field Name="Valuta" Ordinal="13" DbType="16" Precision="5" />
                     <Field Name="Vrijeme" Ordinal="14" IsOptional="true" DbType="12" Length="10" />
                     <Field Name="Zaglavlje" Ordinal="15" IsOptional="true" DbType="12" Length="1024" />
+                    <Field Name="FirmaId" Ordinal="16" DbType="0" Precision="19" />
                   </Fields>
                 </Table>
                 <Table Name="RacunStavka">
@@ -532,6 +597,7 @@
                     <Field Name="Naziv" Ordinal="3" DbType="12" Length="100" />
                     <Field Name="Stopa" Ordinal="4" DbType="5" Precision="5" Scale="2" />
                     <Field Name="TarifaId" Ordinal="5" IsPrimaryKey="true" DbType="0" Precision="19" />
+                    <Field Name="FirmaId" Ordinal="6" DbType="0" Precision="19" />
                   </Fields>
                 </Table>
                 <Table Name="User">
@@ -542,6 +608,7 @@
                     <Field Name="RoleId" Ordinal="3" DbType="0" Precision="19" />
                     <Field Name="UserId" Ordinal="4" IsPrimaryKey="true" DbType="0" Precision="19" />
                     <Field Name="Username" Ordinal="5" DbType="12" Length="20" />
+                    <Field Name="FirmaId" Ordinal="6" DbType="0" Precision="19" />
                   </Fields>
                 </Table>
               </Tables>
@@ -551,6 +618,11 @@
             <ForeignKeyConstraint Name="dbo:Artikl:FK_641dca045d0bd173ad6b6bbf0f1">
               <FieldPairs>
                 <FieldPair PkField="dbo:Pdv:PdvId" FkField="dbo:Artikl:PdvId" />
+              </FieldPairs>
+            </ForeignKeyConstraint>
+            <ForeignKeyConstraint Name="dbo:Artikl:FK_a91065c48b5b1270a5e99010cc5" DeleteRuleAction="1">
+              <FieldPairs>
+                <FieldPair PkField="dbo:Firma:FirmaId" FkField="dbo:Artikl:FirmaId" />
               </FieldPairs>
             </ForeignKeyConstraint>
             <ForeignKeyConstraint Name="dbo:AuditInfo:FK_7adf5f54794b92ee8dbbf2de480">
@@ -568,9 +640,29 @@
                 <FieldPair PkField="dbo:AuditInfoActionTypeRo:AuditInfoActionTypeId" FkField="dbo:AuditInfo:AuditInfoActionTypeId" />
               </FieldPairs>
             </ForeignKeyConstraint>
+            <ForeignKeyConstraint Name="dbo:Brojac:FK_0a47816464d84da2a2ba1df8b7d" DeleteRuleAction="1">
+              <FieldPairs>
+                <FieldPair PkField="dbo:Firma:FirmaId" FkField="dbo:Brojac:FirmaId" />
+              </FieldPairs>
+            </ForeignKeyConstraint>
+            <ForeignKeyConstraint Name="dbo:Config:FK_171c18f4473abe5aa32d2a62b3b" DeleteRuleAction="1">
+              <FieldPairs>
+                <FieldPair PkField="dbo:Firma:FirmaId" FkField="dbo:Config:FirmaId" />
+              </FieldPairs>
+            </ForeignKeyConstraint>
             <ForeignKeyConstraint Name="dbo:Error:FK_ff41a304a119b8a47a7f448681e">
               <FieldPairs>
                 <FieldPair PkField="dbo:Error:ErrorId" FkField="dbo:Error:ParentErrorId" />
+              </FieldPairs>
+            </ForeignKeyConstraint>
+            <ForeignKeyConstraint Name="dbo:Partner:FK_8185c1440e2a279aefb94d1ab69" DeleteRuleAction="1">
+              <FieldPairs>
+                <FieldPair PkField="dbo:Firma:FirmaId" FkField="dbo:Partner:FirmaId" />
+              </FieldPairs>
+            </ForeignKeyConstraint>
+            <ForeignKeyConstraint Name="dbo:Pdv:FK_b6550d04f60807015672af83808" DeleteRuleAction="1">
+              <FieldPairs>
+                <FieldPair PkField="dbo:Firma:FirmaId" FkField="dbo:Pdv:FirmaId" />
               </FieldPairs>
             </ForeignKeyConstraint>
             <ForeignKeyConstraint Name="dbo:RacunGlava:FK_1a7fe194f72a6d752d98820bb15">
@@ -581,6 +673,11 @@
             <ForeignKeyConstraint Name="dbo:RacunGlava:FK_915476249258bb0eda968f27354">
               <FieldPairs>
                 <FieldPair PkField="dbo:Tarifa:TarifaId" FkField="dbo:RacunGlava:TarifaId" />
+              </FieldPairs>
+            </ForeignKeyConstraint>
+            <ForeignKeyConstraint Name="dbo:RacunGlava:FK_ce441ba48fda4d3bde655d14ac8" DeleteRuleAction="1">
+              <FieldPairs>
+                <FieldPair PkField="dbo:Firma:FirmaId" FkField="dbo:RacunGlava:FirmaId" />
               </FieldPairs>
             </ForeignKeyConstraint>
             <ForeignKeyConstraint Name="dbo:RacunGlava:FK_dc2573043ccbffae8edb54fba1c">
@@ -598,9 +695,19 @@
                 <FieldPair PkField="dbo:Artikl:ArtiklId" FkField="dbo:RacunStavka:ArtiklId" />
               </FieldPairs>
             </ForeignKeyConstraint>
+            <ForeignKeyConstraint Name="dbo:Tarifa:FK_eeee1e542688d56b261d6658b1a" DeleteRuleAction="1">
+              <FieldPairs>
+                <FieldPair PkField="dbo:Firma:FirmaId" FkField="dbo:Tarifa:FirmaId" />
+              </FieldPairs>
+            </ForeignKeyConstraint>
             <ForeignKeyConstraint Name="dbo:User:FK_78b50b94da190966eb5c0de1b9f">
               <FieldPairs>
                 <FieldPair PkField="dbo:RoleRo:RoleId" FkField="dbo:User:RoleId" />
+              </FieldPairs>
+            </ForeignKeyConstraint>
+            <ForeignKeyConstraint Name="dbo:User:FK_a9d8edd41e1a0162cc78a0701c1" DeleteRuleAction="1">
+              <FieldPairs>
+                <FieldPair PkField="dbo:Firma:FirmaId" FkField="dbo:User:FirmaId" />
               </FieldPairs>
             </ForeignKeyConstraint>
           </ForeignKeyConstraints>
@@ -630,6 +737,7 @@
                     <Field Name="PdvId" Ordinal="7" DbType="10" Precision="19" />
                     <Field Name="IsActive" Ordinal="8" DbType="0" />
                     <Field Name="Cijena" Ordinal="9" DbType="14" Precision="10" Scale="2" />
+                    <Field Name="FirmaId" Ordinal="10" DbType="10" />
                   </Fields>
                 </Table>
                 <Table Name="AuditInfo">
@@ -661,6 +769,7 @@
                     <Field Name="Godina" Ordinal="3" DbType="8" />
                     <Field Name="Naziv" Ordinal="4" DbType="24" Length="100" />
                     <Field Name="SlijedeciBroj" Ordinal="5" DbType="9" />
+                    <Field Name="FirmaId" Ordinal="6" DbType="10" />
                   </Fields>
                 </Table>
                 <Table Name="Config">
@@ -674,6 +783,7 @@
                     <Field Name="Oib" Ordinal="6" DbType="24" Length="11" />
                     <Field Name="Zr" Ordinal="7" IsOptional="true" DbType="24" Length="50" />
                     <Field Name="ConfigId" Ordinal="8" IsPrimaryKey="true" DbType="10" Precision="19" />
+                    <Field Name="FirmaId" Ordinal="9" DbType="10" />
                   </Fields>
                 </Table>
                 <Table Name="EntityRo">
@@ -695,6 +805,12 @@
                     <Field Name="StackTrace" Ordinal="6" IsOptional="true" DbType="19" Length="1073741823" />
                   </Fields>
                 </Table>
+                <Table Name="Firma">
+                  <PkConstraintName Name="PK_7343ec14f8194191496c9e7cd04" />
+                  <Fields>
+                    <Field Name="FirmaId" Ordinal="1" IsPrimaryKey="true" DbType="10" />
+                  </Fields>
+                </Table>
                 <Table Name="Partner">
                   <PkConstraintName Name="PK_ec363ca41a09a25ebb6c0283629" />
                   <Fields>
@@ -707,6 +823,7 @@
                     <Field Name="Posta" Ordinal="7" IsOptional="true" DbType="24" Length="10" />
                     <Field Name="Valuta" Ordinal="9" DbType="8" />
                     <Field Name="IsActive" Ordinal="10" DbType="0" />
+                    <Field Name="FirmaId" Ordinal="11" DbType="10" />
                   </Fields>
                 </Table>
                 <Table Name="Pdv">
@@ -716,6 +833,7 @@
                     <Field Name="Naziv" Ordinal="2" DbType="24" Length="128" />
                     <Field Name="PdvId" Ordinal="3" IsPrimaryKey="true" DbType="10" Precision="19" />
                     <Field Name="Stopa" Ordinal="4" DbType="14" Precision="4" Scale="2" />
+                    <Field Name="FirmaId" Ordinal="5" DbType="10" />
                   </Fields>
                 </Table>
                 <Table Name="RacunGlava">
@@ -736,6 +854,7 @@
                     <Field Name="Vrijeme" Ordinal="15" IsOptional="true" DbType="24" Length="10" />
                     <Field Name="JePdvRacun" Ordinal="16" DbType="0" />
                     <Field Name="Zaglavlje" Ordinal="17" IsOptional="true" DbType="24" Length="1024" />
+                    <Field Name="FirmaId" Ordinal="18" DbType="10" />
                   </Fields>
                 </Table>
                 <Table Name="RacunStavka">
@@ -778,6 +897,7 @@
                     <Field Name="Stopa" Ordinal="4" DbType="14" Precision="5" Scale="2" />
                     <Field Name="TarifaId" Ordinal="5" IsPrimaryKey="true" DbType="10" Precision="19" />
                     <Field Name="IsActive" Ordinal="6" DbType="0" />
+                    <Field Name="FirmaId" Ordinal="7" DbType="10" />
                   </Fields>
                 </Table>
                 <Table Name="User">
@@ -788,6 +908,7 @@
                     <Field Name="Password" Ordinal="3" DbType="24" Length="256" />
                     <Field Name="Username" Ordinal="4" DbType="24" Length="20" />
                     <Field Name="RoleId" Ordinal="5" DbType="10" Precision="19" />
+                    <Field Name="FirmaId" Ordinal="6" DbType="10" />
                   </Fields>
                 </Table>
               </Tables>
@@ -797,6 +918,11 @@
             <ForeignKeyConstraint Name="public:Artikl:FK_4e45d5942e08ead3c4e0bd8e7ed">
               <FieldPairs>
                 <FieldPair PkField="public:Pdv:PdvId" FkField="public:Artikl:PdvId" />
+              </FieldPairs>
+            </ForeignKeyConstraint>
+            <ForeignKeyConstraint Name="public:Artikl:FK_cc345e9404981dc0b021c4cb3db" DeleteRuleAction="1">
+              <FieldPairs>
+                <FieldPair PkField="public:Firma:FirmaId" FkField="public:Artikl:FirmaId" />
               </FieldPairs>
             </ForeignKeyConstraint>
             <ForeignKeyConstraint Name="public:AuditInfo:FK_3e4d1924d38a8f32c0896d38bb1">
@@ -814,9 +940,29 @@
                 <FieldPair PkField="public:EntityRo:EntityId" FkField="public:AuditInfo:EntityId" />
               </FieldPairs>
             </ForeignKeyConstraint>
+            <ForeignKeyConstraint Name="public:Brojac:FK_84f10ff472c901e71e1fe13d6d0" DeleteRuleAction="1">
+              <FieldPairs>
+                <FieldPair PkField="public:Firma:FirmaId" FkField="public:Brojac:FirmaId" />
+              </FieldPairs>
+            </ForeignKeyConstraint>
+            <ForeignKeyConstraint Name="public:Config:FK_8787a514ce6bbc4de825762153f" DeleteRuleAction="1">
+              <FieldPairs>
+                <FieldPair PkField="public:Firma:FirmaId" FkField="public:Config:FirmaId" />
+              </FieldPairs>
+            </ForeignKeyConstraint>
             <ForeignKeyConstraint Name="public:Error:FK_73aecbe4cfe9b4a40434eacf011">
               <FieldPairs>
                 <FieldPair PkField="public:Error:ErrorId" FkField="public:Error:ParentErrorId" />
+              </FieldPairs>
+            </ForeignKeyConstraint>
+            <ForeignKeyConstraint Name="public:Partner:FK_867997e40bfafc662f718c4a14a" DeleteRuleAction="1">
+              <FieldPairs>
+                <FieldPair PkField="public:Firma:FirmaId" FkField="public:Partner:FirmaId" />
+              </FieldPairs>
+            </ForeignKeyConstraint>
+            <ForeignKeyConstraint Name="public:Pdv:FK_78998144e92933effcf226e67bc" DeleteRuleAction="1">
+              <FieldPairs>
+                <FieldPair PkField="public:Firma:FirmaId" FkField="public:Pdv:FirmaId" />
               </FieldPairs>
             </ForeignKeyConstraint>
             <ForeignKeyConstraint Name="public:RacunGlava:FK_432e8c241f98aed846b19115ec5">
@@ -827,6 +973,11 @@
             <ForeignKeyConstraint Name="public:RacunGlava:FK_6e54b2d453d9c2aca491fc88eb6">
               <FieldPairs>
                 <FieldPair PkField="public:StatusRo:StatusId" FkField="public:RacunGlava:StatusId" />
+              </FieldPairs>
+            </ForeignKeyConstraint>
+            <ForeignKeyConstraint Name="public:RacunGlava:FK_bac24104346a080da3b813d65d1" DeleteRuleAction="1">
+              <FieldPairs>
+                <FieldPair PkField="public:Firma:FirmaId" FkField="public:RacunGlava:FirmaId" />
               </FieldPairs>
             </ForeignKeyConstraint>
             <ForeignKeyConstraint Name="public:RacunGlava:FK_de4ccaf4171b10223250058c83a">
@@ -844,9 +995,19 @@
                 <FieldPair PkField="public:RacunGlava:RacunGlavaId" FkField="public:RacunStavka:RacunGlavaId" />
               </FieldPairs>
             </ForeignKeyConstraint>
+            <ForeignKeyConstraint Name="public:Tarifa:FK_f920fcc43cea984ddbfcb566707" DeleteRuleAction="1">
+              <FieldPairs>
+                <FieldPair PkField="public:Firma:FirmaId" FkField="public:Tarifa:FirmaId" />
+              </FieldPairs>
+            </ForeignKeyConstraint>
             <ForeignKeyConstraint Name="public:User:FK_15df8b8464f933e1f3cce430182">
               <FieldPairs>
                 <FieldPair PkField="public:RoleRo:RoleId" FkField="public:User:RoleId" />
+              </FieldPairs>
+            </ForeignKeyConstraint>
+            <ForeignKeyConstraint Name="public:User:FK_d80b91b41e983fdd5d03d541590" DeleteRuleAction="1">
+              <FieldPairs>
+                <FieldPair PkField="public:Firma:FirmaId" FkField="public:User:FirmaId" />
               </FieldPairs>
             </ForeignKeyConstraint>
           </ForeignKeyConstraints>
@@ -862,6 +1023,7 @@
             <FieldMapping FieldName="ArtiklId" TargetFieldName="ArtiklId" SequenceToUse="EnioNg:dbo:GenericSequence" />
             <FieldMapping FieldName="Cijena" TargetFieldName="Cijena" />
             <FieldMapping FieldName="ConcurrencyGuid" TargetFieldName="ConcurrencyGuid" />
+            <FieldMapping FieldName="FirmaId" TargetFieldName="FirmaId" />
             <FieldMapping FieldName="IsActive" TargetFieldName="IsActive" />
             <FieldMapping FieldName="Jm" TargetFieldName="Jm" />
             <FieldMapping FieldName="Naziv" TargetFieldName="Naziv" />
@@ -891,6 +1053,7 @@
           <FieldMappings>
             <FieldMapping FieldName="BrojacId" TargetFieldName="BrojacId" SequenceToUse="EnioNg:dbo:GenericSequence" />
             <FieldMapping FieldName="ConcurrencyGuid" TargetFieldName="ConcurrencyGuid" />
+            <FieldMapping FieldName="FirmaId" TargetFieldName="FirmaId" />
             <FieldMapping FieldName="Godina" TargetFieldName="Godina" />
             <FieldMapping FieldName="Naziv" TargetFieldName="Naziv" />
             <FieldMapping FieldName="SlijedeciBroj" TargetFieldName="SlijedeciBroj" />
@@ -901,7 +1064,8 @@
             <FieldMapping FieldName="Adresa" TargetFieldName="Adresa" />
             <FieldMapping FieldName="AktivnaGodina" TargetFieldName="AktivnaGodina" />
             <FieldMapping FieldName="ConcurrencyGuid" TargetFieldName="ConcurrencyGuid" />
-            <FieldMapping FieldName="ConfigId" TargetFieldName="ConfigId" />
+            <FieldMapping FieldName="ConfigId" TargetFieldName="ConfigId" SequenceToUse="EnioNg:dbo:GenericSequence" />
+            <FieldMapping FieldName="FirmaId" TargetFieldName="FirmaId" />
             <FieldMapping FieldName="Mjesto" TargetFieldName="Mjesto" />
             <FieldMapping FieldName="Naziv" TargetFieldName="Naziv" />
             <FieldMapping FieldName="Oib" TargetFieldName="Oib" />
@@ -925,10 +1089,16 @@
             <FieldMapping FieldName="StackTrace" TargetFieldName="StackTrace" />
           </FieldMappings>
         </EntityMapping>
+        <EntityMapping EntityName=":Firma" TargetName="EnioNg:dbo:Firma">
+          <FieldMappings>
+            <FieldMapping FieldName="FirmaId" TargetFieldName="FirmaId" />
+          </FieldMappings>
+        </EntityMapping>
         <EntityMapping EntityName=":Partner" TargetName="EnioNg:dbo:Partner">
           <FieldMappings>
             <FieldMapping FieldName="Adresa" TargetFieldName="Adresa" />
             <FieldMapping FieldName="ConcurrencyGuid" TargetFieldName="ConcurrencyGuid" />
+            <FieldMapping FieldName="FirmaId" TargetFieldName="FirmaId" />
             <FieldMapping FieldName="IsActive" TargetFieldName="IsActive" />
             <FieldMapping FieldName="Mjesto" TargetFieldName="Mjesto" />
             <FieldMapping FieldName="Naziv" TargetFieldName="Naziv" />
@@ -941,6 +1111,7 @@
         <EntityMapping EntityName=":Pdv" TargetName="EnioNg:dbo:Pdv">
           <FieldMappings>
             <FieldMapping FieldName="ConcurrencyGuid" TargetFieldName="ConcurrencyGuid" />
+            <FieldMapping FieldName="FirmaId" TargetFieldName="FirmaId" />
             <FieldMapping FieldName="Naziv" TargetFieldName="Naziv" />
             <FieldMapping FieldName="PdvId" TargetFieldName="PdvId" SequenceToUse="EnioNg:dbo:GenericSequence" />
             <FieldMapping FieldName="Stopa" TargetFieldName="Stopa" />
@@ -951,6 +1122,7 @@
             <FieldMapping FieldName="BrojRacuna" TargetFieldName="BrojRacuna" />
             <FieldMapping FieldName="ConcurrencyGuid" TargetFieldName="ConcurrencyGuid" />
             <FieldMapping FieldName="Datum" TargetFieldName="Datum" />
+            <FieldMapping FieldName="FirmaId" TargetFieldName="FirmaId" />
             <FieldMapping FieldName="Godina" TargetFieldName="Godina" />
             <FieldMapping FieldName="JePdvRacun" TargetFieldName="JePdvRacun" />
             <FieldMapping FieldName="MjestoRadaAdresa" TargetFieldName="MjestoRadaAdresa" />
@@ -997,6 +1169,7 @@
         <EntityMapping EntityName=":Tarifa" TargetName="EnioNg:dbo:Tarifa">
           <FieldMappings>
             <FieldMapping FieldName="ConcurrencyGuid" TargetFieldName="ConcurrencyGuid" />
+            <FieldMapping FieldName="FirmaId" TargetFieldName="FirmaId" />
             <FieldMapping FieldName="IsActive" TargetFieldName="IsActive" />
             <FieldMapping FieldName="Naziv" TargetFieldName="Naziv" />
             <FieldMapping FieldName="Stopa" TargetFieldName="Stopa" />
@@ -1006,6 +1179,7 @@
         <EntityMapping EntityName=":User" TargetName="EnioNg:dbo:User">
           <FieldMappings>
             <FieldMapping FieldName="ConcurrencyGuid" TargetFieldName="ConcurrencyGuid" />
+            <FieldMapping FieldName="FirmaId" TargetFieldName="FirmaId" />
             <FieldMapping FieldName="Password" TargetFieldName="Password" />
             <FieldMapping FieldName="RoleId" TargetFieldName="RoleId" />
             <FieldMapping FieldName="UserId" TargetFieldName="UserId" SequenceToUse="EnioNg:dbo:GenericSequence" />
@@ -1025,6 +1199,7 @@
             <FieldMapping FieldName="ArtiklId" TargetFieldName="ArtiklId" SequenceToUse="Default:public:GenericSequence" />
             <FieldMapping FieldName="Cijena" TargetFieldName="Cijena" />
             <FieldMapping FieldName="ConcurrencyGuid" TargetFieldName="ConcurrencyGuid" />
+            <FieldMapping FieldName="FirmaId" TargetFieldName="FirmaId" />
             <FieldMapping FieldName="IsActive" TargetFieldName="IsActive" />
             <FieldMapping FieldName="Jm" TargetFieldName="Jm" />
             <FieldMapping FieldName="Naziv" TargetFieldName="Naziv" />
@@ -1054,6 +1229,7 @@
           <FieldMappings>
             <FieldMapping FieldName="BrojacId" TargetFieldName="BrojacId" SequenceToUse="Default:public:GenericSequence" />
             <FieldMapping FieldName="ConcurrencyGuid" TargetFieldName="ConcurrencyGuid" />
+            <FieldMapping FieldName="FirmaId" TargetFieldName="FirmaId" />
             <FieldMapping FieldName="Godina" TargetFieldName="Godina" />
             <FieldMapping FieldName="Naziv" TargetFieldName="Naziv" />
             <FieldMapping FieldName="SlijedeciBroj" TargetFieldName="SlijedeciBroj" />
@@ -1064,7 +1240,8 @@
             <FieldMapping FieldName="Adresa" TargetFieldName="Adresa" />
             <FieldMapping FieldName="AktivnaGodina" TargetFieldName="AktivnaGodina" />
             <FieldMapping FieldName="ConcurrencyGuid" TargetFieldName="ConcurrencyGuid" />
-            <FieldMapping FieldName="ConfigId" TargetFieldName="ConfigId" />
+            <FieldMapping FieldName="ConfigId" TargetFieldName="ConfigId" SequenceToUse="Default:public:GenericSequence" />
+            <FieldMapping FieldName="FirmaId" TargetFieldName="FirmaId" />
             <FieldMapping FieldName="Mjesto" TargetFieldName="Mjesto" />
             <FieldMapping FieldName="Naziv" TargetFieldName="Naziv" />
             <FieldMapping FieldName="Oib" TargetFieldName="Oib" />
@@ -1088,10 +1265,16 @@
             <FieldMapping FieldName="StackTrace" TargetFieldName="StackTrace" />
           </FieldMappings>
         </EntityMapping>
+        <EntityMapping EntityName=":Firma" TargetName="Default:public:Firma">
+          <FieldMappings>
+            <FieldMapping FieldName="FirmaId" TargetFieldName="FirmaId" />
+          </FieldMappings>
+        </EntityMapping>
         <EntityMapping EntityName=":Partner" TargetName="Default:public:Partner">
           <FieldMappings>
             <FieldMapping FieldName="Adresa" TargetFieldName="Adresa" />
             <FieldMapping FieldName="ConcurrencyGuid" TargetFieldName="ConcurrencyGuid" />
+            <FieldMapping FieldName="FirmaId" TargetFieldName="FirmaId" />
             <FieldMapping FieldName="IsActive" TargetFieldName="IsActive" />
             <FieldMapping FieldName="Mjesto" TargetFieldName="Mjesto" />
             <FieldMapping FieldName="Naziv" TargetFieldName="Naziv" />
@@ -1104,6 +1287,7 @@
         <EntityMapping EntityName=":Pdv" TargetName="Default:public:Pdv">
           <FieldMappings>
             <FieldMapping FieldName="ConcurrencyGuid" TargetFieldName="ConcurrencyGuid" />
+            <FieldMapping FieldName="FirmaId" TargetFieldName="FirmaId" />
             <FieldMapping FieldName="Naziv" TargetFieldName="Naziv" />
             <FieldMapping FieldName="PdvId" TargetFieldName="PdvId" SequenceToUse="Default:public:GenericSequence" />
             <FieldMapping FieldName="Stopa" TargetFieldName="Stopa" />
@@ -1114,6 +1298,7 @@
             <FieldMapping FieldName="BrojRacuna" TargetFieldName="BrojRacuna" />
             <FieldMapping FieldName="ConcurrencyGuid" TargetFieldName="ConcurrencyGuid" />
             <FieldMapping FieldName="Datum" TargetFieldName="Datum" />
+            <FieldMapping FieldName="FirmaId" TargetFieldName="FirmaId" />
             <FieldMapping FieldName="Godina" TargetFieldName="Godina" />
             <FieldMapping FieldName="JePdvRacun" TargetFieldName="JePdvRacun" />
             <FieldMapping FieldName="MjestoRadaAdresa" TargetFieldName="MjestoRadaAdresa" />
@@ -1160,6 +1345,7 @@
         <EntityMapping EntityName=":Tarifa" TargetName="Default:public:Tarifa">
           <FieldMappings>
             <FieldMapping FieldName="ConcurrencyGuid" TargetFieldName="ConcurrencyGuid" />
+            <FieldMapping FieldName="FirmaId" TargetFieldName="FirmaId" />
             <FieldMapping FieldName="IsActive" TargetFieldName="IsActive" />
             <FieldMapping FieldName="Naziv" TargetFieldName="Naziv" />
             <FieldMapping FieldName="Stopa" TargetFieldName="Stopa" />
@@ -1169,6 +1355,7 @@
         <EntityMapping EntityName=":User" TargetName="Default:public:User">
           <FieldMappings>
             <FieldMapping FieldName="ConcurrencyGuid" TargetFieldName="ConcurrencyGuid" />
+            <FieldMapping FieldName="FirmaId" TargetFieldName="FirmaId" />
             <FieldMapping FieldName="Password" TargetFieldName="Password" />
             <FieldMapping FieldName="RoleId" TargetFieldName="RoleId" />
             <FieldMapping FieldName="UserId" TargetFieldName="UserId" SequenceToUse="Default:public:GenericSequence" />

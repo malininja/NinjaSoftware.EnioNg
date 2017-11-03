@@ -19,6 +19,8 @@ namespace NinjaSoftware.EnioNg.CoolJ
 		Cijena,
 		///<summary>ConcurrencyGuid. </summary>
 		ConcurrencyGuid,
+		///<summary>FirmaId. </summary>
+		FirmaId,
 		///<summary>IsActive. </summary>
 		IsActive,
 		///<summary>Jm. </summary>
@@ -71,6 +73,8 @@ namespace NinjaSoftware.EnioNg.CoolJ
 		BrojacId,
 		///<summary>ConcurrencyGuid. </summary>
 		ConcurrencyGuid,
+		///<summary>FirmaId. </summary>
+		FirmaId,
 		///<summary>Godina. </summary>
 		Godina,
 		///<summary>Naziv. </summary>
@@ -91,6 +95,8 @@ namespace NinjaSoftware.EnioNg.CoolJ
 		ConcurrencyGuid,
 		///<summary>ConfigId. </summary>
 		ConfigId,
+		///<summary>FirmaId. </summary>
+		FirmaId,
 		///<summary>Mjesto. </summary>
 		Mjesto,
 		///<summary>Naziv. </summary>
@@ -132,6 +138,14 @@ namespace NinjaSoftware.EnioNg.CoolJ
 		/// <summary></summary>
 		AmountOfFields
 	}
+	/// <summary>Index enum to fast-access EntityFields in the IEntityFields collection for the entity: Firma.</summary>
+	public enum FirmaFieldIndex
+	{
+		///<summary>FirmaId. </summary>
+		FirmaId,
+		/// <summary></summary>
+		AmountOfFields
+	}
 	/// <summary>Index enum to fast-access EntityFields in the IEntityFields collection for the entity: Partner.</summary>
 	public enum PartnerFieldIndex
 	{
@@ -139,6 +153,8 @@ namespace NinjaSoftware.EnioNg.CoolJ
 		Adresa,
 		///<summary>ConcurrencyGuid. </summary>
 		ConcurrencyGuid,
+		///<summary>FirmaId. </summary>
+		FirmaId,
 		///<summary>IsActive. </summary>
 		IsActive,
 		///<summary>Mjesto. </summary>
@@ -161,6 +177,8 @@ namespace NinjaSoftware.EnioNg.CoolJ
 	{
 		///<summary>ConcurrencyGuid. </summary>
 		ConcurrencyGuid,
+		///<summary>FirmaId. </summary>
+		FirmaId,
 		///<summary>Naziv. </summary>
 		Naziv,
 		///<summary>PdvId. </summary>
@@ -179,6 +197,8 @@ namespace NinjaSoftware.EnioNg.CoolJ
 		ConcurrencyGuid,
 		///<summary>Datum. </summary>
 		Datum,
+		///<summary>FirmaId. </summary>
+		FirmaId,
 		///<summary>Godina. </summary>
 		Godina,
 		///<summary>JePdvRacun. </summary>
@@ -263,6 +283,8 @@ namespace NinjaSoftware.EnioNg.CoolJ
 	{
 		///<summary>ConcurrencyGuid. </summary>
 		ConcurrencyGuid,
+		///<summary>FirmaId. </summary>
+		FirmaId,
 		///<summary>IsActive. </summary>
 		IsActive,
 		///<summary>Naziv. </summary>
@@ -279,6 +301,8 @@ namespace NinjaSoftware.EnioNg.CoolJ
 	{
 		///<summary>ConcurrencyGuid. </summary>
 		ConcurrencyGuid,
+		///<summary>FirmaId. </summary>
+		FirmaId,
 		///<summary>Password. </summary>
 		Password,
 		///<summary>RoleId. </summary>
@@ -310,6 +334,8 @@ namespace NinjaSoftware.EnioNg.CoolJ
 		EntityRoEntity,
 		///<summary>Error</summary>
 		ErrorEntity,
+		///<summary>Firma</summary>
+		FirmaEntity,
 		///<summary>Partner</summary>
 		PartnerEntity,
 		///<summary>Pdv</summary>

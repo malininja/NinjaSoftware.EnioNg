@@ -30,6 +30,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.RelationClasses
 		{
 			List<IEntityRelation> toReturn = new List<IEntityRelation>();
 			toReturn.Add(this.RacunGlavaEntityUsingTarifaId);
+			toReturn.Add(this.FirmaEntityUsingFirmaId);
 			return toReturn;
 		}
 
@@ -51,6 +52,20 @@ namespace NinjaSoftware.EnioNg.CoolJ.RelationClasses
 		}
 
 
+		/// <summary>Returns a new IEntityRelation object, between TarifaEntity and FirmaEntity over the m:1 relation they have, using the relation between the fields:
+		/// Tarifa.FirmaId - Firma.FirmaId
+		/// </summary>
+		public virtual IEntityRelation FirmaEntityUsingFirmaId
+		{
+			get
+			{
+				IEntityRelation relation = new EntityRelation(SD.LLBLGen.Pro.ORMSupportClasses.RelationType.ManyToOne, "Firma", false);
+				relation.AddEntityFieldPair(FirmaFields.FirmaId, TarifaFields.FirmaId);
+				relation.InheritanceInfoPkSideEntity = InheritanceInfoProviderSingleton.GetInstance().GetInheritanceInfo("FirmaEntity", false);
+				relation.InheritanceInfoFkSideEntity = InheritanceInfoProviderSingleton.GetInstance().GetInheritanceInfo("TarifaEntity", true);
+				return relation;
+			}
+		}
 		/// <summary>stub, not used in this entity, only for TargetPerEntity entities.</summary>
 		public virtual IEntityRelation GetSubTypeRelation(string subTypeEntityName) { return null; }
 		/// <summary>stub, not used in this entity, only for TargetPerEntity entities.</summary>
@@ -66,6 +81,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.RelationClasses
 	internal static class StaticTarifaRelations
 	{
 		internal static readonly IEntityRelation RacunGlavaEntityUsingTarifaIdStatic = new TarifaRelations().RacunGlavaEntityUsingTarifaId;
+		internal static readonly IEntityRelation FirmaEntityUsingFirmaIdStatic = new TarifaRelations().FirmaEntityUsingFirmaId;
 
 		/// <summary>CTor</summary>
 		static StaticTarifaRelations()

@@ -148,6 +148,12 @@ namespace NinjaSoftware.EnioNg.CoolJ.FactoryClasses
 			get { return Create<ErrorEntity>(); }
 		}
 
+		/// <summary>Creates and returns a new EntityQuery for the Firma entity</summary>
+		public EntityQuery<FirmaEntity> Firma
+		{
+			get { return Create<FirmaEntity>(); }
+		}
+
 		/// <summary>Creates and returns a new EntityQuery for the Partner entity</summary>
 		public EntityQuery<PartnerEntity> Partner
 		{

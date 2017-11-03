@@ -82,6 +82,9 @@ namespace NinjaSoftware.EnioNg.CoolJ.Linq
 				case NinjaSoftware.EnioNg.CoolJ.EntityType.ErrorEntity:
 					toReturn = this.Error;
 					break;
+				case NinjaSoftware.EnioNg.CoolJ.EntityType.FirmaEntity:
+					toReturn = this.Firma;
+					break;
 				case NinjaSoftware.EnioNg.CoolJ.EntityType.PartnerEntity:
 					toReturn = this.Partner;
 					break;
@@ -162,6 +165,12 @@ namespace NinjaSoftware.EnioNg.CoolJ.Linq
 		public DataSource2<ErrorEntity> Error
 		{
 			get { return new DataSource2<ErrorEntity>(_adapterToUse, new ElementCreator(), _customFunctionMappings, _contextToUse); }
+		}
+		
+		/// <summary>returns the datasource to use in a Linq query when targeting FirmaEntity instances in the database.</summary>
+		public DataSource2<FirmaEntity> Firma
+		{
+			get { return new DataSource2<FirmaEntity>(_adapterToUse, new ElementCreator(), _customFunctionMappings, _contextToUse); }
 		}
 		
 		/// <summary>returns the datasource to use in a Linq query when targeting PartnerEntity instances in the database.</summary>

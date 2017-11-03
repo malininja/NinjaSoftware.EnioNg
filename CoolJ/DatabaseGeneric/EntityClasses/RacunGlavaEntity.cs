@@ -35,6 +35,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 	{
 		#region Class Member Declarations
 		private EntityCollection<RacunStavkaEntity> _racunStavkaCollection;
+		private FirmaEntity _firma;
 		private PartnerEntity _partner;
 		private StatusRoEntity _status;
 		private TarifaEntity _tarifa;
@@ -50,6 +51,8 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 		/// <summary>All names of fields mapped onto a relation. Usable for in-memory filtering</summary>
 		public static partial class MemberNames
 		{
+			/// <summary>Member name Firma</summary>
+			public static readonly string Firma = "Firma";
 			/// <summary>Member name Partner</summary>
 			public static readonly string Partner = "Partner";
 			/// <summary>Member name Status</summary>
@@ -176,6 +179,11 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 			if(SerializationHelper.Optimization != SerializationOptimization.Fast) 
 			{
 				_racunStavkaCollection = (EntityCollection<RacunStavkaEntity>)info.GetValue("_racunStavkaCollection", typeof(EntityCollection<RacunStavkaEntity>));
+				_firma = (FirmaEntity)info.GetValue("_firma", typeof(FirmaEntity));
+				if(_firma!=null)
+				{
+					_firma.AfterSave+=new EventHandler(OnEntityAfterSave);
+				}
 				_partner = (PartnerEntity)info.GetValue("_partner", typeof(PartnerEntity));
 				if(_partner!=null)
 				{
@@ -204,6 +212,9 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 		{
 			switch((RacunGlavaFieldIndex)fieldIndex)
 			{
+				case RacunGlavaFieldIndex.FirmaId:
+					DesetupSyncFirma(true, false);
+					break;
 				case RacunGlavaFieldIndex.PartnerId:
 					DesetupSyncPartner(true, false);
 					break;
@@ -227,6 +238,9 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 		{
 			switch(propertyName)
 			{
+				case "Firma":
+					this.Firma = (FirmaEntity)entity;
+					break;
 				case "Partner":
 					this.Partner = (PartnerEntity)entity;
 					break;
@@ -261,6 +275,9 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 			RelationCollection toReturn = new RelationCollection();
 			switch(fieldName)
 			{
+				case "Firma":
+					toReturn.Add(Relations.FirmaEntityUsingFirmaId);
+					break;
 				case "Partner":
 					toReturn.Add(Relations.PartnerEntityUsingPartnerId);
 					break;
@@ -301,6 +318,9 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 		{
 			switch(fieldName)
 			{
+				case "Firma":
+					SetupSyncFirma(relatedEntity);
+					break;
 				case "Partner":
 					SetupSyncPartner(relatedEntity);
 					break;
@@ -326,6 +346,9 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 		{
 			switch(fieldName)
 			{
+				case "Firma":
+					DesetupSyncFirma(false, true);
+					break;
 				case "Partner":
 					DesetupSyncPartner(false, true);
 					break;
@@ -357,6 +380,10 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 		protected override List<IEntity2> GetDependentRelatedEntities()
 		{
 			List<IEntity2> toReturn = new List<IEntity2>();
+			if(_firma!=null)
+			{
+				toReturn.Add(_firma);
+			}
 			if(_partner!=null)
 			{
 				toReturn.Add(_partner);
@@ -390,6 +417,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 			if (SerializationHelper.Optimization != SerializationOptimization.Fast) 
 			{
 				info.AddValue("_racunStavkaCollection", ((_racunStavkaCollection!=null) && (_racunStavkaCollection.Count>0) && !this.MarkedForDeletion)?_racunStavkaCollection:null);
+				info.AddValue("_firma", (!this.MarkedForDeletion?_firma:null));
 				info.AddValue("_partner", (!this.MarkedForDeletion?_partner:null));
 				info.AddValue("_status", (!this.MarkedForDeletion?_status:null));
 				info.AddValue("_tarifa", (!this.MarkedForDeletion?_tarifa:null));
@@ -414,6 +442,15 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 		{
 			IRelationPredicateBucket bucket = new RelationPredicateBucket();
 			bucket.PredicateExpression.Add(new FieldCompareValuePredicate(RacunStavkaFields.RacunGlavaId, null, ComparisonOperator.Equal, this.RacunGlavaId));
+			return bucket;
+		}
+
+		/// <summary> Creates a new IRelationPredicateBucket object which contains the predicate expression and relation collection to fetch the related entity of type 'Firma' to this entity.</summary>
+		/// <returns></returns>
+		public virtual IRelationPredicateBucket GetRelationInfoFirma()
+		{
+			IRelationPredicateBucket bucket = new RelationPredicateBucket();
+			bucket.PredicateExpression.Add(new FieldCompareValuePredicate(FirmaFields.FirmaId, null, ComparisonOperator.Equal, this.FirmaId));
 			return bucket;
 		}
 
@@ -491,6 +528,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 		protected override Dictionary<string, object> GetRelatedData()
 		{
 			Dictionary<string, object> toReturn = new Dictionary<string, object>();
+			toReturn.Add("Firma", _firma);
 			toReturn.Add("Partner", _partner);
 			toReturn.Add("Status", _status);
 			toReturn.Add("Tarifa", _tarifa);
@@ -523,6 +561,8 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 			fieldHashtable = new Dictionary<string, string>();
 			_fieldsCustomProperties.Add("Datum", fieldHashtable);
 			fieldHashtable = new Dictionary<string, string>();
+			_fieldsCustomProperties.Add("FirmaId", fieldHashtable);
+			fieldHashtable = new Dictionary<string, string>();
 			_fieldsCustomProperties.Add("Godina", fieldHashtable);
 			fieldHashtable = new Dictionary<string, string>();
 			_fieldsCustomProperties.Add("JePdvRacun", fieldHashtable);
@@ -548,6 +588,39 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 			_fieldsCustomProperties.Add("Zaglavlje", fieldHashtable);
 		}
 		#endregion
+
+		/// <summary> Removes the sync logic for member _firma</summary>
+		/// <param name="signalRelatedEntity">If set to true, it will call the related entity's UnsetRelatedEntity method</param>
+		/// <param name="resetFKFields">if set to true it will also reset the FK fields pointing to the related entity</param>
+		private void DesetupSyncFirma(bool signalRelatedEntity, bool resetFKFields)
+		{
+			this.PerformDesetupSyncRelatedEntity( _firma, new PropertyChangedEventHandler( OnFirmaPropertyChanged ), "Firma", NinjaSoftware.EnioNg.CoolJ.RelationClasses.StaticRacunGlavaRelations.FirmaEntityUsingFirmaIdStatic, true, signalRelatedEntity, "RacunGlavaCollection", resetFKFields, new int[] { (int)RacunGlavaFieldIndex.FirmaId } );
+			_firma = null;
+		}
+
+		/// <summary> setups the sync logic for member _firma</summary>
+		/// <param name="relatedEntity">Instance to set as the related entity of type entityType</param>
+		private void SetupSyncFirma(IEntityCore relatedEntity)
+		{
+			if(_firma!=relatedEntity)
+			{
+				DesetupSyncFirma(true, true);
+				_firma = (FirmaEntity)relatedEntity;
+				this.PerformSetupSyncRelatedEntity( _firma, new PropertyChangedEventHandler( OnFirmaPropertyChanged ), "Firma", NinjaSoftware.EnioNg.CoolJ.RelationClasses.StaticRacunGlavaRelations.FirmaEntityUsingFirmaIdStatic, true, new string[] {  } );
+			}
+		}
+		
+		/// <summary>Handles property change events of properties in a related entity.</summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void OnFirmaPropertyChanged( object sender, PropertyChangedEventArgs e )
+		{
+			switch( e.PropertyName )
+			{
+				default:
+					break;
+			}
+		}
 
 		/// <summary> Removes the sync logic for member _partner</summary>
 		/// <param name="signalRelatedEntity">If set to true, it will call the related entity's UnsetRelatedEntity method</param>
@@ -686,6 +759,13 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 			get	{ return new PrefetchPathElement2( new EntityCollection<RacunStavkaEntity>(EntityFactoryCache2.GetEntityFactory(typeof(RacunStavkaEntityFactory))), (IEntityRelation)GetRelationsForField("RacunStavkaCollection")[0], (int)NinjaSoftware.EnioNg.CoolJ.EntityType.RacunGlavaEntity, (int)NinjaSoftware.EnioNg.CoolJ.EntityType.RacunStavkaEntity, 0, null, null, null, null, "RacunStavkaCollection", SD.LLBLGen.Pro.ORMSupportClasses.RelationType.OneToMany);	}
 		}
 
+		/// <summary> Creates a new PrefetchPathElement2 object which contains all the information to prefetch the related entities of type 'Firma' for this entity.</summary>
+		/// <returns>Ready to use IPrefetchPathElement2 implementation.</returns>
+		public static IPrefetchPathElement2 PrefetchPathFirma
+		{
+			get	{ return new PrefetchPathElement2(new EntityCollection(EntityFactoryCache2.GetEntityFactory(typeof(FirmaEntityFactory))),	(IEntityRelation)GetRelationsForField("Firma")[0], (int)NinjaSoftware.EnioNg.CoolJ.EntityType.RacunGlavaEntity, (int)NinjaSoftware.EnioNg.CoolJ.EntityType.FirmaEntity, 0, null, null, null, null, "Firma", SD.LLBLGen.Pro.ORMSupportClasses.RelationType.ManyToOne); }
+		}
+
 		/// <summary> Creates a new PrefetchPathElement2 object which contains all the information to prefetch the related entities of type 'Partner' for this entity.</summary>
 		/// <returns>Ready to use IPrefetchPathElement2 implementation.</returns>
 		public static IPrefetchPathElement2 PrefetchPathPartner
@@ -762,6 +842,17 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 		{
 			get { return (System.DateTime)GetValue((int)RacunGlavaFieldIndex.Datum, true); }
 			set	{ SetValue((int)RacunGlavaFieldIndex.Datum, value); }
+		}
+
+		/// <summary> The FirmaId property of the Entity RacunGlava<br/><br/></summary>
+		/// <remarks>Mapped on  table field: "RacunGlava"."FirmaId"<br/>
+		/// Table field type characteristics (type, precision, scale, length): BigInt, 19, 0, 0<br/>
+		/// Table field behavior characteristics (is nullable, is PK, is identity): false, false, false</remarks>
+		[JsonProperty]
+		public virtual System.Int64 FirmaId
+		{
+			get { return (System.Int64)GetValue((int)RacunGlavaFieldIndex.FirmaId, true); }
+			set	{ SetValue((int)RacunGlavaFieldIndex.FirmaId, value); }
 		}
 
 		/// <summary> The Godina property of the Entity RacunGlava<br/><br/></summary>
@@ -901,6 +992,25 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 		public virtual EntityCollection<RacunStavkaEntity> RacunStavkaCollection
 		{
 			get { return GetOrCreateEntityCollection<RacunStavkaEntity, RacunStavkaEntityFactory>("RacunGlava", true, false, ref _racunStavkaCollection);	}
+		}
+
+		/// <summary> Gets / sets related entity of type 'FirmaEntity' which has to be set using a fetch action earlier. If no related entity is set for this property, null is returned..<br/><br/></summary>
+		[Browsable(false)]
+		[JsonProperty]
+		public virtual FirmaEntity Firma
+		{
+			get	{ return _firma; }
+			set
+			{
+				if(this.IsDeserializing)
+				{
+					SetupSyncFirma(value);
+				}
+				else
+				{
+					SetSingleRelatedEntityNavigator(value, "RacunGlavaCollection", "Firma", _firma, true); 
+				}
+			}
 		}
 
 		/// <summary> Gets / sets related entity of type 'PartnerEntity' which has to be set using a fetch action earlier. If no related entity is set for this property, null is returned..<br/><br/></summary>

@@ -7,7 +7,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 {
     public partial class BrojacEntity
     {
-        public static int GetNextNumber(DataAccessAdapterBase adapter, BrojacEnum brojacEnum, short? godina)
+        public static int GetNextNumber(DataAccessAdapterBase adapter, long firmaId, BrojacEnum brojacEnum, short? godina)
         {
             if (!godina.HasValue)
             {
@@ -16,7 +16,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
 
             RelationPredicateBucket bucket = new RelationPredicateBucket();
             bucket.PredicateExpression.Add(BrojacFields.Naziv == brojacEnum.ToString());
-
+            bucket.PredicateExpression.Add(BrojacFields.FirmaId == firmaId);
             if (godina.HasValue)
             {
                 bucket.PredicateExpression.Add(BrojacFields.Godina == godina.Value);
@@ -30,7 +30,8 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
                 {
                     Godina = godina.Value,
                     Naziv = brojacEnum.ToString(),
-                    SlijedeciBroj = 1
+                    SlijedeciBroj = 1,
+                    FirmaId = firmaId
                 };
             }
 

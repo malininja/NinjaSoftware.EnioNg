@@ -33,5 +33,13 @@ namespace NinjaSoftware.EnioNg.CoolJ.EntityClasses
             
             return false;
         }
+
+        public static long GetFirmaId(DataAccessAdapterBase adapter, string username)
+        {
+            RelationPredicateBucket bucket = new RelationPredicateBucket(UserFields.Username == username);
+            IEnumerable<UserEntity> userCollection = UserEntity.FetchUserCollection(adapter, bucket, null);
+
+            return userCollection.Single().FirmaId;
+        }
     }
 }

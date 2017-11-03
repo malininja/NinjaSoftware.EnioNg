@@ -46,7 +46,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.SqlServer.DatabaseSpecific
 		/// <summary>Method which initializes the internal datastores with the structure of hierarchical types.</summary>
 		private void Init()
 		{
-			this.InitClass(15);
+			this.InitClass(16);
 			InitArtiklEntityMappings();
 			InitAuditInfoEntityMappings();
 			InitAuditInfoActionTypeRoEntityMappings();
@@ -54,6 +54,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.SqlServer.DatabaseSpecific
 			InitConfigEntityMappings();
 			InitEntityRoEntityMappings();
 			InitErrorEntityMappings();
+			InitFirmaEntityMappings();
 			InitPartnerEntityMappings();
 			InitPdvEntityMappings();
 			InitRacunGlavaEntityMappings();
@@ -67,14 +68,15 @@ namespace NinjaSoftware.EnioNg.CoolJ.SqlServer.DatabaseSpecific
 		/// <summary>Inits ArtiklEntity's mappings</summary>
 		private void InitArtiklEntityMappings()
 		{
-			this.AddElementMapping("ArtiklEntity", @"EnioNg", @"dbo", "Artikl", 7, 0);
+			this.AddElementMapping("ArtiklEntity", @"EnioNg", @"dbo", "Artikl", 8, 0);
 			this.AddElementFieldMapping("ArtiklEntity", "ArtiklId", "ArtiklId", false, "BigInt", 0, 19, 0, false, "EnioNg.dbo.GenericSequence", null, typeof(System.Int64), 0);
 			this.AddElementFieldMapping("ArtiklEntity", "Cijena", "Cijena", false, "Decimal", 0, 10, 2, false, "", null, typeof(System.Decimal), 1);
 			this.AddElementFieldMapping("ArtiklEntity", "ConcurrencyGuid", "ConcurrencyGuid", false, "NVarChar", 50, 0, 0, false, "", null, typeof(System.String), 2);
-			this.AddElementFieldMapping("ArtiklEntity", "IsActive", "IsActive", false, "Bit", 0, 0, 0, false, "", null, typeof(System.Boolean), 3);
-			this.AddElementFieldMapping("ArtiklEntity", "Jm", "Jm", false, "NVarChar", 10, 0, 0, false, "", null, typeof(System.String), 4);
-			this.AddElementFieldMapping("ArtiklEntity", "Naziv", "Naziv", false, "NVarChar", 150, 0, 0, false, "", null, typeof(System.String), 5);
-			this.AddElementFieldMapping("ArtiklEntity", "PdvId", "PdvId", false, "BigInt", 0, 19, 0, false, "", null, typeof(System.Int64), 6);
+			this.AddElementFieldMapping("ArtiklEntity", "FirmaId", "FirmaId", false, "BigInt", 0, 19, 0, false, "", null, typeof(System.Int64), 3);
+			this.AddElementFieldMapping("ArtiklEntity", "IsActive", "IsActive", false, "Bit", 0, 0, 0, false, "", null, typeof(System.Boolean), 4);
+			this.AddElementFieldMapping("ArtiklEntity", "Jm", "Jm", false, "NVarChar", 10, 0, 0, false, "", null, typeof(System.String), 5);
+			this.AddElementFieldMapping("ArtiklEntity", "Naziv", "Naziv", false, "NVarChar", 150, 0, 0, false, "", null, typeof(System.String), 6);
+			this.AddElementFieldMapping("ArtiklEntity", "PdvId", "PdvId", false, "BigInt", 0, 19, 0, false, "", null, typeof(System.Int64), 7);
 		}
 
 		/// <summary>Inits AuditInfoEntity's mappings</summary>
@@ -103,26 +105,28 @@ namespace NinjaSoftware.EnioNg.CoolJ.SqlServer.DatabaseSpecific
 		/// <summary>Inits BrojacEntity's mappings</summary>
 		private void InitBrojacEntityMappings()
 		{
-			this.AddElementMapping("BrojacEntity", @"EnioNg", @"dbo", "Brojac", 5, 0);
+			this.AddElementMapping("BrojacEntity", @"EnioNg", @"dbo", "Brojac", 6, 0);
 			this.AddElementFieldMapping("BrojacEntity", "BrojacId", "BrojacId", false, "BigInt", 0, 19, 0, false, "EnioNg.dbo.GenericSequence", null, typeof(System.Int64), 0);
 			this.AddElementFieldMapping("BrojacEntity", "ConcurrencyGuid", "ConcurrencyGuid", false, "NVarChar", 50, 0, 0, false, "", null, typeof(System.String), 1);
-			this.AddElementFieldMapping("BrojacEntity", "Godina", "Godina", false, "SmallInt", 0, 5, 0, false, "", null, typeof(System.Int16), 2);
-			this.AddElementFieldMapping("BrojacEntity", "Naziv", "Naziv", false, "NVarChar", 100, 0, 0, false, "", null, typeof(System.String), 3);
-			this.AddElementFieldMapping("BrojacEntity", "SlijedeciBroj", "SlijedeciBroj", false, "Int", 0, 10, 0, false, "", null, typeof(System.Int32), 4);
+			this.AddElementFieldMapping("BrojacEntity", "FirmaId", "FirmaId", false, "BigInt", 0, 19, 0, false, "", null, typeof(System.Int64), 2);
+			this.AddElementFieldMapping("BrojacEntity", "Godina", "Godina", false, "SmallInt", 0, 5, 0, false, "", null, typeof(System.Int16), 3);
+			this.AddElementFieldMapping("BrojacEntity", "Naziv", "Naziv", false, "NVarChar", 100, 0, 0, false, "", null, typeof(System.String), 4);
+			this.AddElementFieldMapping("BrojacEntity", "SlijedeciBroj", "SlijedeciBroj", false, "Int", 0, 10, 0, false, "", null, typeof(System.Int32), 5);
 		}
 
 		/// <summary>Inits ConfigEntity's mappings</summary>
 		private void InitConfigEntityMappings()
 		{
-			this.AddElementMapping("ConfigEntity", @"EnioNg", @"dbo", "Config", 8, 0);
+			this.AddElementMapping("ConfigEntity", @"EnioNg", @"dbo", "Config", 9, 0);
 			this.AddElementFieldMapping("ConfigEntity", "Adresa", "Adresa", true, "NVarChar", 100, 0, 0, false, "", null, typeof(System.String), 0);
 			this.AddElementFieldMapping("ConfigEntity", "AktivnaGodina", "AktivnaGodina", false, "SmallInt", 0, 5, 0, false, "", null, typeof(System.Int16), 1);
 			this.AddElementFieldMapping("ConfigEntity", "ConcurrencyGuid", "ConcurrencyGuid", false, "NVarChar", 50, 0, 0, false, "", null, typeof(System.String), 2);
-			this.AddElementFieldMapping("ConfigEntity", "ConfigId", "ConfigId", false, "BigInt", 0, 19, 0, false, "", null, typeof(System.Int64), 3);
-			this.AddElementFieldMapping("ConfigEntity", "Mjesto", "Mjesto", true, "NVarChar", 100, 0, 0, false, "", null, typeof(System.String), 4);
-			this.AddElementFieldMapping("ConfigEntity", "Naziv", "Naziv", false, "NVarChar", 100, 0, 0, false, "", null, typeof(System.String), 5);
-			this.AddElementFieldMapping("ConfigEntity", "Oib", "Oib", false, "NVarChar", 11, 0, 0, false, "", null, typeof(System.String), 6);
-			this.AddElementFieldMapping("ConfigEntity", "Zr", "Zr", true, "NVarChar", 50, 0, 0, false, "", null, typeof(System.String), 7);
+			this.AddElementFieldMapping("ConfigEntity", "ConfigId", "ConfigId", false, "BigInt", 0, 19, 0, false, "EnioNg.dbo.GenericSequence", null, typeof(System.Int64), 3);
+			this.AddElementFieldMapping("ConfigEntity", "FirmaId", "FirmaId", false, "BigInt", 0, 19, 0, false, "", null, typeof(System.Int64), 4);
+			this.AddElementFieldMapping("ConfigEntity", "Mjesto", "Mjesto", true, "NVarChar", 100, 0, 0, false, "", null, typeof(System.String), 5);
+			this.AddElementFieldMapping("ConfigEntity", "Naziv", "Naziv", false, "NVarChar", 100, 0, 0, false, "", null, typeof(System.String), 6);
+			this.AddElementFieldMapping("ConfigEntity", "Oib", "Oib", false, "NVarChar", 11, 0, 0, false, "", null, typeof(System.String), 7);
+			this.AddElementFieldMapping("ConfigEntity", "Zr", "Zr", true, "NVarChar", 50, 0, 0, false, "", null, typeof(System.String), 8);
 		}
 
 		/// <summary>Inits EntityRoEntity's mappings</summary>
@@ -146,50 +150,60 @@ namespace NinjaSoftware.EnioNg.CoolJ.SqlServer.DatabaseSpecific
 			this.AddElementFieldMapping("ErrorEntity", "StackTrace", "StackTrace", true, "NVarChar", 2147483647, 0, 0, false, "", null, typeof(System.String), 5);
 		}
 
+		/// <summary>Inits FirmaEntity's mappings</summary>
+		private void InitFirmaEntityMappings()
+		{
+			this.AddElementMapping("FirmaEntity", @"EnioNg", @"dbo", "Firma", 1, 0);
+			this.AddElementFieldMapping("FirmaEntity", "FirmaId", "FirmaId", false, "BigInt", 0, 19, 0, false, "", null, typeof(System.Int64), 0);
+		}
+
 		/// <summary>Inits PartnerEntity's mappings</summary>
 		private void InitPartnerEntityMappings()
 		{
-			this.AddElementMapping("PartnerEntity", @"EnioNg", @"dbo", "Partner", 9, 0);
+			this.AddElementMapping("PartnerEntity", @"EnioNg", @"dbo", "Partner", 10, 0);
 			this.AddElementFieldMapping("PartnerEntity", "Adresa", "Adresa", true, "NVarChar", 100, 0, 0, false, "", null, typeof(System.String), 0);
 			this.AddElementFieldMapping("PartnerEntity", "ConcurrencyGuid", "ConcurrencyGuid", false, "NVarChar", 50, 0, 0, false, "", null, typeof(System.String), 1);
-			this.AddElementFieldMapping("PartnerEntity", "IsActive", "IsActive", false, "Bit", 0, 0, 0, false, "", null, typeof(System.Boolean), 2);
-			this.AddElementFieldMapping("PartnerEntity", "Mjesto", "Mjesto", true, "NVarChar", 40, 0, 0, false, "", null, typeof(System.String), 3);
-			this.AddElementFieldMapping("PartnerEntity", "Naziv", "Naziv", false, "NVarChar", 100, 0, 0, false, "", null, typeof(System.String), 4);
-			this.AddElementFieldMapping("PartnerEntity", "Oib", "Oib", true, "NVarChar", 11, 0, 0, false, "", null, typeof(System.String), 5);
-			this.AddElementFieldMapping("PartnerEntity", "PartnerId", "PartnerId", false, "BigInt", 0, 19, 0, false, "EnioNg.dbo.GenericSequence", null, typeof(System.Int64), 6);
-			this.AddElementFieldMapping("PartnerEntity", "Posta", "Posta", true, "NVarChar", 10, 0, 0, false, "", null, typeof(System.String), 7);
-			this.AddElementFieldMapping("PartnerEntity", "Valuta", "Valuta", false, "SmallInt", 0, 5, 0, false, "", null, typeof(System.Int16), 8);
+			this.AddElementFieldMapping("PartnerEntity", "FirmaId", "FirmaId", false, "BigInt", 0, 19, 0, false, "", null, typeof(System.Int64), 2);
+			this.AddElementFieldMapping("PartnerEntity", "IsActive", "IsActive", false, "Bit", 0, 0, 0, false, "", null, typeof(System.Boolean), 3);
+			this.AddElementFieldMapping("PartnerEntity", "Mjesto", "Mjesto", true, "NVarChar", 40, 0, 0, false, "", null, typeof(System.String), 4);
+			this.AddElementFieldMapping("PartnerEntity", "Naziv", "Naziv", false, "NVarChar", 100, 0, 0, false, "", null, typeof(System.String), 5);
+			this.AddElementFieldMapping("PartnerEntity", "Oib", "Oib", true, "NVarChar", 11, 0, 0, false, "", null, typeof(System.String), 6);
+			this.AddElementFieldMapping("PartnerEntity", "PartnerId", "PartnerId", false, "BigInt", 0, 19, 0, false, "EnioNg.dbo.GenericSequence", null, typeof(System.Int64), 7);
+			this.AddElementFieldMapping("PartnerEntity", "Posta", "Posta", true, "NVarChar", 10, 0, 0, false, "", null, typeof(System.String), 8);
+			this.AddElementFieldMapping("PartnerEntity", "Valuta", "Valuta", false, "SmallInt", 0, 5, 0, false, "", null, typeof(System.Int16), 9);
 		}
 
 		/// <summary>Inits PdvEntity's mappings</summary>
 		private void InitPdvEntityMappings()
 		{
-			this.AddElementMapping("PdvEntity", @"EnioNg", @"dbo", "Pdv", 4, 0);
+			this.AddElementMapping("PdvEntity", @"EnioNg", @"dbo", "Pdv", 5, 0);
 			this.AddElementFieldMapping("PdvEntity", "ConcurrencyGuid", "ConcurrencyGuid", false, "NVarChar", 50, 0, 0, false, "", null, typeof(System.String), 0);
-			this.AddElementFieldMapping("PdvEntity", "Naziv", "Naziv", false, "NVarChar", 128, 0, 0, false, "", null, typeof(System.String), 1);
-			this.AddElementFieldMapping("PdvEntity", "PdvId", "PdvId", false, "BigInt", 0, 19, 0, false, "EnioNg.dbo.GenericSequence", null, typeof(System.Int64), 2);
-			this.AddElementFieldMapping("PdvEntity", "Stopa", "Stopa", false, "Decimal", 0, 4, 2, false, "", null, typeof(System.Decimal), 3);
+			this.AddElementFieldMapping("PdvEntity", "FirmaId", "FirmaId", false, "BigInt", 0, 19, 0, false, "", null, typeof(System.Int64), 1);
+			this.AddElementFieldMapping("PdvEntity", "Naziv", "Naziv", false, "NVarChar", 128, 0, 0, false, "", null, typeof(System.String), 2);
+			this.AddElementFieldMapping("PdvEntity", "PdvId", "PdvId", false, "BigInt", 0, 19, 0, false, "EnioNg.dbo.GenericSequence", null, typeof(System.Int64), 3);
+			this.AddElementFieldMapping("PdvEntity", "Stopa", "Stopa", false, "Decimal", 0, 4, 2, false, "", null, typeof(System.Decimal), 4);
 		}
 
 		/// <summary>Inits RacunGlavaEntity's mappings</summary>
 		private void InitRacunGlavaEntityMappings()
 		{
-			this.AddElementMapping("RacunGlavaEntity", @"EnioNg", @"dbo", "RacunGlava", 15, 0);
+			this.AddElementMapping("RacunGlavaEntity", @"EnioNg", @"dbo", "RacunGlava", 16, 0);
 			this.AddElementFieldMapping("RacunGlavaEntity", "BrojRacuna", "BrojRacuna", false, "Int", 0, 10, 0, false, "", null, typeof(System.Int32), 0);
 			this.AddElementFieldMapping("RacunGlavaEntity", "ConcurrencyGuid", "ConcurrencyGuid", false, "NVarChar", 50, 0, 0, false, "", null, typeof(System.String), 1);
 			this.AddElementFieldMapping("RacunGlavaEntity", "Datum", "Datum", false, "DateTime", 0, 0, 0, false, "", null, typeof(System.DateTime), 2);
-			this.AddElementFieldMapping("RacunGlavaEntity", "Godina", "Godina", false, "SmallInt", 0, 5, 0, false, "", null, typeof(System.Int16), 3);
-			this.AddElementFieldMapping("RacunGlavaEntity", "JePdvRacun", "JePdvRacun", false, "Bit", 0, 0, 0, false, "", null, typeof(System.Boolean), 4);
-			this.AddElementFieldMapping("RacunGlavaEntity", "MjestoRadaAdresa", "MjestoRadaAdresa", true, "NVarChar", 100, 0, 0, false, "", null, typeof(System.String), 5);
-			this.AddElementFieldMapping("RacunGlavaEntity", "MjestoRadaNaziv", "MjestoRadaNaziv", true, "NVarChar", 100, 0, 0, false, "", null, typeof(System.String), 6);
-			this.AddElementFieldMapping("RacunGlavaEntity", "PartnerId", "PartnerId", false, "BigInt", 0, 19, 0, false, "", null, typeof(System.Int64), 7);
-			this.AddElementFieldMapping("RacunGlavaEntity", "RacunGlavaId", "RacunGlavaId", false, "BigInt", 0, 19, 0, false, "EnioNg.dbo.GenericSequence", null, typeof(System.Int64), 8);
-			this.AddElementFieldMapping("RacunGlavaEntity", "StatusId", "StatusId", false, "BigInt", 0, 19, 0, false, "", null, typeof(System.Int64), 9);
-			this.AddElementFieldMapping("RacunGlavaEntity", "TarifaId", "TarifaId", false, "BigInt", 0, 19, 0, false, "", null, typeof(System.Int64), 10);
-			this.AddElementFieldMapping("RacunGlavaEntity", "TarifaStopa", "TarifaStopa", false, "Decimal", 0, 5, 2, false, "", null, typeof(System.Decimal), 11);
-			this.AddElementFieldMapping("RacunGlavaEntity", "Valuta", "Valuta", false, "SmallInt", 0, 5, 0, false, "", null, typeof(System.Int16), 12);
-			this.AddElementFieldMapping("RacunGlavaEntity", "Vrijeme", "Vrijeme", true, "NVarChar", 10, 0, 0, false, "", null, typeof(System.String), 13);
-			this.AddElementFieldMapping("RacunGlavaEntity", "Zaglavlje", "Zaglavlje", true, "NVarChar", 1024, 0, 0, false, "", null, typeof(System.String), 14);
+			this.AddElementFieldMapping("RacunGlavaEntity", "FirmaId", "FirmaId", false, "BigInt", 0, 19, 0, false, "", null, typeof(System.Int64), 3);
+			this.AddElementFieldMapping("RacunGlavaEntity", "Godina", "Godina", false, "SmallInt", 0, 5, 0, false, "", null, typeof(System.Int16), 4);
+			this.AddElementFieldMapping("RacunGlavaEntity", "JePdvRacun", "JePdvRacun", false, "Bit", 0, 0, 0, false, "", null, typeof(System.Boolean), 5);
+			this.AddElementFieldMapping("RacunGlavaEntity", "MjestoRadaAdresa", "MjestoRadaAdresa", true, "NVarChar", 100, 0, 0, false, "", null, typeof(System.String), 6);
+			this.AddElementFieldMapping("RacunGlavaEntity", "MjestoRadaNaziv", "MjestoRadaNaziv", true, "NVarChar", 100, 0, 0, false, "", null, typeof(System.String), 7);
+			this.AddElementFieldMapping("RacunGlavaEntity", "PartnerId", "PartnerId", false, "BigInt", 0, 19, 0, false, "", null, typeof(System.Int64), 8);
+			this.AddElementFieldMapping("RacunGlavaEntity", "RacunGlavaId", "RacunGlavaId", false, "BigInt", 0, 19, 0, false, "EnioNg.dbo.GenericSequence", null, typeof(System.Int64), 9);
+			this.AddElementFieldMapping("RacunGlavaEntity", "StatusId", "StatusId", false, "BigInt", 0, 19, 0, false, "", null, typeof(System.Int64), 10);
+			this.AddElementFieldMapping("RacunGlavaEntity", "TarifaId", "TarifaId", false, "BigInt", 0, 19, 0, false, "", null, typeof(System.Int64), 11);
+			this.AddElementFieldMapping("RacunGlavaEntity", "TarifaStopa", "TarifaStopa", false, "Decimal", 0, 5, 2, false, "", null, typeof(System.Decimal), 12);
+			this.AddElementFieldMapping("RacunGlavaEntity", "Valuta", "Valuta", false, "SmallInt", 0, 5, 0, false, "", null, typeof(System.Int16), 13);
+			this.AddElementFieldMapping("RacunGlavaEntity", "Vrijeme", "Vrijeme", true, "NVarChar", 10, 0, 0, false, "", null, typeof(System.String), 14);
+			this.AddElementFieldMapping("RacunGlavaEntity", "Zaglavlje", "Zaglavlje", true, "NVarChar", 1024, 0, 0, false, "", null, typeof(System.String), 15);
 		}
 
 		/// <summary>Inits RacunStavkaEntity's mappings</summary>
@@ -230,23 +244,25 @@ namespace NinjaSoftware.EnioNg.CoolJ.SqlServer.DatabaseSpecific
 		/// <summary>Inits TarifaEntity's mappings</summary>
 		private void InitTarifaEntityMappings()
 		{
-			this.AddElementMapping("TarifaEntity", @"EnioNg", @"dbo", "Tarifa", 5, 0);
+			this.AddElementMapping("TarifaEntity", @"EnioNg", @"dbo", "Tarifa", 6, 0);
 			this.AddElementFieldMapping("TarifaEntity", "ConcurrencyGuid", "ConcurrencyGuid", false, "NVarChar", 50, 0, 0, false, "", null, typeof(System.String), 0);
-			this.AddElementFieldMapping("TarifaEntity", "IsActive", "IsActive", false, "Bit", 0, 0, 0, false, "", null, typeof(System.Boolean), 1);
-			this.AddElementFieldMapping("TarifaEntity", "Naziv", "Naziv", false, "NVarChar", 100, 0, 0, false, "", null, typeof(System.String), 2);
-			this.AddElementFieldMapping("TarifaEntity", "Stopa", "Stopa", false, "Decimal", 0, 5, 2, false, "", null, typeof(System.Decimal), 3);
-			this.AddElementFieldMapping("TarifaEntity", "TarifaId", "TarifaId", false, "BigInt", 0, 19, 0, false, "EnioNg.dbo.GenericSequence", null, typeof(System.Int64), 4);
+			this.AddElementFieldMapping("TarifaEntity", "FirmaId", "FirmaId", false, "BigInt", 0, 19, 0, false, "", null, typeof(System.Int64), 1);
+			this.AddElementFieldMapping("TarifaEntity", "IsActive", "IsActive", false, "Bit", 0, 0, 0, false, "", null, typeof(System.Boolean), 2);
+			this.AddElementFieldMapping("TarifaEntity", "Naziv", "Naziv", false, "NVarChar", 100, 0, 0, false, "", null, typeof(System.String), 3);
+			this.AddElementFieldMapping("TarifaEntity", "Stopa", "Stopa", false, "Decimal", 0, 5, 2, false, "", null, typeof(System.Decimal), 4);
+			this.AddElementFieldMapping("TarifaEntity", "TarifaId", "TarifaId", false, "BigInt", 0, 19, 0, false, "EnioNg.dbo.GenericSequence", null, typeof(System.Int64), 5);
 		}
 
 		/// <summary>Inits UserEntity's mappings</summary>
 		private void InitUserEntityMappings()
 		{
-			this.AddElementMapping("UserEntity", @"EnioNg", @"dbo", "User", 5, 0);
+			this.AddElementMapping("UserEntity", @"EnioNg", @"dbo", "User", 6, 0);
 			this.AddElementFieldMapping("UserEntity", "ConcurrencyGuid", "ConcurrencyGuid", false, "NVarChar", 50, 0, 0, false, "", null, typeof(System.String), 0);
-			this.AddElementFieldMapping("UserEntity", "Password", "Password", false, "NVarChar", 256, 0, 0, false, "", null, typeof(System.String), 1);
-			this.AddElementFieldMapping("UserEntity", "RoleId", "RoleId", false, "BigInt", 0, 19, 0, false, "", null, typeof(System.Int64), 2);
-			this.AddElementFieldMapping("UserEntity", "UserId", "UserId", false, "BigInt", 0, 19, 0, false, "EnioNg.dbo.GenericSequence", null, typeof(System.Int64), 3);
-			this.AddElementFieldMapping("UserEntity", "Username", "Username", false, "NVarChar", 20, 0, 0, false, "", null, typeof(System.String), 4);
+			this.AddElementFieldMapping("UserEntity", "FirmaId", "FirmaId", false, "BigInt", 0, 19, 0, false, "", null, typeof(System.Int64), 1);
+			this.AddElementFieldMapping("UserEntity", "Password", "Password", false, "NVarChar", 256, 0, 0, false, "", null, typeof(System.String), 2);
+			this.AddElementFieldMapping("UserEntity", "RoleId", "RoleId", false, "BigInt", 0, 19, 0, false, "", null, typeof(System.Int64), 3);
+			this.AddElementFieldMapping("UserEntity", "UserId", "UserId", false, "BigInt", 0, 19, 0, false, "EnioNg.dbo.GenericSequence", null, typeof(System.Int64), 4);
+			this.AddElementFieldMapping("UserEntity", "Username", "Username", false, "NVarChar", 20, 0, 0, false, "", null, typeof(System.String), 5);
 		}
 
 	}

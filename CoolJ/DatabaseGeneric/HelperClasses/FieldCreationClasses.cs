@@ -31,6 +31,11 @@ namespace NinjaSoftware.EnioNg.CoolJ.HelperClasses
 		{
 			get { return (EntityField2)EntityFieldFactory.Create(ArtiklFieldIndex.ConcurrencyGuid);}
 		}
+		/// <summary>Creates a new ArtiklEntity.FirmaId field instance</summary>
+		public static EntityField2 FirmaId
+		{
+			get { return (EntityField2)EntityFieldFactory.Create(ArtiklFieldIndex.FirmaId);}
+		}
 		/// <summary>Creates a new ArtiklEntity.IsActive field instance</summary>
 		public static EntityField2 IsActive
 		{
@@ -131,6 +136,11 @@ namespace NinjaSoftware.EnioNg.CoolJ.HelperClasses
 		{
 			get { return (EntityField2)EntityFieldFactory.Create(BrojacFieldIndex.ConcurrencyGuid);}
 		}
+		/// <summary>Creates a new BrojacEntity.FirmaId field instance</summary>
+		public static EntityField2 FirmaId
+		{
+			get { return (EntityField2)EntityFieldFactory.Create(BrojacFieldIndex.FirmaId);}
+		}
 		/// <summary>Creates a new BrojacEntity.Godina field instance</summary>
 		public static EntityField2 Godina
 		{
@@ -170,6 +180,11 @@ namespace NinjaSoftware.EnioNg.CoolJ.HelperClasses
 		public static EntityField2 ConfigId
 		{
 			get { return (EntityField2)EntityFieldFactory.Create(ConfigFieldIndex.ConfigId);}
+		}
+		/// <summary>Creates a new ConfigEntity.FirmaId field instance</summary>
+		public static EntityField2 FirmaId
+		{
+			get { return (EntityField2)EntityFieldFactory.Create(ConfigFieldIndex.FirmaId);}
 		}
 		/// <summary>Creates a new ConfigEntity.Mjesto field instance</summary>
 		public static EntityField2 Mjesto
@@ -248,6 +263,16 @@ namespace NinjaSoftware.EnioNg.CoolJ.HelperClasses
 		}
 	}
 
+	/// <summary>Field Creation Class for entity FirmaEntity</summary>
+	public partial class FirmaFields
+	{
+		/// <summary>Creates a new FirmaEntity.FirmaId field instance</summary>
+		public static EntityField2 FirmaId
+		{
+			get { return (EntityField2)EntityFieldFactory.Create(FirmaFieldIndex.FirmaId);}
+		}
+	}
+
 	/// <summary>Field Creation Class for entity PartnerEntity</summary>
 	public partial class PartnerFields
 	{
@@ -260,6 +285,11 @@ namespace NinjaSoftware.EnioNg.CoolJ.HelperClasses
 		public static EntityField2 ConcurrencyGuid
 		{
 			get { return (EntityField2)EntityFieldFactory.Create(PartnerFieldIndex.ConcurrencyGuid);}
+		}
+		/// <summary>Creates a new PartnerEntity.FirmaId field instance</summary>
+		public static EntityField2 FirmaId
+		{
+			get { return (EntityField2)EntityFieldFactory.Create(PartnerFieldIndex.FirmaId);}
 		}
 		/// <summary>Creates a new PartnerEntity.IsActive field instance</summary>
 		public static EntityField2 IsActive
@@ -306,6 +336,11 @@ namespace NinjaSoftware.EnioNg.CoolJ.HelperClasses
 		{
 			get { return (EntityField2)EntityFieldFactory.Create(PdvFieldIndex.ConcurrencyGuid);}
 		}
+		/// <summary>Creates a new PdvEntity.FirmaId field instance</summary>
+		public static EntityField2 FirmaId
+		{
+			get { return (EntityField2)EntityFieldFactory.Create(PdvFieldIndex.FirmaId);}
+		}
 		/// <summary>Creates a new PdvEntity.Naziv field instance</summary>
 		public static EntityField2 Naziv
 		{
@@ -340,6 +375,11 @@ namespace NinjaSoftware.EnioNg.CoolJ.HelperClasses
 		public static EntityField2 Datum
 		{
 			get { return (EntityField2)EntityFieldFactory.Create(RacunGlavaFieldIndex.Datum);}
+		}
+		/// <summary>Creates a new RacunGlavaEntity.FirmaId field instance</summary>
+		public static EntityField2 FirmaId
+		{
+			get { return (EntityField2)EntityFieldFactory.Create(RacunGlavaFieldIndex.FirmaId);}
 		}
 		/// <summary>Creates a new RacunGlavaEntity.Godina field instance</summary>
 		public static EntityField2 Godina
@@ -511,6 +551,11 @@ namespace NinjaSoftware.EnioNg.CoolJ.HelperClasses
 		{
 			get { return (EntityField2)EntityFieldFactory.Create(TarifaFieldIndex.ConcurrencyGuid);}
 		}
+		/// <summary>Creates a new TarifaEntity.FirmaId field instance</summary>
+		public static EntityField2 FirmaId
+		{
+			get { return (EntityField2)EntityFieldFactory.Create(TarifaFieldIndex.FirmaId);}
+		}
 		/// <summary>Creates a new TarifaEntity.IsActive field instance</summary>
 		public static EntityField2 IsActive
 		{
@@ -540,6 +585,11 @@ namespace NinjaSoftware.EnioNg.CoolJ.HelperClasses
 		public static EntityField2 ConcurrencyGuid
 		{
 			get { return (EntityField2)EntityFieldFactory.Create(UserFieldIndex.ConcurrencyGuid);}
+		}
+		/// <summary>Creates a new UserEntity.FirmaId field instance</summary>
+		public static EntityField2 FirmaId
+		{
+			get { return (EntityField2)EntityFieldFactory.Create(UserFieldIndex.FirmaId);}
 		}
 		/// <summary>Creates a new UserEntity.Password field instance</summary>
 		public static EntityField2 Password

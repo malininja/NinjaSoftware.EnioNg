@@ -30,6 +30,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.RelationClasses
 		{
 			List<IEntityRelation> toReturn = new List<IEntityRelation>();
 			toReturn.Add(this.AuditInfoEntityUsingUserId);
+			toReturn.Add(this.FirmaEntityUsingFirmaId);
 			toReturn.Add(this.RoleRoEntityUsingRoleId);
 			return toReturn;
 		}
@@ -52,6 +53,20 @@ namespace NinjaSoftware.EnioNg.CoolJ.RelationClasses
 		}
 
 
+		/// <summary>Returns a new IEntityRelation object, between UserEntity and FirmaEntity over the m:1 relation they have, using the relation between the fields:
+		/// User.FirmaId - Firma.FirmaId
+		/// </summary>
+		public virtual IEntityRelation FirmaEntityUsingFirmaId
+		{
+			get
+			{
+				IEntityRelation relation = new EntityRelation(SD.LLBLGen.Pro.ORMSupportClasses.RelationType.ManyToOne, "Firma", false);
+				relation.AddEntityFieldPair(FirmaFields.FirmaId, UserFields.FirmaId);
+				relation.InheritanceInfoPkSideEntity = InheritanceInfoProviderSingleton.GetInstance().GetInheritanceInfo("FirmaEntity", false);
+				relation.InheritanceInfoFkSideEntity = InheritanceInfoProviderSingleton.GetInstance().GetInheritanceInfo("UserEntity", true);
+				return relation;
+			}
+		}
 		/// <summary>Returns a new IEntityRelation object, between UserEntity and RoleRoEntity over the m:1 relation they have, using the relation between the fields:
 		/// User.RoleId - RoleRo.RoleId
 		/// </summary>
@@ -81,6 +96,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.RelationClasses
 	internal static class StaticUserRelations
 	{
 		internal static readonly IEntityRelation AuditInfoEntityUsingUserIdStatic = new UserRelations().AuditInfoEntityUsingUserId;
+		internal static readonly IEntityRelation FirmaEntityUsingFirmaIdStatic = new UserRelations().FirmaEntityUsingFirmaId;
 		internal static readonly IEntityRelation RoleRoEntityUsingRoleIdStatic = new UserRelations().RoleRoEntityUsingRoleId;
 
 		/// <summary>CTor</summary>

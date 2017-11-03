@@ -30,6 +30,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.RelationClasses
 		{
 			List<IEntityRelation> toReturn = new List<IEntityRelation>();
 			toReturn.Add(this.RacunStavkaEntityUsingRacunGlavaId);
+			toReturn.Add(this.FirmaEntityUsingFirmaId);
 			toReturn.Add(this.PartnerEntityUsingPartnerId);
 			toReturn.Add(this.StatusRoEntityUsingStatusId);
 			toReturn.Add(this.TarifaEntityUsingTarifaId);
@@ -54,6 +55,20 @@ namespace NinjaSoftware.EnioNg.CoolJ.RelationClasses
 		}
 
 
+		/// <summary>Returns a new IEntityRelation object, between RacunGlavaEntity and FirmaEntity over the m:1 relation they have, using the relation between the fields:
+		/// RacunGlava.FirmaId - Firma.FirmaId
+		/// </summary>
+		public virtual IEntityRelation FirmaEntityUsingFirmaId
+		{
+			get
+			{
+				IEntityRelation relation = new EntityRelation(SD.LLBLGen.Pro.ORMSupportClasses.RelationType.ManyToOne, "Firma", false);
+				relation.AddEntityFieldPair(FirmaFields.FirmaId, RacunGlavaFields.FirmaId);
+				relation.InheritanceInfoPkSideEntity = InheritanceInfoProviderSingleton.GetInstance().GetInheritanceInfo("FirmaEntity", false);
+				relation.InheritanceInfoFkSideEntity = InheritanceInfoProviderSingleton.GetInstance().GetInheritanceInfo("RacunGlavaEntity", true);
+				return relation;
+			}
+		}
 		/// <summary>Returns a new IEntityRelation object, between RacunGlavaEntity and PartnerEntity over the m:1 relation they have, using the relation between the fields:
 		/// RacunGlava.PartnerId - Partner.PartnerId
 		/// </summary>
@@ -111,6 +126,7 @@ namespace NinjaSoftware.EnioNg.CoolJ.RelationClasses
 	internal static class StaticRacunGlavaRelations
 	{
 		internal static readonly IEntityRelation RacunStavkaEntityUsingRacunGlavaIdStatic = new RacunGlavaRelations().RacunStavkaEntityUsingRacunGlavaId;
+		internal static readonly IEntityRelation FirmaEntityUsingFirmaIdStatic = new RacunGlavaRelations().FirmaEntityUsingFirmaId;
 		internal static readonly IEntityRelation PartnerEntityUsingPartnerIdStatic = new RacunGlavaRelations().PartnerEntityUsingPartnerId;
 		internal static readonly IEntityRelation StatusRoEntityUsingStatusIdStatic = new RacunGlavaRelations().StatusRoEntityUsingStatusId;
 		internal static readonly IEntityRelation TarifaEntityUsingTarifaIdStatic = new RacunGlavaRelations().TarifaEntityUsingTarifaId;

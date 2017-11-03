@@ -56,11 +56,12 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
 
         public FileContentResult RacunReport(long racunGlavaId)
         {
-            string reportPath = Server.MapPath("~/ReportTemplates/Racun.xls");
+            DataAccessAdapterBase adapter = Helpers.Helper.GetDataAccessAdapter();
+            long firmaId = UserEntity.GetFirmaId(adapter, User.Identity.Name);
+
+            string reportPath = Server.MapPath(string.Format("~/ReportTemplates/{0}/Racun.xls", firmaId));
             FlexCel.XlsAdapter.XlsFile xls = new FlexCel.XlsAdapter.XlsFile();
             xls.Open(reportPath);
-
-            DataAccessAdapterBase adapter = Helpers.Helper.GetDataAccessAdapter();
 
             List<RacunReport> racunGlavaList = new List<RacunReport>();
             racunGlavaList.Add(new RacunReport(adapter, racunGlavaId));
@@ -85,16 +86,18 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
 
         public FileContentResult RacunReportCollection(string jqGridFilters)
         {
-            string reportPath = Server.MapPath("~/ReportTemplates/Racun.xls");
+            DataAccessAdapterBase adapter = Helpers.Helper.GetDataAccessAdapter();
+            long firmaId = UserEntity.GetFirmaId(adapter, User.Identity.Name);
+
+            string reportPath = Server.MapPath(string.Format("~/ReportTemplates/{0}/Racun.xls", firmaId));
             FlexCel.XlsAdapter.XlsFile xls = new FlexCel.XlsAdapter.XlsFile();
             xls.Open(reportPath);
 
-            DataAccessAdapterBase adapter = Helpers.Helper.GetDataAccessAdapter();
-
-            short godina = ConfigEntity.GetInstance(adapter).AktivnaGodina;
+            short godina = ConfigEntity.GetInstance(adapter, firmaId).AktivnaGodina;
             RelationPredicateBucket bucket = RacunGlavaPager.CreateBucket(godina, jqGridFilters);
+            bucket.PredicateExpression.Add(RacunGlavaFields.FirmaId == firmaId);
 
-            IEnumerable<RacunReport> racunReportCollection = CoolJ.DatabaseGeneric.BusinessLogic.RacunReport.GetRacunReportCollection(adapter, bucket);
+            IEnumerable<RacunReport> racunReportCollection = CoolJ.DatabaseGeneric.BusinessLogic.RacunReport.GetRacunReportCollection(adapter, bucket, firmaId);
 
             FlexCel.Report.FlexCelReport report = new FlexCel.Report.FlexCelReport();
             report.AddTable("Racun", racunReportCollection);
@@ -116,17 +119,19 @@ namespace NinjaSoftware.EnioNg.Web.Controllers
 
         public FileContentResult RacunReportCollectionAsList(string jqGridFilters)
         {
-            string reportPath = Server.MapPath("~/ReportTemplates/RacunList.xls");
+            DataAccessAdapterBase adapter = Helpers.Helper.GetDataAccessAdapter();
+            long firmaId = UserEntity.GetFirmaId(adapter, User.Identity.Name);
+
+            string reportPath = Server.MapPath(string.Format("~/ReportTemplates/{0}/RacunList.xls", firmaId));
             FlexCel.XlsAdapter.XlsFile xls = new FlexCel.XlsAdapter.XlsFile();
             xls.Open(reportPath);
 
-            DataAccessAdapterBase adapter = Helpers.Helper.GetDataAccessAdapter();
-
-            short godina = ConfigEntity.GetInstance(adapter).AktivnaGodina;
+            short godina = ConfigEntity.GetInstance(adapter, firmaId).AktivnaGodina;
             RelationPredicateBucket bucket = RacunGlavaPager.CreateBucket(godina, jqGridFilters);
+            bucket.PredicateExpression.Add(RacunGlavaFields.FirmaId == firmaId);
             bucket.Relations.Add(RacunGlavaEntity.Relations.PartnerEntityUsingPartnerId);
 
-            IEnumerable<RacunReport> racunReportCollection = NinjaSoftware.EnioNg.CoolJ.DatabaseGeneric.BusinessLogic.RacunReport.GetRacunReportCollection(adapter, bucket);
+            IEnumerable<RacunReport> racunReportCollection = NinjaSoftware.EnioNg.CoolJ.DatabaseGeneric.BusinessLogic.RacunReport.GetRacunReportCollection(adapter, bucket, firmaId);
 
             decimal ukupnoSum = racunReportCollection.Where(x => x.RacunGlava.JePdvRacun).Sum(x => x.Ukupno);
             ukupnoSum += racunReportCollection.Where(x => !x.RacunGlava.JePdvRacun).Sum(x => x.UkupnoBezPdv);

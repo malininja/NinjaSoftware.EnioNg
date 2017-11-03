@@ -238,6 +238,26 @@ namespace NinjaSoftware.EnioNg.CoolJ.FactoryClasses
 		#endregion
 	}
 
+	/// <summary>Factory to create new, empty FirmaEntity objects.</summary>
+	[Serializable]
+	public partial class FirmaEntityFactory : EntityFactoryBase2<FirmaEntity> {
+		/// <summary>CTor</summary>
+		public FirmaEntityFactory() : base("FirmaEntity", NinjaSoftware.EnioNg.CoolJ.EntityType.FirmaEntity, false) { }
+		
+		/// <summary>Creates a new FirmaEntity instance but uses a special constructor which will set the Fields object of the new IEntity2 instance to the passed in fields object.</summary>
+		/// <param name="fields">Populated IEntityFields2 object for the new IEntity2 to create</param>
+		/// <returns>Fully created and populated (due to the IEntityFields2 object) IEntity2 object</returns>
+		public override IEntity2 Create(IEntityFields2 fields) {
+			IEntity2 toReturn = new FirmaEntity(fields);
+			// __LLBLGENPRO_USER_CODE_REGION_START CreateNewFirmaUsingFields
+			// __LLBLGENPRO_USER_CODE_REGION_END
+			return toReturn;
+		}
+		#region Included Code
+
+		#endregion
+	}
+
 	/// <summary>Factory to create new, empty PartnerEntity objects.</summary>
 	[Serializable]
 	public partial class PartnerEntityFactory : EntityFactoryBase2<PartnerEntity> {
@@ -430,6 +450,9 @@ namespace NinjaSoftware.EnioNg.CoolJ.FactoryClasses
 					break;
 				case NinjaSoftware.EnioNg.CoolJ.EntityType.ErrorEntity:
 					factoryToUse = new ErrorEntityFactory();
+					break;
+				case NinjaSoftware.EnioNg.CoolJ.EntityType.FirmaEntity:
+					factoryToUse = new FirmaEntityFactory();
 					break;
 				case NinjaSoftware.EnioNg.CoolJ.EntityType.PartnerEntity:
 					factoryToUse = new PartnerEntityFactory();
