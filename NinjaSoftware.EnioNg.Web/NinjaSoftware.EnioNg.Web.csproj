@@ -236,6 +236,10 @@
       <SubType>Designer</SubType>
     </Content>
     <None Include="Properties\PublishProfiles\EnioNg.pubxml" />
+    <Content Include="ReportTemplates\1\Racun.xls" />
+    <Content Include="ReportTemplates\1\RacunList.xls" />
+    <Content Include="ReportTemplates\2\Racun.xls" />
+    <Content Include="ReportTemplates\2\RacunList.xls" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -328,7 +332,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="ReportTemplates\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
